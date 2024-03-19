@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../ccs/same.css">
+    <link rel="stylesheet" href="../ccs/header.css">
+    <link rel="stylesheet" href="../ccs/footer.css">
+    <link rel="stylesheet" href="../ccs/registration_form.css">
+</head>
+<body>
+    <header>
+        <nav class="nav_helper">
+            <ul class="nav_helper__links">
+                <li class="nav_helper__link"><a href="../index.html/main.html" class="nav__link">Главная</a></li>
+                <li class="nav_helper__link"><a href="" class="nav__link">Помощь</a></li>
+                <li class="nav_helper__link"><a href="" class="nav__link">Контакты</a></li>
+                <li class="nav_helper__link"><a href="../index.html/add_product_page.html" class="nav__link">Разместите свой продукт</a></li>
+            </ul>
+        </nav>
+        <h1 class="site_name">Название</h1>
+        <nav class="nav_user">
+            <ul class="nav_user__links">
+                <li class="nav_links__link"><input type="text" placeholder="Поиск" class="nav_user__input"></li>
+                <li class="nav_links__link"><a href="../index.html/products.html" class="nav__link">Товары</a></li>
+                <li class="nav_links__link"><a href="../index.html/shopping_basket_page.html" class="nav__link">Корзина</a></li>
+                <li class="nav_links__link"><a href="../index.html/user_page.html" class="nav__link">Аккаунт</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="registration_form_container">
+            <div class="registration_form">
+                <h2 class="registration_title"><b>Регистрация</b></h2>
+                <form action="/submit" method="post" class="reg_form">
+                      <input type="text" id="name" name="name" required placeholder="Введите имя" class="reg_input">
+                      <input type="email" id="email" name="email" required placeholder="Введите e-mail" class="reg_input">
+                      <input type="password" id="password" name="password" required placeholder="Придумайте пароль" class="reg_input">
+                      <input type="password" id="confirm_password" name="confirm_password" required placeholder="Повторите пароль" class="reg_input">
+                      <input type="submit" value="Зарегистрироваться" class="btn_send_reginfo">
+                  </form>
+            </div>
+            <img src="" alt="" class="registration_page_img">
+        </div>
+    </main>
+    <footer>
+        <div class="footer__container">
+            <p>контакты и тд</p>
+        </div>
+    </footer>
+</body>
+</html>

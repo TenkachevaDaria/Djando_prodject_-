@@ -1,0 +1,12 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(236, 246, 255);
+}
+
+li, ul, a, h1, p, h2, h3 {
+    text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}

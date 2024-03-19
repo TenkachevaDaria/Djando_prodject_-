@@ -1,0 +1,94 @@
+.basket_container {
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket__title {
+    margin-bottom: 15px;
+}
+
+.basket__item {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.item_box {
+    padding: 20px 30px;
+    background-color: rgb(217, 217, 217);
+    width: 600px;
+    display: flex;
+    gap: 25px;
+}
+
+.basket__item_list {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item__img {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(179, 111, 111);   
+}
+
+.item_name_price_box {
+    display: flex;
+    gap: 190px;
+    align-items: center;
+}
+
+.item__name {
+    margin-bottom: 10px;
+}
+
+.item__sort_descr {
+    margin-bottom: 5px;
+}
+
+.pos_box_price {
+    position: relative;
+    width: 80%;
+}
+
+.item__price {
+    position: absolute;
+    right: 0;   
+    top: 0;
+}
+
+.paymen_method_form {
+    width: 500px;
+    height: 400px;
+    background-color: rgb(217, 217, 217);
+}
+
+.paymen_method_form__container {
+    margin: 25px;
+    height: 87%;
+}
+
+.paymen_method_form__title {
+    margin-bottom: 15px;
+}
+
+.btn_choose_payment_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.payment_way {
+    width: 100%;
+    padding: 20px 40px;
+    align-items: left;
+    justify-content: center;
+    background-color: rgb(173, 129, 129);
+    color: white;
+}

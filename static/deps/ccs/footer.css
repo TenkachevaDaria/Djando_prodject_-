@@ -1,0 +1,9 @@
+footer {
+    margin-top: 100px;
+    background-color: rgb(217, 217, 217);
+    min-height: 300px;
+}
+
+.footer__container {
+    padding: 40px 165px;
+}

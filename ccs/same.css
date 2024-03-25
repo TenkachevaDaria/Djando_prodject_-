@@ -2,6 +2,11 @@ body {
     padding: 0;
     margin: 0;
     background-color: rgb(236, 246, 255);
+    min-height: 100%;
+}
+
+main {
+    margin-bottom: 100px;
 }
 
 li, ul, a, h1, p, h2, h3 {

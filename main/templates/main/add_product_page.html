@@ -1,0 +1,41 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %}    
+    <link rel="stylesheet" href="{% static "ccs/add_form_page.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <div class="add_form">
+            <h2 class="add_form__title"><b>Добавление нового продукта</b></h2>
+            <form action="/submit" method="post" class="add_form_inputs">
+                <input type="text" id="product_name" name="product_name" required
+                    placeholder="Напишите название продукта:" class="add_form__input"><br>
+                <input type="text" id="product_price" name="product_price" required
+                    placeholder="Напишите стоимость продукта:" class="add_form__input"><br>
+                <label class="check_boxs_label">Под какую систему предназначен ваш продукт:</label><br>
+                <div class="check_boxs">
+                    <div>
+                        <input type="checkbox" id="macos" name="system" value="macos" class="checkbox_input">
+                    <label for="macos" >MacOS</label>
+                    </div>
+                    <div>   
+                        <input type="checkbox" id="linux" name="system" value="linux" class="checkbox_input">
+                    <label for="linux" >Linux</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="windows" name="system" value="windows" class="checkbox_input">
+                    <label for="windows">Windows</label>
+                    </div>
+                </div>
+                <textarea id="product_description" name="product_description" rows="4" cols="50" required
+                    placeholder="Дайте описание вашему продукту:" class="add_form__input"></textarea><br>
+                <input type="file" id="product_image" name="product_image" accept="image/*" placeholder="Добавьте картинку:" class="add_form_add_img"><br>
+                <input type="submit" value="Добавить" class="add_form__submit">
+            </form>
+
+        </div>
+        <img src="" alt="" class="add_form_img">
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "ccs/basket_page.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="basket_container">
+        <div>
+            <h2 class="basket__title">Корзина</h2>
+        <form class="basket__form">
+            <input type="checkbox" id="select_all" name="select_all">
+            <label for="select_all" class="select_all_label">Выбрать всё</label>
+            <ul class="basket__item_list">
+                <li class="basket__item">
+                    <input type="checkbox" id="item1" name="basket_item">
+                    <div class="item_box">
+                        <img src="" alt="" class="item__img">
+                        <div class="pos_box_price">
+                            <h3 class="item__name">Название товара</h3>
+                            <p class="item__price">цена</p>
+                            <p class="item__sort_descr">Начало описания товара</p>
+                            <p class="item__platform">Операционная система</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="basket__item">
+                    <input type="checkbox" id="item2" name="basket_item">
+                    <div class="item_box">
+                        <img src="" alt="" class="item__img">
+                        <div class="pos_box_price">
+                            <h3 class="item__name">Название товара</h3>
+                            <p class="item__price">цена</p>
+                            <p class="item__sort_descr">Начало описания товара</p>
+                            <p class="item__platform">Операционная система</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="basket__item">
+                    <input type="checkbox" id="item3" name="basket_item">
+                    <div class="item_box">
+                        <img src="" alt="" class="item__img">
+                        <div class="pos_box_price">
+                            <h3 class="item__name">Название товара</h3>
+                            <p class="item__price">цена</p>
+                            <p class="item__sort_descr">Начало описания товара</p>
+                            <p class="item__platform">Операционная система</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+        </div>
+        <div class="paymen_method_form">
+            <div class="paymen_method_form__container">
+                <h3 class="paymen_method_form__title">Способ оплаты</h3>
+                <ul class="btn_choose_payment_list">
+                    <li><button class="payment_way">Способ1</button></li>
+                    <li><button class="payment_way">Способ2</button></li>
+                    <li><button class="payment_way">Добавить способ оплаты</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock  %}

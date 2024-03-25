@@ -1,0 +1,22 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %} 
+    <link rel="stylesheet" href="{% static "ccs/log_in_page.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <div class="form_inputs">
+            <h2 class="form_title"><b>Вход</b></h2>
+            <form action="/submit" method="post" class="form_log_in">
+                <input type="email" id="email" name="email" required placeholder="Введите e-mail" class="input_log">
+                <input type="password" id="password" name="password" required placeholder="Введите пароль" class="input_log">
+                <div>
+                    <input type="submit" value="Войти" class="btn_send_database">
+                </div>
+            </form>
+        </div>
+        <img src="" alt="" class="log_in_page_img">
+    </div>
+{% endblock %}

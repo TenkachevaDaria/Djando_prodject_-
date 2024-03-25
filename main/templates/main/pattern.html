@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "ccs/same.css" %}">
+    <link rel="stylesheet" href="{% static "ccs/header.css" %}">
+    <link rel="stylesheet" href="{% static "ccs/footer.css" %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="nav_helper">
+            <ul class="nav_helper__links">
+                <li class="nav_helper__link"><a href="{% url "index" %}" class="nav__link">Главная</a></li>
+                <li class="nav_helper__link"><a href="#contact" class="nav__link">Помощь</a></li>
+                <li class="nav_helper__link"><a href="{% url "index" %}#quest" class="nav__link">Контакты</a></li>
+                <li class="nav_helper__link"><a href="{% url "addProduct" %}" class="nav__link">Разместите свой продукт</a></li>
+            </ul>
+        </nav>
+        <h1 class="site_name">Название</h1>
+        <nav class="nav_user">
+            <ul class="nav_user__links">
+                <li class="nav_links__link"><input type="text" placeholder="Поиск" class="nav_user__input"></li>
+                <li class="nav_links__link"><a href="{% url "products" %}" class="nav__link">Товары</a></li>
+                <li class="nav_links__link"><a href="{% url "shopping_basket" %}" class="shopping_basket">Корзина</a></li>
+                <li class="nav_links__link"><a href="{% url "user" %}" class="nav__link">Аккаунт</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %} 
+    </main>
+    <footer>
+        <div id="contact" class="footer__container">
+            <p>контакты и тд</p>
+        </div>
+    </footer>
+</body>
+</html>

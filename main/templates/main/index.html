@@ -1,0 +1,62 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "ccs/product_card.css" %}">
+    <link rel="stylesheet" href="{% static "ccs/questions.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="products_container">
+        <h2 class="product_title">Популярные товары</h2>
+        <div class="product_card">
+            <div class="product_card__container">
+                <img src="" alt="Фото товара" class="product_card__img">
+                <div class="product_descr_container">
+                    <p class="product_card__descr">Описание продукта</p>
+                    <p class="product_card__price">9999</p>
+                </div>
+            </div>
+        </div>
+        <div class="hidden_card">
+        </div>
+    </div>
+    <div id="quest" class="questions">
+        <h2 class="questions__title">Частые вопросы</h2>
+        <ul class="questions__list">
+            <li class="question">
+                <details class="questiom__item">
+                    <summary class="questiom__text">ВопросВопросВопросВопрос</summary>
+                    <p class="question__answer">ОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтвет</p>
+                </details>
+            </li>
+            <li class="question">
+                <details class="questiom__item">
+                    <summary class="questiom__text">ВопросВопросВопросВопрос</summary>
+                    <p class="question__answer">ОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтвет</p>
+                </details>
+            </li>
+            <li class="question">
+                <details class="questiom__item">
+                    <summary class="questiom__text">ВопросВопросВопросВопрос</summary>
+                    <p class="question__answer">ОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтвет</p>
+                </details>
+            </li>
+            <li class="question">
+                <details class="questiom__item">
+                    <summary class="questiom__text">ВопросВопросВопросВопрос</summary>
+                    <p class="question__answer">ОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтвет</p>
+                </details>
+            </li>
+            <li class="question">
+                <details class="questiom__item">
+                    <summary class="questiom__text">ВопросВопросВопросВопрос</summary>
+                    <p class="question__answer">ОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтветОтвет</p>
+                </details>
+            </li>
+        </ul>
+        <div class="ask_questins">
+            <p class="ask_questions_text">Есть вопросы? Можете задать их по адресу:  <a href="email">почта</a></p>
+        </div>
+    </div>
+{% endblock %}

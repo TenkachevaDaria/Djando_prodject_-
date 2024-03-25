@@ -1,0 +1,127 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "ccs/user_page.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="user_page_container">
+        <div>
+            <div class="custom-input_user">
+                <img src="placeholder.jpg" alt="" class="user_img">
+                <label for="photo" class="upload-button"></label>
+                <input type="file" id="photo" name="photo" class="upload-button" accept="image/*">
+            </div>
+        </div>
+        <div>
+            <form>
+                <div>
+                    <label for="first_name">Имя</label><br>
+                    <input type="text" id="first_name" name="first_name" required class="user_input_page"
+                        placeholder="Добавьте имя"><br>
+                </div>
+                <div>
+                    <label for="last_name">Фамилия</label><br>
+                    <input type="text" id="last_name" name="last_name" required class="user_input_page"
+                        placeholder="Добавьте фамилию"><br>
+                </div>
+                <div>
+                    <label for="middle_name">Отчество</label><br>
+                    <input type="text" id="middle_name" name="middle_name" class="user_input_page"
+                        placeholder="Добавьте отчество"><br>
+                </div>
+            </form>
+            <p class="user_products_title">Размещенные вами товары</p>
+            <div class="user_products">
+
+            </div>
+        </div>
+        <div class="pos_class">
+            <label for="e-mail">E-mail</label><br>
+            <input type="text" id="e-mail" name="e-mail" class="user_input_page" placeholder="Добавьте почту"><br>
+            <label for="phone_num">Номер телефона</label><br>
+            <input type="text" id="phone_num" name="phone_num" class="user_input_page"
+                placeholder="Добавьте номер телефона"><br>
+
+            <div class="user_rating">
+                <p class="user_rating__title">Ваш рейтинг продавца</p>
+                <div class="user_rating__box">
+                    <p class="user_rating__num">Цифра</p>
+                    <ul class="user_rating__stars">
+                        <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>
+                                    Created with Pixso.
+                                </desc>
+                                <defs />
+                                <path id="Star 1"
+                                    d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                    fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                            </svg>
+                        </li>
+                        <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>
+                                    Created with Pixso.
+                                </desc>
+                                <defs />
+                                <path id="Star 1"
+                                    d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                    fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                            </svg>
+                        </li>
+                        <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>
+                                    Created with Pixso.
+                                </desc>
+                                <defs />
+                                <path id="Star 1"
+                                    d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                    fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                            </svg>
+                        </li>
+                        <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>
+                                    Created with Pixso.
+                                </desc>
+                                <defs />
+                                <path id="Star 1"
+                                    d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                    fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                            </svg>
+                        </li>
+                        <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                fill="none" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>
+                                    Created with Pixso.
+                                </desc>
+                                <defs />
+                                <path id="Star 1"
+                                    d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                    fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="payment_method">Номер телефона</label><br>
+            <input type="text" id="payment_method" name="payment_method" class="user_input_page"
+                placeholder="Добавьте способ обплаты"><br>
+                <p class="user_history_bought">Уже покупали</p>
+                <div class="user_history_bought_box">
+                    
+                </div>
+        </div>
+        
+    </div>
+{% endblock %}

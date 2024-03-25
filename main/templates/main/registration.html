@@ -1,0 +1,22 @@
+{% extends "main/pattern.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "ccs/registration_form.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="registration_form_container">
+        <div class="registration_form">
+            <h2 class="registration_title"><b>Регистрация</b></h2>
+            <form action="/submit" method="post" class="reg_form">
+                <input type="text" id="name" name="name" required placeholder="Введите имя" class="reg_input">
+                <input type="email" id="email" name="email" required placeholder="Введите e-mail" class="reg_input">
+                <input type="password" id="password" name="password" required placeholder="Придумайте пароль" class="reg_input">
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Повторите пароль" class="reg_input">
+                <input type="submit" value="Зарегистрироваться" class="btn_send_reginfo">
+            </form>
+        </div>
+        <img src="" alt="" class="registration_page_img">
+    </div>
+{% endblock  %}

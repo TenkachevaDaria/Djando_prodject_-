@@ -1,0 +1,64 @@
+.form_container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 240px;
+}
+
+.add_form {
+    padding: 30px;
+    background-color: rgb(228, 228, 228);
+    height: 800px;
+    position: relative;
+    width: 600px;
+}
+
+.add_form__title {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.add_form__input {
+    width: 90%;
+    padding: 25px;
+    background-color: rgb(217, 226, 236);
+    margin-bottom: 40px;
+}
+
+.check_boxs_label {
+    font-size: 20px;
+}
+
+.check_boxs {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.checkbox_input {
+    font-size: 20px;
+}
+
+.add_form_add_img {
+    background: rgb(217, 226, 236);
+    padding: 10px;
+}
+
+.add_form__submit {
+    position: absolute;
+    width: 90%;
+    padding: 20px 0px;
+    justify-content: center;
+    align-items: center;
+    bottom: 30px;
+    background-color: rgb(21, 106, 199);
+    color: white;
+    font-size: 20px;
+}
+
+.add_form_img {
+    width: 600px;
+    height: 860px;
+    background-color: rgb(217, 217, 217);
+}

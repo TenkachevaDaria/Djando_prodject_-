@@ -25,114 +25,14 @@
             </div>
             <div class="product_box">
                 <ul class="products_list">
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale">ХИТ!</p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale">ВЫГОДНО!</p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
-                    <li class="product_card">
-                        <img src="" alt="" class="product__img">
-                        <p class="popular_sale"></p>
-                        <p class="product__name">Название товара</p>
-                        <p class="product__price">Цена</p>
-                    </li>
+                    {% for product in goods  %}
+                        <li class="product_card">
+                            <img src="" alt="" class="product__img">
+                            <p class="popular_sale">{{ product.sale }}</p>
+                            <p class="product__name">{{ product.name }}</p>
+                            <p class="product__price">{{ product.price }}</p>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

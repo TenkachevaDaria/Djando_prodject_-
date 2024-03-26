@@ -14,9 +14,6 @@ def addProduct(request):
 def LogIn(request):
     return render(request, 'main/log_in.html')
 
-def products(request):
-    return render(request, 'main/products.html')
-
 def registration(request):
     return render(request, 'main/registration.html')
 

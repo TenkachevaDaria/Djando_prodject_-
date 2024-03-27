@@ -1,8 +1,7 @@
 footer {
-    /* margin-top: 100px; */
     background-color: rgb(217, 217, 217);
     min-height: 300px;
-    margin-top: auto;
+    flex: 3;
 }
 
 .footer__container {

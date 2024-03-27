@@ -23,6 +23,7 @@
 
 .filters_producs_container {
     display: flex;
+    padding-bottom: 120px;
 }
 
 .filters_box {
@@ -41,6 +42,7 @@
 
 .product_box {
     margin-left: 20px;
+    position: relative;
 }
 
 .product_card {
@@ -67,6 +69,7 @@
     background-color: rgb(107, 99, 99);
     width: 100%;
     margin-bottom: 20px;
+    color: white;
 }
 
 .product__price {
@@ -80,4 +83,19 @@
     top: 10px;
     padding: 0 5px;
     background-color: rgb(217, 217, 217);
+}
+
+.page_num_list {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.page_num {
+    text-align: center;
+    padding: 10px 16px;
+    border: 1px solid;
 }

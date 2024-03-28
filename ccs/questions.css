@@ -12,10 +12,12 @@
     margin-bottom: 30px;
 }
 
-.questiom__text {
+.question__text {
     font-size: 20px;
     background-color: rgb(217, 217, 217);
     padding: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .question__answer {

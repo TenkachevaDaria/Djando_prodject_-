@@ -1,12 +1,110 @@
+html,
 body {
-    padding: 0;
-    margin: 0;
-    background-color: rgb(236, 246, 255);
+  padding: 0;
+  margin: 0;
+  background-color: rgb(236, 246, 255);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-li, ul, a, h1, p, h2, h3 {
-    text-decoration: none;
-    padding: 0px;
-    margin: 0px;
-    list-style-type: none;
+main {
+  margin-bottom: 100px;
+}
+
+li,
+ul,
+a,
+h1,
+p,
+h2,
+h3 {
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+
+.btn {
+  transition: all 0.3s;
+  outline: none;
+  border: none;
+}
+
+.btn:focus {
+  opacity: 50%;
+}
+
+.btn:hover {
+  opacity: 70%;
+}
+
+.btn:active {
+  opacity: 50%;
+}
+
+summary {
+  position: relative;
+}
+
+summary::marker {
+  content: none;
+}
+
+.summary_marker_stick1 {
+  transform: translateY(-50%);
+  border: 1px solid black;
+  width: 20px;
+  height: 0;
+  transform: rotate(45deg);
+}
+
+.summary_marker_stick2 {
+  margin-top: 13px;
+  transform: translateY(50%);
+  border: 1px solid black;
+  width: 20px;
+  height: 0;
+  transform: rotate(-45deg);
+}
+
+.marker_container {
+  position: absolute;
+  right: 35px;
+}
+
+details[open] .marker_container {
+  transform: rotate(90deg);
+}
+
+details[open] .summary_marker_stick1 {
+  border: 1.5px solid blue;
+}
+
+details[open] .summary_marker_stick2 {
+  border: 1.5px solid blue;
+}
+
+details:hover .summary_marker_stick1 {
+  opacity: 70%;
+}
+
+details:hover .summary_marker_stick2 {
+  opacity: 70%;
+}
+
+details:focus .summary_marker_stick1 {
+  opacity: 70%;
+}
+
+details:focus .summary_marker_stick1 {
+  opacity: 70%;
+}
+
+details:active .summary_marker_stick1 {
+  opacity: 70%;
+}
+
+details:active .summary_marker_stick1 {
+  opacity: 70%;
 }

@@ -18,19 +18,19 @@
         <div class="filters_producs_container">
             <div class="filters_box">
                 <ul class="filters__list">
-                    <li class="filter">Фильтр 1</li>
-                    <li class="filter">Фильтр 2</li>
-                    <li class="filter">Фильтр 3</li>
+                    {% for category in categories %}
+                        <li class="filter">{{ category.name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="product_box">
                 <ul class="products_list">
-                    {% for product in goods  %}
+                    {% for product in products  %}
                         <li class="product_card">
-                            <img src="" alt="" class="product__img">
-                            <p class="popular_sale">{{ product.sale }}</p>
-                            <p class="product__name">{{ product.name }}</p>
-                            <p class="product__price">{{ product.price }}</p>
+                            <img src="" alt="" class="product__img shadow_element">
+                            <p class="popular_sale"></p>
+                            <p class="product__name shadow_element">{{ product.name }}</p>
+                            <p class="product__price shadow_element">{{ product.price }}</p>
                         </li>
                     {% endfor %}
                 </ul>

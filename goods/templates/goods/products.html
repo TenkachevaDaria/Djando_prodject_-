@@ -27,7 +27,11 @@
                 <ul class="products_list">
                     {% for product in products  %}
                         <li class="product_card">
-                            <img src="" alt="" class="product__img shadow_element">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
+                            {% else %}
+                                <img src="" alt="" class="product__img shadow_element">
+                            {% endif %}
                             <p class="popular_sale"></p>
                             <p class="product__name shadow_element">{{ product.name }}</p>
                             <p class="product__price shadow_element">{{ product.price }}</p>

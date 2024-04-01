@@ -143,4 +143,3 @@ class PaymentMethod(models.Model):
     
     def __str__(self) -> str:
         return f'Пользователь - {self.user} Способ оплаты - {self.name}'
-

@@ -114,7 +114,7 @@ class Review(models.Model):
         verbose_name_plural = 'Отзывы'
         
     def __str__(self) -> str:
-        return f'| Продукт - {self.product} | Пользователь - {self.user} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
+        return f'| Продукт - {self.product.name} | Пользователь - {self.user.name} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
 
 
 class Discount(models.Model):

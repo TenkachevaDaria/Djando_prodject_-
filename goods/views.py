@@ -7,7 +7,14 @@ from .models import Categories, Product
 def catalog(request):
     products = Product.objects.all()
     categories = Categories.objects.all()
-    return render(request, 'goods/products.html', {'products': products, 'categories': categories})
 
-def product(request):
-    return render(request, 'goods/product_page.html')
+    context = {
+        'categories': categories,
+        'products': products
+    }
+    return render(request, 'goods/products.html', context)
+
+def product(request, product_slug):
+    product = Product.objects.get(slug=product_slug)
+
+    return render(request, 'goods/product_page.html', {'product': product})

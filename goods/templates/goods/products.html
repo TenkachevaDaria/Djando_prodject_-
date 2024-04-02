@@ -25,36 +25,38 @@
             </div>
             <div class="product_box">
                 <ul class="products_list">
+
                     {% for product in products %}
                         <li class="product_card">
-
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
-                            {% else %}
-                                <img src="" alt="" class="product__img shadow_element">
-                            {% endif %}
+                            <a href="{% url "catalog:product" product.slug %}">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
+                                {% else %}
+                                    <img src="" alt="" class="product__img shadow_element">
+                                {% endif %}
                             
-                            {% if product.discount_set.all %}
-                                {% for discount in product.discount_set.all %}
-                                    {% if discount.final_price %}
-                                        <p class="popular_sale">Скидка {{ discount.discount_percentage }} %</p>             
-                                    {% else %}
-                                        <p class="popular_sale"></p>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                                {% if product.discount_set.all %}
+                                    {% for discount in product.discount_set.all %}
+                                        {% if discount.final_price %}
+                                            <p class="popular_sale">Скидка {{ discount.discount_percentage }} %</p>             
+                                        {% else %}
+                                            <p class="popular_sale"></p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
 
-                            <p class="product__name shadow_element">{{ product.name }}</p>
+                                <p class="product__name shadow_element">{{ product.name }}</p>
 
-                            {% if product.discount_set.all %}
-                                {% for discount in product.discount_set.all %}
-                                    {% if discount.final_price %}
-                                        <p class="product__price shadow_element">{{ discount.final_price }}</p>
-                                    {% else %}
-                                        <p class="product__price shadow_element">{{ product.price }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                                {% if product.discount_set.all %}
+                                    {% for discount in product.discount_set.all %}
+                                        {% if discount.final_price %}
+                                            <p class="product__price shadow_element">{{ discount.final_price }}</p>
+                                        {% else %}
+                                            <p class="product__price shadow_element">{{ product.price }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>

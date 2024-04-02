@@ -66,7 +66,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
     
     def __str__(self) -> str:
-        return f'| Название - {self.name} | Категория - {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'
+        return f'| Название - {self.name} | {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'
 
 
 class Order(models.Model):

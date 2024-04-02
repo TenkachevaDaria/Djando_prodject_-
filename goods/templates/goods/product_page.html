@@ -7,9 +7,13 @@
 
 {% block content %}
     <div class="product_page_container">
-        <img src="" alt="" class="product_page__img">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="" class="product_page__img">
+            {% else %}      
+                <img src="" alt="" class="product_page__img">
+            {% endif %}
         <div class="product">
-            <h2 class="product__name">Готовое мобильное приложение доставка еды</h2>
+            <h2 class="product__name">{{ product.name }}</h2>
             <div class="product__rating">
                 <p class="rating_num">19 оценок</p>
                 <ul class="rating_stars">
@@ -32,7 +36,15 @@
                 </ul>
             </div>
             <div class="price_share_container">
-                <p class="product__price">145 000 ₽</p>
+                {% if product.discount_set.all %}
+                    {% for discount in product.discount_set.all %}
+                        {% if discount.final_price %}
+                            <p class="product__price">{{ discount.final_price }} ₽</p>
+                        {% else %}
+                            <p class="product__price">{{ product.price }} ₽</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
                 <ul class="icons_buttons">
                     <li class="icon"><svg width="34.000000" height="34.000000" viewBox="0 0 34 34" fill="none"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -93,7 +105,7 @@
             <button class="btn btn_add"><b>Добавить в корзину</b></button>
             <br><button class="btn btn_buy_now"><b>Купить сейчас</b></button>
             <div class="saler_info">
-                <p class="saler_name"><b>Продавец:</b> MobileApp Бобо</p>
+                <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.name }}</p>
                 <details class="descr_from_saler">
                     <summary class="product__saler_descr">
                         <b>О товаре</b>
@@ -101,16 +113,13 @@
                             <div class="summary_marker_stick1"></div>
                             <div class="summary_marker_stick2"></div>
                         </div></summary>
-                    <p class="short_descr">
-                        Готовое мобильное приложение для доставки еды. Проект реализован на Flutter + Php(Laravel)
-                        IOS + android + админ панель
-                    </p>
+                    <p class="short_descr">{{ product.description }}</p>
                 </details>
                 <p class="decrs_for_customer"><b>Нужно для заказа:</b><br>Готовое мобильное приложение для доставки
                     еды.
                     Проект реализован на Flutter + Php(Laravel) IOS + android + админ панель</p>
                 <p class="type"><b>Вид:</b> Мобильное приложение</p>
-                <p class="platform"><b>Платформа:</b> android</p>
+                <p class="platform"><b>Платформа: </b>{{ product.category.name }}</p>
                 <p class="special_inf"><b>Объем услуги в кворке:</b> Ios + android + admin панель</p>
             </div>
         </div>

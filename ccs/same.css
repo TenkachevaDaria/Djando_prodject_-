@@ -108,3 +108,7 @@ details:active .summary_marker_stick1 {
 details:active .summary_marker_stick1 {
   opacity: 70%;
 }
+
+textarea {
+  resize: none;
+}

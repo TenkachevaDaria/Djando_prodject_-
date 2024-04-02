@@ -6,6 +6,8 @@ from unicodedata import category, digit
 from unittest.util import _MAX_LENGTH
 from django.db import models
 
+from datetime import datetime
+
 # Create your models here.
 class Categories(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -17,7 +19,7 @@ class Categories(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self) -> str:
-        return self.name
+        return f'Категория - {self.name}'
 
 
 class User(models.Model):
@@ -44,20 +46,19 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self) -> str:
-        return f'Имя - {self.name} Почта - {self.email} Телефон - {self.phone} Рейтинг - {self.rating}'
+        return f'| Имя - {self.name} | Почта - {self.email} | Телефон - {self.phone} | Рейтинг - {self.rating} |'
 
 
 
 class Product(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
-    discripton = models.TextField(blank=True, null=True, verbose_name='Описание')
+    description = models.TextField(blank=True, null=True, verbose_name='Описание')
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
     manufacturer = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Производитель')
     date_added = models.DateField()
-
 
     class Meta:
         db_table = 'product'
@@ -65,7 +66,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
     
     def __str__(self) -> str:
-        return f'Название - {self.name} Категория - {self.category} Цена - {self.price} Дата добавления - {self.date_added}'
+        return f'| Название - {self.name} | Категория - {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'
 
 
 class Order(models.Model):
@@ -81,7 +82,7 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
         
     def __str__(self) -> str:
-        return f'Клиент - {self.client} Дата добавления - {self.order_date} Статус заказа - {self.order_status}'
+        return f'| Клиент - {self.client} | Дата добавления - {self.order_date} | Статус заказа - {self.order_status} |'
 
 
 class OrderItem(models.Model):
@@ -96,7 +97,7 @@ class OrderItem(models.Model):
         verbose_name_plural = 'Позиции заказов'
     
     def __str__(self) -> str:
-        return f'Клиент - {self.client} Продукт - {self.product} Количество - {self.quantity} Итоговая стоимость - {self.price_at_order}'
+        return f'| Клиент - {self.client} | Продукт - {self.product} | Количество - {self.quantity} | Итоговая стоимость - {self.price_at_order} |'
 
 
 class Review(models.Model):
@@ -113,14 +114,15 @@ class Review(models.Model):
         verbose_name_plural = 'Отзывы'
         
     def __str__(self) -> str:
-        return f'Продукт - {self.product} Пользователь - {self.user} Оценка - {self.rating} Дата добавленя - {self.date_added}'
+        return f'| Продукт - {self.product} | Пользователь - {self.user} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
 
 
 class Discount(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Процент скидки')
     start_date = models.DateField(verbose_name='Дата начала действия скидки')
     end_date = models.DateField(verbose_name='Дата окончания действия скидки')
+    final_price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Итоговая цена', blank=True, null=True)
 
     class Meta:
         db_table = 'discount'
@@ -128,7 +130,16 @@ class Discount(models.Model):
         verbose_name_plural = 'Скидки'
 
     def __str__(self) -> str:
-        return f'Продукт - {self.product} Скидка - {self.discount_percentage}% Начинается - {self.start_date} Заканчивается - {self.end_date}'
+        return f'| Продукт - {self.product.name} | Цена - {self.product.price} | Скидка - {self.discount_percentage}% | Финальная цена - {self.final_price} | Начинается - {self.start_date} | Заканчивается - {self.end_date} |'
+
+    def save(self, *args, **kwargs):
+        if self.product and self.discount_percentage:
+            current_date = datetime.now().date()
+            if self.start_date <= current_date <= self.end_date:
+                self.final_price = round(self.product.price - self.product.price * self.discount_percentage / 100, 2)
+            else:
+                self.final_price = None
+        super().save(*args, **kwargs)
 
 
 class PaymentMethod(models.Model):
@@ -142,4 +153,4 @@ class PaymentMethod(models.Model):
     
     
     def __str__(self) -> str:
-        return f'Пользователь - {self.user} Способ оплаты - {self.name}'
+        return f'| Пользователь - {self.user} | Способ оплаты - {self.name} |'

@@ -1,9 +1,12 @@
 footer {
-    background-color: rgb(217, 217, 217);
+    /* background-color: inherit; */
     min-height: 300px;
     flex: 3;
+    /* z-index: 1; */
+    position: relative;
 }
 
 .footer__container {
     padding: 40px 165px;
+    z-index: 1;
 }

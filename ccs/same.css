@@ -6,6 +6,8 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  font-family: "Inter", sans-serif;
 }
 
 main {

@@ -1,0 +1,73 @@
+.decor_div1 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 90%;
+    background: linear-gradient(-0.40deg, rgb(236, 246, 255) 8.394%,rgb(138, 199, 254) 46.699%,rgb(138, 199, 254) 108.81%);
+    z-index: 0;
+}
+
+.decor_div2 {
+    background: linear-gradient(180.00deg, rgb(236, 246, 255) 0.139%,rgb(138, 199, 254) 70.365%,rgb(138, 199, 254) 122.109%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 150%;
+}
+
+.decor_div3,
+.decor_div4,
+.decor_div5,
+.decor_div6,
+.decor_div7 {
+    border: 3px solid rgb(236, 246, 255);
+    width: 670px;
+    height: 200px;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: -1;
+}
+
+.decor_div3 {
+    top: -100px;
+    left: -80px;
+}
+
+.decor_div4 {
+    top: -120px;
+    left: 340px;
+}
+
+.decor_div5 {
+    top: -175px;
+    left: 950px;
+}
+
+.decor_div6 {
+    top: -100px;
+    left: 1100px;
+}
+
+.decor_div7 {
+    border: 3px solid rgb(27, 157, 243);
+    top: -130px;
+    right: -550px;
+}
+
+.nav_helper__link:last-child .nav__link {
+    color: white;
+}
+
+.nav_helper__link:last-child .nav__link:focus {
+    border-bottom: 1px solid white;
+}
+
+.nav_helper__link:last-child .nav__link:hover {
+    border-bottom: 1px solid white;
+}
+
+.nav_helper__link:last-child .nav__link:active {
+    border-bottom: 1px solid white;
+}

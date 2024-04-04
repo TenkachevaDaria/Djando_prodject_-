@@ -20,4 +20,14 @@ def product(request, product_slug):
     reviews = Review.objects.filter(product=product)
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
-    return render(request, 'goods/product_page.html', {'product': product, 'reviews': reviews, 'average_rating': average_rating, 'review_ratings': review_ratings})
+
+    context = {
+        'product': product,
+        'reviews': reviews,
+        'average_rating': average_rating,
+        'average_rating_int': int(average_rating),
+        'average_rating_float': average_rating - int(average_rating),
+        'anti_average_rating': int(5 - average_rating),
+        'review_ratingds': review_ratings
+    }
+    return render(request, 'goods/product_page.html', context)

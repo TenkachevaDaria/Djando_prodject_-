@@ -103,7 +103,7 @@ class OrderItem(models.Model):
 class Review(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')
     user = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Пользователь')
-    rating = models.IntegerField(default=0.00, verbose_name='Рейтинг')
+    rating = models.FloatField(default=0.00, verbose_name='Рейтинг')
     comment = models.TextField(verbose_name='Комментарий')
     date_added = models.DateField(verbose_name='Дата добавления')
     
@@ -115,6 +115,12 @@ class Review(models.Model):
         
     def __str__(self) -> str:
         return f'| Продукт - {self.product.name} | Пользователь - {self.user.name} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
+
+    def star_rating(self):
+        rating_int = int(self.rating)
+        rating_float = self.rating - rating_int
+        anti_rating = int(5 - self.rating)
+        return rating_int, rating_float, anti_rating
 
 
 class Discount(models.Model):

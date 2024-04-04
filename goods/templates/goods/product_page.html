@@ -138,53 +138,75 @@
         </h2>
         <div class="user_rating_container">
             <ul class="user_rating">
-                <li class="star_icon">
-                    {% comment %} вся закрашена {% endcomment %}
-                    <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>Created with Pixso.</desc>
-                        <defs />
-                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#B36F6F" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
-                    {% comment %} 3/4 звезды {% endcomment %}
-                    <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                        <desc>Created with Pixso.</desc>
-                        <g class="layer">
-                         <title>Layer 1</title>
-                         <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
-                         <path d="m25.23,32.15l-6.28,-4.55l-11.57,8.29l4.29,-13.54l-11.46,-8.41l14.18,-0.19l4.51,-13.2l4.51,13.24l1.75,0.04l0.04,18.32z" fill="#b36f6f" id="svg_2" stroke="#B36F6F"/>
-                         <line fill="none" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="25.2" x2="25.2" y1="32.35" y2="13.78"/>
-                        </g>
-                    </svg>
-                    {% comment %} на половину закрашена {% endcomment %}
-                    <svg width="39" height="37" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>Created with Pixso.</desc>
-                        <defs />
-                        <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" />
-                        <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#B36F6F" fill-opacity="1" />
-                    </svg>
-                    {% comment %} 1/4 звезды {% endcomment %}
-                    <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                        <desc>Created with Pixso.</desc>
-                        <g class="layer">
-                         <title>Layer 1</title>
-                         <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
-                         <line fill="none" id="svg_12" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="11.86" x2="11.86" y1="33" y2="13.77"/>
-                         <path d="m11.82,22.48l-0.06,10.22c0,0 -4.24,3.26 -4.28,3.26c-0.04,0 4.34,-13.48 4.34,-13.48z" fill="#b36f6f" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
-                         <path d="m11.84,13.86l-0.04,8.35l-11.65,-8.35l11.69,0z" fill="#b36f6f" id="svg_3" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
-                        </g>
-                    </svg>
-                    {% comment %} пустая звезда {% endcomment %}
-                    <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>Created with Pixso.</desc>
-                        <defs />
-                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                    </svg> 
+                {% if average_rating_int > 0 %}
+                    {% for _ in "x"|rjust:average_rating_int %}
+                        <li class="another_user_star">
+                            {% comment %} вся закрашена {% endcomment %}
+                            <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>Created with Pixso.</desc>
+                                <defs />
+                                <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#B36F6F" fill-opacity="1.000000" fill-rule="evenodd" />
+                            </svg>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                {% if average_rating_float > 0 %}
+                    {% if average_rating_float > 0 and average_rating_float < 0.5 %}
+                        <li class="another_user_star">
+                            {% comment %} 1/4 звезды {% endcomment %}
+                            <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                <desc>Created with Pixso.</desc>
+                                <g class="layer">
+                                <title>Layer 1</title>
+                                <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                <line fill="none" id="svg_12" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="11.86" x2="11.86" y1="33" y2="13.77"/>
+                                <path d="m11.82,22.48l-0.06,10.22c0,0 -4.24,3.26 -4.28,3.26c-0.04,0 4.34,-13.48 4.34,-13.48z" fill="#b36f6f" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                <path d="m11.84,13.86l-0.04,8.35l-11.65,-8.35l11.69,0z" fill="#b36f6f" id="svg_3" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                </g>
+                            </svg>
+                        </li>
+                    {% endif %}
+                    {% if average_rating_float == 0.5 %}
+                        <li class="another_user_star">
+                            {% comment %} на половину закрашена {% endcomment %}
+                            <svg width="39" height="37" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>Created with Pixso.</desc>
+                                <defs />
+                                <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" />
+                                <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#B36F6F" fill-opacity="1" />
+                            </svg>
+                        </li>
+                    {% endif %}
+                    {% if average_rating_float > 0.5 and average_rating_float < 1 %}
+                        <li class="another_user_star">
+                            {% comment %} 3/4 звезды {% endcomment %}
+                            <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                <desc>Created with Pixso.</desc>
+                                <g class="layer">
+                                <title>Layer 1</title>
+                                <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                <path d="m25.23,32.15l-6.28,-4.55l-11.57,8.29l4.29,-13.54l-11.46,-8.41l14.18,-0.19l4.51,-13.2l4.51,13.24l1.75,0.04l0.04,18.32z" fill="#b36f6f" id="svg_2" stroke="#B36F6F"/>
+                                <line fill="none" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="25.2" x2="25.2" y1="32.35" y2="13.78"/>
+                                </g>
+                            </svg>                                   
+                        </li>
+                    {% endif %}
+                {% endif %}
+                {% if anti_average_rating > 0 %}
+                    {% for _ in "x"|rjust:anti_average_rating %}
+                        <li class="another_user_star">
+                            <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <desc>Created with Pixso.</desc>
+                                <defs />
+                                <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                            </svg> 
+                        </li>
+                    {% endfor %}
+                {% endif %}
             </ul>
             <p class="user_num_stars">
                 {% if average_rating %}
-                    {{ average_rating|floatformat:"0" }}
-                {% else %}
-                    0
+                    {{ average_rating }}
                 {% endif %}
             </p> 
         </div>
@@ -192,60 +214,12 @@
         <div class="send_review_form">
             <input type="text" placeholder="Написать отзыв" class="send_review_form__placeholder">
             <ul class="form_user_rating">
-                <li class="form_star_icon"><svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>
-                            Created with Pixso.
-                        </desc>
+                <li class="form_star_icon">
+                    <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <desc>Created with Pixso.</desc>
                         <defs />
-                        <path id="Star 1"
-                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0ZM19 1.61L14.87 14.31L1.51 14.31L12.32 22.16L8.19 34.87L19 27.02L29.8 34.87L25.67 22.16L36.48 14.31L23.12 14.31L19 1.61Z"
-                            fill="#000000" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
-                </li>
-                <li class="form_star_icon"><svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>
-                            Created with Pixso.
-                        </desc>
-                        <defs />
-                        <path id="Star 1"
-                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0ZM19 1.61L14.87 14.31L1.51 14.31L12.32 22.16L8.19 34.87L19 27.02L29.8 34.87L25.67 22.16L36.48 14.31L23.12 14.31L19 1.61Z"
-                            fill="#000000" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
-                </li>
-                <li class="form_star_icon"><svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>
-                            Created with Pixso.
-                        </desc>
-                        <defs />
-                        <path id="Star 1"
-                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0ZM19 1.61L14.87 14.31L1.51 14.31L12.32 22.16L8.19 34.87L19 27.02L29.8 34.87L25.67 22.16L36.48 14.31L23.12 14.31L19 1.61Z"
-                            fill="#000000" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
-                </li>
-                <li class="form_star_icon"><svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>
-                            Created with Pixso.
-                        </desc>
-                        <defs />
-                        <path id="Star 1"
-                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0ZM19 1.61L14.87 14.31L1.51 14.31L12.32 22.16L8.19 34.87L19 27.02L29.8 34.87L25.67 22.16L36.48 14.31L23.12 14.31L19 1.61Z"
-                            fill="#000000" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
-                </li>
-                <li class="form_star_icon"><svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <desc>
-                            Created with Pixso.
-                        </desc>
-                        <defs />
-                        <path id="Star 1"
-                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0ZM19 1.61L14.87 14.31L1.51 14.31L12.32 22.16L8.19 34.87L19 27.02L29.8 34.87L25.67 22.16L36.48 14.31L23.12 14.31L19 1.61Z"
-                            fill="#000000" fill-opacity="1.000000" fill-rule="evenodd" />
-                    </svg>
+                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                    </svg> 
                 </li>
             </ul>
         </div>
@@ -264,19 +238,71 @@
                     <div class="another_user_comment">
                         <p class="user_com">{{ review.comment }}</p>
                         <ul class="another_user_rating">
-                            {% for _ in "x"|rjust:review.rating %}
+                            {% if review.star_rating.0 > 0 %}
+                                {% for _ in "x"|rjust:review.star_rating.0 %}
+                                    <li class="another_user_star">
+                                        {% comment %} вся закрашена {% endcomment %}
+                                        <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#B36F6F" fill-opacity="1.000000" fill-rule="evenodd" />
+                                        </svg>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            {% if review.star_rating.1 > 0 %}
+                                {% if review.star_rating.1 > 0 and review.star_rating.1 < 0.5 %}
+                                    <li class="another_user_star">
+                                        {% comment %} 1/4 звезды {% endcomment %}
+                                        <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                            <desc>Created with Pixso.</desc>
+                                            <g class="layer">
+                                            <title>Layer 1</title>
+                                            <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                            <line fill="none" id="svg_12" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="11.86" x2="11.86" y1="33" y2="13.77"/>
+                                            <path d="m11.82,22.48l-0.06,10.22c0,0 -4.24,3.26 -4.28,3.26c-0.04,0 4.34,-13.48 4.34,-13.48z" fill="#b36f6f" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                            <path d="m11.84,13.86l-0.04,8.35l-11.65,-8.35l11.69,0z" fill="#b36f6f" id="svg_3" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                            </g>
+                                        </svg>
+                                    </li>
+                                {% endif %}
+                                {% if review.star_rating.1 == 0.5 %}
+                                    <li class="another_user_star">
+                                        {% comment %} на половину закрашена {% endcomment %}
+                                        <svg width="39" height="37" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" />
+                                            <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#B36F6F" fill-opacity="1" />
+                                        </svg>
+                                    </li>
+                                {% endif %}
+                                {% if review.star_rating.1 > 0.5 and review.star_rating.1 < 1 %}
                                 <li class="another_user_star">
-                                    <svg width="39.000000" height="37.000000" viewBox="0 0 39 37"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    {% comment %} 3/4 звезды {% endcomment %}
+                                    <svg width="39" height="37" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
                                         <desc>Created with Pixso.</desc>
-                                        <defs/>
-                                        <path id="Star 1"
-                                            d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
-                                            fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero"/>
-                                    </svg>
+                                        <g class="layer">
+                                        <title>Layer 1</title>
+                                        <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                        <path d="m25.23,32.15l-6.28,-4.55l-11.57,8.29l4.29,-13.54l-11.46,-8.41l14.18,-0.19l4.51,-13.2l4.51,13.24l1.75,0.04l0.04,18.32z" fill="#b36f6f" id="svg_2" stroke="#B36F6F"/>
+                                        <line fill="none" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="25.2" x2="25.2" y1="32.35" y2="13.78"/>
+                                        </g>
+                                    </svg>                                   
                                 </li>
-                            {% endfor %}
+                                {% endif %}
+                            {% endif %}
+                            {% if review.star_rating.2 > 0 %}
+                                {% for _ in "x"|rjust:review.star_rating.2 %}
+                                    <li class="another_user_star">
+                                        <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                        </svg> 
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                     </div>
                 </li>

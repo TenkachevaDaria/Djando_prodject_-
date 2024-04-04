@@ -21,13 +21,23 @@ def product(request, product_slug):
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
 
+    if average_rating is not None:
+        average_rating_int = int(average_rating)
+        average_rating_float = average_rating - average_rating_int
+        anti_average_rating = int(5 - average_rating)
+    else:
+        average_rating_int = None
+        average_rating_float = None
+        anti_average_rating = None
+
     context = {
         'product': product,
         'reviews': reviews,
         'average_rating': average_rating,
-        'average_rating_int': int(average_rating),
-        'average_rating_float': average_rating - int(average_rating),
-        'anti_average_rating': int(5 - average_rating),
-        'review_ratingds': review_ratings
+        'average_rating_int': average_rating_int,
+        'average_rating_float': average_rating_float,
+        'anti_average_rating': anti_average_rating,
+        'review_ratings': review_ratings
     }
+
     return render(request, 'goods/product_page.html', context)

@@ -111,3 +111,12 @@
     background-color: rgb(173, 129, 129);
     color: white;
 }
+
+.decor_div1 {
+    height: 13%;
+}
+
+.decor_div2 {
+    height: 100%;
+    z-index: 0;
+}

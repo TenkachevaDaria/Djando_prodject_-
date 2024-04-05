@@ -87,3 +87,16 @@
     height: 140px;
     background-color: rgb(217, 217, 217);
 }
+
+.decor_div1 {
+    height: 10%;
+}
+
+.decor_div2 {
+    height: 100%;
+    z-index: 0;
+}
+
+.footer__container {
+    z-index: 1;
+}

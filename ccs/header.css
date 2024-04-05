@@ -48,24 +48,24 @@ header{
 
 .nav__link {
     font-size: 16px;
-    color: black;
+    color: white;
     transition: all 0.3s;
 }
 
 .nav__link:focus {
     opacity: 50%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
     outline: none;
 }
 
 .nav__link:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
     opacity: 70%;
 }
 
 .nav__link:active {
     opacity: 50%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
 }
 
 .nav_user__links {

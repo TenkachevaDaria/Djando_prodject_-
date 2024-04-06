@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="{% static "ccs/questions.css" %}">
 {% endblock %}
 
+{% block header_decor %}
+    <div class="decor_div3"></div>
+    <div class="decor_div4"></div>
+    <div class="decor_div5"></div>
+    <div class="decor_div6"></div>
+    <div class="decor_div7"></div>
+    <div class="decor_div8"></div>
+    <div class="decor_div9"></div>
+{% endblock  %}
+
 {% block content %}
 <div class="products_container">
     <h2 class="product_title">Популярные товары</h2>
@@ -27,7 +37,7 @@
         {% for question in questions %}
             <li class="question">
                 <details class="question__item">
-                    <summary class="question__texts">{{ question.name }}
+                    <summary class="question__text">{{ question.name }}
                         <div class="marker_container">
                             <div class="summary_marker_stick1"></div>
                             <div class="summary_marker_stick2"></div>

@@ -1,6 +1,8 @@
 .questions {
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .questions__title {
@@ -12,9 +14,9 @@
     margin-bottom: 30px;
 }
 
-.question__texts {
+.question__text {
     font-size: 20px;
-    background-color: rgb(217, 217, 217);
+    background-color: rgba(136, 198, 252, 0.3);
     padding: 20px;
     display: flex;
     align-items: center;
@@ -22,8 +24,8 @@
 
 .question__answer {
     font-size: 20px;
-    padding: 20px;
-    background-color: rgba(141, 137, 137, 0.5);
+    padding: 25px;
+    background-color: rgba(136, 198, 252, 0.1);
 }
 
 summary::marker {

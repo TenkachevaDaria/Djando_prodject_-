@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .basket__title {
@@ -51,6 +51,24 @@
     margin-bottom: 5px;
 }
 
+.item__platform {
+    margin-bottom: 26px;
+}
+
+.counter_btn {
+    align-items: start;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
+.number {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    width: 8px;
+}
+
 .pos_box_price {
     position: relative;
     width: 80%;
@@ -63,6 +81,7 @@
 }
 
 .paymen_method_form {
+    margin-top: 89px;
     width: 500px;
     height: 400px;
     background-color: rgb(217, 217, 217);
@@ -91,4 +110,13 @@
     justify-content: center;
     background-color: rgb(173, 129, 129);
     color: white;
+}
+
+.decor_div1 {
+    height: 13%;
+}
+
+.decor_div2 {
+    height: 100%;
+    z-index: 0;
 }

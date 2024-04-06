@@ -46,3 +46,15 @@
     height: 660px;
     background-color: rgb(217, 217, 217);
 }
+
+.decor_div1 {
+    height: 13%;
+}
+
+.decor_div2 {
+    height: 90%;
+}
+
+header {
+    gap: 500px;
+}

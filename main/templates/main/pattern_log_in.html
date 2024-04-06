@@ -20,16 +20,13 @@
                 <li class="nav_helper__link"><a href="{% url "main:index" %}" class="nav__link">Главная</a></li>
                 <li class="nav_helper__link"><a href="{% url "main:index" %}#quest" class="nav__link">Помощь</a></li>
                 <li class="nav_helper__link"><a href="#contact" class="nav__link">Контакты</a></li>
-                <li class="nav_helper__link"><a href="{% url "main:addProduct" %}" class="nav__link">Разместите свой продукт</a></li>
             </ul>
         </nav>
         <h1 class="site_name">Название</h1>
         <nav class="nav_user">
             <ul class="nav_user__links">
-                <li class="nav_links__link"><input type="text" placeholder="Поиск" class="nav_user__input"></li>
-                <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
-                <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                <li class="nav_links__link"><a href="{% url "main:user" %}" class="nav__link">Аккаунт</a></li>
+                <li class="nav_links__link"><a href="{% url "main:registration" %}" class="nav__link">Зарегистрироваться</a></li>
+                <li class="nav_links__link"><a href="{% url "main:LogIn" %}" class="nav__link">Войти</a></li>
             </ul>
         </nav>
         {% block header_decor %}{% endblock  %}

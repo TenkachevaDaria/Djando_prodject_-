@@ -1,9 +1,11 @@
 footer {
-    background-color: rgb(217, 217, 217);
-    min-height: 300px;
+    min-height: 200px;
     flex: 3;
+    position: relative;
 }
 
 .footer__container {
     padding: 40px 165px;
+    z-index: 1;
+    position: relative;
 }

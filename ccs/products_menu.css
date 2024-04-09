@@ -47,7 +47,7 @@
 
 .product_card {
     width: 260px;
-    height: 333px;
+    min-height: 333px;
     position: relative;
 }
 
@@ -87,12 +87,12 @@
     font-size: 20px;
     background-color: rgb(107, 99, 99);
     max-width: 100%;
-    margin-bottom: 20px;
     color: white;
     padding-left: 15px;
 }
 
 .product__price {
+    margin-top: 20px;
     width: 50%;
     background-color: rgb(169, 192, 236);
     padding-left: 15px;
@@ -123,4 +123,9 @@
 
 .decor_div1 {
     height: 13%;
+}
+
+.decor_div2 {
+    height: 100%;
+    z-index: 0;
 }

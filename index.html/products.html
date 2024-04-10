@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../ccs/products_menu.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
+
 <body>
     <header>
         <nav class="nav_helper">
@@ -18,7 +20,8 @@
                 <li class="nav_helper__link"><a href="../index.html/main.html" class="nav__link">Главная</a></li>
                 <li class="nav_helper__link"><a href="" class="nav__link">Помощь</a></li>
                 <li class="nav_helper__link"><a href="" class="nav__link">Контакты</a></li>
-                <li class="nav_helper__link"><a href="../index.html/add_product_page.html" class="nav__link">Разместите свой продукт</a></li>
+                <li class="nav_helper__link"><a href="../index.html/add_product_page.html" class="nav__link">Разместите
+                        свой продукт</a></li>
             </ul>
         </nav>
         <h1 class="site_name">Название</h1>
@@ -26,7 +29,8 @@
             <ul class="nav_user__links">
                 <li class="nav_links__link"><input type="text" placeholder="Поиск" class="nav_user__input"></li>
                 <li class="nav_links__link"><a href="../index.html/products.html" class="nav__link">Товары</a></li>
-                <li class="nav_links__link"><a href="../index.html/shopping_basket_page.html" class="nav__link">Корзина</a></li>
+                <li class="nav_links__link"><a href="../index.html/shopping_basket_page.html"
+                        class="nav__link">Корзина</a></li>
                 <li class="nav_links__link"><a href="../index.html/user_page.html" class="nav__link">Аккаунт</a></li>
             </ul>
         </nav>
@@ -36,25 +40,121 @@
             <h2 class="products_title">Товары</h2>
             <div class="active_filters">
                 <ul class="active_filters__list">
-                    <li class="active_filter">Фильтр 1</li>
-                    <li class="active_filter">Фильтр 2</li>
-                    <li class="active_filter">Фильтр 3</li>
+                    <li class="active_filters__sub_list">
+                        <details class="active_filters__details">
+                            <summary class="active_filters__summary">По популярности
+                                <div class="marker_container">
+                                    <div class="summary_marker_stick1"></div>
+                                    <div class="summary_marker_stick2"></div>
+                                </div>
+                            </summary>
+                            <ul class="summary_filters">
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox1" class="custom_checkbox">
+                                    <label for="Checkbox1">По популярности</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox2" class="custom_checkbox">
+                                    <label for="Checkbox2">Сначала дешёвые</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox3" class="custom_checkbox">
+                                    <label for="Checkbox3">Сначала дорогие</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox4" class="custom_checkbox">
+                                    <label for="Checkbox4">По рейтингу</label>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li class="active_filter">Фильтр 1<span class="active_filter__disabler">&times;</span></li>
+                    <li class="active_filter">Фильтр 2<span class="active_filter__disabler">&times;</span></li>
+                    <li class="active_filter">Фильтр 3<span class="active_filter__disabler">&times;</span></li>
                 </ul>
             </div>
             <div class="filters_producs_container">
                 <div class="filters_box">
-                    <ul class="filters__list">
-                        <li class="filter">Фильтр 1</li>
-                        <li class="filter">Фильтр 2</li>
-                        <li class="filter">Фильтр 3</li>
-                    </ul>
+                    <h3 class="filters_producs__title">Фильтры</h3>
+                    <div class="price_spread_box">
+                        <p class="price_spread_box__name">Цена, &#8381;</p>
+                        <div class="price-range">
+                            <div class="price_rage__input_label">
+                                <label for="price_from">От</label>
+                                <input type="text" id="price_from" placeholder="">
+                            </div>
+                            <div class="price_rage__input_label">
+                                <label for="price_to">До</label>
+                                <input type="text" id="price_to" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="validity_box">
+                        <h4 class="validity_title">Срок действия</h4>
+                        <ul class="validity_list">
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="validity_ckeckbox1" class="custom_checkbox">
+                                <label for="validity_ckeckbox1">Бессрочная</label>
+                            </li>
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="validity_ckeckbox2" class="custom_checkbox">
+                                <label for="validity_ckeckbox2">3 года</label>
+                            </li>
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="validity_ckeckbox3" class="custom_checkbox">
+                                <label for="validity_ckeckbox3">2 года</label>
+                            </li>
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="validity_ckeckbox4" class="custom_checkbox">
+                                <label for="validity_ckeckbox4">1 год</label>
+                            </li>
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="validity_ckeckbox5" class="custom_checkbox">
+                                <label for="validity_ckeckbox5">1 месяц</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="in_stock_box">
+                        <input type="checkbox" id="stock_checkbox" class="custom_checkbox">
+                        <label for="stock_checkbox" class="stock_label">В наличии</label>
+                    </div>
+                    <div class="operating_system_box">
+                        <h4 class="operating_system_title">Операционная система</h4>
+                        <ul class="operating_system_list">
+                            <li class="operating_system">
+                                <input type="checkbox" id="os_checkbox1" class="custom_checkbox">
+                                <label for="os_checkbox1">Windows</label>
+                            </li>
+                            <li class="operating_system">
+                                <input type="checkbox" id="os_checkbox2" class="custom_checkbox">
+                                <label for="os_checkbox2">MaxOS</label>
+                            </li>
+                            <li class="operating_system">
+                                <input type="checkbox" id="os_checkbox3" class="custom_checkbox">
+                                <label for="os_checkbox3">Linux</label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="product_box">
                     <ul class="products_list">
                         <li class="product_card">
                             <img src="" alt="" class="product__img shadow_element">
                             <p class="popular_sale"></p>
-                            <p class="product__name shadow_element">Название товараНазвание товараНазвание товараНазвание товараНазвание товараНазвание товара</p>
+                            <p class="product__name shadow_element">Название товараНазвание товараНазвание
+                                товараНазвание товараНазвание товараНазвание товара</p>
+                            <p class="product__price shadow_element">Цена</p>
+                        </li>
+                        <li class="product_card">
+                            <img src="" alt="" class="product__img shadow_element">
+                            <p class="popular_sale"></p>
+                            <p class="product__name shadow_element">Название товара</p>
+                            <p class="product__price shadow_element">Цена</p>
+                        </li>
+                        <li class="product_card">
+                            <img src="" alt="" class="product__img shadow_element">
+                            <p class="popular_sale"></p>
+                            <p class="product__name shadow_element">Название товара</p>
                             <p class="product__price shadow_element">Цена</p>
                         </li>
                         <li class="product_card">
@@ -111,4 +211,5 @@
     </footer>
     <div class="decor_div1"></div>
 </body>
+
 </html>

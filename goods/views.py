@@ -1,17 +1,25 @@
-from unicodedata import category
-from django.db.models import Avg
-from django.shortcuts import render
-from django.template import context
-from .models import Categories, Product, Review
+from django.core.paginator import Paginator
+from django.db.models import Avg, Max, Min
+from django.shortcuts import get_object_or_404, render
+from .models import Categories, Product, Review, Subscriptions
 
 # Create your views here.
-def catalog(request):
+def catalog(request, page=1):  
     products = Product.objects.all()
     categories = Categories.objects.all()
+    subscriptions = Subscriptions.objects.all()
+    max_price = products.aggregate(max_price=Max('price'))['max_price']
+    min_price = products.aggregate(min_price=Min('price'))['min_price']
+
+    paginator = Paginator(products, 24)
+    current_page = paginator.page(page)
 
     context = {
         'categories': categories,
-        'products': products
+        'subscriptions': subscriptions,
+        'products': current_page,
+        'max_price': max_price,
+        'min_price': min_price
     }
     return render(request, 'goods/products.html', context)
 

@@ -21,33 +21,83 @@
                     {% endwith %}
                 </p>
                 <ul class="rating_stars">
-                    <li class="rating_star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                    <li class="rating_star"></li>
-                    <li class="rating_star"></li>
-                    <li class="rating_star"></li>
-                    <li class="rating_star"></li>
+                    {% if average_rating_int > 0 %}
+                        {% for _ in "x"|rjust:average_rating_int %}
+                            <li class="another_user_star">
+                                {% comment %} вся закрашена {% endcomment %}
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#B36F6F" fill-opacity="1.000000" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if average_rating_float > 0 %}
+                        {% if average_rating_float > 0 and average_rating_float < 0.5 %}
+                            <li class="another_user_star">
+                                {% comment %} 1/4 звезды {% endcomment %}
+                                <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                    <desc>Created with Pixso.</desc>
+                                    <g class="layer">
+                                    <title>Layer 1</title>
+                                    <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                    <line fill="none" id="svg_12" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="11.86" x2="11.86" y1="33" y2="13.77"/>
+                                    <path d="m11.82,22.48l-0.06,10.22c0,0 -4.24,3.26 -4.28,3.26c-0.04,0 4.34,-13.48 4.34,-13.48z" fill="#b36f6f" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                    <path d="m11.84,13.86l-0.04,8.35l-11.65,-8.35l11.69,0z" fill="#b36f6f" id="svg_3" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)"/>
+                                    </g>
+                                </svg>
+                            </li>
+                        {% endif %}
+                        {% if average_rating_float == 0.5 %}
+                            <li class="another_user_star">
+                                {% comment %} на половину закрашена {% endcomment %}
+                                <svg width="22" height="21" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" />
+                                    <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#B36F6F" fill-opacity="1" />
+                                </svg>
+                            </li>
+                        {% endif %}
+                        {% if average_rating_float > 0.5 and average_rating_float < 1 %}
+                            <li class="another_user_star">
+                                {% comment %} 3/4 звезды {% endcomment %}
+                                <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                    <desc>Created with Pixso.</desc>
+                                    <g class="layer">
+                                    <title>Layer 1</title>
+                                    <path d="m19,0l-4.5,13.81l-14.53,0l11.76,8.55l-4.49,13.82l11.76,-8.54l11.75,8.54l-4.49,-13.82l11.76,-8.55l-14.53,0l-4.49,-13.81z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#B36F6F"/>
+                                    <path d="m25.23,32.15l-6.28,-4.55l-11.57,8.29l4.29,-13.54l-11.46,-8.41l14.18,-0.19l4.51,-13.2l4.51,13.24l1.75,0.04l0.04,18.32z" fill="#b36f6f" id="svg_2" stroke="#B36F6F"/>
+                                    <line fill="none" id="svg_1" stroke="#B36F6F" transform="matrix(1 0 0 1 0 0)" x1="25.2" x2="25.2" y1="32.35" y2="13.78"/>
+                                    </g>
+                                </svg>                                   
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if anti_average_rating > 0 %}
+                        {% for _ in "x"|rjust:anti_average_rating %}
+                            <li class="another_user_star">
+                                {% comment %} пустая {% endcomment %}
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg> 
+                            </li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
             <div class="price_share_container">
                 {% if product.discount_set.all %}
-                    {% for discount in product.discount_set.all %}
-                        {% if discount.final_price %}
-                            <p class="product__price">{{ discount.final_price }} ₽</p>
-                        {% else %}
-                            <p class="product__price">{{ product.price }} ₽</p>
-                        {% endif %}
-                    {% endfor %}
+                {% for discount in product.discount_set.all %}
+                        <p class="product__price shadow_element">{{ discount.final_price }} ₽</p>
+                {% endfor %}
+                {% else %}
+                    <p class="product__price shadow_element">{{ product.price }} ₽</p>
                 {% endif %}
                 <ul class="icons_buttons">
                     <li class="icon"><svg width="34.000000" height="34.000000" viewBox="0 0 34 34" fill="none"
@@ -118,6 +168,14 @@
                             <div class="summary_marker_stick2"></div>
                         </div></summary>
                     <p class="short_descr">{{ product.description }}</p>
+                    <p class="peculiarities_title">Особенности</p>
+                    <ul class="list_peculiarities">
+                        <li>{{ product.peculiarities }}</li>
+                    </ul>
+                    <p class="technical_skills_title">Технические особенности</p>
+                    <ul class="list_technical_skills">
+                        <li>{{ product.specifications }}</li>
+                    </ul>
                 </details>
                 <p class="decrs_for_customer"><b>Нужно для заказа:</b><br>Готовое мобильное приложение для доставки
                     еды.
@@ -131,6 +189,7 @@
     <div class="reviews_container">
         <h2 class="reviews_title">Отзывы
             <p class="reviews_num">
+                
                 {% with product.review_set.all|length as reviews_count %}
                     {{ reviews_count }}
                 {% endwith %}
@@ -195,6 +254,7 @@
                 {% if anti_average_rating > 0 %}
                     {% for _ in "x"|rjust:anti_average_rating %}
                         <li class="another_user_star">
+                            {% comment %} пустая {% endcomment %}
                             <svg width="39.000000" height="37.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <desc>Created with Pixso.</desc>
                                 <defs />
@@ -210,7 +270,6 @@
                 {% endif %}
             </p> 
         </div>
-
         <div class="send_review_form">
             <input type="text" placeholder="Написать отзыв" class="send_review_form__placeholder">
             <ul class="form_user_rating">

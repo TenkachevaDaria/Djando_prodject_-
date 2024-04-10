@@ -15,7 +15,7 @@
     padding: 30px;
     width: 700px;
     height: 600px;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(185, 222, 254);
     position: relative;
 }
 
@@ -26,9 +26,10 @@
 
 .input_log {
     max-width: 700px;
-    background-color: rgb(217, 226, 236);
+    background-color: white;
     padding: 25px;
     font-size: 20px;
+    border: 1px solid rgb(28, 37, 65);
 }
 
 .btn_send_database {
@@ -52,7 +53,8 @@
 }
 
 .decor_div2 {
-    height: 90%;
+    height: 100%;
+    z-index: 0;
 }
 
 header {

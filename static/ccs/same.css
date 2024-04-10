@@ -12,6 +12,7 @@ body {
 
 main {
   margin-bottom: 100px;
+  z-index: 1;
 }
 
 li,

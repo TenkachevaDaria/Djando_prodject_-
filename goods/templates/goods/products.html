@@ -10,18 +10,85 @@
         <h2 class="products_title">Товары</h2>
         <div class="active_filters">
             <ul class="active_filters__list">
-                <li class="active_filter">Фильтр 1</li>
-                <li class="active_filter">Фильтр 2</li>
-                <li class="active_filter">Фильтр 3</li>
+                <li class="active_filters__sub_list">
+                    <details class="active_filters__details">
+                        <summary class="active_filters__summary">По популярности
+                            <div class="marker_container">
+                                <div class="summary_marker_stick1"></div>
+                                <div class="summary_marker_stick2"></div>
+                            </div>
+                        </summary>
+                        <ul class="summary_filters">
+                            <li class="summary_filter">
+                                <input type="checkbox" id="Checkbox1" class="custom_checkbox">
+                                <label for="Checkbox1">По популярности</label>
+                            </li>
+                            <li class="summary_filter">
+                                <input type="checkbox" id="Checkbox2" class="custom_checkbox">
+                                <label for="Checkbox2">Сначала дешёвые</label>
+                            </li>
+                            <li class="summary_filter">
+                                <input type="checkbox" id="Checkbox3" class="custom_checkbox">
+                                <label for="Checkbox3">Сначала дорогие</label>
+                            </li>
+                            <li class="summary_filter">
+                                <input type="checkbox" id="Checkbox4" class="custom_checkbox">
+                                <label for="Checkbox4">По рейтингу</label>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="active_filter">Фильтр 1<span class="active_filter__disabler">&times;</span></li>
+                <li class="active_filter">Фильтр 2<span class="active_filter__disabler">&times;</span></li>
+                <li class="active_filter">Фильтр 3<span class="active_filter__disabler">&times;</span></li>
             </ul>
         </div>
         <div class="filters_producs_container">
             <div class="filters_box">
-                <ul class="filters__list">
-                    {% for category in categories %}
-                        <li class="filter">{{ category.name }}</li>
-                    {% endfor %}
-                </ul>
+                <h3 class="filters_producs__title">Фильтры</h3>
+                <div class="price_spread_box">
+                    <p class="price_spread_box__name">Цена, &#8381;</p>
+                    <div class="price-range">
+                        <div class="price_rage__input_label">
+                            <label for="price_from">От</label>
+                            <input type="text" id="price_from" placeholder="{{ min_price }}">
+                        </div>
+                        <div class="price_rage__input_label">
+                            <label for="price_to">До</label>
+                            <input type="text" id="price_to" placeholder="{{ max_price }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="validity_box">
+                    <h4 class="validity_title">Срок действия</h4>
+                    <ul class="validity_list">
+
+                        {% for subscription in subscriptions %}
+                            <li class="validity_list__item">
+                                <input type="checkbox" id="{{ subscription.slug }}" class="custom_checkbox"><label for="{{ subscription.slug }}">{{ subscription.name }}</label>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="in_stock_box">
+                    <input type="checkbox" id="stock_checkbox" class="custom_checkbox">
+                    <label for="stock_checkbox" class="stock_label">В наличии</label>
+                </div>
+                <div class="operating_system_box">
+                    <h4 class="operating_system_title">Операционная система</h4>
+                    <ul class="operating_system_list">
+
+                        {% for category in categories %}
+                            {% if category.name != 'Все' %}
+                                <li class="operating_system">
+                                    <input type="checkbox" id="{{ category.slug }}" class="custom_checkbox"><label for="{{ category.slug }}">{{ category.name }}</label>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                    </ul>
+                </div>
             </div>
             <div class="product_box">
                 <ul class="products_list">
@@ -29,6 +96,7 @@
                     {% for product in products %}
                         <li class="product_card">
                             <a href="{% url "catalog:product" product.slug %}">
+
                                 {% if product.image %}
                                     <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
                                 {% else %}
@@ -45,25 +113,31 @@
                                     {% endfor %}
                                 {% endif %}
 
-                                <p class="product__name shadow_element">{{ product.name }}</p>
+                                <p class="product__name shadow_element">{{ product.name|truncatechars:30 }}</p>
 
                                 {% if product.discount_set.all %}
                                     {% for discount in product.discount_set.all %}
-                                        {% if discount.final_price %}
-                                            <p class="product__price shadow_element">{{ discount.final_price }}</p>
-                                        {% else %}
-                                            <p class="product__price shadow_element">{{ product.price }}</p>
-                                        {% endif %}
+                                            <p class="product__price shadow_element">{{ discount.final_price }} ₽</p>
                                     {% endfor %}
+                                {% else %}
+                                    <p class="product__price shadow_element">{{ product.price }} ₽</p>
                                 {% endif %}
+
                             </a>
                         </li>
                     {% endfor %}
+
                 </ul>
                 <ul class="page_num_list">
-                    <li class="page_num">1</li>
-                    <li class="page_num">2</li>
-                    <li class="page_num">3</li>
+
+                    {% if products.paginator.page_range|length > 1 %}
+                        {% for page in products.paginator.page_range %}
+                            {% if page >= products.number|add:-1 and page <= products.number|add:1 %}
+                                <a href="{% url "catalog:index" page %}"><li class="page_num">{{ page }}</li></a>
+                            {% endif %}
+                        {% endfor %}    
+                    {% endif %}
+
                 </ul>
             </div>
         </div>

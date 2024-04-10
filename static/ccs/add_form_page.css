@@ -7,7 +7,7 @@
 
 .add_form {
     padding: 30px;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(185, 222, 254);
     height: 800px;
     position: relative;
     width: 600px;
@@ -21,8 +21,10 @@
 .add_form__input {
     width: 90%;
     padding: 25px;
-    background-color: rgb(217, 226, 236);
+    background-color: white;
     margin-bottom: 40px;
+    border: 1px solid rgb(28, 37, 65);
+    font-size: 20px;
 }
 
 .check_boxs_label {
@@ -69,4 +71,5 @@
 
 .decor_div2 {
     height: 100%;
+    z-index: 0;
 }

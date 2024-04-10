@@ -42,18 +42,21 @@
     width: 260px;
     max-height: 45px;
     padding: 10px 30px;
-    background-color: rgb(215, 197, 197);
-    border-color: rgb(215, 197, 197);
+    background-color: rgb(0, 130, 240);
+    border: none;
     margin-bottom: 20px;
+    color: white;
+    font-size: 20px;
 }
 
 .btn_buy_now {
-    background-color: rgba(217, 217, 217, 0.5);
+    background-color: rgb(185, 222, 254);
     width: 260px;
     max-height: 45px;
     padding: 10px 30px;
     margin-bottom: 70px;
-    border: 1px solid black;
+    border: 1px solid rgb(28, 37, 65);
+    font-size: 20px;
 }
 
 .saler_name {
@@ -142,7 +145,7 @@
 .send_review_form__placeholder {
     width: calc(700px - 15px * 2);
     height: 70px;
-    background-color: rgb(217, 217, 217);
+    background-color: rgba(136, 198, 252, 0.5);
    padding-left: 15px;
     outline: none;
     border: none;
@@ -181,7 +184,7 @@
 .user_com {
     width: calc(700px - 15px * 2);
     min-height: 70px;
-    background-color: rgb(217, 217, 217);
+    background-color: rgba(136, 198, 252, 0.5);
     margin-bottom: 20px;
     padding-left: 15px;
     padding-top: 15px;
@@ -191,14 +194,20 @@
 .another_user_rating {
     display: flex;
     margin-bottom: 20px;
+    gap: 5px;
 }
 
 .btn_show_more {
     max-height: 110px;
     padding: 5px 10px;
-    background-color: rgba(160, 160, 160, 0.5);
+    background-color: rgba(136, 198, 252, 0.5);
 }
 
 .decor_div1 {
     height: 13%;
+}
+
+.rating_stars {
+    display: flex;
+    gap: 3px;
 }

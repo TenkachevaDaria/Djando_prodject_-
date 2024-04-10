@@ -22,6 +22,18 @@ class Categories(models.Model):
         return f'Категория - {self.name}'
 
 
+class Subscriptions(models.Model):
+    name = models.CharField(max_length=150, unique=True, verbose_name='Срок подписки')
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
+
+    class Meta:
+        db_table = 'subscription'
+        verbose_name = 'Периоды подписок'
+        verbose_name_plural = 'Период подписки'
+
+    def __str__(self) -> str:
+        return f'Тип подписки - {self.name}'
+
 class User(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=60, verbose_name='Фамилия')
@@ -54,16 +66,20 @@ class Product(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
+    peculiarities = models.TextField(blank=True, null=True, verbose_name='Особенности')
+    specifications = models.TextField(blank=True, null=True, verbose_name='Технические характеристики')
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
     manufacturer = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Производитель')
     date_added = models.DateField()
+    subscription = models.ForeignKey(to=Subscriptions, on_delete=models.CASCADE, verbose_name='Период подписки', blank=True, null=True)
 
     class Meta:
         db_table = 'product'
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        ordering = ('id',)
     
     def __str__(self) -> str:
         return f'| Название - {self.name} | {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'

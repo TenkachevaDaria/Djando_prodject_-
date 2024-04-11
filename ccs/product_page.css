@@ -3,6 +3,7 @@
     margin: 0 auto;
     display: flex;
     gap: 80px;
+    margin-bottom: 100px;
 }
 
 .product_page__img {

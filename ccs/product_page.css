@@ -211,3 +211,21 @@
     display: flex;
     gap: 3px;
 }
+
+.list_peculiarities,
+.list_technical_skills {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.list_peculiarities li,
+.list_technical_skills li{
+    margin-left: 15px;
+}
+
+.peculiarities_title,
+.technical_skills_title {
+    margin-bottom: 10px;
+}

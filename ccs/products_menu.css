@@ -139,9 +139,11 @@
 }
 
 .marker_container {
-    position: static;
+    /* position: static;
     margin-left: 10px;
-    margin-top: 7px;
+    margin-top: 7px; */
+    right: 10px;
+    top: 15px;
 }
 
 .active_filters__summary {
@@ -176,7 +178,7 @@
 
 .active_filters__details {
     background-color: #B9DEFED9;
-
+    width: 210px;
 }
 
 .active_filter__disabler {

@@ -1,6 +1,7 @@
 .product_page_container{
     max-width: 1500px;
     margin: 0 auto;
+    margin-bottom: 20px;
     display: flex;
     gap: 80px;
 }
@@ -94,11 +95,6 @@
     margin-left: 10px;
     margin-top: 7px;
   }
-  
-
-.decrs_for_customer {
-    margin-bottom: 20px;
-}
 
 .type {
     margin-bottom: 20px;
@@ -210,4 +206,22 @@
 .rating_stars {
     display: flex;
     gap: 3px;
+}
+
+.list_peculiarities,
+.list_technical_skills {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.list_peculiarities li,
+.list_technical_skills li{
+    margin-left: 15px;
+}
+
+.peculiarities_title,
+.technical_skills_title {
+    margin-bottom: 10px;
 }

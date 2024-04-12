@@ -160,29 +160,56 @@
             <br><button class="btn btn_buy_now"><b>Купить сейчас</b></button>
             <div class="saler_info">
                 <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.name }}</p>
-                <details class="descr_from_saler">
-                    <summary class="product__saler_descr">
-                        <b>О товаре</b>
-                        <div class="marker_container">
-                            <div class="summary_marker_stick1"></div>
-                            <div class="summary_marker_stick2"></div>
-                        </div></summary>
-                    <p class="short_descr">{{ product.description }}</p>
-                    <p class="peculiarities_title">Особенности</p>
-                    <ul class="list_peculiarities">
-                        <li>{{ product.peculiarities }}</li>
-                    </ul>
-                    <p class="technical_skills_title">Технические особенности</p>
-                    <ul class="list_technical_skills">
-                        <li>{{ product.specifications }}</li>
-                    </ul>
-                </details>
-                <p class="decrs_for_customer"><b>Нужно для заказа:</b><br>Готовое мобильное приложение для доставки
-                    еды.
-                    Проект реализован на Flutter + Php(Laravel) IOS + android + админ панель</p>
-                <p class="type"><b>Вид:</b> Мобильное приложение</p>
+
+                {% if product.description %}
+                    <details class="descr_from_saler">
+                        <summary class="product__saler_descr">
+                            <b>О товаре</b>
+                            <div class="marker_container">
+                                <div class="summary_marker_stick1"></div>
+                                <div class="summary_marker_stick2"></div>
+                            </div></summary>
+                        <p class="short_descr">{{ product.description }}</p>
+                    </details>
+                {% endif %}
+
+                {% if product.peculiarities %}
+                    <details class="descr_from_saler">
+                        <summary class="product__saler_descr">
+                            <b>Особенности</b>
+                            <div class="marker_container">
+                                <div class="summary_marker_stick1"></div>
+                                <div class="summary_marker_stick2"></div>
+                            </div>
+                        </summary>
+                        <ul class="list_peculiarities">
+                            <li>{{ product.peculiarities }}</li>
+                        </ul>
+                    </details>
+                {% endif %}
+
+                {% if specifications %}
+                    <details class="descr_from_saler">
+                        <summary class="product__saler_descr">
+                            <b>Технические особенности</b>
+                            <div class="marker_container">
+                                <div class="summary_marker_stick1"></div>
+                                <div class="summary_marker_stick2"></div>
+                            </div>
+                        </summary>
+                        <ul class="list_technical_skills">
+                            {% for specification in specifications %}
+                                <li>Тип носителя: {{ specification.media_type }}</li>
+                                <li>Тип поставки: {{ specification.delivery_type }}</li>
+                                <li>Назначение: {{ specification.purpose }}</li>
+                                <li>Срок действия: {{ specification.validity_period }}</li>
+                                <li>Разрядность: {{ specification.bitness }}</li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+                {% endif %}
+                
                 <p class="platform"><b>Платформа: </b>{{ product.category.name }}</p>
-                <p class="special_inf"><b>Объем услуги в кворке:</b> Ios + android + admin панель</p>
             </div>
         </div>
     </div>

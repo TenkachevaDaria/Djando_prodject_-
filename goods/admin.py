@@ -48,3 +48,7 @@ class PaymentMethodAdmin(admin.ModelAdmin):
 @admin.register(Subscriptions)
 class SubscriptionsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Specification)
+class SpecificationAdmin(admin.ModelAdmin):
+    prepopulated_fields = {}

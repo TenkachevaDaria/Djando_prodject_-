@@ -34,6 +34,7 @@ class Subscriptions(models.Model):
     def __str__(self) -> str:
         return f'Тип подписки - {self.name}'
 
+
 class User(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=60, verbose_name='Фамилия')
@@ -67,7 +68,6 @@ class Product(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
     peculiarities = models.TextField(blank=True, null=True, verbose_name='Особенности')
-    specifications = models.TextField(blank=True, null=True, verbose_name='Технические характеристики')
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
@@ -83,6 +83,26 @@ class Product(models.Model):
     
     def __str__(self) -> str:
         return f'| Название - {self.name} | {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'
+
+
+class Features(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='features', verbose_name='Продукт')
+    description = models.TextField(null=True, blank=True, verbose_name='Описание особенностей')
+
+    def __str__(self) -> str:
+        return f'{self.product.name}'
+
+
+class Specification(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='licenses', verbose_name='Товар')
+    media_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип носителя')
+    delivery_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип поставки')
+    purpose = models.CharField(max_length=100, null=True, blank=True, verbose_name='Назначение')
+    validity_period = models.CharField(max_length=100, null=True, blank=True, verbose_name='Срок действия')
+    bitness = models.CharField(max_length=20, null=True, blank=True, verbose_name='Разрядность')
+
+    def __str__(self):
+        return f'{self.product.name}'
 
 
 class Order(models.Model):

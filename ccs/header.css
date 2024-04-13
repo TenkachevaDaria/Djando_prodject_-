@@ -76,6 +76,7 @@ header{
     min-width: 240px;
     background-color: rgba(185, 222, 254, 0.9);
     z-index: 2;
+    display: none;
 }
 
 .product_mini_card .mini_product_link{

@@ -12,10 +12,12 @@
         <div class="active_filters">
             <ul class="active_filters__list">
                 <li class="active_filters__sub_list">
-                    <form id="order_by" action="{% url "catalog:index" %}" method='get'>
+                    <form id="order_by" action=" {% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" %}{% endif %}" method='get'>
                         <details class="active_filters__details">
                             <summary class="active_filters__summary">
-
+                                {% if request.GET.q %}
+                                    <input type="hidden" name="q" id="{{ request.GET.q }}">
+                                {% endif %}
                                 {% if request.GET.order_by %}
                                     {% if request.GET.order_by == 'popularity_checkbox' %}
                                         По популярности
@@ -63,6 +65,11 @@
                 <li class="active_filter">Фильтр 1<span class="active_filter__disabler">&times;</span></li>
                 <li class="active_filter">Фильтр 2<span class="active_filter__disabler">&times;</span></li>
                 <li class="active_filter">Фильтр 3<span class="active_filter__disabler">&times;</span></li>
+                
+                <form action="">
+                    <li class="active_filter"><button type="submit" class="drop_filters">Сбросить все фильтры</button></li>
+                </form>
+                
             </ul>
         </div>
         <div class="filters_producs_container">
@@ -84,18 +91,15 @@
                         </div>
                     </div>
                 </form>
-                
                 <script>
                     const priceForm = document.getElementById("price_form");
                     const priceFromInput = document.getElementById("price_from");
                     const priceToInput = document.getElementById("price_to");
                 
-                    // Функция для отправки формы
                     function submitForm() {
                         priceForm.submit();
                     }
                 
-                    // Слушаем изменения в полях ввода
                     priceFromInput.addEventListener("change", submitForm);
                     priceToInput.addEventListener("change", submitForm);
                 </script>
@@ -153,7 +157,8 @@
                                 {% if product.discount_set.all %}
                                     {% for discount in product.discount_set.all %}
                                         {% if discount.final_price %}
-                                            <p class="popular_sale">Скидка {{ discount.discount_percentage }} %</p>             
+                                            {% comment %} <p class="popular_sale">Скидка {{ discount.discount_percentage }} %</p>{% endcomment %}
+                                            <p class="popular_sale">ВЫГОДНО</p>
                                         {% else %}
                                             <p class="popular_sale"></p>
                                         {% endif %}

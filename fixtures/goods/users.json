@@ -1,0 +1,1 @@
+[{"model": "goods.user", "pk": 1, "fields": {"name": "hamster", "last_name": "war", "middle_name": null, "email": "war@war.com", "phone": null, "password": "123", "slug": "war-war", "rating": "0.00", "primary_payment_method": null, "secondary_payment_method": null}}]

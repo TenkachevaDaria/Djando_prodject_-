@@ -28,6 +28,11 @@
     margin-left: 280px;
 }
 
+.active_filter:last-child {
+    position: absolute;
+    right: 0;
+}
+
 .filters_producs_container {
     display: flex;
     padding-bottom: 120px;
@@ -298,4 +303,12 @@ body:not(details):hover>details:not(:hover) {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.drop_filters {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
 }

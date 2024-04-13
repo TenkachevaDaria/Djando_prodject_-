@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator
 from django.db.models import Avg, Max, Min
 from django.shortcuts import get_object_or_404, render
+
+from goods.utils import q_search
 from .models import Categories, Product, Review, Specification, Subscriptions
 
 # Create your views here.
@@ -10,11 +12,12 @@ def catalog(request):
     
     page = request.GET.get('page', 1)
     order_by = request.GET.get('order_by', None)
-    subscription_filter = request.GET.get('subscription')
-    in_stock_filter = request.GET.get('in_stock')
-    category_filter = request.GET.get('category')
-    price_filter_from = request.GET.get('sort_price_from')
-    price_filter_to = request.GET.get('sort_price_to')
+    subscription_filter = request.GET.get('subscription', None)
+    in_stock_filter = request.GET.get('in_stock', None)
+    category_filter = request.GET.get('category', None)
+    price_filter_from = request.GET.get('sort_price_from', None)
+    price_filter_to = request.GET.get('sort_price_to', None)
+    query = request.GET.get('q', None)
     
     products = Product.objects.all()
     categories = Categories.objects.all()
@@ -22,6 +25,10 @@ def catalog(request):
 
     max_price = products.aggregate(max_price=Max('price'))['max_price']
     min_price = products.aggregate(min_price=Min('price'))['min_price']
+
+    if query:
+        products = q_search(query)
+
 
     if order_by == '-avg_rating':
         products = products.annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')

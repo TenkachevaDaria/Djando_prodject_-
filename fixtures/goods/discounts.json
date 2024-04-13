@@ -1,0 +1,1 @@
+[{"model": "goods.discount", "pk": 5, "fields": {"product": 4, "discount_percentage": "50.00", "start_date": "2024-04-07", "end_date": "2024-04-10", "final_price": "2395.00"}}]

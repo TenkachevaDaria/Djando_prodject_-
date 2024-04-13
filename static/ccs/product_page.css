@@ -1,15 +1,16 @@
 .product_page_container{
     max-width: 1500px;
     margin: 0 auto;
-    margin-bottom: 20px;
     display: flex;
     gap: 80px;
+    margin-bottom: 100px;
 }
 
 .product_page__img {
     width: 620px;
     height: 620px;
     background-color: rgb(217, 217, 217);
+    margin-top: 100px;
 }
 
 .product__name {
@@ -95,6 +96,11 @@
     margin-left: 10px;
     margin-top: 7px;
   }
+  
+
+.decrs_for_customer {
+    margin-bottom: 20px;
+}
 
 .type {
     margin-bottom: 20px;
@@ -224,4 +230,29 @@
 .peculiarities_title,
 .technical_skills_title {
     margin-bottom: 10px;
+}
+
+.sort_date,
+.rating {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.text_sort {
+    font-size: 20px;
+}
+
+.link_way {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    color: #00000080;
+}
+
+.link_way:nth-child(2) {
+    left: 90px;
 }

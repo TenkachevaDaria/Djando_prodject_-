@@ -1,5 +1,6 @@
 {% extends "main/pattern.html" %}
 {% load static %}
+{% load goods_tags %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static "ccs/products_menu.css" %}">
@@ -34,6 +35,7 @@
                                     <div class="summary_marker_stick2"></div>
                                 </div>
                             </summary>
+                            {% comment %} РАЗОБРАТЬСЯ С ЧЕКЕТОМ ФИЛЬТРОВ {% endcomment %}
                             <ul class="summary_filters">
                                 <li class="summary_filter">
                                     <input type="submit" name='order_by' id="Checkbox1" class="custom_checkbox" value="popularity_checkbox">
@@ -178,7 +180,7 @@
                     {% if products.paginator.page_range|length > 1 %}
                         {% for page in products.paginator.page_range %}
                             {% if page >= products.number|add:-1 and page <= products.number|add:1 %}
-                                <a href="?page={{page}}"><li class="page_num">{{ page }}</li></a>
+                                <a href="?{% change_params page=page %}"><li class="page_num">{{ page }}</li></a>
                             {% endif %}
                         {% endfor %}    
                     {% endif %}

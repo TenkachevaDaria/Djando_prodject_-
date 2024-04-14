@@ -1,0 +1,1 @@
+[{"model": "goods.categories", "pk": 1, "fields": {"name": "Windows", "slug": "windows"}}, {"model": "goods.categories", "pk": 2, "fields": {"name": "MacOS", "slug": "macos"}}, {"model": "goods.categories", "pk": 3, "fields": {"name": "Linux", "slug": "linux"}}, {"model": "goods.categories", "pk": 4, "fields": {"name": "���", "slug": "all"}}]

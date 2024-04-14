@@ -1,1 +1,1 @@
-[{"model": "goods.specification", "pk": 1, "fields": {"product": 4, "media_type": "Электронный ключ", "delivery_type": "Электронный ключ лицензии", "purpose": "Для дома и бизнеса", "validity_period": "Бессрочная", "bitness": "x32/x64"}}]
+[{"model": "goods.specification", "pk": 1, "fields": {"product": 4, "media_type": "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ РєР»СЋС‡", "delivery_type": "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ РєР»СЋС‡ Р»РёС†РµРЅР·РёРё", "purpose": "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ РєР»СЋС‡ Р»РёС†РµРЅР·РёРё", "validity_period": "Р‘РµСЃСЃСЂРѕС‡РЅР°СЏ", "bitness": "x32/x64"}}]

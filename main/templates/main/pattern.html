@@ -1,4 +1,5 @@
 {% load static %}
+{% load goods_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,17 +32,34 @@
                         <input type="search" name="q" placeholder="Поиск" class="nav_user__input" value>
                         <div class="drop_list_container">
                             <ul class="products_searchers_list">
-                                <li class="product_mini_card">
-                                    <a href="" class="mini_product_link">
-                                        <img src="" alt="" class="product_mini_img">
-                                        <p class="product_name">Microsoft Windows 10 Professional</p>
-                                        <p class="product_price">4790 ₽</p>
-                                    </a>
-                                </li>
+
+                                {% tag_products as searches %}
+                                {% for product in searches %}
+                                    <li class="product_mini_card">
+                                        <a href="{% url 'catalog:product' product.slug %}" class="mini_product_link">
+                                            <img src="{{ product.image.url }}" alt="" class="product_mini_img">
+                                            <p class="product_name">{{ product.name|truncatechars:30 }}</p>
+                                            <p class="product_price">{{ product.price }}  ₽</p>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
                             </ul>
                             <button class="drop_list__btn btn">ПОКАЗАТЬ ЕЩЕ</button>
                         </div>
                     </form>
+                    <script>
+                        const searchInput = document.querySelector('input[type="search"]');
+                        const dropListContainer = document.querySelector('.drop_list_container');
+                    
+                        searchInput.addEventListener('input', function() {
+                            if (this.value.trim() !== '') {
+                                dropListContainer.style.display = 'block';
+                            } else {
+                                dropListContainer.style.display = 'none';
+                            }
+                        });
+                    </script>
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
                 <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
@@ -60,5 +78,63 @@
         <div class="decor_div2"></div>
     </footer>
     <div class="decor_div1"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('input[name="q"]');
+            const productList = document.querySelector('.products_searchers_list');
+            const productItems = productList.querySelectorAll('.product_mini_card');
+            const showMoreButton = document.querySelector('.drop_list__btn');
+    
+            let visibleItemCount = 5; // Количество отображаемых элементов по умолчанию
+            const totalItems = productItems.length;
+    
+            function filterProducts(searchTerm) {
+                let visibleItemsCount = 0;
+    
+                productItems.forEach(function(item) {
+                    const productName = item.querySelector('.product_name').textContent.trim().toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        if (visibleItemsCount < visibleItemCount) {
+                            item.style.display = 'block';
+                            visibleItemsCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+    
+                if (visibleItemsCount < totalItems) {
+                    showMoreButton.style.display = 'block';
+                } else {
+                    showMoreButton.style.display = 'none';
+                }
+            }
+    
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+                filterProducts(searchTerm);
+            });
+    
+            showMoreButton.addEventListener('click', function() {
+                visibleItemCount += 5;
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                filterProducts(searchTerm);
+            });
+        });
+    </script>
+    <script>
+        const searchInput = document.querySelector('input[type="search"]');
+        const dropListContainer = document.querySelector('.drop_list_container');
+    
+        searchInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                dropListContainer.style.display = 'block';
+            } else {
+                dropListContainer.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

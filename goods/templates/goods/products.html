@@ -157,7 +157,6 @@
                                 {% if product.discount_set.all %}
                                     {% for discount in product.discount_set.all %}
                                         {% if discount.final_price %}
-                                            {% comment %} <p class="popular_sale">Скидка {{ discount.discount_percentage }} %</p>{% endcomment %}
                                             <p class="popular_sale">ВЫГОДНО</p>
                                         {% else %}
                                             <p class="popular_sale"></p>

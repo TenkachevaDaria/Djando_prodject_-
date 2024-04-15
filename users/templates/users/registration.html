@@ -9,11 +9,29 @@
     <div class="registration_form_container">
         <div class="registration_form">
             <h2 class="registration_title"><b>Регистрация</b></h2>
-            <form action="/submit" method="post" class="reg_form">
-                <input type="text" id="name" name="name" required placeholder="Введите имя" class="reg_input">
-                <input type="email" id="email" name="email" required placeholder="Введите e-mail" class="reg_input">
-                <input type="password" id="password" name="password" required placeholder="Придумайте пароль" class="reg_input">
-                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Повторите пароль" class="reg_input">
+            <form action="{% url "user:registration" %}" method="post" class="reg_form">
+                {% csrf_token %}
+                
+                <input type="text" id="id_username" name="username" required placeholder="Введите имя" class="reg_input" value="{% if form.username.value %}{{ form.username.value }}{% endif %}">
+                {% if form.username.errors %}
+                    <p>{{ form.username.errors }}</p>
+                {% endif %}
+
+                <input type="email" id="id_email" name="email" required placeholder="Введите e-mail" class="reg_input" value="{% if form.email.value %}{{ form.email.value }}{% endif %}">
+                {% if form.email.errors %}
+                    <p>{{ form.email.errors }}</p>        
+                {% endif %}
+
+                <input type="password" id="id_password1" name="password1" required placeholder="Придумайте пароль" class="reg_input" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}">
+                {% if form.password1.errors %}
+                    <p>{{ form.password1.errors }}</p>
+                {% endif %}
+
+                <input type="password" id="id_password2" name="password2" required placeholder="Повторите пароль" class="reg_input" value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}">
+                {% if form.password2.errors %}
+                    <p>{{ form.password2.errors }}</p> 
+                {% endif %}
+
                 <input type="submit" value="Зарегистрироваться" class="btn_send_reginfo">
             </form>
         </div>

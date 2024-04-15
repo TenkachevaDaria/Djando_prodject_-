@@ -21,10 +21,16 @@
                 <li class="nav_helper__link"><a href="{% url "main:index" %}" class="nav__link">Главная</a></li>
                 <li class="nav_helper__link"><a href="{% url "main:index" %}#quest" class="nav__link">Помощь</a></li>
                 <li class="nav_helper__link"><a href="#contact" class="nav__link">Контакты</a></li>
-                <li class="nav_helper__link"><a href="{% url "main:addProduct" %}" class="nav__link">Разместите свой продукт</a></li>
+
+                {% if not user.is_authenticated %}
+                {% else %}    
+                    <li class="nav_helper__link"><a href="{% url "main:addProduct" %}" class="nav__link">Разместите свой продукт</a></li>
+                {% endif %}
+
+                
             </ul>
         </nav>
-        <h1 class="site_name">Название</h1>
+        <h1 class="site_name">ProSoftware</h1>
         <nav class="nav_user">
             <ul class="nav_user__links">
                 <li class="nav_links__link">
@@ -48,22 +54,16 @@
                             <button class="drop_list__btn btn">ПОКАЗАТЬ ЕЩЕ</button>
                         </div>
                     </form>
-                    <script>
-                        const searchInput = document.querySelector('input[type="search"]');
-                        const dropListContainer = document.querySelector('.drop_list_container');
-                    
-                        searchInput.addEventListener('input', function() {
-                            if (this.value.trim() !== '') {
-                                dropListContainer.style.display = 'block';
-                            } else {
-                                dropListContainer.style.display = 'none';
-                            }
-                        });
-                    </script>
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
-                <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li>
+
+                {% if not user.is_authenticated %}
+                    <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li>
+                {% else %}    
+                    <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
+                    <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li>
+                {% endif %}
+
             </ul>
         </nav>
         <div class="decor_div3"></div>

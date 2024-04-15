@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from goods.models import *
+from goods.models import Categories, Product, Subscriptions, Specification, Discount, Order, OrderItem, Review
 
 # admin.site.register(PaymentMethod)
 
@@ -15,9 +15,18 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', 'category',)}
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', 'last_name',)}
+@admin.register(Subscriptions)
+class SubscriptionsAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(Specification)
+class SpecificationAdmin(admin.ModelAdmin):
+    prepopulated_fields = {}
+
+
+@admin.register(Discount)
+class DiscountAdmin(admin.ModelAdmin):
+    prepopulated_fields = {}
 
 
 @admin.register(Order)
@@ -30,25 +39,7 @@ class OrderItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {}
 
 
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
-
-
-@admin.register(Discount)
-class DiscountAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
-
-
-@admin.register(PaymentMethod)
-class PaymentMethodAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
-
-
-@admin.register(Subscriptions)
-class SubscriptionsAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-
-@admin.register(Specification)
-class SpecificationAdmin(admin.ModelAdmin):
     prepopulated_fields = {}

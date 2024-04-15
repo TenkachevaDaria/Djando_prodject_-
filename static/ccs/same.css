@@ -115,3 +115,22 @@ details:active .summary_marker_stick1 {
 textarea {
   resize: none;
 }
+
+.shadow_element {
+  transition: all 0.3s;
+}
+
+.product_card:hover .shadow_element {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 70%;
+}
+
+.product_card:focus .shadow_element {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 50%;
+}
+
+.product_card:active .shadow_element {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 50%;
+}

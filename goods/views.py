@@ -1,9 +1,9 @@
 from django.core.paginator import Paginator
 from django.db.models import Avg, Max, Min
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 from goods.utils import q_search
-from .models import Categories, Product, Review, Specification, Subscriptions
+from goods.models import Categories, Product, Specification, Subscriptions, Review
 
 # Create your views here.
 from django.db.models import Q
@@ -61,8 +61,6 @@ def catalog(request):
         'min_price': min_price
     }
     return render(request, 'goods/products.html', context)
-
-
 
 
 def product(request, product_slug):

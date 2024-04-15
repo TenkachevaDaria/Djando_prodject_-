@@ -63,10 +63,16 @@
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
                 <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                <li class="nav_links__link"><a href="{% url "main:user" %}" class="nav__link">Аккаунт</a></li>
+                <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li>
             </ul>
         </nav>
-        {% block header_decor %}{% endblock  %}
+        <div class="decor_div3"></div>
+        <div class="decor_div4"></div>
+        <div class="decor_div5"></div>
+        <div class="decor_div6"></div>
+        <div class="decor_div7"></div>
+        <div class="decor_div8"></div>
+        <div class="decor_div9"></div>
     </header>
     <main>
         {% block content %}{% endblock %} 

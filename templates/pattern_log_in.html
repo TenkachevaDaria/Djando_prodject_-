@@ -25,11 +25,17 @@
         <h1 class="site_name">Название</h1>
         <nav class="nav_user">
             <ul class="nav_user__links">
-                <li class="nav_links__link"><a href="{% url "main:registration" %}" class="nav__link">Зарегистрироваться</a></li>
-                <li class="nav_links__link"><a href="{% url "main:LogIn" %}" class="nav__link">Войти</a></li>
+                <li class="nav_links__link"><a href="{% url "user:registration" %}" class="nav__link">Зарегистрироваться</a></li>
+                <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li>
             </ul>
         </nav>
-        {% block header_decor %}{% endblock  %}
+        <div class="decor_div3"></div>
+        <div class="decor_div4"></div>
+        <div class="decor_div5"></div>
+        <div class="decor_div6"></div>
+        <div class="decor_div7"></div>
+        <div class="decor_div8"></div>
+        <div class="decor_div9"></div>
     </header>
     <main>
         {% block content %}{% endblock %} 

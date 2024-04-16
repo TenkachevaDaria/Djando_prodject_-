@@ -78,7 +78,8 @@
 .product__img {
     width: 100%;
     height: 244px;
-    background-color: rgb(173, 129, 129);
+    background-color: inherit;
+    border: none;
 }
 
 .product__name {
@@ -294,4 +295,18 @@ body:not(details):hover>details:not(:hover) {
     outline: none;
     cursor: pointer;
     font-size: 16px;
+}
+
+.img_decor_card {
+    position: relative;
+}
+
+.decor_mini_card_img {
+    position: absolute;
+    width: 80%;
+    height: 45px;
+    filter: blur(12px);
+    background-color: #B9DEFE;
+    bottom: 15px;
+    left: 25px;
 }

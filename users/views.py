@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
 # Create your views here.
 
@@ -46,4 +46,18 @@ def logout(request):
     return redirect(reverse('main:index'))
 
 def profile(request):
-    return render(request, 'users/user_page.html')
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            user = form.instance
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('user:profile'))
+    else:
+        form = ProfileForm(instance=request.user)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'users/user_page.html', context)

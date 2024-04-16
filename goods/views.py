@@ -32,7 +32,7 @@ def catalog(request):
 
     if order_by == '-avg_rating':
         products = products.annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
-    elif order_by:
+    elif order_by and order_by != "default":
         products = products.order_by(order_by)
 
 

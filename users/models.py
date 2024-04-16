@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
+    middle_name = models.CharField(max_length=30, null=True, blank=True, verbose_name='Отчество')
     image = models.ImageField(upload_to='users_image', null=True, blank=True, verbose_name='Аватар')
     phone = models.CharField(max_length=12, null=True, blank=True, verbose_name='Телефон')
     rating = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Рейтинг')

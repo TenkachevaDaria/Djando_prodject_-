@@ -15,6 +15,7 @@
                     <form id="order_by" action=" {% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" %}{% endif %}" method='get'>
                         <details class="active_filters__details">
                             <summary class="active_filters__summary">
+
                                 {% if request.GET.q %}
                                     <input type="hidden" name="q" id="{{ request.GET.q }}">
                                 {% endif %}
@@ -27,6 +28,8 @@
                                         Сначала дорогие
                                     {% elif request.GET.order_by == '-avg_rating' %}
                                         По рейтингу
+                                    {% elif request.GET.order_by == 'default' %}
+                                        По умолчанию
                                     {% endif %}
                                 {% else %}
                                     Сортировать по
@@ -62,12 +65,30 @@
                         </details>
                     </form>
                 </li>
-                <li class="active_filter">Фильтр 1<span class="active_filter__disabler">&times;</span></li>
-                <li class="active_filter">Фильтр 2<span class="active_filter__disabler">&times;</span></li>
-                <li class="active_filter">Фильтр 3<span class="active_filter__disabler">&times;</span></li>
+                <li class="active_filter"></li>
+
+                {% if request.GET.subscription %}
+                    {% with subscription_id=request.GET.subscription|add:"0" %}
+                        {% for subscription in subscriptions %}
+                            {% if subscription_id == subscription.id %}
+                                <li class="active_filter">{{ subscription.name }}</span></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                {% endif %}
                 
-                <form action="">
-                    <li class="active_filter"><button type="submit" class="drop_filters">Сбросить все фильтры</button></li>
+                {% if request.GET.category %}
+                    {% with category_id=request.GET.category|add:"0" %}
+                        {% for category in categories %}
+                            {% if category_id == category.id %}
+                                <li class="active_filter">{{ category.name }}</span></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                {% endif %}
+                
+                <form  id="order_by" action=" {% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" %}{% endif %}" method='get'>
+                    <li class="active_filter"><button type="submit" name='order_by' value="default" class="drop_filters"><a href="{% url "catalog:index" %}">Сбросить все фильтры</a></button></li>
                 </form>
                 
             </ul>
@@ -104,18 +125,21 @@
                     priceToInput.addEventListener("change", submitForm);
                 </script>
                 
-                <form id="subscription_filter" action="{% url "catalog:index" %}" method='get'>
+                <form id="subscription" action="{% if request.GET.q %}{% url 'catalog:search' %}{% else %}{% url 'catalog:index' %}{% endif %}" method="get">
                     <div class="validity_box">
                         <h4 class="validity_title">Срок действия</h4>
                         <ul class="validity_list">
                             {% for subscription in subscriptions %}
                                 <li class="validity_list__item">
-                                    <input type="submit" id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="custom_checkbox"><label for="{{ subscription.slug }}">{{ subscription.name }}</label>
+                                    <input type="submit" id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="custom_checkbox"{% if request.GET.subscription == subscription.id %}checked{% endif %}>
+                                    <label for="{{ subscription.slug }}">{{ subscription.name }}</label>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
+
                 </form>
+
 
                 <form id="in_stock_filter" action="{% url "catalog:index" %}" method='get'>
                     <div class="in_stock_box">
@@ -149,7 +173,9 @@
                             <a href="{% url "catalog:product" product.slug %}">
     
                                 {% if product.image %}
-                                    <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
+                                    <div class="img_decor_card">
+                                        <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
+                                    </div>
                                 {% else %}
                                     <img src="" alt="" class="product__img shadow_element">
                                 {% endif %}

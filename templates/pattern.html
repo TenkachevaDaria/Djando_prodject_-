@@ -61,7 +61,17 @@
                     <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li>
                 {% else %}    
                     <li class="nav_links__link"><a href="{% url "main:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                    <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li>
+                    {% comment %} <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li> {% endcomment %}
+                    <li class="nav_links__link">
+                        <details class="account_link">
+                            <summary class="nav__link account_link_title">   
+                                Аккаунт
+                            </summary>
+                            <a href="{% url "user:profile" %}" class="nav__link account_link_destination">Аккаунт</a>
+                            <button class="account_btn_exit btn"><a href="{% url "user:logout" %}">Выйти</a></button>
+                            <div class="link_decor_div"></div>
+                        </details>
+                    </li>
                 {% endif %}
 
             </ul>

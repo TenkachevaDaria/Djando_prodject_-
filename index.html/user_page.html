@@ -62,7 +62,7 @@
                 <!-- <li class="nav_links__link"><a href="../index.html/user_page.html" class="nav__link">Аккаунт</a></li> -->
                 <li class="nav_links__link">
                     <details class="account_link">
-                        <summary class="nav__link account_link_title">   
+                        <summary class="nav__link account_link_title">
                             Аккаунт
                         </summary>
                         <a href="../index.html/user_page.html" class="nav__link account_link_destination">Аккаунт</a>
@@ -106,6 +106,7 @@
                         <input type="text" id="middle_name" name="middle_name" class="user_input_page"
                             placeholder="Добавьте отчество"><br>
                     </div>
+                    <button class="save_user_data_btn btn">Сохранить измененния</button>
                 </form>
                 <p class="user_products_title">Размещенные вами товары</p>
                 <div class="user_products">
@@ -196,9 +197,37 @@
                 </div>
             </div>
             <div>
-                <label for="payment_method">Номер телефона</label><br>
-                <input type="text" id="payment_method" name="payment_method" class="user_input_page"
-                    placeholder="Добавьте способ обплаты"><br>
+                <p>Cпособ оплаты</p>
+                <div class="active_filters__sub_list">
+                    <form action="">
+                        <details class="active_filters__details">
+                            <summary class="active_filters__summary">Укажите способ оплаты
+                                <div class="marker_container">
+                                    <div class="summary_marker_stick1"></div>
+                                    <div class="summary_marker_stick2"></div>
+                                </div>
+                            </summary>
+                            <ul class="summary_filters">
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
+                                    <label for="Checkbox1">SberPay 3273</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox2" class="custom_checkbox" value="payment_way2">
+                                    <label for="Checkbox2">TinkoffPay 8947</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox3" class="custom_checkbox" value="payment_way3">
+                                    <label for="Checkbox3">Сначала дорогие 9846</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
+                                </li>
+                            </ul>
+                        </details>
+                    </form>
+                </div>
+
                 <p class="user_history_bought">Уже покупали</p>
                 <div class="user_history_bought_box">
                     <div class="imgs_container">
@@ -280,41 +309,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -323,41 +368,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -366,41 +427,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -409,41 +486,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -452,41 +545,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -495,41 +604,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -538,41 +663,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -581,41 +722,57 @@
                         <img src="" alt="" class="active_user_product__img shadow_element">
                         <p class="history_user_product__name shadow_element">Название товара</p>
                         <p class="history_user_product__price shadow_element">Цена</p>
-                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span
+                                class="date_product_bought">14.12.2000</span></p>
                         <ul class="story_rating_product">
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                             <li class="rating_product_story">
-                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <desc>Created with Pixso.</desc>
                                     <defs />
-                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                    <path id="Star_1"
+                                        d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z"
+                                        fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
                                 </svg>
                             </li>
                         </ul>
@@ -624,7 +781,25 @@
                 <button class="hide_popup_user_purchase_history">&#215;</button>
             </div>
         </div>
-        
+
+        <div class="popup_user_add_payment_method">
+            <div class="popup_user_add_payment_method__container">
+                <h3 class="popup_user_add_payment_method__title">Привязка карты</h3>
+                <form>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="Номер карты"
+                        pattern="[0-9]{16}" required class="card_num_input">
+                    <div class="date_secret_code_container">
+                        <input type="text" id="expirationDate" name="expirationDate" placeholder="ММ/ГГ"
+                            pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required class="date_num_input">
+                        <input type="text" id="cvv" name="cvv" placeholder="CCV/CVC" pattern="[0-9]{3,4}"
+                            required class="code_num_input">
+                    </div>
+                    <button type="submit" class="add_payment_method_btn btn">Добавить способ оплаты</button>
+                </form>
+                <p>*Данные карты надежно защищены</p>
+                <button class="hide_popup_add_payment_method hide">&#215;</button>
+            </div>
+        </div>
     </main>
     <footer>
         <div class="footer__container">

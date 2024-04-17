@@ -68,6 +68,12 @@ class Specification(models.Model):
     validity_period = models.CharField(max_length=100, null=True, blank=True, verbose_name='Срок действия')
     bitness = models.CharField(max_length=20, null=True, blank=True, verbose_name='Разрядность')
 
+    
+    class Meta:
+        db_table = 'specification'
+        verbose_name = 'Спецификации'
+        verbose_name_plural = 'Спецификация'
+
     def __str__(self):
         return f'{self.product.name}'
 
@@ -142,7 +148,7 @@ class Review(models.Model):
         verbose_name_plural = 'Отзывы'
         
     def __str__(self) -> str:
-        return f'| Продукт - {self.product.name} | Пользователь - {self.user.name} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
+        return f'| Продукт - {self.product.name} | Пользователь - {self.user.username} | Оценка - {self.rating} | Дата добавленя - {self.date_added} |'
 
     def star_rating(self):
         rating_int = int(self.rating)

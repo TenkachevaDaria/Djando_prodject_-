@@ -159,7 +159,7 @@
             <button class="btn btn_add"><b>Добавить в корзину</b></button>
             <br><button class="btn btn_buy_now"><b>Купить сейчас</b></button>
             <div class="saler_info">
-                <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.name }}</p>
+                <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.username }}</p>
 
                 {% if product.description %}
                     <details class="descr_from_saler">
@@ -347,7 +347,7 @@
             {% for review in reviews %}
                 <li class="another_user_review">
                     <div class="short_com_info">
-                        <p class="another_user_name">{{ review.user.name }}</p>
+                        <p class="another_user_name">{{ review.user.username }}</p>
                         <p class="data_send">{{ review.date_added }}</p>
                     </div>
                     <div class="another_user_comment">

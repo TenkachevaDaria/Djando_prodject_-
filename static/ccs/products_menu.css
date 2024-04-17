@@ -75,16 +75,20 @@
 
 
 .products_list {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    z-index: 0;
 }
 
 .product__img {
+    position: relative;
     width: 100%;
     height: 244px;
     background-color: inherit;
     border: none;
+    z-index: 1;
 }
 
 .product__name {

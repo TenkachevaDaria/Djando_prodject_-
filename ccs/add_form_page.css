@@ -8,9 +8,9 @@
 .add_form {
     padding: 30px;
     background-color: rgb(185, 222, 254);
-    height: 800px;
+    min-height: 1250px;
     position: relative;
-    width: 600px;
+    width: 850px;
 }
 
 .add_form__title {
@@ -20,22 +20,34 @@
 
 .add_form__input {
     width: 90%;
-    padding: 25px;
+    padding: 20px 25px;
     background-color: white;
     margin-bottom: 40px;
     border: 1px solid rgb(28, 37, 65);
     font-size: 20px;
+    outline: none;
 }
 
 .check_boxs_label {
     font-size: 20px;
 }
 
-.check_boxs {
+.check_boxs,
+.check_boxs_subscription_duration,
+.check_boxs_bit_depth {
     margin-top: 25px;
     margin-bottom: 40px;
     display: flex;
-    gap: 40px;
+    gap: 90px;
+    margin-left: 25px;
+}
+
+.check_boxs_subscription_duration {
+    gap: 45px;
+}
+
+.check_boxs_bit_depth {
+    gap: 120px;
 }
 
 .checkbox_input {
@@ -60,8 +72,8 @@
 }
 
 .add_form_img {
-    width: 600px;
-    height: 860px;
+    width: 400px;
+    height: 700px;
     background-color: rgb(217, 217, 217);
 }
 
@@ -72,4 +84,13 @@
 .decor_div2 {
     height: 100%;
     z-index: 0;
+}
+
+.check_boxs_label,
+.check_boxs {
+    margin-left: 25px;
+}
+
+.textarea_input {
+    height: fit-content;
 }

@@ -34,7 +34,6 @@
 .item__img {
     width: 120px;
     height: 120px;
-    background-color: rgb(179, 111, 111);   
 }
 
 .item_name_price_box {
@@ -131,7 +130,7 @@
 }
 
 .payment_way__btn {
-    margin-top: 60px;
+    margin-top: 20px;
     color: white;
     background-color: rgb(0, 130, 240);
     width: 500px;
@@ -159,4 +158,19 @@
     background-color: inherit;
     color: black;
     opacity: 100%;
+}
+
+.total_price_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total_price_name,
+.total_price_num {
+    font-size: 28px;
+}
+
+.products_counter {
+    font-size: 13px;
+    margin-top: 30px;
 }

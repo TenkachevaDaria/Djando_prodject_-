@@ -103,36 +103,6 @@ class Discount(models.Model):
         super().save(*args, **kwargs)
 
     
-class Order(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
-    order_date = models.DateField(verbose_name='Дата заказа')
-    order_status = models.CharField(default='В обработке', max_length=50, verbose_name='Статус заказа')
-    total_amount = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, verbose_name='Итоговая сумма') 
-    
-
-    class Meta:
-        db_table = 'order'
-        verbose_name = 'Заказ'
-        verbose_name_plural = 'Заказы'
-        
-    def __str__(self) -> str:
-        return f'| Клиент - {self.client} | Дата добавления - {self.order_date} | Статус заказа - {self.order_status} |'
-
-
-class OrderItem(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Заказ')
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')
-    quantity = models.IntegerField(verbose_name='Количество')
-    price_at_order = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена товара на момент заказа')
-
-    class Meta:
-        db_table = 'order_item'
-        verbose_name = 'Позиция заказа'
-        verbose_name_plural = 'Позиции заказов'
-    
-    def __str__(self) -> str:
-        return f'| Клиент - {self.client} | Продукт - {self.product} | Количество - {self.quantity} | Итоговая стоимость - {self.price_at_order} |'
-    
 
 class Review(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')

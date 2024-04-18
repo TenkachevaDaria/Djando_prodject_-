@@ -20,12 +20,14 @@
     padding: 20px;
     display: flex;
     align-items: center;
+    border: 1.5px solid rgb(28, 37, 65);
 }
 
 .question__answer {
     font-size: 20px;
     padding: 25px;
     background-color: rgba(136, 198, 252, 0.1);
+    border: 1.5px solid rgba(28, 37, 65, 0.7);
 }
 
 summary::marker {
@@ -36,5 +38,6 @@ summary::marker {
     font-size: 20px;
     margin-top: 90px;
     padding: 20px;
-    background-color: rgb(217, 217, 217);
+    background-color: rgba(136, 198, 252, 0.3);
+    border: 1.5px solid rgb(28, 37, 65);
 }

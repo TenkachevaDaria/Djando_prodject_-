@@ -9,7 +9,6 @@
 .product_page__img {
     width: 620px;
     height: 620px;
-    background-color: rgb(217, 217, 217);
     margin-top: 100px;
 }
 
@@ -28,6 +27,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 35px;
+    min-width: 970px;
 }
 
 .product__price {

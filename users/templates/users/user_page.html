@@ -14,7 +14,7 @@
                     <img src="{{ user.image.url }}" alt="" class="product__img shadow_element">
                 </div>
             {% else %}
-                <img src="" alt="" class="product__img shadow_element">
+                <img src="{% static 'deps/фото пользователя нет.png' %}" alt="" class="product__img shadow_element">
             {% endif %}
             <label for="photo" class="upload-button"></label>
             <input type="file" id="id_image" name="image" class="upload-button" accept="image/*">

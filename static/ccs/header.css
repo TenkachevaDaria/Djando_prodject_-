@@ -43,7 +43,7 @@ header{
     border: 1px solid white;
     background: rgba(236, 246, 255, 0.3);
     color: black;
-    width: 229px;
+    width: 240px;
     height: 36px;
     padding-left: 10px;
     padding-right: 0;
@@ -92,7 +92,6 @@ header{
 .product_mini_img {
     width: 56px;
     height: 56px;
-    background-color: white;
 }
 
 .product_price {

@@ -10,7 +10,7 @@
             {% if product.image %}
                 <img src="{{ product.image.url }}" alt="" class="product_page__img">
             {% else %}      
-                <img src="" alt="" class="product_page__img">
+                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_page__img">
             {% endif %}
         <div class="product">
             <h2 class="product__name">{{ product.name }}</h2>
@@ -156,7 +156,7 @@
                     </li>
                 </ul>
             </div>
-            <button class="btn btn_add"><b>Добавить в корзину</b></button>
+            <button class="btn btn_add"><b><a href="{% url "basket:basket_add" product.slug %}">Добавить в корзину</a></b></button>
             <br><button class="btn btn_buy_now"><b>Купить сейчас</b></button>
             <div class="saler_info">
                 <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.username }}</p>

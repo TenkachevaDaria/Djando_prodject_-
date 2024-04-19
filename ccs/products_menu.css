@@ -22,10 +22,15 @@
     font-size: 18px;
     position: relative;
     cursor: pointer;
+    height: 21px;
 }
 
 .active_filter:nth-child(2) {
-    margin-left: 280px;
+    width: 0px;
+}
+
+.active_filter:nth-child(3) {
+    margin-left: 240px;
 }
 
 .active_filter:last-child {
@@ -80,6 +85,8 @@
     height: 244px;
     background-color: inherit;
     border: none;
+    position: relative;
+    z-index: 1;
 }
 
 .product__name {

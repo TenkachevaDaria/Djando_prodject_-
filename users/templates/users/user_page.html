@@ -6,221 +6,266 @@
 {% endblock %}
 
 {% block content %}
-<div class="user_page_container">
-    <div>
-        <div class="custom-input_user">
-            {% if user.image %}
-                <div class="img_decor_card">
-                    <img src="{{ user.image.url }}" alt="" class="product__img shadow_element">
+    <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="user_page_container">
+            <div>
+                <div class="custom-input_user">
+                    {% if user.image %}
+                        <div class="img_decor_card">
+                            <img src="{{ user.image.url }}" alt="" class="product__img shadow_element">
+                        </div>
+                    {% else %}
+                        <img src="{% static 'deps/фото пользователя нет.png' %}" alt="" class="product__img shadow_element">
+                    {% endif %}
+                    <label for="photo" class="upload-button"></label>
+                    <input type="file" id="id_image" name="image" class="upload-button" accept="image/*">
+                    {% if form.image.errors %}
+                        <p>{{ form.image.errors }}</p>
+                    {% endif %}
                 </div>
-            {% else %}
-                <img src="{% static 'deps/фото пользователя нет.png' %}" alt="" class="product__img shadow_element">
-            {% endif %}
-            <label for="photo" class="upload-button"></label>
-            <input type="file" id="id_image" name="image" class="upload-button" accept="image/*">
-        </div>
-    </div>
-    <div>
-        <form action="{% url "users:profile" %}" method="post">
-            {% csrf_token %}
-            <div>
-                <label for="first_name">Имя</label><br>
-                <input type="text" id="id_first_name" name="first_name" required class="user_input_page" value="{{ form.first_name.value }}" placeholder="Добавьте имя"><br>
-                {% if form.first_name.errors %}
-                    <p>{{ form.first_name.errors }}</p> 
-                {% endif %}
             </div>
             <div>
-                <label for="last_name">Фамилия</label><br>
-                <input type="text" id="id_last_name" name="last_name" required class="user_input_page" value="{{ form.last_name.value }}" placeholder="Добавьте фамилию"><br>
-                {% if form.last_name.errors %}
-                    <p>{{ form.last_name.errors }}</p> 
+                <div>
+                    <label for="first_name">Имя</label><br>
+                    <input type="text" id="id_first_name" name="first_name" class="user_input_page" value="{{ form.first_name.value }}" placeholder="Добавьте имя" required><br>
+                    {% if form.first_name.errors %}
+                        <p>{{ form.first_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="last_name">Фамилия</label><br>
+                    <input type="text" id="id_last_name" name="last_name" class="user_input_page" value="{{ form.last_name.value }}" placeholder="Добавьте фамилию" required><br>
+                    {% if form.last_name.errors %}
+                        <p>{{ form.last_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="middle_name">Отчество</label><br>
+                    <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество" required><br>
+                    {% if form.middle_name.errors %}
+                        <p>{{ form.middle_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <input type="submit" value="Сохранить измененния" class="save_user_data_btn">
+                <p class="user_products_title">Размещенные вами товары</p>
+                <div class="user_products">
+                    <div class="imgs_container">
+                        <ul class="user_products__list">
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pos_class">
+                <label for="e-mail">E-mail</label><br>
+                <input type="email" id="id_email" name="email" class="user_input_page" value="{{ form.email.value }}" placeholder="Добавьте почту" required><br>
+                {% if form.email.errors %}
+                    <p>{{ form.email.errors }}</p> 
                 {% endif %}
-            </div>
-            <div>
-                <label for="middle_name">Отчество</label><br>
-                <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество"><br>
-                {% if form.middle_name.errors %}
-                    <p>{{ form.middle_name.errors }}</p> 
-                {% endif %}
-            </div>
-        </form>
-        <p class="user_products_title">Размещенные вами товары</p>
-        <div class="user_products">
-            <div class="imgs_container">
-                <ul class="user_products__list">
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="pos_class">
-        <form action="{% url "users:profile" %}" method="post">
-            <label for="e-mail">E-mail</label><br>
-            <input type="text" id="id_email" name="email" class="user_input_page" value="{{ form.email.value }}" placeholder="Добавьте почту"><br>
-            {% if form.email.errors %}
-                <p>{{ form.email.errors }}</p> 
-            {% endif %}
-    
-            <label for="phone_num">Номер телефона</label><br>
-            <input type="text" id="id_phone" name="phone" class="user_input_page" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона"><br>
-            {% if form.phone.errors %}
-                <p>{{ form.phone.errors }}</p> 
-            {% endif %}
-        </form>
-
-        <div class="user_rating">
-            <p class="user_rating__title">Ваш рейтинг продавца</p>
-            <div class="user_rating__box">
-                <p class="user_rating__num">Цифра</p>
-                <ul class="user_rating__stars">
-                    <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                    <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                    <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                    <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                    <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                            fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>
-                                Created with Pixso.
-                            </desc>
-                            <defs />
-                            <path id="Star 1"
-                                d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                        </svg>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div>
-        <label for="payment_method">Способы оплаты</label><br>
-        <input type="text" id="payment_method" name="payment_method" class="user_input_page"
-            placeholder="Добавьте способ обплаты"><br>
-        <p class="user_history_bought">Уже покупали</p>
-        <div class="user_history_bought_box">
-            <div class="imgs_container">
-                <ul class="user_products__list">
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                    <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup_user_products_history">
-        <h3 class="popup_title">Мои товары</h3>
-        <ul class="active_user_products">
-            <li class="active_user_product">
-                <img src="" alt="" class="active_user_product__img shadow_element">
-                <p class="active_user_product__name shadow_element">Название товара</p>
-                <p class="active_user_product__price shadow_element">Цена</p>
-                <p class="active_user_product__date shadow_element">Дата размещения</p>
-            </li>
-        </ul>
-        <button class="hide_popup_user_products_history">&#215;</button>
-    </div>
-
-    <div class="popup_user_purchase_history">
-        <h3 class="popup_title">Покупки</h3>
-        <ul class="history_user_products">
-            <li class="active_user_product">
-                <img src="" alt="" class="active_user_product__img shadow_element">
-                <p class="history_user_product__name shadow_element">Название товара</p>
-                <p class="history_user_product__price shadow_element">Цена</p>
-                <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
-                <ul class="story_rating_product">
-                    <li class="rating_product_story">
-                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>Created with Pixso.</desc>
-                            <defs />
-                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li class="rating_product_story">
-                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>Created with Pixso.</desc>
-                            <defs />
-                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li class="rating_product_story">
-                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>Created with Pixso.</desc>
-                            <defs />
-                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li class="rating_product_story">
-                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>Created with Pixso.</desc>
-                            <defs />
-                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                        </svg>
-                    </li>
-                    <li class="rating_product_story">
-                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <desc>Created with Pixso.</desc>
-                            <defs />
-                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                        </svg>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <button class="hide_popup_user_purchase_history">&#215;</button>
-    </div>
-</div>
         
-    </div>
+                <label for="phone_num">Номер телефона</label><br>
+                <input type="text" id="id_phone" name="phone" class="user_input_page" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона" required><br>
+                {% if form.phone.errors %}
+                    <p>{{ form.phone.errors }}</p> 
+                {% endif %}
+
+                <div class="user_rating">
+                    <p class="user_rating__title">Ваш рейтинг продавца</p>
+                    <div class="user_rating__box">
+                        <p class="user_rating__num">Цифра</p>
+                        <ul class="user_rating__stars">
+                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>
+                                        Created with Pixso.
+                                    </desc>
+                                    <defs />
+                                    <path id="Star 1"
+                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                                </svg>
+                            </li>
+                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>
+                                        Created with Pixso.
+                                    </desc>
+                                    <defs />
+                                    <path id="Star 1"
+                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                                </svg>
+                            </li>
+                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>
+                                        Created with Pixso.
+                                    </desc>
+                                    <defs />
+                                    <path id="Star 1"
+                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                                </svg>
+                            </li>
+                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>
+                                        Created with Pixso.
+                                    </desc>
+                                    <defs />
+                                    <path id="Star 1"
+                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                                </svg>
+                            </li>
+                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>
+                                        Created with Pixso.
+                                    </desc>
+                                    <defs />
+                                    <path id="Star 1"
+                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
+                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p>Cпособ оплаты</p>
+                <div class="active_filters__sub_list">
+                    <form action="">
+                        <details class="active_filters__details">
+                            <summary class="active_filters__summary">Укажите способ оплаты
+                                <div class="marker_container">
+                                    <div class="summary_marker_stick1"></div>
+                                    <div class="summary_marker_stick2"></div>
+                                </div>
+                            </summary>
+                            <ul class="summary_filters">
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
+                                    <label for="Checkbox1">SberPay 3273</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox2" class="custom_checkbox" value="payment_way2">
+                                    <label for="Checkbox2">TinkoffPay 8947</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox3" class="custom_checkbox" value="payment_way3">
+                                    <label for="Checkbox3">Сначала дорогие 9846</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
+                                </li>
+                            </ul>
+                        </details>
+                    </form>
+                </div>
+                <p class="user_history_bought">Уже покупали</p>
+                <div class="user_history_bought_box">
+                    <div class="imgs_container">
+                        <ul class="user_products__list">
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup_user_products_history">
+                <h3 class="popup_title">Мои товары</h3>
+                <ul class="active_user_products">
+                    <li class="active_user_product">
+                        <img src="" alt="" class="active_user_product__img shadow_element">
+                        <p class="active_user_product__name shadow_element">Название товара</p>
+                        <p class="active_user_product__price shadow_element">Цена</p>
+                        <p class="active_user_product__date shadow_element">Дата размещения</p>
+                    </li>
+                </ul>
+                <button class="hide_popup_user_products_history">&#215;</button>
+            </div>
+
+            <div class="popup_user_purchase_history">
+                <h3 class="popup_title">Покупки</h3>
+                <ul class="history_user_products">
+                    <li class="active_user_product">
+                        <img src="" alt="" class="active_user_product__img shadow_element">
+                        <p class="history_user_product__name shadow_element">Название товара</p>
+                        <p class="history_user_product__price shadow_element">Цена</p>
+                        <p class="history_user_product__date shadow_element">Дата покупки:<span class="date_product_bought">14.12.2000</span></p>
+                        <ul class="story_rating_product">
+                            <li class="rating_product_story">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                            <li class="rating_product_story">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                            <li class="rating_product_story">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                            <li class="rating_product_story">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                            <li class="rating_product_story">
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="hide_popup_user_purchase_history">&#215;</button>
+            </div>
+        </div>
+        <div class="popup_user_add_payment_method">
+            <div class="popup_user_add_payment_method__container">
+                <h3 class="popup_user_add_payment_method__title">Привязка карты</h3>
+                <form>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="Номер карты"
+                        pattern="[0-9]{16}" required class="card_num_input">
+                    <div class="date_secret_code_container">
+                        <input type="text" id="expirationDate" name="expirationDate" placeholder="ММ/ГГ"
+                            pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required class="date_num_input">
+                        <input type="text" id="cvv" name="cvv" placeholder="CCV/CVC" pattern="[0-9]{3,4}"
+                            required class="code_num_input">
+                    </div>
+                    <button type="submit" class="add_payment_method_btn btn">Добавить способ оплаты</button>
+                </form>
+                <p>*Данные карты надежно защищены</p>
+                <button class="hide_popup_add_payment_method hide">&#215;</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

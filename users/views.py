@@ -58,10 +58,14 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
+            print("Данные формы валидны. Сохранение выполнено успешно.")
             user = form.instance
             auth.login(request, user)
-            return HttpResponseRedirect(reverse('user:profile'))
+            return redirect('users:profile')
+        else:
+            print("Данные формы не валидны. Ошибки:", form.errors)
     else:
+        
         form = ProfileForm(instance=request.user)
 
     context = {

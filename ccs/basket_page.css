@@ -18,10 +18,11 @@
 
 .item_box {
     padding: 20px 30px;
-    background-color: rgb(185, 222, 254);
+    background-color: rgba(185, 222, 254, 0.5);
     width: 600px;
     display: flex;
     gap: 25px;
+    border-radius: 20px;
 }
 
 .basket__item_list {
@@ -86,6 +87,7 @@
     width: 500px;
     height: 400px;
     background-color: rgb(185, 222, 254);
+    border-radius: 20px;
 }
 
 .paymen_method_form__container {

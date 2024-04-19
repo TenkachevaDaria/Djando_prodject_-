@@ -93,14 +93,14 @@
                 <div>
                     <form>
                         <div>
-                            <label for="first_name">Имя</label><br>
-                            <input type="text" id="first_name" name="first_name" required class="user_input_page"
-                                placeholder="Добавьте имя"><br>
-                        </div>
-                        <div>
                             <label for="last_name">Фамилия</label><br>
                             <input type="text" id="last_name" name="last_name" required class="user_input_page"
                                 placeholder="Добавьте фамилию"><br>
+                        </div>
+                        <div>
+                            <label for="first_name">Имя</label><br>
+                            <input type="text" id="first_name" name="first_name" required class="user_input_page"
+                                placeholder="Добавьте имя"><br>
                         </div>
                         <div>
                             <label for="middle_name">Отчество</label><br>
@@ -123,18 +123,22 @@
                 </div>
                 <div class="pos_class">
                     <label for="e-mail">E-mail</label><br>
-                    <input type="text" id="e-mail" name="e-mail" class="user_input_page" placeholder="Добавьте почту"><br>
+                    <input type="text" id="e-mail" name="e-mail" class="user_input_page"
+                        placeholder="Добавьте почту"><br>
                     <label for="phone_num">Номер телефона</label><br>
                     <input type="text" id="phone_num" name="phone_num" class="user_input_page"
                         placeholder="Добавьте номер телефона"><br>
-    
+                    <label for="login">Логин</label><br>
+                    <input type="text" id="login" name="login" class="user_input_page"
+                        placeholder="Добавьте логин"><br>
+
                     <div class="user_rating">
                         <p class="user_rating__title">Ваш рейтинг продавца</p>
                         <div class="user_rating__box">
                             <p class="user_rating__num">Цифра</p>
                             <ul class="user_rating__stars">
-                                <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                <li class="user_rating__star"><svg width="22.000000" height="21.000000"
+                                        viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <desc>
                                             Created with Pixso.
@@ -145,8 +149,8 @@
                                             fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
                                     </svg>
                                 </li>
-                                <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                <li class="user_rating__star"><svg width="22.000000" height="21.000000"
+                                        viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <desc>
                                             Created with Pixso.
@@ -157,8 +161,8 @@
                                             fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
                                     </svg>
                                 </li>
-                                <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                <li class="user_rating__star"><svg width="22.000000" height="21.000000"
+                                        viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <desc>
                                             Created with Pixso.
@@ -169,8 +173,8 @@
                                             fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
                                     </svg>
                                 </li>
-                                <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                <li class="user_rating__star"><svg width="22.000000" height="21.000000"
+                                        viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <desc>
                                             Created with Pixso.
@@ -181,8 +185,8 @@
                                             fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
                                     </svg>
                                 </li>
-                                <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                <li class="user_rating__star"><svg width="22.000000" height="21.000000"
+                                        viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <desc>
                                             Created with Pixso.
@@ -201,34 +205,34 @@
                     <p>Cпособ оплаты</p>
                     <div class="active_filters__sub_list">
                         <!-- <form action=""> -->
-                            <details class="active_filters__details">
-                                <summary class="active_filters__summary">Укажите способ оплаты
-                                    <div class="marker_container">
-                                        <div class="summary_marker_stick1"></div>
-                                        <div class="summary_marker_stick2"></div>
-                                    </div>
-                                </summary>
-                                <ul class="summary_filters">
-                                    <li class="summary_filter">
-                                        <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
-                                        <label for="Checkbox1">SberPay 3273</label>
-                                    </li>
-                                    <li class="summary_filter">
-                                        <input type="checkbox" id="Checkbox2" class="custom_checkbox" value="payment_way2">
-                                        <label for="Checkbox2">TinkoffPay 8947</label>
-                                    </li>
-                                    <li class="summary_filter">
-                                        <input type="checkbox" id="Checkbox3" class="custom_checkbox" value="payment_way3">
-                                        <label for="Checkbox3">Сначала дорогие 9846</label>
-                                    </li>
-                                    <li class="summary_filter">
-                                        <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
-                                    </li>
-                                </ul>
-                            </details>
+                        <details class="active_filters__details">
+                            <summary class="active_filters__summary">Укажите способ оплаты
+                                <div class="marker_container">
+                                    <div class="summary_marker_stick1"></div>
+                                    <div class="summary_marker_stick2"></div>
+                                </div>
+                            </summary>
+                            <ul class="summary_filters">
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
+                                    <label for="Checkbox1">SberPay 3273</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox2" class="custom_checkbox" value="payment_way2">
+                                    <label for="Checkbox2">TinkoffPay 8947</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <input type="checkbox" id="Checkbox3" class="custom_checkbox" value="payment_way3">
+                                    <label for="Checkbox3">Сначала дорогие 9846</label>
+                                </li>
+                                <li class="summary_filter">
+                                    <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
+                                </li>
+                            </ul>
+                        </details>
                         <!-- </form> -->
                     </div>
-    
+
                     <p class="user_history_bought">Уже покупали</p>
                     <div class="user_history_bought_box">
                         <div class="imgs_container">
@@ -241,7 +245,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="popup_user_products_history">
                     <h3 class="popup_title">Мои товары</h3>
                     <ul class="active_user_products">
@@ -302,7 +306,7 @@
                     </ul>
                     <button class="hide_popup_user_products_history">&#215;</button>
                 </div>
-    
+
                 <div class="popup_user_purchase_history">
                     <h3 class="popup_title">Покупки</h3>
                     <ul class="history_user_products">

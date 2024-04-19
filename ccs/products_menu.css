@@ -223,3 +223,7 @@
     bottom: 15px;
     left: 25px;
 }
+
+.filter_price {
+    border-radius: 20px;
+}

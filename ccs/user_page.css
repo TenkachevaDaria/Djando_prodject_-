@@ -34,11 +34,15 @@
 }
 
 .user_input_page {
-    background-color: rgb(185, 222, 254);
+    background-color: rgb(185, 222, 254);   
     padding: 10px 16px;
     align-items: center;
     max-width: 220px;
     margin-bottom: 20px;
+    border-radius: 14px;
+    outline: none;
+    border: 0.5px solid rgb(28, 37, 65);
+    width: 260px;
 }
 
 .user_products_title {
@@ -51,8 +55,8 @@
     height: 140px;
     background-color: rgb(185, 222, 254);
     position: relative;
-    justify-content: center;
-    align-items: center;
+    border-radius: 20px;
+    border: 0.5px solid rgb(28, 37, 65);
 }
 
 .pos_class {
@@ -69,8 +73,6 @@
     background-color: rgb(185, 222, 254);
     width: 140px;
     height: 140px;
-    align-items: center;
-    justify-content: center;
 }
 
 .user_rating__stars {
@@ -279,7 +281,7 @@ main {
 }
 
 .user_history_bought {
-    margin-top: 60px;
+    margin-top: 260px;
 }
 
 .save_payment_method_btn {

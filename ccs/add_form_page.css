@@ -26,6 +26,7 @@
     border: 1px solid rgb(28, 37, 65);
     font-size: 20px;
     outline: none;
+    border-radius: 20px;
 }
 
 .check_boxs_label {

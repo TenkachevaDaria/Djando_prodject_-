@@ -174,3 +174,14 @@
     font-size: 13px;
     margin-top: 30px;
 }
+
+.delete_product_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+}

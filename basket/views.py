@@ -25,8 +25,12 @@ def basket_add(request, product_slug):
 def basket_change(request, product_slug):
     pass
 
-def basket_remove(request, product_slug):
-    pass
+def basket_remove(request, basket_id):
+    
+    basket = Basket.objects.get(id=basket_id)
+    basket.delete()
+    
+    return redirect(request.META['HTTP_REFERER'])
 
 def shopping_basket(request):
     return render(request, 'basket/shopping_basket_page.html')

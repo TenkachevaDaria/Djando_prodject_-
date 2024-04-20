@@ -26,7 +26,7 @@ def basket_add(request):
 
     user_basket = get_user_basket(request)
     basket_items_html = render_to_string(
-        "basket/shopping_basket_page.html", {"baskets": user_basket}, request=request
+        "basket/include/basket.html", {"baskets": user_basket}, request=request
     )
 
     response_data = {
@@ -38,12 +38,24 @@ def basket_add(request):
 def basket_change(request, product_slug):
     pass
 
-def basket_remove(request, basket_id):
+def basket_remove(request):
     
+    basket_id = request.POST.get("basket_id")
     basket = Basket.objects.get(id=basket_id)
+    quantity = basket.quantity
     basket.delete()
-    
-    return redirect(request.META['HTTP_REFERER'])
+
+    user_basket = get_user_basket(request)
+    basket_items_html = render_to_string(
+        "basket/include/basket.html", {"baskets": user_basket}, request=request
+    )
+
+    response_data = {
+        "basket_items_html": basket_items_html,
+        "quantity": quantity,
+    }
+
+    return JsonResponse(response_data)
 
 def shopping_basket(request):
     return render(request, 'basket/shopping_basket_page.html')

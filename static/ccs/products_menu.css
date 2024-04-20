@@ -19,10 +19,10 @@
 }
 
 .active_filter {
-    height: 21px;
     font-size: 18px;
     position: relative;
     cursor: pointer;
+    height: 21px;
 }
 
 .active_filter:nth-child(2) {
@@ -75,19 +75,17 @@
 
 
 .products_list {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    z-index: 0;
 }
 
 .product__img {
-    position: relative;
     width: 100%;
     height: 244px;
     background-color: inherit;
     border: none;
+    position: relative;
     z-index: 1;
 }
 
@@ -224,4 +222,8 @@
     background-color: #B9DEFE;
     bottom: 15px;
     left: 25px;
+}
+
+.filter_price {
+    border-radius: 20px;
 }

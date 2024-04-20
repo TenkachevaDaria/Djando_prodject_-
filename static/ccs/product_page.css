@@ -9,6 +9,7 @@
 .product_page__img {
     width: 620px;
     height: 620px;
+    background-color: rgb(217, 217, 217);
     margin-top: 100px;
 }
 
@@ -27,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 35px;
-    min-width: 970px;
+    min-width: 800px;
 }
 
 .product__price {
@@ -150,7 +151,8 @@
     background-color: rgba(136, 198, 252, 0.5);
    padding-left: 15px;
     outline: none;
-    border: none;
+    border: 1.5px solid rgb(28, 37, 65);
+    border-radius: 20px;
 }
 
 .send_review_form {
@@ -190,7 +192,8 @@
     margin-bottom: 20px;
     padding-left: 15px;
     padding-top: 15px;
-
+    border-radius: 20px;
+    border: 1.5px solid rgb(28, 37, 65);
 }
 
 .another_user_rating {

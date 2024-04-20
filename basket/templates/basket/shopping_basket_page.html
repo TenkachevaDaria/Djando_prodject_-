@@ -7,13 +7,14 @@
 {% endblock  %}
 
 {% block content %}
-    <div class="basket_container">
+    <div class="basket_container" id="basket-items-container">
         <div>
             <h2 class="basket__title">Корзина</h2>
         <form class="basket__form">  
             <input type="checkbox" id="select_all" name="select_all" class="custom_checkbox">
             <label for="select_all" class="select_all_label">Выбрать всё</label>
             <ul class="basket__item_list">
+                
                 {% user_basket request as baskets %}
                 {% for basket_user in baskets %}
                     <li class="basket__item">
@@ -45,7 +46,7 @@
                                             data-cart-id="" data-cart-change-url="">+</button>
                                     </span>
                                 </div>
-                                <a href="{% url "basket:basket_remove" basket_user.id %}" class="delete_product_btn">
+                                <a href="{% url "basket:basket_remove" %}" class="delete_product_btn">
                                     <svg width="19.000000" height="21.000000" viewBox="0 0 19 21" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -62,6 +63,7 @@
                         </div>
                     </li> 
                 {% endfor %}
+
             </ul>
         </form>
         </div>
@@ -76,7 +78,7 @@
                     <button class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button>
                 </div>
             </div>
-            <p class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
+            <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
             <div class="total_price_container">
                 <p class="total_price_name"><b>Итого</b></p>
                 <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>

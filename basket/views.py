@@ -1,13 +1,17 @@
 import re
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 
 from basket.models import Basket
+from basket.utils import get_user_basket
 from goods.models import Product
 
 # Create your views here.
-def basket_add(request, product_slug):
+def basket_add(request):
     
-    product = Product.objects.get(slug=product_slug)
+    product_id = request.POST.get("product_id")
+    product = Product.objects.get(id=product_id)
 
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user, product=product)
@@ -20,7 +24,16 @@ def basket_add(request, product_slug):
         else:
             Basket.objects.create(user=request.user, product=product, quantity=1)
 
-    return redirect(request.META['HTTP_REFERER'])
+    user_basket = get_user_basket(request)
+    basket_items_html = render_to_string(
+        "basket/shopping_basket_page.html", {"baskets": user_basket}, request=request
+    )
+
+    response_data = {
+        "basket_items_html": basket_items_html,
+    }
+
+    return JsonResponse(response_data)
 
 def basket_change(request, product_slug):
     pass

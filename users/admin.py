@@ -29,5 +29,5 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(PaymentMethod)
 class PaymentMethodAdmin(admin.ModelAdmin):
-    list_display = ["user", "name"]
+    list_display = ["user", "bank", "card_num"]
     search_fields = ["user"]

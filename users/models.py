@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.template.defaultfilters import length
 
 # Create your models here.
 class User(AbstractUser):
@@ -21,7 +22,10 @@ class User(AbstractUser):
 
 class PaymentMethod(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
-    name = models.CharField(max_length=50, verbose_name='Способ оплаты')
+    bank = models.CharField(default="Банк", max_length=50, verbose_name='Банк')
+    card_num = models.CharField(max_length=50, verbose_name='Способ оплаты')
+    date = models.CharField(default="00.00.00", max_length=8, verbose_name='Срок годности')
+    CVV = models.CharField(default="000", max_length=3, verbose_name='CVV')
 
     class Meta:
         db_table = 'payment_method'
@@ -30,4 +34,4 @@ class PaymentMethod(models.Model):
     
     
     def __str__(self) -> str:
-        return f'| Пользователь - {self.user} | Способ оплаты - {self.name} |'
+        return f'| Пользователь - {self.user} | Банк - {self.bank} | Способ оплаты - {self.card_num} |'

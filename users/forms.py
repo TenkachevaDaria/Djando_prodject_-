@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from users.models import User
+from users.models import PaymentMethod, User
 
 class UserLoginForm(AuthenticationForm):
 
@@ -49,3 +49,14 @@ class ProfileForm(UserChangeForm):
     middle_name = forms.CharField(required=False)
     email = forms.CharField(required=False)
     phone = forms.CharField(required=False)
+
+
+class PaymentMethodForm(forms.ModelForm):
+    class Meta:
+        model = PaymentMethod
+        fields = ('card_num', 'date', 'CVV', 'bank')
+        
+        card_num = forms.CharField()
+        date = forms.CharField()
+        CVV = forms.CharField()
+        bank = forms.CharField()

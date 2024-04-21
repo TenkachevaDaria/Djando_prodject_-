@@ -54,10 +54,18 @@
                 <div class="user_products">
                     <div class="imgs_container">
                         <ul class="user_products__list">
-                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
-                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+
+                            {% if not products %}
+                                <p>Товаров нет</p>
+                            {% endif %}
+                            {% for product in products %}
+                                {% if product.image %}
+                                    <li class="user_product"><img src="{{ product.image.url }}" alt="" class="user_product__img"></li>
+                                {% else %}
+                                    <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
+                                {% endif %}
+                            {% endfor %}
+
                         </ul>
                     </div>
                 </div>
@@ -83,71 +91,77 @@
                 {% endif %}
 
                 <div class="user_rating">
-                    <p class="user_rating__title">Ваш рейтинг продавца</p>
+                    <p class="user_rating__title">Средний рейтинг товаров</p>
                     <div class="user_rating__box">
-                        <p class="user_rating__num">Цифра</p>
+                        {% if average_rating %}
+                            <p class="user_rating__num">{{ average_rating|floatformat:1 }}</p>
+                        {% else %}
+                            <p class="user_rating__num">Нет оценок</p>
+                        {% endif %}
                         <ul class="user_rating__stars">
-                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <desc>
-                                        Created with Pixso.
-                                    </desc>
-                                    <defs />
-                                    <path id="Star 1"
-                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                                </svg>
-                            </li>
-                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <desc>
-                                        Created with Pixso.
-                                    </desc>
-                                    <defs />
-                                    <path id="Star 1"
-                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                                </svg>
-                            </li>
-                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <desc>
-                                        Created with Pixso.
-                                    </desc>
-                                    <defs />
-                                    <path id="Star 1"
-                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                                </svg>
-                            </li>
-                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <desc>
-                                        Created with Pixso.
-                                    </desc>
-                                    <defs />
-                                    <path id="Star 1"
-                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                                </svg>
-                            </li>
-                            <li class="user_rating__star"><svg width="22.000000" height="21.000000" viewBox="0 0 22 21"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <desc>
-                                        Created with Pixso.
-                                    </desc>
-                                    <defs />
-                                    <path id="Star 1"
-                                        d="M10.5 0L7.91 7.94L-0.44 7.94L6.32 12.85L3.74 20.8L10.5 15.89L17.25 20.8L14.67 12.85L21.43 7.94L13.08 7.94L10.5 0Z"
-                                        fill="#B36F6F" fill-opacity="1.000000" fill-rule="nonzero" />
-                                </svg>
-                            </li>
+                            {% if average_rating_int > 0 %}
+                                {% for _ in "x"|rjust:average_rating_int %}
+                                    <li class="another_user_star">
+                                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
+                                        </svg>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            {% if average_rating_float > 0 %}
+                                {% if average_rating_float > 0 and average_rating_float < 0.5 %}
+                                    <li class="another_user_star">
+                                        {% comment %} 1/4 звезды {% endcomment %}
+                                        <svg width="22" height="20.999999999999996" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                            <desc>Created with Pixso.</desc>
+                                            <g class="layer">
+                                             <title>Layer 1</title>
+                                             <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                             <path d="m7.45,8.19c0,0.04 0,10.27 -0.01,10.25c-0.01,-0.02 -3.03,2.23 -3.01,2.19c0.02,-0.04 2.32,-7.63 2.31,-7.65c-0.01,-0.02 -6.58,-4.95 -6.56,-4.87c0.02,0.08 7.27,0.08 7.27,0.08z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
+                                            </g>
+                                        </svg>
+                                    </li>
+                                {% endif %}
+                                {% if average_rating_float == 0.5 %}
+                                    <li class="another_user_star">
+                                        {% comment %} на половину закрашена {% endcomment %}
+                                        <svg width="22" height="21" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" />
+                                            <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#FCA95D" fill-opacity="1" />
+                                        </svg>
+                                    </li>
+                                {% endif %}
+                                {% if average_rating_float > 0.5 and average_rating_float < 1 %}
+                                    <li class="another_user_star">
+                                        {% comment %} 3/4 звезды {% endcomment %}
+                                        <svg width="22" height="20.999999999999996" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                            <desc>Created with Pixso.</desc>
+                                            <g class="layer">
+                                             <title>Layer 1</title>
+                                             <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                             <path d="m14.14,18.26c0.02,0.2 -0.02,-10.13 -0.03,-10.15c-0.01,-0.02 -0.58,-0.1 -0.58,-0.12c-0.01,-0.02 -2.47,-7.35 -2.48,-7.37c-0.01,-0.02 -2.65,7.41 -2.66,7.39c-0.01,-0.02 -7.73,0.14 -7.73,0.12c-0.01,-0.02 6.19,4.73 6.17,4.73c-0.02,0 -2.28,7.33 -2.28,7.35c0,0.02 6.28,-4.41 6.3,-4.41c0.02,0 3.26,2.25 3.28,2.46z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
+                                            </g>
+                                        </svg>                             
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                            {% if anti_average_rating > 0 %}
+                                {% for _ in "x"|rjust:anti_average_rating %}
+                                    <li class="another_user_star">
+                                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <desc>Created with Pixso.</desc>
+                                            <defs />
+                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" fill-rule="evenodd" />
+                                        </svg> 
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -163,18 +177,12 @@
                                 </div>
                             </summary>
                             <ul class="summary_filters">
+                                {% for payment_method in payment_methods %}
                                 <li class="summary_filter">
                                     <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
-                                    <label for="Checkbox1">SberPay 3273</label>
+                                    <label for="Checkbox1">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
                                 </li>
-                                <li class="summary_filter">
-                                    <input type="checkbox" id="Checkbox2" class="custom_checkbox" value="payment_way2">
-                                    <label for="Checkbox2">TinkoffPay 8947</label>
-                                </li>
-                                <li class="summary_filter">
-                                    <input type="checkbox" id="Checkbox3" class="custom_checkbox" value="payment_way3">
-                                    <label for="Checkbox3">Сначала дорогие 9846</label>
-                                </li>
+                                {% endfor %}
                                 <li class="summary_filter">
                                     <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
                                 </li>
@@ -198,16 +206,27 @@
             <div class="popup_user_products_history">
                 <h3 class="popup_title">Мои товары</h3>
                 <ul class="active_user_products">
-                    <li class="active_user_product">
-                        <img src="" alt="" class="active_user_product__img shadow_element">
-                        <p class="active_user_product__name shadow_element">Название товара</p>
-                        <p class="active_user_product__price shadow_element">Цена</p>
-                        <p class="active_user_product__date shadow_element">Дата размещения</p>
-                    </li>
+
+                    {% for product in products %}
+                        <a href="{% url "catalog:product" product.slug %}">
+                            <li class="active_user_product">
+
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="" class="active_user_product__img shadow_element">
+                                {% else %}
+                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
+                                {% endif %}
+
+                                <p class="active_user_product__name shadow_element">{{ product.name }}</p>
+                                <p class="active_user_product__price shadow_element">{{ product.price }}</p>
+                                <p class="active_user_product__date shadow_element">{{ product.date_added }}</p>
+                            </li>
+                        </a>
+                    {% endfor %}
+
                 </ul>
                 <button class="hide_popup_user_products_history">&#215;</button>
-            </div>
-
+            </div>     
             <div class="popup_user_purchase_history">
                 <h3 class="popup_title">Покупки</h3>
                 <ul class="history_user_products">
@@ -261,20 +280,24 @@
         <div class="popup_user_add_payment_method">
             <div class="popup_user_add_payment_method__container">
                 <h3 class="popup_user_add_payment_method__title">Привязка карты</h3>
-                <form>
-                    <input type="text" id="cardNumber" name="cardNumber" placeholder="Номер карты"
-                        pattern="[0-9]{16}" required class="card_num_input">
+
+                <form action="{% url 'users:save_payment_method' %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" id="id_card_num" name="card_num" placeholder="Номер карты" required class="card_num_input">
                     <div class="date_secret_code_container">
-                        <input type="text" id="expirationDate" name="expirationDate" placeholder="ММ/ГГ"
+                        <input type="text" id="id_date" name="date" placeholder="ММ/ГГ"
                             pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required class="date_num_input">
-                        <input type="text" id="cvv" name="cvv" placeholder="CCV/CVC" pattern="[0-9]{3,4}"
+                        <input type="number" inputmode="numeric" id="id_CVV" name="CVV" placeholder="CCV/CVC" pattern="[0-9]{3,4}"
                             required class="code_num_input">
                     </div>
+                    <input type="text" id="id_bank" name="bank" placeholder="Банк" required class="bank_input">
                     <button type="submit" class="add_payment_method_btn btn">Добавить способ оплаты</button>
                 </form>
+
                 <p>*Данные карты надежно защищены</p>
                 <button class="hide_popup_add_payment_method hide">&#215;</button>
             </div>
         </div>
     </form>
+    <script src="{% static "js/user_profile.js" %}" ></script>
 {% endblock %}

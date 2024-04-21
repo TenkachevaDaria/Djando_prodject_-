@@ -1,11 +1,14 @@
 from django.contrib import auth
+from django.db.models import Avg
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
-from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
+from goods.models import Product, Review
+from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
+from users.models import PaymentMethod
 
 # Create your views here.
 
@@ -68,6 +71,21 @@ def logout(request):
 
 @login_required
 def profile(request):
+
+    user = request.user
+    products = Product.objects.filter(manufacturer=user.id)
+    average_rating = products.aggregate(avg_rating=Avg('review__rating'))['avg_rating']
+    payment_methods = PaymentMethod.objects.filter(user=user)
+
+    if average_rating is not None:
+        average_rating_int = int(average_rating) or 0
+        average_rating_float = average_rating - average_rating_int
+        anti_average_rating = int(5 - average_rating)
+    else:
+        average_rating_int = None
+        average_rating_float = None
+        anti_average_rating = None
+
     if request.method == 'POST':
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
@@ -79,7 +97,33 @@ def profile(request):
         form = ProfileForm(instance=request.user)
 
     context = {
-        'form': form
+        'form': form,
+        'products': products,
+        'average_rating': average_rating,
+        'average_rating_int': average_rating_int,
+        'average_rating_float': average_rating_float,
+        'anti_average_rating': anti_average_rating,
+        'payment_methods': payment_methods,
     }
 
     return render(request, 'users/user_page.html', context)
+
+@login_required
+def save_payment_method(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = PaymentMethodForm(data=request.POST)
+        if form.is_valid():
+            payment_method = form.save(commit=False)
+            payment_method.user = user
+            payment_method.save()
+            return redirect('users:profile')
+    else:
+        form = PaymentMethodForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'users/save_payment_method.html', context)

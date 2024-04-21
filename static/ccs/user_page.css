@@ -57,6 +57,7 @@
     position: relative;
     border-radius: 20px;
     border: 0.5px solid rgb(28, 37, 65);
+    cursor: pointer;
 }
 
 .pos_class {
@@ -120,7 +121,6 @@ main {
     background-color: #B36F6F;
     z-index: 4;
     position: relative;
-    cursor: pointer;
 }
 
 .user_products__list {
@@ -328,6 +328,21 @@ main {
     margin-bottom: 30px;
 }
 
+.card_num_input::-webkit-outer-spin-button,
+.card_num_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.bank_input {
+    padding: 18px;
+    width: calc(100% - 18px  *2);
+    outline: 1px solid #1C2541;
+    border: none;
+    margin-top: 30px;
+}
+
+
 .date_secret_code_container {
     display: flex;
     justify-content: space-between;
@@ -341,13 +356,20 @@ main {
     
 }
 
+.code_num_input::-webkit-outer-spin-button,
+.code_num_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
 .add_payment_method_btn {
     width: 100%;
     background-color: #0082F0;
     font-size: 20px;
     padding: 19px 0;
     color: white;
-    margin-top: 112px;
+    margin-top: 31px;
     margin-bottom: 8px;
 }
 

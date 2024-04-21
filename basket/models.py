@@ -32,6 +32,3 @@ class Basket(models.Model):
         
     def products_price(self):
         return round(self.product.price * self.quantity, 2)
-
-    def __str__(self) -> str:
-        return f'| Клиент - {self.user.username}| Товар - {self.product.name} | Дата добавления - {self.order_date} | Количество товара - {self.quantity} |'

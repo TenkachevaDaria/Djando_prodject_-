@@ -12,4 +12,4 @@ class Questions(models.Model):
         verbose_name_plural = 'Вопросы'
         
     def __str__(self) -> str:
-        return f'Вопрос - {self.name}'
+        return f'{self.name}'

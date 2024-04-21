@@ -1,34 +1,60 @@
 from django.contrib import admin
 
 # Register your models here.
-from goods.models import Categories, Product, Subscriptions, Specification, Discount, Review
+from goods.models import (
+    Categories,
+    Product,
+    Subscriptions,
+    Specification,
+    Discount,
+    Review,
+)
 
 # admin.site.register(PaymentMethod)
 
+
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {"slug": ("name",)}
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', 'category',)}
+    list_display = ["name", "category", "subscription", "manufacturer", "price"]
+    search_fields = ["name"]
+    list_filter = ["category", "subscription", "manufacturer"]
+    fields = [
+        ("name", "manufacturer"),
+        "slug",
+        "description",
+        "peculiarities",
+        ("category", "subscription", "image"),
+        "price",
+        "date_added"
+    ]
 
 
 @admin.register(Subscriptions)
 class SubscriptionsAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {"slug": ("name",)}
+
 
 @admin.register(Specification)
 class SpecificationAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
+    list_display = ["product", "media_type", "delivery_type", "purpose", "validity_period", "bitness"]
+    search_fields = ["product"]
+    list_editable = ["media_type", "delivery_type", "purpose", "validity_period", "bitness"]
 
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
+    list_display = ["product", "discount_percentage", "final_price", "start_date", "end_date"]
+    search_fields = ["product"]
+    list_editable = ["discount_percentage", "start_date", "end_date"]
 
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    prepopulated_fields = {}
+    list_display = ["product", "user", "rating", "date_added", "comment"]
+    search_fields = ["product", "user", "comment"]
+    list_filter = ["rating", "user", "product"]

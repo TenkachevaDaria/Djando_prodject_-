@@ -1,6 +1,8 @@
 from enum import unique
 from django.db import models
 from datetime import datetime
+
+from django.urls import reverse
 from users.models import User
 
 # Create your models here.
@@ -14,7 +16,7 @@ class Categories(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self) -> str:
-        return f'Категория - {self.name}'
+        return f'{self.name}'
 
 
 class Subscriptions(models.Model):
@@ -27,7 +29,7 @@ class Subscriptions(models.Model):
         verbose_name_plural = 'Период подписки'
 
     def __str__(self) -> str:
-        return f'Тип подписки - {self.name}'
+        return f'{self.name}'
 
 
 class Product(models.Model):
@@ -39,7 +41,7 @@ class Product(models.Model):
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
     manufacturer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Производитель')
-    date_added = models.DateField()
+    date_added = models.DateField(verbose_name='Дата добавления')
     subscription = models.ForeignKey(to=Subscriptions, on_delete=models.CASCADE, verbose_name='Период подписки', blank=True, null=True)
 
     class Meta:
@@ -49,7 +51,11 @@ class Product(models.Model):
         ordering = ('id',)
     
     def __str__(self) -> str:
-        return f'| Название - {self.name} | {self.category} | Цена - {self.price} | Дата добавления - {self.date_added} |'
+        return f'{self.name}'
+    
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
+    
 
 
 class Features(models.Model):

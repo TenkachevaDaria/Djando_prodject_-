@@ -26,14 +26,26 @@
                         <p class="item__platform">{{ basket_user.product.category }}</p>
                         <div class="item__counter_box">
                             <span class="input_group_btn">
-                                <button type="button" class="counter_btn"
-                                    data-cart-id="" data-cart-change-url="">-</button>
+
+                                <button type="button" class="counter_btn decrement"
+                                    data-basket-id="{{ basket_user.id }}"
+                                    data-basket-change-url="{% url "basket:basket_change" %}">
+                                    {% csrf_token %}
+                                    -</button>
+
                             </span>
-                            <input type="text" class="number" value="{{ basket_user.quantity }}"
+                            
+                            <input type="text" class="form-control number" value="{{ basket_user.quantity }}"
                                 readonly>
+
                             <span class="input-group-btn">
-                                <button type="button" class="counter_btn"
-                                    data-cart-id="" data-cart-change-url="">+</button>
+
+                                <button type="button" class="counter_btn increment"
+                                    data-basket-id="{{ basket_user.id }}"
+                                    data-basket-change-url="{% url "basket:basket_change" %}">
+                                    {% csrf_token %}
+                                    +</button>
+
                             </span>
                         </div>
                         <a href="{% url "basket:basket_remove" %}" class="delete_product_btn remove-from-basket"

@@ -35,8 +35,29 @@ def basket_add(request):
 
     return JsonResponse(response_data)
 
-def basket_change(request, product_slug):
-    pass
+
+def basket_change(request):
+    basket_id = request.POST.get("basket_id")
+    quantity = request.POST.get("quantity")
+
+    basket = Basket.objects.get(id=basket_id)
+
+    basket.quantity = quantity
+    basket.save()
+    updated_quantity = basket.quantity
+
+    basket = get_user_basket(request)
+    basket_items_html = render_to_string(
+        "basket/include/basket.html", {"baskets": basket}, request=request
+    )
+
+    response_data = {
+        "basket_items_html": basket_items_html,
+        "quantity": updated_quantity,
+    }
+
+    return JsonResponse(response_data)
+
 
 def basket_remove(request):
     
@@ -56,6 +77,7 @@ def basket_remove(request):
     }
 
     return JsonResponse(response_data)
+
 
 def shopping_basket(request):
     return render(request, 'basket/shopping_basket_page.html')

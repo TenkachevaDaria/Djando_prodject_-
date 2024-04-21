@@ -1,0 +1,42 @@
+@media (max-width:420px) {
+    .registration_form_container {
+        max-width: 343px;
+    }
+
+    .registration_page_img {
+        display: none;
+    }
+
+    .registration_title {
+        font-size: 20px;
+        position: absolute;
+        top: -40px;
+        margin-bottom: 0;
+    }
+
+    main {
+        margin-top: 50px;
+        margin-bottom: 270px;
+    }
+
+    .registration_form {
+        padding: 16px 12px;
+        width: 100%;
+        height: 305px;
+    }
+
+    .reg_input {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .reg_form {
+        gap: 13px;
+    }
+
+    .btn_send_reginfo {
+        bottom: 16px;
+        padding: 9px 0;
+        width: calc(100% - 24px);
+    }
+}

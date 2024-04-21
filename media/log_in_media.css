@@ -1,0 +1,44 @@
+@media (max-width : 420px) {
+    .form_container {
+        max-width: 343px;
+        gap: 0;
+    }
+
+    .log_in_page_img {
+        display: none;
+    }
+
+    .form_inputs {
+        height: 210px;
+        width: 343px;
+        padding: 16px 12px;
+    }
+
+    .form_title {
+        font-size: 20px;
+        position: absolute;
+        top: -40px;
+    }
+
+    .input_log {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+
+    .form_log_in {
+        gap: 13px;
+    }
+
+    .btn_send_database {
+        min-width: 0;
+        width: calc(100% - 24px);
+        font-size: 13px;
+        padding: 10px 135px;
+        bottom: 15px;
+    }
+
+    main {
+        margin-top: 40px;
+        margin-bottom: 350px;
+    }
+}

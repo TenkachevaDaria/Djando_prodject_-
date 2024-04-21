@@ -1,0 +1,64 @@
+@media (max-width : 420px) {
+    .product_card__container,
+    .hidden_card {
+        display: none;
+    }
+
+
+
+    .products_container,
+    .questions {
+        max-width: 343px;
+    }
+
+    .product_title {
+        font-size: 14px;
+        padding-bottom: 15px;
+    }
+
+    .product_card {
+        width: 100%;
+        height: 163px;
+        position: relative;
+    }
+
+    .decor_div1 {
+        height: 13%;
+    }
+
+    .products_container {
+        min-height: fit-content;
+    }
+
+    .questions__title {
+        padding: 25px 0 15px 0;
+        font-size: 14px;
+    }
+
+    .question__text {
+        font-size: 9px;
+        padding: 9px 12px;
+    }
+
+    .summary_marker_stick1,
+    .summary_marker_stick2 {
+        width: 7px;
+    }
+
+    .summary_marker_stick2 {
+        margin-top: 4px;
+    }
+
+    .marker_container {
+        right: 8px;
+    }
+
+    .question__answer {
+        padding: 10px 12px;
+        font-size: 7px;
+    }
+
+    .ask_questins {
+        display: none;
+    }
+}

@@ -62,12 +62,11 @@
                     </form>
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
-
+                <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
+                
                 {% if not user.is_authenticated %}
                     <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li>
-                {% else %}    
-                    <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                    {% comment %} <li class="nav_links__link"><a href="{% url "user:profile" %}" class="nav__link">Аккаунт</a></li> {% endcomment %}
+                {% else %}
                     <li class="nav_links__link">
                         <details class="account_link">
                             <summary class="nav__link account_link_title">   

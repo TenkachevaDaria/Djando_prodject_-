@@ -24,6 +24,18 @@ def basket_add(request):
         else:
             Basket.objects.create(user=request.user, product=product, quantity=1)
 
+    else:
+        basket = Basket.objects.filter(session_key=request.session.session_key, product=product)
+
+        if basket.exists():
+            basket = basket.first()
+            if basket:
+                basket.quantity += 1
+                basket.save()
+        else:
+            Basket.objects.create(session_key=request.session.session_key, product=product, quantity=1)
+
+
     user_basket = get_user_basket(request)
     basket_items_html = render_to_string(
         "basket/include/basket.html", {"baskets": user_basket}, request=request

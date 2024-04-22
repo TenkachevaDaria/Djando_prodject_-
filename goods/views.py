@@ -6,8 +6,6 @@ from goods.utils import q_search
 from goods.models import Categories, Product, Specification, Subscriptions, Review
 
 # Create your views here.
-from django.db.models import Q
-
 def catalog(request):
     
     page = request.GET.get('page', 1)
@@ -31,7 +29,7 @@ def catalog(request):
 
 
     if order_by == '-avg_rating':
-        products = products.annotate(avg_rating=Avg('review__rating')).order_by('-avg_rating')
+        products = products.order_by('-average_rating')
     elif order_by and order_by != "default":
         products = products.order_by(order_by)
 

@@ -4,12 +4,12 @@
     display: flex;
     gap: 80px;
     margin-bottom: 100px;
+    position: relative;
 }
 
 .product_page__img {
     width: 620px;
     height: 620px;
-    background-color: rgb(217, 217, 217);
     margin-top: 100px;
 }
 
@@ -47,9 +47,9 @@
     padding: 10px 30px;
     background-color: rgb(0, 130, 240);
     border: none;
-    margin-bottom: 20px;
     color: white;
     font-size: 20px;
+    text-align: center;
 }
 
 .btn_buy_now {
@@ -60,6 +60,8 @@
     margin-bottom: 70px;
     border: 1px solid rgb(28, 37, 65);
     font-size: 20px;
+    text-align: center;
+    color: black;
 }
 
 .saler_name {
@@ -257,5 +259,25 @@
 }
 
 .link_way:nth-child(2) {
-    left: 90px;
+    left: 85px;
+    cursor: default;
+}
+
+.link_way:nth-child(3) {
+    left: 100px;
+}
+
+.link_way:nth-child(4) {
+    left: 175px;
+    cursor: default;
+}
+
+.link_way:nth-child(5) {
+    left: 190px;
+}
+
+.btns_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

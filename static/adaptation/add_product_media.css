@@ -1,0 +1,63 @@
+@media (max-width:420px) {
+    .form_container {
+        max-width: 343px;
+    }
+
+    .add_form {
+        padding: 16px 12px;
+        width: 100%;
+        min-height: 700px;
+    }
+
+    .add_form__title {
+        position: absolute;
+        top: -40px;
+        font-size: 20px;
+    }
+
+    main {
+        margin-top: 50px;
+    }
+
+    .add_form__input {
+        width: calc(100% - 24px);
+        padding: 10px;
+        margin-bottom: 13px;
+        font-size: 13px;
+    }
+
+    .check_boxs_label {
+        font-size: 13px;
+        margin-left: 0;
+    }
+
+    .check_boxs,
+    .check_boxs_subscription_duration,
+    .check_boxs_bit_depth {
+        margin: 9px 0 13px 6px;
+        gap: 8px 30px;
+        flex-wrap: wrap;
+    }
+
+    .custom_checkbox+label {
+        font-size: 13px;
+    }
+
+    .custom_checkbox+label:before {
+        top: 1px;
+    }
+
+    .custom_checkbox+label::after {
+        top: 5px;
+    }
+
+    .add_form_img {
+        display: none;
+    }
+
+    .add_form__submit {
+        width: calc(100% - 24px);
+        padding: 10px 0;
+        bottom: 16px;
+    }
+}

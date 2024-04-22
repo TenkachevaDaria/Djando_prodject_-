@@ -179,8 +179,8 @@
                             <ul class="summary_filters">
                                 {% for payment_method in payment_methods %}
                                 <li class="summary_filter">
-                                    <input type="checkbox" id="Checkbox1" class="custom_checkbox" value="payment_way1">
-                                    <label for="Checkbox1">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
+                                    <input type="checkbox" id="{{ payment_method.id }}" class="custom_checkbox" value="{{ payment_method.id }}">
+                                    <label for="{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
                                 </li>
                                 {% endfor %}
                                 <li class="summary_filter">

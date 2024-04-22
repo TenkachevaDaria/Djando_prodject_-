@@ -1,0 +1,57 @@
+{% load static %}
+{% load goods_tags %}
+
+<details class="burger_menu">
+    <summary class="burger_icon">
+        <div class="burger_stick"></div>
+        <div class="burger_stick"></div>
+        <div class="burger_stick"></div>
+        <div class="burger_stick_close1"></div>
+        <div class="burger_stick_close2"></div>
+    </summary>
+    <div class="burger_open">
+        <nav class="burger_nav">
+            <input type="search" name="q" placeholder="Поиск" class="nav_user__input" value>
+            <div class="drop_list_container">
+                <ul class="products_searchers_list">
+                    {% tag_products as searches %}
+                    {% for product in searches %}
+                        <li class="product_mini_card">
+                            <a href="{% url 'catalog:product' product.slug %}" class="mini_product_link">
+                                {% if product.image %}
+                                    <div class="img_decor_card">
+                                        <img src="{{ product.image.url }}" alt="" class="product_mini_img">
+                                    </div>
+                                {% else %}
+                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_mini_img">
+                                {% endif %}
+                                <p class="product_name">{{ product.name|truncatechars:30 }}</p>
+                                <p class="product_price"><b>{{ product.price }}  ₽</b></p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="drop_list__btn btn">Показать ещё</button>
+            </div>
+            <ul class="burger_links">
+                <li class="burger_link"><a href="{% url "main:index" %}" class="nav__link">Главная</a></li>
+                <li class="burger_link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
+                <li class="burger_link"><a href="{% url "main:addProduct" %}" class="nav__link">Разместите свой товар</a></li>
+                <li class="burger_link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
+                <li class="burger_link"><a href="#contact" class="nav__link">Контакты</a></li>
+                <li class="burger_link"><a href="{% url "main:index" %}#quest" class="nav__link">Помощь</a></li>
+                {% if not user.is_authenticated %}
+                    <li class="burger_link"><a href="{% url "user:LogIn" %}">Войти</a></li>
+                    <li class="burger_link"><a href="{% url "user:registration" %}">Создать аккаунт</a></li>
+                {% else %}
+                    <li class="burger_link">
+                        <div class="user_burger_inf">
+                            <a href="{% url "user:profile" %}" class="user_name">{{ user.first_name }} {{ user.last_name }}</a>
+                            <a href="{% url "user:logout" %}" class="burger_btn">Выйти</a>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</details>

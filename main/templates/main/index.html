@@ -4,6 +4,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static "ccs/product_card.css" %}">
     <link rel="stylesheet" href="{% static "ccs/questions.css" %}">
+    <link rel="stylesheet" href="{% static "adaptation/main_page_mobile.css" %}">
 {% endblock %}
 
 
@@ -23,7 +24,7 @@
         </div>
     </div>
     <div id='quest' class="questions">
-        <h2 class="questions__title">Частые вопросы</h2>
+        <h2 class="questions__title">Часто задаваемые вопросы</h2>
         <ul class="questions__list">
             {% for question in questions %}
                 <li class="question">

@@ -3,12 +3,13 @@
 
 {% block css %}    
     <link rel="stylesheet" href="{% static "ccs/add_form_page.css" %}">
+    <link rel="stylesheet" href="{% static "adaptation/add_product_media.css" %}">
 {% endblock %}
 
 {% block content %}
     <div class="form_container">
         <div class="add_form">
-            <h2 class="add_form__title"><b>Добавление нового продукта</b></h2>
+            <h2 class="add_form__title"><b>Добавление нового товара</b></h2>
             <form action="/submit" method="post" class="add_form_inputs">
                 <input type="text" id="product_name" name="product_name" required
                     placeholder="Напишите название продукта." class="add_form__input"><br>

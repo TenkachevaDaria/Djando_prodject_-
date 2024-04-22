@@ -20,11 +20,11 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "category", "subscription", "manufacturer", "price"]
+    list_display = ["name", "category", "subscription", "manufacturer", "price", "average_rating"]
     search_fields = ["name"]
     list_filter = ["category", "subscription", "manufacturer"]
     fields = [
-        ("name", "manufacturer"),
+        ("name", "manufacturer", "average_rating"),
         "slug",
         "description",
         "peculiarities",

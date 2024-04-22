@@ -1,7 +1,7 @@
 from enum import unique
 from django.db import models
 from datetime import datetime
-
+from django.db.models import Avg
 from django.urls import reverse
 from users.models import User
 
@@ -43,6 +43,7 @@ class Product(models.Model):
     manufacturer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Производитель')
     date_added = models.DateField(verbose_name='Дата добавления')
     subscription = models.ForeignKey(to=Subscriptions, on_delete=models.CASCADE, verbose_name='Период подписки', blank=True, null=True)
+    average_rating = models.FloatField(default=0.00, verbose_name='Средний рейтинг')
 
     class Meta:
         db_table = 'product'
@@ -56,7 +57,14 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
-
+    def update_average_rating(self):
+        average_rating = self.review_set.aggregate(avg_rating=Avg('rating'))['avg_rating']
+        if average_rating is not None:
+            self.average_rating = round(average_rating, 2)
+        else:
+            self.average_rating = 0.00
+        self.save()
+    
 
 class Features(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='features', verbose_name='Продукт')
@@ -131,3 +139,7 @@ class Review(models.Model):
         rating_float = self.rating - rating_int
         anti_rating = int(5 - self.rating)
         return rating_int, rating_float, anti_rating
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.product.update_average_rating()

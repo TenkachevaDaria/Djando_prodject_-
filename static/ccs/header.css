@@ -41,13 +41,15 @@ header{
 .nav_user__input {
     outline: none;
     border: 1px solid white;
-    background: rgba(236, 246, 255, 0.3);
+    background: rgba(185, 222, 254, 0.9);
     color: black;
-    width: 229px;
+    width: 242px;
     height: 36px;
     padding-left: 10px;
     padding-right: 0;
     border-radius: 20px;
+    position: relative;
+    z-index: 4;
 }
 
 .nav__link {
@@ -74,10 +76,15 @@ header{
 
 .drop_list_container {
     position: absolute;
+    top: 20px;
     min-width: 240px;
     background-color: rgba(185, 222, 254, 0.9);
     z-index: 2;
+    border-radius: 0 0 20px 20px;
+    padding-top: 20px;
+    padding-right: 2px;
     display: none;
+
 }
 
 .product_mini_card .mini_product_link{
@@ -93,13 +100,14 @@ header{
 .product_mini_img {
     width: 56px;
     height: 56px;
-    background-color: white;
+    background-color: inherit;
 }
 
 .product_price {
     position: absolute;
     right: 0;
     bottom: 0;
+    font-weight: 900;
 }
 
 .product_name {
@@ -175,4 +183,8 @@ header{
 
 .account_link[open]::before {
     opacity: 1;
+}
+
+.burger_menu {
+    display: none;
 }

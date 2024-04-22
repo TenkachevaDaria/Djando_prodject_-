@@ -230,3 +230,9 @@
 .filter_price {
     border-radius: 20px;
 }
+
+.filter_btn {
+    padding: 0;
+    background: inherit;
+    border: none;
+}

@@ -1,0 +1,152 @@
+@media (max-width : 420px) {
+    .products_title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .main__container {
+        max-width: 343px;
+    }
+
+    .active_filters,
+    .filters_box {
+        display: none;
+    }
+
+    .product_box {
+        margin-left: 0;
+    }
+
+    .products_list {
+        gap: 12px 22px;
+    }
+
+    .product_card {
+        width: 160px;
+        min-height: 230px;
+    }
+
+    .product__img {
+        height: 144px;
+    }
+
+    .decor_mini_card_img {
+        left: 15px;
+        height: 25px;
+    }
+
+    .popular_sale {
+        display: none;
+    }
+
+    .product__name {
+        font-size: 13px;
+    }
+
+    .product__price {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+
+    .page_num {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    .sort_menu {
+        position: absolute;
+        z-index: 3;
+        top: 87px;
+        right: 50px;
+    }
+
+    .burger_open_sort {
+        background-color: rgb(236, 246, 255);
+        height: 100%;
+        width: 70%;
+        z-index: 5;
+        position: absolute;
+        right: 0;
+    }
+
+    header {
+        z-index: 5;
+    }
+
+    .burger_sort_title {
+        margin-top: 85px;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+
+    .custom_checkbox+label:before {
+        border: 0.2px solid rgb(28, 37, 65);
+    }
+
+    .custom_checkbox+label::after {
+        left: 5px;
+        top: 7px;
+    }
+
+    .close_icon {
+        position: absolute;
+    }
+
+    .burger_menu[open] .close_icon {
+        top: 30px;
+        right: 30px;
+        z-index: 5;
+    }
+
+    .burger_stick_close3,
+    .burger_stick_close4 {
+        width: 15px;
+        border: 0.5px solid black;
+        display: none;
+        position: absolute;
+    }
+
+    .burger_stick_close3 {
+        transform: rotate(-45deg);
+    }
+
+    .burger_stick_close4 {
+        transform: rotate(45deg);
+    }
+
+    .burger_menu[open] .burger_stick_close3,
+    .burger_menu[open] .burger_stick_close4 {
+        display: block;
+    }
+
+    .burger_filters {
+        background-color: rgb(236, 246, 255);
+        height: 100%;
+        width: 70%;
+        z-index: 5;
+        position: absolute;
+        right: 0;
+    }
+
+    .filters_menu {
+        position: absolute;
+        top: 85px;
+        right: 30px;
+        z-index: 3;
+    }
+
+    .filters_producs__title {
+        margin-top: 85px;
+        font-size: 15px;
+    }
+
+    .price_spread_box__name,
+    .validity_title,
+    .operating_system_title {
+        font-size: 15px;
+    }
+
+    .price_rage__input_label label {
+        font-size: 11px;
+    }
+}

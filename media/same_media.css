@@ -142,14 +142,14 @@
     .burger_icon {
         display: flex;
         gap: 3px;
-        z-index: 3;
+        z-index: 4;
     }
 
     .burger_open {
         background-color: rgb(236, 246, 255);
         height: 100%;
         width: 70%;
-        z-index: 2;
+        z-index: 3;
         position: absolute;
         right: 0;
     }
@@ -224,5 +224,9 @@
 
     .product_mini_card .mini_product_link {
         min-height: 50px;
+    }
+
+    header {
+        z-index: 5;
     }
 }

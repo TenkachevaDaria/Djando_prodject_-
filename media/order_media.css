@@ -1,0 +1,88 @@
+@media (max-width:420px) {
+    .basket_container {
+        max-width: 343px;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .item__img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item_box {
+        padding: 10px 7px;
+        gap: 10px;
+    }
+
+    .item__name {
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+    .item__sort_descr {
+        display: none;
+    }
+
+    .item__platform {
+        font-size: 9px;
+    }
+
+    .item__count {
+        font-size: 11px;
+    }
+
+    .item__price {
+        font-size: 13px;
+        top: calc(100% - 16px);
+        right: 14px;
+    }
+
+    .payment_way__title,
+    .email_to_send {
+        margin-top: 26px;   
+        margin-left: 13px;
+        position: absolute;
+        font-size: 15px;
+    }
+
+    .payment_way__card {
+        width: fit-content;
+        margin-top: 20px;
+        padding: 7px 160px 7px 130px;
+        background-color: rgba(185, 222, 254, 0.5);
+        color: rgb(0, 130, 240);
+        font-size: 15px;
+        margin-bottom: 14px;
+    }
+
+    .email_to_send {
+        margin-top: 5px;
+    }
+
+    .order_email {
+        padding: 7px 30px 7px 140px;
+        width: fit-content;
+        background-color: rgba(185, 222, 254, 0.5);
+        font-size: 15px;
+        margin-bottom: 40px;
+    }
+
+    .order_email::placeholder {
+        color: rgb(0, 130, 240);
+    }
+
+    .order_btn {
+        padding: 9px 125px;
+        font-size: 16px;
+    }
+
+    .basket__title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .basket__item_list {
+        margin-top: 0;
+    }
+}

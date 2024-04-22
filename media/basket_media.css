@@ -1,0 +1,130 @@
+@media (max-width:420px) {
+    .basket_container {
+        max-width: 343px;
+        flex-direction: column;
+    }
+
+    .basket__title {
+        font-size: 20px;    
+    }
+
+    .item__img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item_box {
+        padding: 7px 8px;
+        gap: 10px;
+    }
+
+    .item__name {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+
+    .item__sort_descr,
+    .item__platform {
+        font-size: 9px;
+        margin-bottom: 0;
+    }
+
+    .item__platform {
+        margin-bottom: 6px;
+    }
+
+    .counter_btn {
+        width: 10px;
+        height: 10px;
+        font-size: 9px;
+        border-radius: 5px;
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    .number {
+        font-size: 11px;
+        width: 3px;
+    }
+
+    .item__counter_box {
+        align-items: center;
+    }
+
+    .delete_product_btn svg {
+        width: 9px;
+        height: 9px;
+    }
+
+    .delete_product_btn {
+        right: 70%;
+        padding: 5px;
+    }
+
+    .input_group_btn {
+        height: initial;
+        width: initial;
+    }
+
+    .basket__item {
+        gap: 10px;
+    }
+
+    .item__price {
+        top: calc(100% - 20px);
+        font-size: 13px;
+        right: 14px;
+    }
+
+    .paymen_method_form {
+        margin-top: 35px;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .paymen_method_form__title {
+        font-size: 15px;
+    }
+
+    .paymen_method_form__container {
+        margin: 13px;
+        padding-top: 13px;
+    }
+
+    .payment_way {
+        width: 90px;
+        padding: 15px;
+        margin-bottom: 60px;
+    }
+
+    .btn_choose_payment_list {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .payment_way__btn_chose {
+        margin-bottom: 0;
+        padding: 8px 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .products_counter {
+        font-size: 8px;
+    }
+
+    .total_price_name,
+    .total_price_num {
+        font-size: 16px;
+    }
+
+    .payment_way__btn {
+        padding: 9px 145px;
+        width: fit-content;
+        font-size: 16px;
+    }
+
+    .total_price_container {
+        margin-bottom: 15px;
+    }
+}

@@ -150,7 +150,7 @@
                         placeholder="Напишите стоимость вашего продукта." class="add_form__input"><br>
                     <label class="check_boxs_label">Под какую систему предназначен ваш продукт?</label><br>
                     <div class="check_boxs">
-                        <div>
+                        <!-- <div>
                             <input type="checkbox" id="macos" name="system" value="macos"
                                 class="checkbox_input custom_checkbox">
                             <label for="macos">MacOS</label>
@@ -164,6 +164,18 @@
                             <input type="checkbox" id="windows" name="system" value="windows"
                                 class="checkbox_input custom_checkbox">
                             <label for="windows">Windows</label>
+                        </div> -->
+                        <div>
+                            <input type="radio" id="macos" name="system" value="macos" class="checkbox_input custom_checkbox">
+                            <label for="macos">MacOS</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="linux" name="system" value="linux" class="checkbox_input custom_checkbox">
+                            <label for="linux">Linux</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="windows" name="system" value="windows" class="checkbox_input custom_checkbox">
+                            <label for="windows">Windows</label>
                         </div>
                     </div>
                     <input type="text" id="delivery_type" name="delivery_type" required
@@ -175,7 +187,7 @@
 
                         <label class="check_boxs_label">Какой срок лицензии у вашего продукта?</label><br>
                         <div class="check_boxs_subscription_duration">
-                            <div>
+                            <!-- <div>
                                 <input type="checkbox" id="1_month" name="system" value="macos"
                                     class="checkbox_input custom_checkbox">
                                 <label for="1_month">1 Месяц</label>
@@ -199,11 +211,31 @@
                                 <input type="checkbox" id="unlimited" name="system" value="windows"
                                     class="checkbox_input custom_checkbox">
                                 <label for="unlimited">Бессрочная</label>
+                            </div> -->
+                            <div>
+                                <input type="radio" id="1_month" name="system" value="1_month" class="checkbox_input custom_checkbox">
+                                <label for="1_month">1 Месяц</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="1_year" name="system" value="1_year" class="checkbox_input custom_checkbox">
+                                <label for="1_year">1 Год</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="2_years" name="system" value="2_years" class="checkbox_input custom_checkbox">
+                                <label for="2_years">2 Года</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="3_years" name="system" value="3_years" class="checkbox_input custom_checkbox">
+                                <label for="3_years">3 Года</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="unlimited" name="system" value="unlimited" class="checkbox_input custom_checkbox">
+                                <label for="unlimited">Бессрочная</label>
                             </div>
                         </div>
                         <label class="check_boxs_label">Какой разрядности ваш продукт?</label><br>
                     <div class="check_boxs_bit_depth">
-                        <div>
+                        <!-- <div>
                             <input type="checkbox" id="x32" name="system" value="macos"
                                 class="checkbox_input custom_checkbox">
                             <label for="x32">x32</label>
@@ -217,7 +249,20 @@
                             <input type="checkbox" id="x86" name="system" value="windows"
                                 class="checkbox_input custom_checkbox">
                             <label for="x86">x86</label>
+                        </div> -->
+                        <div>
+                            <input type="radio" id="x32" name="system" value="x32" class="checkbox_input custom_checkbox">
+                            <label for="x32">x32</label>
                         </div>
+                        <div>
+                            <input type="radio" id="x64" name="system" value="x64" class="checkbox_input custom_checkbox">
+                            <label for="x64">x64</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="x86" name="system" value="x86" class="checkbox_input custom_checkbox">
+                            <label for="x86">x86</label>
+                        </div>
+                        
                     </div>
                     <textarea id="product_description" name="product_description" rows="4" cols="50" required
                         placeholder="Дайте описание вашему продукту:" class="add_form__input textarea_input"></textarea><br>

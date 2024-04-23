@@ -191,8 +191,16 @@
                     <div class="paymen_method_form__container">
                         <h3 class="paymen_method_form__title">Способ оплаты</h3>
                         <ul class="btn_choose_payment_list">
-                            <li><button class="payment_way btn">Способ1</button></li>
-                            <li><button class="payment_way btn">Способ2</button></li>
+                            <!-- <li><button class="payment_way btn">Способ1</button></li>
+                            <li><button class="payment_way btn">Способ2</button></li> -->
+                            <li>
+                                <input type="radio" id="payment_way1" name="payment_way" class="payment_way_radio visually_hidden" checked>
+                                <label for="payment_way1" class="payment_way_label">Способ1</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="payment_way2" name="payment_way" class="payment_way_radio visually_hidden">
+                                <label for="payment_way2" class="payment_way_label">Способ2</label>
+                            </li>
                         </ul>
                         <button class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button>
                     </div>

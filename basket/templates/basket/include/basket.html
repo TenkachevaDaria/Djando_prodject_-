@@ -76,22 +76,22 @@
         <div class="paymen_method_form__container">
             <h3 class="paymen_method_form__title">Способ оплаты</h3>
             <ul class="btn_choose_payment_list">
-                <li><button class="payment_way btn">Способ1</button></li>
-                <li><button class="payment_way btn">Способ2</button></li>
+                {% for payment_method in payment_methods %}
+                    <li>
+                        <input type="radio" id="{{ payment_method.id }}" value="{{ payment_method.id }}" name="payment_way" class="payment_way_radio visually_hidden" checked>
+                        <label for="{{ payment_method.id }}" class="payment_way_label">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
+                    </li>
+                {% endfor %}
             </ul>
-            <button class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button>
+            <a href="{% url "user:profile" %}"><button id="add_payment_button" class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button></a>
         </div>
     </div>
-    <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
-    <div class="total_price_container">
-        <p class="total_price_name"><b>Итого</b></p>
-        <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
-    </div>
-    
     {% if baskets %}
-        <button class="payment_way__btn btn">
-            Купить
-        </button>
-    {% endif %}
-    
-</div>
+        <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
+        <div class="total_price_container">
+            <p class="total_price_name"><b>Итого</b></p>
+            <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
+        </div>
+        <a href="{% url "orders:create_order" %}"><button class="payment_way__btn btn">Купить</button></a>
+    </div>
+{% endif %}

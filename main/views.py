@@ -6,6 +6,3 @@ from .models import *
 def index(request):
     questions = Questions.objects.all()
     return render(request, 'main/index.html', {'questions': questions})
-
-def addProduct(request):
-    return render(request, 'main/add_product_page.html')

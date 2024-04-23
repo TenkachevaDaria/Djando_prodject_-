@@ -6,5 +6,4 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('add_product/', views.addProduct, name='addProduct'),
 ]

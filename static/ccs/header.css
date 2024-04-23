@@ -75,16 +75,15 @@ header{
 }
 
 .drop_list_container {
-    position: absolute;
     top: 20px;
+    position: absolute;
     min-width: 240px;
     background-color: rgba(185, 222, 254, 0.9);
     z-index: 2;
+    display: none;
     border-radius: 0 0 20px 20px;
     padding-top: 20px;
     padding-right: 2px;
-    display: none;
-
 }
 
 .product_mini_card .mini_product_link{
@@ -107,7 +106,6 @@ header{
     position: absolute;
     right: 0;
     bottom: 0;
-    font-weight: 900;
 }
 
 .product_name {
@@ -126,6 +124,8 @@ header{
     padding: 5px 0;
     width: calc(100% - 20px);
     margin: 10px;
+    font-weight: 900;
+
 }
 
 .product_mini_card {

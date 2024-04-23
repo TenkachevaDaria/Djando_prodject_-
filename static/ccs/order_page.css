@@ -1,0 +1,43 @@
+.item__count {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.payment_way__title {
+    margin-top: 60px;
+}
+
+.payment_way__card {
+    padding: 19px 40px;
+    background-color: rgba(25, 158, 243, 0.8);
+    color: white;
+    border-radius: 20px;
+    width: 300px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.order_email {
+    padding: 19px 40px;
+    background-color: rgba(25, 158, 243, 0.8);
+    color: white;
+    border-radius: 20px;
+    width: 300px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    margin-bottom: 220px;
+}
+
+.order_email::placeholder {
+    color: white;
+}
+
+.order_btn {
+    padding: 16px 126px;
+    width: 300px;
+    color: white;
+    background-color: rgb(0, 130, 240);
+    font-size: 24px;
+}

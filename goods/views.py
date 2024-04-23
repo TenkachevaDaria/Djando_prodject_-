@@ -3,7 +3,7 @@ from django.db.models import Avg, Max, Min
 from django.shortcuts import render
 
 from goods.utils import q_search
-from goods.models import Categories, Product, Specification, Subscriptions, Review
+from goods.models import Categories, Product, Subscriptions, Review
 
 # Create your views here.
 def catalog(request):
@@ -64,7 +64,6 @@ def catalog(request):
 def product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
     reviews = Review.objects.filter(product=product)
-    specifications = Specification.objects.filter(product=product)
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
 
@@ -85,7 +84,6 @@ def product(request, product_slug):
         'average_rating_float': average_rating_float,
         'anti_average_rating': anti_average_rating,
         'review_ratings': review_ratings,
-        'specifications': specifications
     }
 
     return render(request, 'goods/product_page.html', context)

@@ -1,6 +1,6 @@
 from django.db import models
 
-from goods.models import Discount, Product
+from goods.models import Product
 from users.models import User
 
 # Create your models here.
@@ -31,4 +31,6 @@ class Basket(models.Model):
     objects = BasketQueryset().as_manager()
         
     def products_price(self):
+        if self.product.discount_percentage:
+            return round(round(self.product.price - self.product.price * self.product.discount_percentage / 100, 2) * self.quantity, 2)
         return round(self.product.price * self.quantity, 2)

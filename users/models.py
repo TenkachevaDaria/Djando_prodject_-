@@ -8,9 +8,7 @@ class User(AbstractUser):
     image = models.ImageField(upload_to='users_image', null=True, blank=True, verbose_name='Аватар')
     phone = models.CharField(max_length=12, null=True, blank=True, verbose_name='Телефон')
     rating = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Рейтинг')
-    primary_payment_method = models.ForeignKey('PaymentMethod', on_delete=models.CASCADE, related_name='primary_payment_method_for_user', null=True, blank=True, verbose_name='Основной способ оплаты')
-    secondary_payment_method = models.ForeignKey('PaymentMethod', on_delete=models.CASCADE, related_name='secondary_payment_method_for_user', null=True, blank=True, verbose_name='Дополнительный способ оплаты') 
-    
+      
     class Meta:
         db_table = 'user'
         verbose_name = 'Пользователь'

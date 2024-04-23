@@ -4,6 +4,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static "ccs/products_menu.css" %}">
+    <link rel="stylesheet" href="{% static "adaptation/products_media.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -222,22 +223,16 @@
                                     <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product__img shadow_element">
                                 {% endif %}
                             
-                                {% if product.discount_set.all %}
-                                    {% for discount in product.discount_set.all %}
-                                        {% if discount.final_price %}
-                                            <p class="popular_sale">ВЫГОДНО</p>
-                                        {% else %}
-                                            <p class="popular_sale"></p>
-                                        {% endif %}
-                                    {% endfor %}
+                                {% if product.discount_percentage %}
+                                    <p class="popular_sale">ВЫГОДНО</p>
+                                {% else %}
+                                    <p class="popular_sale"></p>
                                 {% endif %}
     
                                 <p class="product__name shadow_element">{{ product.name|truncatechars:30 }}</p>
     
-                                {% if product.discount_set.all %}
-                                    {% for discount in product.discount_set.all %}
-                                            <p class="product__price shadow_element">{{ discount.final_price }} ₽</p>
-                                    {% endfor %}
+                                {% if product.discount_percentage %}
+                                    <p class="product__price shadow_element">{{ product.discount_price }} ₽</p>
                                 {% else %}
                                     <p class="product__price shadow_element">{{ product.price }} ₽</p>
                                 {% endif %}

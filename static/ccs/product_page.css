@@ -10,6 +10,7 @@
 .product_page__img {
     width: 620px;
     height: 620px;
+    background-color: rgb(217, 217, 217);
     margin-top: 100px;
 }
 
@@ -49,7 +50,6 @@
     border: none;
     color: white;
     font-size: 20px;
-    text-align: center;
 }
 
 .btn_buy_now {
@@ -60,8 +60,6 @@
     margin-bottom: 70px;
     border: 1px solid rgb(28, 37, 65);
     font-size: 20px;
-    text-align: center;
-    color: black;
 }
 
 .saler_name {
@@ -159,7 +157,7 @@
 
 .send_review_form {
     display: flex;
-    gap: 30px;
+    gap: 13px;
     margin-bottom: 30px;
     align-items: center;
 }
@@ -259,21 +257,7 @@
 }
 
 .link_way:nth-child(2) {
-    left: 85px;
-    cursor: default;
-}
-
-.link_way:nth-child(3) {
-    left: 100px;
-}
-
-.link_way:nth-child(4) {
-    left: 175px;
-    cursor: default;
-}
-
-.link_way:nth-child(5) {
-    left: 190px;
+    left: 90px;
 }
 
 .btns_container {
@@ -281,3 +265,50 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.rating-area {
+    overflow: hidden;
+    width: 220px;
+   margin-left: 10px;
+  }
+  
+  .rating-area:not(:checked)>input {
+    display: none;
+  }
+  
+  .rating-area:not(:checked)>label {
+    float: right;
+    /* 32 */
+    width: 43px;
+    padding: 0;
+    cursor: pointer;
+    /* 32 */
+    font-size: 50px;
+    line-height: 40px;
+    color: lightgrey;
+  }
+  
+  .rating-area:not(:checked)>label:before {
+    content: '★';
+  }
+  
+  .rating-area>input:checked~label {
+    color: #FCA95D;
+  }
+  
+  .rating-area:not(:checked)>label:hover,
+  .rating-area:not(:checked)>label:hover~label {
+    color: #FCA95D;
+  }
+  
+  .rating-area>input:checked+label:hover,
+  .rating-area>input:checked+label:hover~label,
+  .rating-area>input:checked~label:hover,
+  .rating-area>input:checked~label:hover~label,
+  .rating-area>label:hover~input:checked~label {
+    color: #FCA95D;
+  }
+  
+  .rate-area>label:active {
+    position: relative;
+  }

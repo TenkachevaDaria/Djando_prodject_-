@@ -1,0 +1,63 @@
+{% extends "pattern.html" %}
+{% load static %}
+{% load basket_tags %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "ccs/basket_page.css" %}">
+<link rel="stylesheet" href="{% static "ccs/order_page.css" %}">
+<link rel="stylesheet" href="{% static "adaptation/order_media.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="basket_container">
+        <div>
+            <h2 class="basket__title">Ваш заказ</h2>
+            <ul class="basket__item_list">
+                {% user_basket request as baskets %}
+                {% for basket_user in baskets %}
+                    <li class="basket__item">
+                        <div class="item_box">
+                            {% if basket_user.product.image %}
+                                <div class="img_decor_card">
+                                    <img src="{{ basket_user.product.image.url }}" alt="" class="item__img">
+                                </div>
+                            {% else %}
+                                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="item__img">
+                            {% endif %}
+        
+                            <div class="pos_box_price">
+                                <h3 class="item__name">{{ basket_user.product.name|truncatechars:33 }}</h3>
+                                <p class="item__price">{{ basket_user.products_price }}  ₽</p>
+                                <p class="item__sort_descr">{{ basket_user.product.description|truncatechars:35 }}</p>
+                                <p class="item__platform">{{ basket_user.product.category }}</p>
+                                <div class="item__counter_box">               
+                                    <p type="text" class="quantity number">{{ basket_user.quantity }} шт.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li> 
+                {% endfor %}
+        
+            </ul>
+        </div>
+        <div class="right_basket_container">
+            <form action="{% url "orders:create_order" %}" method="post">
+                {% csrf_token %}
+                <h3 class="payment_way__title">Способ оплаты</h3>
+                <p class="payment_way__card">1 карта</p>
+                <h3 class="email_to_send">Адрес эл.почты</h3>
+                {% if not user.is_authenticated %}
+                    <input id="id_email" type="email" placeholder="почта" class="order_email" requaired><br>
+                {% else %}
+                    <input id="id_email" type="email" placeholder="{{ user.email }}" class="order_email" equaired><br>
+                {% endif %}
+                <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
+                <div class="total_price_container">
+                    <p class="total_price_name"><b>Итого</b></p>
+                    <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
+                </div>
+                <a href="{% url "orders:create_order" %}" class="order_btn btn"><b>Оформить</b></a>
+            </form>
+        </div>
+    </div>
+{% endblock  %}

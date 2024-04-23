@@ -1,0 +1,79 @@
+{% extends "pattern.html" %}
+{% load static %}
+
+{% block css %}    
+    <link rel="stylesheet" href="{% static "ccs/add_form_page.css" %}">
+    <link rel="stylesheet" href="{% static "adaptation/add_product_media.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <div class="add_form">
+            <h2 class="add_form__title"><b>Добавление нового продукта</b></h2>
+            <form action="/add_product/add-product/" method="post" class="add_form_inputs" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" placeholder="Напишите название вашего продукта." name="name" value="Проверка" required="" id="id_name" class="add_form__input"><br>
+                <input type="number" placeholder="Напишите стоимость вашего продукта." name="price" value="7845" step="any" required="" id="id_price"  class="add_form__input">
+                <div class="check_boxs">
+                    <div>
+                        <input type="radio" id="id_category_1" name="category" value="2" class="checkbox_input custom_checkbox">
+                        <label for="id_category_1">MacOS</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="id_category_2" name="category" value="3" class="checkbox_input custom_checkbox">
+                        <label for="id_category_2">Linux</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="id_category_3" name="category" value="1" class="checkbox_input custom_checkbox">
+                        <label for="id_category_3">Windows</label>
+                    </div>
+                </div>
+                <input type="text" id="id_delivery_type" name="delivery_type" required placeholder="Тип поставки" class="add_form__input"><br>
+                <input type="text" id="id_media_type" name="media_type" required placeholder="Тип носителя" class="add_form__input"><br>
+                <input type="text" id="id_purpose" name="purpose" required placeholder="Назначение продукта" class="add_form__input"><br>
+                <label class="check_boxs_label">Какой срок лицензии у вашего продукта?</label><br>
+                <div class="check_boxs_subscription_duration">
+                    <div>
+                        <input type="radio" name='subscription' id="id_subscription_1" value="5" class="checkbox_input custom_checkbox">
+                        <label for="id_subscription_1">1 Месяц</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='subscription' id="id_subscription_2" value="4" class="checkbox_input custom_checkbox">
+                        <label for="id_subscription_2">1 Год</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='subscription' id="id_subscription_3" value="3" class="checkbox_input custom_checkbox">
+                        <label for="id_subscription_3">2 Года</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='subscription' id="id_subscription_4" value="2" class="checkbox_input custom_checkbox">
+                        <label for="id_subscription_4">3 Года</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='subscription' id="id_subscription_5" value="1" class="checkbox_input custom_checkbox">
+                        <label for="id_subscription_5">Бессрочная</label>
+                    </div>
+                </div>
+                <label class="check_boxs_label">Какой разрядности ваш продукт?</label><br>
+                <div class="check_boxs_bit_depth">
+                    <div>
+                        <input type="radio" name='bitness' id="id_bitness_0" value="x32" class="checkbox_input custom_checkbox">
+                        <label for="id_bitness_0">x32</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='bitness' id="id_bitness_1" value="x64" class="checkbox_input custom_checkbox">
+                        <label for="id_bitness_1">x64</label>
+                    </div>
+                    <div>
+                        <input type="radio" name='bitness' id="id_bitness_2" value="x86" class="checkbox_input custom_checkbox">
+                        <label for="id_bitness_2">x86</label>
+                    </div>
+                </div>
+                <textarea id="id_description" name="description" rows="4" cols="50" required placeholder="Описание" class="add_form__input textarea_input"></textarea><br>
+                <input type="file" id="id_image" name="image" class="add_form_add_img" accept="image/*"><br>
+                <input type="submit" value="Добавить" class="add_form__submit btn">
+            </form>
+        </div>
+        <img src="" alt="" class="add_form_img">
+    </div>
+{% endblock %}

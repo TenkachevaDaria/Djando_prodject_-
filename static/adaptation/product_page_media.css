@@ -11,10 +11,10 @@
     }
 
     .product_page__img {
-    width: 620px;
-    height: 620px;
-    background-color: rgb(217, 217, 217);
-    margin-top: 100px;
+        margin-top: 50px;
+        width: 220px;
+        height: 220px;
+        background-color: inherit;
     }
 
     .link_container {

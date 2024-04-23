@@ -50,14 +50,14 @@
 }
 
 .user_products,
-.user_history_bought_box {
+.user_history_bought_box,
+.user_products_liked {
     width: 280px;
     height: 140px;
     background-color: rgb(185, 222, 254);
     position: relative;
     border-radius: 20px;
     border: 0.5px solid rgb(28, 37, 65);
-    cursor: pointer;
 }
 
 .pos_class {
@@ -121,6 +121,7 @@ main {
     background-color: #B36F6F;
     z-index: 4;
     position: relative;
+    cursor: pointer;
 }
 
 .user_products__list {
@@ -217,15 +218,13 @@ main {
 .history_user_product__name,
 .history_user_product__price {
     font-size: 14px;
-    background-color: rgb(107, 99, 99);
     max-width: 100%;
-    color: white;
+    color: rgb(28, 37, 65);
     padding-left: 15px;
 }
 
 .active_user_product__price,
 .history_user_product__price {
-    background-color: rgb(169, 192, 236);
     max-width: 50%;
 }
 
@@ -307,6 +306,7 @@ main {
     top: 150px;
     left: 40%;
     z-index: 5;
+    border-radius: 20px;
     display: none;
 }
 
@@ -320,28 +320,19 @@ main {
     font-size: 20px;
 }
 
-.card_num_input {
-    padding: 18px;
-    width: calc(100% - 18px  *2);
-    outline: 1px solid #1C2541;
-    border: none;
-    margin-bottom: 30px;
-}
-
-.card_num_input::-webkit-outer-spin-button,
-.card_num_input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
+.card_num_input,
 .bank_input {
     padding: 18px;
     width: calc(100% - 18px  *2);
     outline: 1px solid #1C2541;
     border: none;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 20px;
 }
 
+.bank_input {
+    margin-top: 20px;
+}
 
 .date_secret_code_container {
     display: flex;
@@ -353,24 +344,23 @@ main {
     padding: 18px;
     outline: 1px solid #1C2541;
     border: none;
-    
+    border-radius: 20px;
 }
-
-.code_num_input::-webkit-outer-spin-button,
-.code_num_input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
 
 .add_payment_method_btn {
-    width: 100%;
+    width: fit-content;
     background-color: #0082F0;
     font-size: 20px;
-    padding: 19px 0;
+    padding: 19px 95px;
     color: white;
-    margin-top: 31px;
+    margin-top: 112px;
     margin-bottom: 8px;
+    position: absolute;
+    left: 0;
+}
+
+.popup_payment_security {
+    margin-top: 70px;
 }
 
 .hide_popup_add_payment_method {
@@ -383,4 +373,14 @@ main {
     width: inherit;
     background-color: rgb(0, 130, 240);
     color: white;
+}
+
+.user_page_container_mobile {
+    display: none;
+}
+
+.mobile_popup_bougths,
+.mobile_popup_sold,
+.popup_user_add_payment_method_mobile {
+    display: none;
 }

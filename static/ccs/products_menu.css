@@ -48,6 +48,7 @@
     height: fit-content;
     min-width: 280px;
     background-color: rgba(185, 222, 254, 0.6);
+    border-radius: 20px;
 }
 
 .filters__list {
@@ -64,7 +65,6 @@
 }
 
 .product_card {
-    position: relative;
     width: 260px;
     min-height: 333px;
     position: relative;
@@ -72,7 +72,6 @@
     0 0 12px rgb(27, 157, 243, 0.1),
     0 0 12px rgb(27, 157, 243, 0.1),
     0 0 12px rgb(27, 157, 243, 0.1);
-    z-index: 0;
 }
 
 
@@ -113,7 +112,6 @@
     top: 10px;
     padding: 0 5px;
     background-color: rgb(217, 217, 217);
-    z-index: 1;
 }
 
 .page_num_list {
@@ -129,6 +127,7 @@
     text-align: center;
     padding: 10px 16px;
     border: 1px solid;
+    border-radius: 10px;
 }
 
 .decor_div1 {
@@ -229,10 +228,4 @@
 
 .filter_price {
     border-radius: 20px;
-}
-
-.filter_btn {
-    padding: 0;
-    background: inherit;
-    border: none;
 }

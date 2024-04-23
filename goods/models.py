@@ -1,9 +1,9 @@
 from enum import unique
 from django.db import models
-from datetime import datetime
 from django.db.models import Avg
 from django.urls import reverse
 from users.models import User
+from django.utils.text import slugify
 
 # Create your models here.
 class Categories(models.Model):
@@ -39,11 +39,16 @@ class Product(models.Model):
     peculiarities = models.TextField(blank=True, null=True, verbose_name='Особенности')
     image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Изображение')
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
+    discount_percentage = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Процент скидки')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
     manufacturer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Производитель')
-    date_added = models.DateField(verbose_name='Дата добавления')
+    date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     subscription = models.ForeignKey(to=Subscriptions, on_delete=models.CASCADE, verbose_name='Период подписки', blank=True, null=True)
     average_rating = models.FloatField(default=0.00, verbose_name='Средний рейтинг')
+    media_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип носителя')
+    delivery_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип поставки')
+    purpose = models.CharField(max_length=100, null=True, blank=True, verbose_name='Назначение')
+    bitness = models.CharField(max_length=20, null=True, blank=True, verbose_name='Разрядность')
 
     class Meta:
         db_table = 'product'
@@ -57,6 +62,12 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
+    def save(self, *args, **kwargs):
+        # Если slug пустой, генерируем его на основе имени товара и имени производителя
+        if not self.slug:
+            self.slug = slugify(f"{self.name} {self.category.id}")
+        super().save(*args, **kwargs)
+    
     def update_average_rating(self):
         average_rating = self.review_set.aggregate(avg_rating=Avg('rating'))['avg_rating']
         if average_rating is not None:
@@ -64,6 +75,10 @@ class Product(models.Model):
         else:
             self.average_rating = 0.00
         self.save()
+
+    def discount_price(self):
+        return round(self.price - self.price * self.discount_percentage / 100, 2)
+        
     
 
 class Features(models.Model):
@@ -73,50 +88,6 @@ class Features(models.Model):
     def __str__(self) -> str:
         return f'{self.product.name}'
 
-
-class Specification(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='licenses', verbose_name='Товар')
-    media_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип носителя')
-    delivery_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип поставки')
-    purpose = models.CharField(max_length=100, null=True, blank=True, verbose_name='Назначение')
-    validity_period = models.CharField(max_length=100, null=True, blank=True, verbose_name='Срок действия')
-    bitness = models.CharField(max_length=20, null=True, blank=True, verbose_name='Разрядность')
-
-    
-    class Meta:
-        db_table = 'specification'
-        verbose_name = 'Спецификации'
-        verbose_name_plural = 'Спецификация'
-
-    def __str__(self):
-        return f'{self.product.name}'
-
-
-class Discount(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
-    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Процент скидки')
-    start_date = models.DateField(verbose_name='Дата начала действия скидки')
-    end_date = models.DateField(verbose_name='Дата окончания действия скидки')
-    final_price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Итоговая цена', blank=True, null=True)
-
-    class Meta:
-        db_table = 'discount'
-        verbose_name = 'Скидка'
-        verbose_name_plural = 'Скидки'
-
-    def __str__(self) -> str:
-        return f'| Продукт - {self.product.name} | Цена - {self.product.price} | Скидка - {self.discount_percentage}% | Финальная цена - {self.final_price} | Начинается - {self.start_date} | Заканчивается - {self.end_date} |'
-
-    def save(self, *args, **kwargs):
-        if self.product and self.discount_percentage:
-            current_date = datetime.now().date()
-            if self.start_date <= current_date <= self.end_date:
-                self.final_price = round(self.product.price - self.product.price * self.discount_percentage / 100, 2)
-            else:
-                self.final_price = None
-        super().save(*args, **kwargs)
-
-    
 
 class Review(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Продукт')

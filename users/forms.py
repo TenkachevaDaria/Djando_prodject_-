@@ -56,7 +56,7 @@ class PaymentMethodForm(forms.ModelForm):
         model = PaymentMethod
         fields = ('card_num', 'date', 'CVV', 'bank')
         
-        card_num = forms.CharField()
-        date = forms.CharField()
-        CVV = forms.CharField()
-        bank = forms.CharField()
+    card_num = forms.CharField()
+    date = forms.CharField()
+    CVV = forms.CharField()
+    bank = forms.CharField()

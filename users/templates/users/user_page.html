@@ -3,6 +3,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static "ccs/user_page.css" %}">
+    <link rel="stylesheet" href="{% static "adaptation/user_page_media.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -66,6 +67,17 @@
                                 {% endif %}
                             {% endfor %}
 
+                        </ul>
+                    </div>
+                </div>
+                <p class="user_products_title">Избранные товары</p>
+                <div class="user_products_liked">
+                    <div class="imgs_container">
+                        <ul class="user_products__list">
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
+                            <li class="user_product"><img src="" alt="" class="user_product__img"></li>
                         </ul>
                     </div>
                 </div>
@@ -177,12 +189,14 @@
                                 </div>
                             </summary>
                             <ul class="summary_filters">
+
                                 {% for payment_method in payment_methods %}
                                 <li class="summary_filter">
                                     <input type="checkbox" id="{{ payment_method.id }}" class="custom_checkbox" value="{{ payment_method.id }}">
                                     <label for="{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
                                 </li>
                                 {% endfor %}
+
                                 <li class="summary_filter">
                                     <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
                                 </li>

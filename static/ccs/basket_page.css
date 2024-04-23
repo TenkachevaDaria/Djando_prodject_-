@@ -64,7 +64,7 @@
     background-color: rgb(236, 246, 255);
 }
 
-.form-control {
+.number {
     background-color: inherit;
     border: none;
     outline: none;
@@ -136,8 +136,7 @@
     margin-top: 20px;
     color: white;
     background-color: rgb(0, 130, 240);
-    width: 500px;
-    padding: 20px 0;
+    padding: 20px 210px;
     font-size: 24px;
 }
 
@@ -166,6 +165,7 @@
 .total_price_container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .total_price_name,
@@ -187,4 +187,45 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
+}
+
+.visually_hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.payment_way_radio {
+    display: none;
+}
+
+.payment_way_label {
+    display: inline-block;
+    padding: 20px 0;
+    background-color: rgb(0, 130, 240);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.payment_way_label:hover {
+    background-color: rgba(25, 158, 243, 0.8);
+}
+
+.payment_way_radio:checked + .payment_way_label {
+    background-color: inherit;
+    color: black;
+    border: 1px solid rgb(0, 130, 240);
+}
+
+.payment_way_label:focus {
+    outline: 2px solid rgb(25, 158, 243);
 }

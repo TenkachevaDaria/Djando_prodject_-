@@ -2,10 +2,11 @@ import re
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
-
+from django.contrib.auth.decorators import login_required
 from basket.models import Basket
 from basket.utils import get_user_basket
 from goods.models import Product
+from users.models import PaymentMethod
 
 # Create your views here.
 def basket_add(request):
@@ -90,6 +91,11 @@ def basket_remove(request):
 
     return JsonResponse(response_data)
 
-
+@login_required
 def shopping_basket(request):
-    return render(request, 'basket/shopping_basket_page.html')
+    user = request.user
+    payment_methods = PaymentMethod.objects.filter(user_id=user.id)
+    context = {
+        'payment_methods': payment_methods,
+    }
+    return render(request, 'basket/shopping_basket_page.html', context)

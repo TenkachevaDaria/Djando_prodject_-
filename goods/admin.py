@@ -1,12 +1,11 @@
 from django.contrib import admin
-
+from django.forms import DateInput
+from django.db import models
 # Register your models here.
 from goods.models import (
     Categories,
     Product,
     Subscriptions,
-    Specification,
-    Discount,
     Review,
 )
 
@@ -20,9 +19,11 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "category", "subscription", "manufacturer", "price", "average_rating"]
-    search_fields = ["name"]
+    list_display = ["name", "category", "subscription", "manufacturer", "price", "discount_percentage", "average_rating"]
+    search_fields = ["name", "manufacturer"]
+    prepopulated_fields = {"slug": ("name", "category")}
     list_filter = ["category", "subscription", "manufacturer"]
+    list_editable = ["discount_percentage"]
     fields = [
         ("name", "manufacturer", "average_rating"),
         "slug",
@@ -30,27 +31,12 @@ class ProductAdmin(admin.ModelAdmin):
         "peculiarities",
         ("category", "subscription", "image"),
         "price",
-        "date_added"
     ]
 
 
 @admin.register(Subscriptions)
 class SubscriptionsAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
-
-
-@admin.register(Specification)
-class SpecificationAdmin(admin.ModelAdmin):
-    list_display = ["product", "media_type", "delivery_type", "purpose", "validity_period", "bitness"]
-    search_fields = ["product"]
-    list_editable = ["media_type", "delivery_type", "purpose", "validity_period", "bitness"]
-
-
-@admin.register(Discount)
-class DiscountAdmin(admin.ModelAdmin):
-    list_display = ["product", "discount_percentage", "final_price", "start_date", "end_date"]
-    search_fields = ["product"]
-    list_editable = ["discount_percentage", "start_date", "end_date"]
 
 
 @admin.register(Review)

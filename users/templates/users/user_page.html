@@ -97,7 +97,6 @@
 
                 <label for="login">Логин</label><br>
                 <p class="user_input_page">{{ user.username }}</p><br>
-                {% comment %} <input type="text" id="id_username" name="username" class="user_input_page" value="{{ form.username.value }}" placeholder="Добавьте логин"><br> {% endcomment %}
                 {% if form.username.errors %}
                     <p>{{ form.username.errors }}</p> 
                 {% endif %}
@@ -182,7 +181,12 @@
                 <div class="active_filters__sub_list">
                     <form action="">
                         <details class="active_filters__details">
-                            <summary class="active_filters__summary">Укажите способ оплаты
+                            <summary class="active_filters__summary">
+                                {% if user.payment_method %}
+                                    {{ user.payment_method.bank }} ⋅⋅ {{ user.payment_method.card_num|slice:"-4:" }}
+                                {% else %}
+                                    Укажите способ оплаты
+                                {% endif %}
                                 <div class="marker_container">
                                     <div class="summary_marker_stick1"></div>
                                     <div class="summary_marker_stick2"></div>
@@ -190,12 +194,15 @@
                             </summary>
                             <ul class="summary_filters">
 
-                                {% for payment_method in payment_methods %}
-                                <li class="summary_filter">
-                                    <input type="checkbox" id="{{ payment_method.id }}" class="custom_checkbox" value="{{ payment_method.id }}">
-                                    <label for="{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
-                                </li>
-                                {% endfor %}
+                                <form id="paymentMethodForm" method="post">
+                                    {% csrf_token %}
+                                    {% for payment_method in payment_methods %}
+                                    <li class="summary_filter">
+                                        <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_radio" value="{{ payment_method.id }}">
+                                        <label for="payment_method_{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
+                                    </li>
+                                    {% endfor %}
+                                </form>
 
                                 <li class="summary_filter">
                                     <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
@@ -314,4 +321,31 @@
         </div>
     </form>
     <script src="{% static "js/user_profile.js" %}" ></script>
+    <script>
+        document.querySelectorAll('input[type=radio][name=payment_method]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    // Отправляем выбранный способ оплаты на сервер
+                    var selectedPaymentMethodId = this.value;
+                    var csrfToken = '{{ csrf_token }}'; // Получаем CSRF токен из шаблона
+                    var url = '/save_payment_method/'; // Путь к представлению Django
+        
+                    fetch('{% url "users:save_payment_method_id" %}', { // Используйте шаблонные теги Django для получения правильного URL
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
+                    })
+                    .then(response => {
+                        // Обработка ответа от сервера, если необходимо
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

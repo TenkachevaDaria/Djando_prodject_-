@@ -31,7 +31,7 @@
                                 <p class="item__sort_descr">{{ basket_user.product.description|truncatechars:35 }}</p>
                                 <p class="item__platform">{{ basket_user.product.category }}</p>
                                 <div class="item__counter_box">               
-                                    <p type="text" class="quantity number">{{ basket_user.quantity }} шт.</p>
+                                    <p type="text" class="quantity number_order">{{ basket_user.quantity }} шт.</p>
                                 </div>
                             </div>
                         </div>
@@ -43,21 +43,42 @@
         <div class="right_basket_container">
             <form action="{% url "orders:create_order" %}" method="post">
                 {% csrf_token %}
+
                 <h3 class="payment_way__title">Способ оплаты</h3>
-                <p class="payment_way__card">1 карта</p>
-                <h3 class="email_to_send">Адрес эл.почты</h3>
-                {% if not user.is_authenticated %}
-                    <input id="id_email" type="email" placeholder="почта" class="order_email" requaired><br>
+
+                {% if user.payment_method %}
+                    <input type="hidden" name="payment_method" id="id_payment_method" value="{{ user.payment_method.id }}">
+                    <p class="payment_way__card">{{user.payment_method.bank }} ⋅⋅ {{ user.payment_method.card_num|slice:"-4:" }}</p>
                 {% else %}
-                    <input id="id_email" type="email" placeholder="{{ user.email }}" class="order_email" equaired><br>
+                    <p class="payment_way__card">Карта не была выбрана</p>
                 {% endif %}
+
+                <h3 class="email_to_send">Адрес эл.почты</h3>
+
+                {% if not user.is_authenticated %}
+                    <input type="email" id="id_email" name="email" placeholder="почта" class="order_email" required><br>
+                {% else %}
+                    <input type="email" id="id_email" name="email" value="{{ user.email }}" placeholder="почта" class="order_email" required><br>
+                {% endif %}
+
                 <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
                 <div class="total_price_container">
                     <p class="total_price_name"><b>Итого</b></p>
                     <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
                 </div>
-                <a href="{% url "orders:create_order" %}" class="order_btn btn"><b>Оформить</b></a>
+                <button class="order_btn btn"><b>Оформить</b></button>
             </form>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('input[type=radio][name=payment_method]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    // Установка выбранного способа оплаты в скрытое поле
+                    var selectedPaymentMethodId = this.value;
+                    document.getElementById('id_payment_method').value = selectedPaymentMethodId;
+                }
+            });
+        });
+    </script>
 {% endblock  %}

@@ -146,9 +146,6 @@
                     {% csrf_token %}
                     <b>Купить сейчас</b></a>
             </div>
-            {% comment %} <button class="btn btn_add"><a class="add-to-basket" href="{% url "basket:basket_add" %}"
-                data-product-id="{{ product.id }}">
-                <b>Добавить в корзину</b></a></button> {% endcomment %}
             <div class="saler_info">
                 <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.username }}</p>
 

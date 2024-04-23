@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.db.models import Avg
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -127,3 +127,20 @@ def save_payment_method(request):
     }
 
     return render(request, 'users/save_payment_method.html', context)
+
+
+@login_required
+def save_payment_method_id(request):
+    user = request.user
+
+    if request.method == 'POST':
+        payment_method_id = request.POST.get('payment_method')
+        try:
+            payment_method = PaymentMethod.objects.get(pk=payment_method_id)
+            user.payment_method = payment_method
+            user.save()
+            return JsonResponse({'success': True})
+        except PaymentMethod.DoesNotExist:
+            return JsonResponse({'error': 'Способ оплаты не найден'}, status=404)
+
+    return JsonResponse({'error': 'Недопустимый запрос'}, status=400)

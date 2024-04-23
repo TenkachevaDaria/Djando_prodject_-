@@ -65,6 +65,8 @@
 }
 
 .product_card {
+    position: relative;
+    z-index: 0;
     width: 260px;
     min-height: 333px;
     position: relative;
@@ -112,6 +114,7 @@
     top: 10px;
     padding: 0 5px;
     background-color: rgb(217, 217, 217);
+    z-index: 1;
 }
 
 .page_num_list {
@@ -202,6 +205,12 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.filter_btn {
+    background-color: inherit;
+    border: none;
+    font-size: 18px;
 }
 
 .drop_filters {

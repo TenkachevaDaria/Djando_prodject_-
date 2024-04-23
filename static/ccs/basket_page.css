@@ -71,6 +71,13 @@
     width: 8px;
 }
 
+.number_order {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    width: 60px;
+}
+
 .pos_box_price {
     position: relative;
     width: 80%;

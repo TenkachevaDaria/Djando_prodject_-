@@ -32,4 +32,4 @@ class AddProductForm(forms.ModelForm):
     subscription = forms.ModelChoiceField(queryset=Subscriptions.objects.all(), label="Срок лицензии")
     bitness = forms.ChoiceField(choices=[('x32', 'x32'), ('x64', 'x64'), ('x86', 'x86')], label="Разрядность")
     description = forms.CharField(widget=forms.Textarea, label="Описание")
-    image = forms.ImageField(label="Изображение продукта")
+    image = forms.ImageField(label="Изображение продукта", required=False)

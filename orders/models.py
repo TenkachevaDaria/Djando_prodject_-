@@ -19,7 +19,7 @@ class Order(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_DEFAULT, blank=True, null=True, verbose_name="Пользователь", default=None)
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания заказа")
     email = models.CharField(max_length=100, verbose_name="Почта")
-    payment_on_get = models.BooleanField(default=False, verbose_name="Оплата при получении")
+    payment_method = models.CharField(default="Нет", max_length=100,verbose_name="Способ оплаты")
     is_paid = models.BooleanField(default=False, verbose_name="Оплачено")
     status = models.CharField(max_length=50, default='В обработке', verbose_name="Статус заказа")
 
@@ -48,8 +48,10 @@ class OrderItem(models.Model):
 
     objects = OrderitemQueryset.as_manager()
 
-    def products_price(self):
-        return round(self.price * self.quantity, 2)
-
     def __str__(self):
         return f"Товар {self.name} | Заказ № {self.order.pk}"
+    
+    def products_price(self):
+        if self.product.discount_percentage:
+            return round(round(self.product.price - self.product.price * self.product.discount_percentage / 100, 2) * self.quantity, 2)
+        return round(self.product.price * self.quantity, 2)

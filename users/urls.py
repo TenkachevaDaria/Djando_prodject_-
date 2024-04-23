@@ -10,4 +10,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('logout/', views.logout, name='logout'),
     path('save-payment-method/', views.save_payment_method, name='save_payment_method'),
+    path('save_payment_method_id/', views.save_payment_method_id, name='save_payment_method_id'),
 ]

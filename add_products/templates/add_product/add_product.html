@@ -12,8 +12,8 @@
             <h2 class="add_form__title"><b>Добавление нового продукта</b></h2>
             <form action="/add_product/add-product/" method="post" class="add_form_inputs" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="text" placeholder="Напишите название вашего продукта." name="name" value="Проверка" required="" id="id_name" class="add_form__input"><br>
-                <input type="number" placeholder="Напишите стоимость вашего продукта." name="price" value="7845" step="any" required="" id="id_price"  class="add_form__input">
+                <input type="text" placeholder="Напишите название вашего продукта." name="name" required="" id="id_name" class="add_form__input"><br>
+                <input type="number" placeholder="Напишите стоимость вашего продукта." name="price" step="any" required="" id="id_price"  class="add_form__input">
                 <div class="check_boxs">
                     <div>
                         <input type="radio" id="id_category_1" name="category" value="2" class="checkbox_input custom_checkbox">

@@ -36,3 +36,18 @@ document.addEventListener("DOMContentLoaded", function() {
     userProducts.addEventListener('click', openPopup);
     hidePopupButton.addEventListener('click', closePopup);
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const userProducts = document.querySelector('.user_history_bought_box');
+    const popupUserProducts = document.querySelector('.popup_user_purchase_history');
+    const hidePopupButton = popupUserProducts.querySelector('.hide_popup_user_purchase_history');
+    function openPopup() {
+        popupUserProducts.style.display = 'block';
+    }
+    function closePopup() {
+        popupUserProducts.style.display = 'none';
+    }
+    userProducts.addEventListener('click', openPopup);
+    hidePopupButton.addEventListener('click', closePopup);
+});

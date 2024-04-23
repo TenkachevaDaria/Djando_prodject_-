@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
 from goods.models import Product, Review
+from orders.models import Order, OrderItem
 from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
 from users.models import PaymentMethod
 
@@ -74,6 +75,7 @@ def profile(request):
 
     user = request.user
     products = Product.objects.filter(manufacturer=user.id)
+    buy_history = OrderItem.objects.filter(order__user_id=user.id)
     average_rating = products.aggregate(avg_rating=Avg('review__rating'))['avg_rating']
     payment_methods = PaymentMethod.objects.filter(user=user)
 
@@ -104,6 +106,7 @@ def profile(request):
         'average_rating_float': average_rating_float,
         'anti_average_rating': anti_average_rating,
         'payment_methods': payment_methods,
+        'buy_history': buy_history,
     }
 
     return render(request, 'users/user_page.html', context)

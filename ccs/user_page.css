@@ -50,7 +50,8 @@
 }
 
 .user_products,
-.user_history_bought_box {
+.user_history_bought_box,
+.user_products_liked {
     width: 280px;
     height: 140px;
     background-color: rgb(185, 222, 254);

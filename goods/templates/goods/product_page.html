@@ -8,17 +8,19 @@
 
 {% block content %}
     <div class="product_page_container">
-        <a class="link_way" href="{% url "main:index" %}">Главная</a>
-        <p class="link_way">&gt;</p>
-        <a class="link_way" href="{% url "catalog:index" %}">Товары</a>
-        <p class="link_way">&gt;</p>
-        <a class="link_way" href="">{{ product.name|truncatechars:20 }}</a>
-
-        {% if product.image %}
-            <img src="{{ product.image.url }}" alt="" class="product_page__img">
-        {% else %}      
-            <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_page__img">
-        {% endif %}
+        <div class="link_container">
+            <a class="link_way" href="{% url "main:index" %}">Главная</a>
+            <p class="link_way">&gt;</p>
+            <a class="link_way" href="{% url "catalog:index" %}">Товары</a>
+            <p class="link_way">&gt;</p>
+            <a class="link_way" href="">{{ product.name|truncatechars:20 }}</a>
+    
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="" class="product_page__img">
+            {% else %}      
+                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_page__img">
+            {% endif %}
+        </div>
 
         <div class="product">
             <h2 class="product__name">{{ product.name }}</h2>
@@ -142,9 +144,10 @@
                     {% csrf_token %}
                     <b>Добавить в корзину</b></a>
                 <a href="{% url "basket:basket_add" %}" class="btn btn_buy_now add-to-basket"
-                    data-product-id="{{ product.id }}">
+                    data-product-id="{{ product.id }}" onclick="redirectToBasket()">
                     {% csrf_token %}
-                    <b>Купить сейчас</b></a>
+                    <b>Купить сейчас</b>
+                 </a>
             </div>
             <div class="saler_info">
                 <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.username }}</p>
@@ -283,8 +286,11 @@
                 {% endif %}
             </p> 
         </div>
-        <form class="send_review_form">
-            <input type="text" placeholder="Написать отзыв" class="send_review_form__placeholder">
+        <form action="{% url "catalog:addReviews" %}" class="send_review_form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product" id="id_product" value="{{ product.id }}">
+            <input type="hidden" name="user" id="id_user" value="{{ user.id }}">
+            <input type="text" name="comment" id="id_comment" required placeholder="Написать отзыв" class="send_review_form__placeholder">
             <div class="rating-area">
                 <input type="radio" id="star-5" name="rating" value="5">
                 <label for="star-5" title="Оценка «5»"></label>
@@ -387,16 +393,10 @@
         </ul>
         <a class="btn_show_more btn">Смотреть ещё</a>
     </div>
-    
-    {% comment %} <script>
-        function addToBasketAndRedirect(productSlug) {
-            var addToBasketUrl = "{% url 'basket:basket_add' %}";
-            var redirectUrl = "{% url 'basket:shopping_basket' %}";
-    
-            fetch(addToBasketUrl)
-                .then(function(response) {
-                    window.location.href = redirectUrl;
-                });
+    <script src="{% static "js/product_page.js" %}" ></script>
+    <script>
+        function redirectToBasket() {
+            window.location.href = "{% url "basket:shopping_basket" %}";
         }
-    </script> {% endcomment %}
+    </script>  
 {% endblock %}

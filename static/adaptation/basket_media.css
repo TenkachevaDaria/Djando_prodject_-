@@ -21,6 +21,7 @@
     .item__name {
         font-size: 11px;
         margin-bottom: 0;
+        color: black;
     }
 
     .item__sort_descr,

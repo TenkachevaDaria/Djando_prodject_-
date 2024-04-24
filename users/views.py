@@ -6,8 +6,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
-from goods.models import Product, Review
-from orders.models import Order, OrderItem
+from goods.models import Product
+from orders.models import OrderItem
 from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
 from users.models import PaymentMethod
 

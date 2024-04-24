@@ -46,6 +46,7 @@
     .product__price {
         margin-top: 5px;
         font-size: 15px;
+        width: 100%;
     }
 
     .page_num {

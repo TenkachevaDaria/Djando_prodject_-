@@ -7,14 +7,13 @@ from users.models import User, PaymentMethod
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ('groups', 'user_permissions')
-    list_display = ["username", "email", "phone", "rating"]
+    list_display = ["username", "email", "phone"]
     search_fields = ["username", "email", "phone"]
 
     fields = [
-        ("username", "rating"),
+        "username",
         ("first_name", "last_name", "middle_name", "image"),
         ("email", "phone"),
-        ("primary_payment_method", "secondary_payment_method"),
         "is_staff",
         "is_superuser",
         "is_active",
@@ -23,9 +22,6 @@ class UserAdmin(admin.ModelAdmin):
     ]
 
     inlines = [BasketTabAdmin]
-
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
 
 @admin.register(PaymentMethod)
 class PaymentMethodAdmin(admin.ModelAdmin):

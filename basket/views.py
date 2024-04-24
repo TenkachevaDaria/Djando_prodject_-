@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from basket.models import Basket
-from basket.utils import get_user_basket
+from basket.utils import get_user_basket, get_user_payment
 from goods.models import Product
 from users.models import PaymentMethod
 
@@ -59,9 +59,10 @@ def basket_change(request):
     basket.save()
     updated_quantity = basket.quantity
 
+    payment_methods = get_user_payment(request)
     basket = get_user_basket(request)
     basket_items_html = render_to_string(
-        "basket/include/basket.html", {"baskets": basket}, request=request
+        "basket/include/basket.html", {"baskets": basket, "payment_methods": payment_methods}, request=request
     )
 
     response_data = {
@@ -79,9 +80,10 @@ def basket_remove(request):
     quantity = basket.quantity
     basket.delete()
 
+    payment_methods = get_user_payment(request)
     user_basket = get_user_basket(request)
     basket_items_html = render_to_string(
-        "basket/include/basket.html", {"baskets": user_basket}, request=request
+        "basket/include/basket.html", {"baskets": user_basket, "payment_methods": payment_methods}, request=request
     )
 
     response_data = {

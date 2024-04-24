@@ -4,13 +4,11 @@ from goods.models import Review
 
 # class CreateOrderForm(forms.Form):
 class AddReview(forms.ModelForm):
-
     class Meta:
         model = Review
-        fields = {
-            'rating',
-            'comment',
-        }
+        exclude = ['date_added']
 
-    comment = forms.CharField()
-    rating = forms.ChoiceField()
+    rating = forms.ChoiceField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], label='Рейтинг')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

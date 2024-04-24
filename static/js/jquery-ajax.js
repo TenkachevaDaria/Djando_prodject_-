@@ -74,8 +74,6 @@ $(document).ready(function () {
     });
 
 
-
-
     // Теперь + - количества товара 
     // Обработчик события для уменьшения значения
     $(document).on("click", ".decrement", function () {

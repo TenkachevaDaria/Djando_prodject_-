@@ -16,7 +16,7 @@ class PaymentMethod(models.Model):
     
     
     def __str__(self) -> str:
-        return f'| Пользователь - {self.user} | Банк - {self.bank} | Способ оплаты - {self.card_num} |'
+        return self.bank
 
 
 class User(AbstractUser):

@@ -79,7 +79,8 @@
                 {% csrf_token %}
                 <ul class="btn_choose_payment_list">
                     {% for payment_method in payment_methods %}
-                        <li>
+                        <li data-payment-id="{{ payment_method.id }}">
+                            {% csrf_token %}
                             {% if not user.payment_method %}
                                 {% if forloop.first %}
                                     <input type="radio" id="{{ payment_method.id }}" value="{{ payment_method.id }}" name="payment_way" class="payment_way_radio visually_hidden" checked>
@@ -94,33 +95,6 @@
                     {% endfor %}
                 </ul>
             </form>
-            <script>
-                document.querySelectorAll('input[type=radio][name=payment_way]').forEach(function(radio) {
-                    radio.addEventListener('change', function() {
-                        if (this.checked) {
-                            // Отправляем выбранный способ оплаты на сервер
-                            var selectedPaymentMethodId = this.value;
-                            var csrfToken = '{{ csrf_token }}'; // Получаем CSRF токен из шаблона
-                            var url = '/save_payment_method/'; // Путь к представлению Django
-                
-                            fetch('{% url "users:save_payment_method_id" %}', { // Используйте шаблонные теги Django для получения правильного URL
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                    'X-CSRFToken': csrfToken
-                                },
-                                body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
-                            })
-                            .then(response => {
-                                // Обработка ответа от сервера, если необходимо
-                            })
-                            .catch(error => {
-                                console.error('Ошибка:', error);
-                            });
-                        }
-                    });
-                });
-            </script>
             <a href="{% url "user:profile" %}"><button id="add_payment_button" class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button></a>
         </div>
     </div>
@@ -131,5 +105,30 @@
             <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
         </div>
         <a href="{% url "orders:create_order" %}"><button class="payment_way__btn btn">Купить</button></a>
-    </div>
-{% endif %}
+    {% endif %}
+</div>
+<script>
+    $(document).on("change", 'input[type=radio][name=payment_way]', function() {
+        if (this.checked) {
+            // Отправляем выбранный способ оплаты на сервер
+            var selectedPaymentMethodId = this.value;
+            var csrfToken = '{{ csrf_token }}'; // Получаем CSRF токен из шаблона
+            var url = '/save_payment_method/'; // Путь к представлению Django
+    
+            fetch('{% url "users:save_payment_method_id" %}', { // Используйте шаблонные теги Django для получения правильного URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrfToken
+                },
+                body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
+            })
+            .then(response => {
+                // Обработка ответа от сервера, если необходимо
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+    });
+</script>

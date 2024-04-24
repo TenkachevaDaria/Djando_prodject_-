@@ -94,7 +94,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     rating = models.FloatField(default=0.00, verbose_name='Рейтинг')
     comment = models.TextField(verbose_name='Комментарий')
-    date_added = models.DateField(verbose_name='Дата добавления')
+    date_added = models.DateField(auto_now_add=True, verbose_name='Дата добавления')
     
     
     class Meta:

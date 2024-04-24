@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" type="image/png" href="{% static "favicon/favicon.ico" %}">
     <link rel="stylesheet" href="{% static "ccs/same.css" %}">
     <link rel="stylesheet" href="{% static "ccs/header.css" %}">
     <link rel="stylesheet" href="{% static "ccs/footer.css" %}">
@@ -92,6 +93,7 @@
     <main>
         {% block content %}{% endblock %} 
     </main>
+        {% block user_page %}{% endblock  %}
     <footer>
         <div class="footer__container">
             <div class="news_leter_container">
@@ -107,7 +109,7 @@
                 <div class="contacts_inf">
                     <p class="contact_inf">+7 (343) 255-55-55</p>
                     <p class="contact_inf">prosowtwareshop@gmail.com</p>
-                    <p class="contact_inf">г. Екатеринбург, Серафимы Дерябиной 40А</p>
+                    <p class="contact_inf">ул. Гагарина, Екатеринбург, Свердловская обл.</p>
                 </div>
             </div>
             <div class="helper_container">
@@ -153,7 +155,6 @@
         <div class="decor_div2"></div>
     </footer>
     <div class="decor_div1"></div>
-    
     <script src="{% static "js/jquery/jquery-3.7.0.min.js" %}"></script>
     <script src="{% static "js/jquery-ajax.js" %}"></script>
     <script src="{% static "js/search_product.js" %}"></script>

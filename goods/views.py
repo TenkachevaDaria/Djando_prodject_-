@@ -1,9 +1,12 @@
 from django.core.paginator import Paginator
 from django.db.models import Avg, Max, Min
-from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from goods.forms import AddReview
 from goods.utils import q_search
 from goods.models import Categories, Product, Subscriptions, Review
+from users.models import User
 
 # Create your views here.
 def catalog(request):
@@ -63,7 +66,7 @@ def catalog(request):
 
 def product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
-    reviews = Review.objects.filter(product=product)
+    reviews = Review.objects.filter(product=product).order_by('-date_added')
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
 
@@ -84,6 +87,22 @@ def product(request, product_slug):
         'average_rating_float': average_rating_float,
         'anti_average_rating': anti_average_rating,
         'review_ratings': review_ratings,
+        'total_reviews_count': reviews.count()
     }
 
     return render(request, 'goods/product_page.html', context)
+
+
+@login_required
+def addReviews(request):
+    if request.method == 'POST':
+        form = AddReview(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.save()
+            product_slug = form.cleaned_data['product'].slug
+            redirect_url = reverse('catalog:product', kwargs={'product_slug': product_slug})
+            return redirect(redirect_url)
+    else:
+        form = AddReview()
+    return render(request, 'goods/product_page.html', {'form': form})

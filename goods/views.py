@@ -66,9 +66,14 @@ def catalog(request):
 
 def product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
-    reviews = Review.objects.filter(product=product).order_by('-date_added')
+    reviews = Review.objects.filter(product=product)
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
+
+    order_by = request.GET.get('order_by', None)
+
+    if order_by and order_by != "default":
+        reviews = reviews.order_by(order_by)
 
     if average_rating is not None:
         average_rating_int = int(average_rating) or 0

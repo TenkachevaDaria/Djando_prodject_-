@@ -306,10 +306,34 @@
         </form>
         <div class="sort_items">
             <p class="text_sort"><b>Сортировать по:</b></p>
-            <form action="">
-                <a class="sort_date" type="submit">Дата</a>
-                <a class="rating" type="submit">Оценка</a>
+            <form id="order_by">
+
+                {% if not request.GET.order_by or request.GET.order_by == 'default' %}
+                    <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
+                    <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                {% else %}
+                    {% if request.GET.order_by %}
+
+                        {% if request.GET.order_by == '-rating' %}
+                            <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дата</button>
+                            <button type="submit" id="" name="order_by" value="rating" class="rating">Оценка</button>
+                        {% elif request.GET.order_by == 'rating' %}
+                            <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дата</button>
+                            <button type="submit" id="" name="order_by" value="default" class="rating">Оценка</button>
+
+                        {% elif request.GET.order_by == '-date_added' %}
+                            <button type="submit" id="" name="order_by" value="default" class="sort_date">Дата</button>
+                            <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                        {% elif request.GET.order_by == 'date_added' %}
+                            <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
+                            <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
             </form>
+            
         </div>
         <ul class="users_list_reviews">
             {% for review in reviews %}
@@ -398,5 +422,5 @@
         function redirectToBasket() {
             window.location.href = "{% url "basket:shopping_basket" %}";
         }
-    </script>  
+    </script>
 {% endblock %}

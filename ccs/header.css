@@ -4,6 +4,7 @@ header{
     margin: 0 auto;
     display: flex;
     align-items: center;
+    align-self: center;
     gap: 200px;
     padding: 30px 40px 60px 40px;
     z-index: 2;

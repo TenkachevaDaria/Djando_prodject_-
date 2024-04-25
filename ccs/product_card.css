@@ -1,6 +1,6 @@
 .products_container {
     margin: 0 auto;
-    max-width: 1500px;
+    max-width: 1400px;
     position: relative;
     min-height: 790px;
 }
@@ -40,4 +40,142 @@
     top: 87px;
     background-color: rgb(114, 78, 78);
     z-index: 1;
+}
+
+.wrapper {
+	height: 660px;
+  margin: 0 auto;
+	position: relative;
+	width: 1400px;
+}
+
+.slider {
+	background-color: inherit;
+	height: 660px;
+	position: relative;
+	width: inherit;
+}
+
+.wrapper > input {
+	display: none;
+}
+
+.slides {
+	height: inherit;
+	position: absolute;
+	width: inherit;
+}
+
+/* .slide1 { 
+  border: 1px solid red;
+}
+.slide2 { 
+  border: 1px solid blue;
+}
+.slide3 { 
+  border: 1px solid green;
+} */
+
+.wrapper .controls {
+	left: 50%;
+	margin-left: -98px;
+	position: absolute;
+}
+
+.wrapper label:after {
+  background-color: rgb(27, 157, 243, 0.3);
+	content: " ";
+	display: block;
+	height: 18px;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 18px;
+	border-radius: 50%;
+}
+
+.wrapper label {
+	cursor: pointer;
+	display: inline-block;
+	height: 18px;
+	margin: 30px 0px 0 30px;
+	position: relative;
+	width: 18px;
+	border-radius: 50%;
+	/* transition: background ease-in-out .5s; */
+}
+
+.wrapper label:hover, 
+#slide1:checked ~ .controls label:nth-of-type(1),
+#slide2:checked ~ .controls label:nth-of-type(2),
+#slide3:checked ~ .controls label:nth-of-type(3) {
+	background: rgb(27, 157, 243);
+}
+
+.slides {
+	height: inherit;
+	opacity: 0;
+	position: absolute;
+	width: inherit;
+	z-index: 0;
+	transition: transform ease-in-out .5s, opacity ease-in-out .5s;
+}
+
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3 {
+	opacity: 1;
+	z-index: 1;
+}
+
+.title_container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 45%;
+}
+
+.slider_img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: inherit;
+    background-color: inherit;
+}
+
+.slider_price_container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.slider_title {
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
+    color: rgb(28, 37, 65);
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.slider_popular_product {
+    font-size: 80px;
+    color: rgb(236, 246, 255);
+}
+
+.normal_price {
+    font-size: 50px;
+    color: rgb(28, 37, 65, 0.7);
+    text-decoration: line-through;
+    padding: 0;
+    margin: 0;
+}
+
+.discounted_price {
+    font-size: 90px;
+    color: rgb(0, 130, 240);
+    font-weight: 900;
+    padding: 0;
+    margin: 0;
 }

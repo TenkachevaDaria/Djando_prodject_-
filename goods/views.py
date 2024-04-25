@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from goods.forms import AddReview
 from goods.utils import q_search
-from goods.models import Categories, Product, Subscriptions, Review
+from goods.models import Categories, FavoriteProduct, Product, Subscriptions, Review
 from users.models import User
 
 # Create your views here.
@@ -45,8 +45,8 @@ def catalog(request):
     if subscription_filter:
         products = products.filter(subscription=subscription_filter)
 
-    if in_stock_filter == 'true':
-        products = products.filter(in_stock=True)
+    if in_stock_filter and in_stock_filter != "default":
+        products = products.filter(in_stock=in_stock_filter)
 
     if category_filter:
         products = products.filter(category=category_filter)
@@ -70,6 +70,8 @@ def product(request, product_slug):
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
 
+    fav_prod = FavoriteProduct.objects.filter(product=product.id, user=request.user).exists()
+
     order_by = request.GET.get('order_by', None)
 
     if order_by and order_by != "default":
@@ -87,6 +89,7 @@ def product(request, product_slug):
     context = {
         'product': product,
         'reviews': reviews,
+        'fav_prod': fav_prod,
         'average_rating': average_rating,
         'average_rating_int': average_rating_int,
         'average_rating_float': average_rating_float,

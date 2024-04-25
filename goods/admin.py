@@ -1,15 +1,18 @@
 from django.contrib import admin
-from django.forms import DateInput
-from django.db import models
 # Register your models here.
 from goods.models import (
     Categories,
+    FavoriteProduct,
     Product,
     Subscriptions,
     Review,
 )
 
 # admin.site.register(PaymentMethod)
+class FavoriteProductAdmin(admin.TabularInline):
+    model = FavoriteProduct
+    readonly_fields = ["product"]
+    extra = 1
 
 
 @admin.register(Categories)
@@ -19,14 +22,14 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "category", "subscription", "manufacturer", "price", "discount_percentage", "average_rating"]
+    list_display = ["name", "in_stock", "category", "subscription", "manufacturer", "price", "discount_percentage", "average_rating"]
     search_fields = ["name", "manufacturer"]
     prepopulated_fields = {"slug": ("name", "category")}
-    list_filter = ["category", "subscription", "manufacturer"]
-    list_editable = ["discount_percentage"]
+    list_filter = ["category", "in_stock", "subscription", "manufacturer"]
+    list_editable = ["in_stock", "discount_percentage"]
     fields = [
         ("name", "manufacturer", "average_rating"),
-        "slug",
+        ("slug", "in_stock"),
         "description",
         "peculiarities",
         ("category", "subscription", "image"),

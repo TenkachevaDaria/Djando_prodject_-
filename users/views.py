@@ -1,18 +1,19 @@
+
+import re
 from django.contrib import auth
 from django.db.models import Avg
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
-from goods.models import Product
+from goods.models import FavoriteProduct, Product
 from orders.models import OrderItem
 from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
-from users.models import PaymentMethod
+from users.models import PaymentMethod, User
 
 # Create your views here.
-
 def LogIn(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
@@ -42,6 +43,7 @@ def LogIn(request):
     }
     return render(request, 'users/log_in.html', context)
 
+
 def registration(request):
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
@@ -65,10 +67,12 @@ def registration(request):
     }
     return render(request, 'users/registration.html', context)
 
+
 @login_required
 def logout(request):
     auth.logout(request)
     return redirect(reverse('main:index'))
+
 
 @login_required
 def profile(request):
@@ -78,6 +82,9 @@ def profile(request):
     buy_history = OrderItem.objects.filter(order__user_id=user.id)
     average_rating = products.aggregate(avg_rating=Avg('review__rating'))['avg_rating']
     payment_methods = PaymentMethod.objects.filter(user=user)
+
+    fav_prod = FavoriteProduct.objects.filter(user=user)
+
 
     if average_rating is not None:
         average_rating_int = int(average_rating) or 0
@@ -101,6 +108,7 @@ def profile(request):
     context = {
         'form': form,
         'products': products,
+        'fav_prod': fav_prod,
         'average_rating': average_rating,
         'average_rating_int': average_rating_int,
         'average_rating_float': average_rating_float,
@@ -110,6 +118,7 @@ def profile(request):
     }
 
     return render(request, 'users/user_page.html', context)
+
 
 @login_required
 def save_payment_method(request):
@@ -147,3 +156,25 @@ def save_payment_method_id(request):
             return JsonResponse({'error': 'Способ оплаты не найден'}, status=404)
 
     return JsonResponse({'error': 'Недопустимый запрос'}, status=400)
+
+
+@login_required
+def add_favorite_product(request):
+    product_slug = request.POST.get("product_slug")
+    product = Product.objects.get(slug=product_slug)
+    if request.user.is_authenticated:
+        FavoriteProduct.objects.create(user=request.user, product=product)
+        redirect_url = reverse('catalog:product', kwargs={'product_slug': product_slug})
+        return redirect(redirect_url)
+    
+
+@login_required
+def remove_favorite_product(request):
+    if request.method == 'POST':
+        product_slug = request.POST.get("product_slug")
+        product = Product.objects.get(slug=product_slug)
+        favorite_product = FavoriteProduct.objects.filter(user=request.user, product=product)
+        if favorite_product.exists():
+            favorite_product.delete()
+            redirect_url = reverse('catalog:product', kwargs={'product_slug': product_slug})
+            return redirect(redirect_url)

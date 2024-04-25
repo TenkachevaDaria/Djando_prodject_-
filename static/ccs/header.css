@@ -138,6 +138,7 @@ header{
     flex-direction: column;
     top: 5px;
     padding: 3px;
+    cursor: pointer;
 }
 
 .account_link_title,

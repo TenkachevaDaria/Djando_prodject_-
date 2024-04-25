@@ -353,8 +353,26 @@
 
                 <form id="in_stock_filter" action="{% url "catalog:index" %}" method='get'>
                     <div class="in_stock_box">
-                        <input type="submit" id="stock_checkbox" name="in_stock" value="true" class="custom_checkbox">
-                        <label for="stock_checkbox" class="stock_label">В наличии</label>
+                        {% if not request.GET.in_stock  %}
+                            <button id="id_in_stock" name="in_stock" value="Да" class="filter_btn">
+                                {% if request.GET.in_stock == "Да" %}
+                                    <input type="checkbox" class="custom_checkbox" checked>
+                                {% else %}
+                                    <input type="checkbox" class="custom_checkbox">
+                                {% endif %}
+
+                                <label for="stock_checkbox" class="stock_label">В наличии</label>
+                            </button>
+                        {% else %}
+                            <button id="id_in_stock" name="in_stock" value="default" class="filter_btn">
+                                {% if request.GET.in_stock == "Да" %}
+                                    <input type="checkbox" class="custom_checkbox" checked>
+                                {% else %}
+                                    <input type="checkbox" class="custom_checkbox">
+                                {% endif %}
+                                <label for="stock_checkbox" class="stock_label">В наличии</label>
+                            </button>
+                        {% endif %}
                     </div>
                 </form>
 

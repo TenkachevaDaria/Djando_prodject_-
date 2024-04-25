@@ -1,9 +1,17 @@
 from django.contrib import admin
 
 from basket.admin import BasketTabAdmin
+from goods.admin import FavoriteProductAdmin
 from users.models import User, PaymentMethod
 
 # Register your models here.
+class PaymentMethodAdminTab(admin.TabularInline):
+    model = PaymentMethod
+    fields = ["bank", "card_num"]
+    readonly_fields = ["bank", "card_num"]
+    extra = 1
+
+
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ('groups', 'user_permissions')
@@ -20,10 +28,5 @@ class UserAdmin(admin.ModelAdmin):
         ("groups", "user_permissions"),
         ("date_joined", "last_login"),
     ]
-
-    inlines = [BasketTabAdmin]
-
-@admin.register(PaymentMethod)
-class PaymentMethodAdmin(admin.ModelAdmin):
-    list_display = ["user", "bank", "card_num"]
-    search_fields = ["user"]
+    # inlines = [FavoriteProductbAdmin]
+    inlines = [PaymentMethodAdminTab, FavoriteProductAdmin, BasketTabAdmin]

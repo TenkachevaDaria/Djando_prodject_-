@@ -35,6 +35,14 @@ h3 {
   border-radius: 20px;
 }
 
+.btn-reset {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
 .btn:focus {
   opacity: 50%;
 }

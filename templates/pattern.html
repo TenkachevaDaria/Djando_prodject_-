@@ -25,6 +25,7 @@
                 <li class="nav_helper__link"><a href="#contact" class="nav__link">Контакты</a></li>
 
                 {% if not user.is_authenticated %}
+                    <li class="nav_helper__link"><a href="{% url "user:LogIn" %}" class="nav__link">Разместите свой продукт</a></li>
                 {% else %}    
                     <li class="nav_helper__link"><a href="{% url "add_products:add_products" %}" class="nav__link">Разместите свой продукт</a></li>
                 {% endif %}
@@ -65,7 +66,17 @@
                 <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
                 
                 {% if not user.is_authenticated %}
-                    <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li>
+                    <li class="nav_links__link">
+                        <details class="account_link">
+                            <summary class="nav__link account_link_title">   
+                                Войти
+                            </summary>
+                            <a href="{% url "user:LogIn" %}" class="nav__link account_link_destination">Войти</a>
+                            <a href="{% url "user:registration" %}" class="nav__link account_link_destination">Зарегистрироваться</a>
+                            <div class="link_decor_div"></div>
+                        </details>
+                    </li>
+                    {% comment %} <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li> {% endcomment %}
                 {% else %}
                     <li class="nav_links__link">
                         <details class="account_link">

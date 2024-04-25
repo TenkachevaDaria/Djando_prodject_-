@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
+from goods.models import FavoriteProduct
 from users.models import PaymentMethod, User
 
 class UserLoginForm(AuthenticationForm):

@@ -45,6 +45,7 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     subscription = models.ForeignKey(to=Subscriptions, on_delete=models.CASCADE, verbose_name='Период подписки', blank=True, null=True)
     average_rating = models.FloatField(default=0.00, verbose_name='Средний рейтинг')
+    in_stock = models.CharField(default="Да", max_length=3, null=True, blank=True, verbose_name='Наличие товара')
     media_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип носителя')
     delivery_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип поставки')
     purpose = models.CharField(max_length=100, null=True, blank=True, verbose_name='Назначение')
@@ -79,7 +80,18 @@ class Product(models.Model):
     def discount_price(self):
         return round(self.price - self.price * self.discount_percentage / 100, 2)
         
+
+class FavoriteProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Избранный продукт')
+
+    class Meta:
+        verbose_name = 'Избранный продукт'
+        verbose_name_plural = 'Избранные продукты'
     
+    def __str__(self) -> str:
+        return f'{self.product.name}'
+
 
 class Features(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='features', verbose_name='Продукт')

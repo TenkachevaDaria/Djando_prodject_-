@@ -70,8 +70,8 @@ def product(request, product_slug):
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
     review_ratings = [5 - review.rating for review in reviews]
 
-    fav_prod = FavoriteProduct.objects.filter(product=product.id, user=request.user).exists()
-
+    if request.user.is_authenticated:
+        fav_prod = FavoriteProduct.objects.filter(product=product.id, user=request.user).exists()
     order_by = request.GET.get('order_by', None)
 
     if order_by and order_by != "default":
@@ -86,17 +86,29 @@ def product(request, product_slug):
         average_rating_float = None
         anti_average_rating = None
 
-    context = {
-        'product': product,
-        'reviews': reviews,
-        'fav_prod': fav_prod,
-        'average_rating': average_rating,
-        'average_rating_int': average_rating_int,
-        'average_rating_float': average_rating_float,
-        'anti_average_rating': anti_average_rating,
-        'review_ratings': review_ratings,
-        'total_reviews_count': reviews.count()
-    }
+    if request.user.is_authenticated:
+        context = {
+            'product': product,
+            'reviews': reviews,
+            'fav_prod': fav_prod,
+            'average_rating': average_rating,
+            'average_rating_int': average_rating_int,
+            'average_rating_float': average_rating_float,
+            'anti_average_rating': anti_average_rating,
+            'review_ratings': review_ratings,
+            'total_reviews_count': reviews.count()
+        }
+    else:
+        context = {
+            'product': product,
+            'reviews': reviews,
+            'average_rating': average_rating,
+            'average_rating_int': average_rating_int,
+            'average_rating_float': average_rating_float,
+            'anti_average_rating': anti_average_rating,
+            'review_ratings': review_ratings,
+            'total_reviews_count': reviews.count()
+        }
 
     return render(request, 'goods/product_page.html', context)
 

@@ -107,30 +107,39 @@
                 {% endif %}
 
                 <ul class="icons_buttons">
-                    <li class="icon">
-                        {% if not fav_prod %}
-                            <form action="{% url 'users:add_favorite_product' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_slug" value="{{ product.slug }}">
-                                <button type="submit" class="btn-reset">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34">
-                                        <path fill="none" stroke="#000000" stroke-width="2"
-                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.03C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                                    </svg>
-                                </button>
-                            </form>
-                        {% else %}
-                            <form action="{% url 'users:remove_favorite_product' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_slug" value="{{ product.slug }}">
-                                <button type="submit" class="btn-reset">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34">
-                                        <path fill="red" stroke="#000000" stroke-width="2" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.03C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                                    </svg>
-                                </button>
-                            </form>
-                        {% endif %}
-                    </li>
+                    {% if not user.is_authenticated %}
+                        <li class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34">
+                                <path fill="none" stroke="#000000" stroke-width="2"
+                                    d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.03C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                            </svg>
+                        </li>
+                    {% else %}
+                        <li class="icon">
+                            {% if not fav_prod %}
+                                <form action="{% url 'users:add_favorite_product' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_slug" value="{{ product.slug }}">
+                                    <button type="submit" class="btn-reset">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34">
+                                            <path fill="none" stroke="#000000" stroke-width="2"
+                                                d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.03C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            {% else %}
+                                <form action="{% url 'users:remove_favorite_product' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_slug" value="{{ product.slug }}">
+                                    <button type="submit" class="btn-reset">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34">
+                                            <path fill="red" stroke="#000000" stroke-width="2" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.42 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.03C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.42 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </li>
+                    {% endif %}
 
                     {% comment %} поделиться {% endcomment %}
                     <li class="icon">
@@ -203,7 +212,7 @@
                     </details>
                 {% endif %}
 
-                {% if specifications %}
+                {% if product.subscription or product.media_type or product.delivery_type or product.purpose or product.bitness %}
                     <details class="descr_from_saler">
                         <summary class="product__saler_descr">
                             <p class="technical_skills_title"><b>Технические особенности</b></p>
@@ -213,13 +222,22 @@
                             </div>
                         </summary>
                         <ul class="list_technical_skills">
-                            {% for specification in specifications %}
-                                <li>Тип носителя: {{ specification.media_type }}</li>
-                                <li>Тип поставки: {{ specification.delivery_type }}</li>
-                                <li>Назначение: {{ specification.purpose }}</li>
-                                <li>Срок действия: {{ specification.validity_period }}</li>
-                                <li>Разрядность: {{ specification.bitness }}</li>
-                            {% endfor %}
+
+                            {% if product.media_type %}
+                                <li>Тип носителя: {{ product.media_type }}</li>
+                            {% endif %}
+                            {% if product.delivery_type %}
+                                <li>Тип поставки: {{ product.delivery_type }}</li>
+                            {% endif %}
+                            {% if product.purpose %}
+                                <li>Назначение: {{ product.purpose }}</li>
+                            {% endif %}
+                            {% if product.subscription %}
+                                <li>Срок действия: {{ product.subscription }}</li>
+                            {% endif %}
+                            {% if product.bitness %}
+                                <li>Разрядность: {{ product.bitness }}</li>
+                            {% endif %}
                         </ul>
                     </details>
                 {% endif %}

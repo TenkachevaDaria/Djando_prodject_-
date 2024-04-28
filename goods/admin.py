@@ -33,6 +33,7 @@ class ProductAdmin(admin.ModelAdmin):
         "description",
         "peculiarities",
         ("category", "subscription", "image"),
+        ('media_type', 'delivery_type', 'purpose', 'bitness'),
         "price",
     ]
 

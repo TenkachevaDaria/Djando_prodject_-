@@ -1,8 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from goods.models import Product
 from .models import *
 
 # Create your views here.
 def index(request):
     questions = Questions.objects.all()
-    return render(request, 'main/index.html', {'questions': questions})
+    products = Product.objects.all()[:3]
+
+    context = {
+        'questions': questions,
+        'products': products
+    }
+
+    return render(request, 'main/index.html', context)

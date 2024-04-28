@@ -85,6 +85,9 @@ def profile(request):
 
     fav_prod = FavoriteProduct.objects.filter(user=user)
 
+    products_his = Product.objects.filter(manufacturer=user.id)[:4]
+    buy_his = OrderItem.objects.filter(order__user_id=user.id)[:4]
+    fav_his = FavoriteProduct.objects.filter(user=user)[:4]
 
     if average_rating is not None:
         average_rating_int = int(average_rating) or 0
@@ -107,8 +110,11 @@ def profile(request):
 
     context = {
         'form': form,
+        'buy_his': buy_his,
+        'fav_his': fav_his,
         'products': products,
         'fav_prod': fav_prod,
+        'products_his': products_his,
         'average_rating': average_rating,
         'average_rating_int': average_rating_int,
         'average_rating_float': average_rating_float,

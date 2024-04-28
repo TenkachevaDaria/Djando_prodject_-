@@ -59,7 +59,7 @@
                             {% if not products %}
                                 <p>Товаров нет</p>
                             {% endif %}
-                            {% for product in products %}
+                            {% for product in products_his %}
                                 {% if product.image %}
                                     <li class="user_product"><img src="{{ product.image.url }}" alt="" class="user_product__img"></li>
                                 {% else %}
@@ -74,8 +74,12 @@
                 <div class="user_products_liked">
                     <div class="imgs_container">
                         <ul class="user_products__list">
-                            {% for favorite_prod in fav_prod %}
-                                <li class="user_product"><img src="{{ favorite_prod.product.image.url }}" alt="" class="user_product__img"></li>
+                            {% for favorite_prod in fav_his %}
+                                {% if favorite_prod.product.image %}
+                                    <li class="user_product"><img src="{{ favorite_prod.product.image.url }}" alt="" class="user_product__img"></li>
+                                {% else %}
+                                    <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
+                                {% endif %}
                             {% endfor %}
                             {% comment %} <li class="user_product"><img src="" alt="" class="user_product__img"></li>
                             <li class="user_product"><img src="" alt="" class="user_product__img"></li>
@@ -223,7 +227,7 @@
                             {% if not buy_history %}
                                 Покупок небыло
                             {% endif %}
-                            {% for product_his in buy_history %}
+                            {% for product_his in buy_his %}
                                 {% if product_his.product.image %}
                                     <li class="user_product"><img src="{{ product_his.product.image.url }}" alt="" class="user_product__img"></li>
                                 {% else %}

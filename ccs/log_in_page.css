@@ -36,8 +36,7 @@
 }
 
 .btn_send_database {
-    min-width: 660px;
-    padding: 20px 270px;
+    padding: 20px 280px;
     background-color: rgb(21, 106, 199);
     color: white;
     font-size: 20px;
@@ -53,7 +52,7 @@
 }
 
 .decor_div1 {
-    height: 13%;
+    height: 150px;
 }
 
 .decor_div2 {
@@ -63,4 +62,8 @@
 
 header {
     gap: 500px;
+}
+
+main {
+    margin-top: 50px;
 }

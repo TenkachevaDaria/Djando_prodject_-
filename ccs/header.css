@@ -79,7 +79,7 @@ header{
     top: 20px;
     position: absolute;
     min-width: 240px;
-    background-color: rgba(185, 222, 254, 0.9);
+    background-color: rgba(185, 222, 254);
     z-index: 2;
     display: none;
     border-radius: 0 0 20px 20px;

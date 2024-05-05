@@ -1,1 +1,0 @@
-[{"model": "goods.specification", "pk": 1, "fields": {"product": 4, "media_type": "Электронный ключ", "delivery_type": "Электронный ключ лицензии", "purpose": "Электронный ключ лицензии", "validity_period": "Бессрочная", "bitness": "x32/x64"}}]

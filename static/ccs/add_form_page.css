@@ -30,6 +30,19 @@
     border-radius: 20px;
 }
 
+.custom-file-upload {
+    position: relative;
+    display: inline-block;
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
 .check_boxs_label {
     font-size: 20px;
 }

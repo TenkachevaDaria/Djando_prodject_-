@@ -64,32 +64,23 @@
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
                 <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                
-                {% if not user.is_authenticated %}
-                    <li class="nav_links__link">
-                        <details class="account_link">
-                            <summary class="nav__link account_link_title">   
-                                Войти
-                            </summary>
-                            <a href="{% url "user:LogIn" %}" class="nav__link account_link_destination">Войти</a>
-                            <a href="{% url "user:registration" %}" class="nav__link account_link_destination">Зарегистрироваться</a>
-                            <div class="link_decor_div"></div>
-                        </details>
-                    </li>
                     {% comment %} <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li> {% endcomment %}
-                {% else %}
-                    <li class="nav_links__link">
-                        <details class="account_link">
-                            <summary class="nav__link account_link_title">   
-                                Аккаунт
-                            </summary>
+                
+                <li class="nav_links__link">
+                    <details class="account_link">
+                        <summary class="nav__link account_link_title">   
+                            Аккаунт
+                        </summary>
+                        {% if not user.is_authenticated %}
+                            <a href="{% url "user:LogIn" %}" class="nav__link account_link_destination">Войти</a>
+                            <a href="{% url "user:registration" %}" class="nav__link account_link_destination">Создать</a>
+                        {% else %}
                             <a href="{% url "user:profile" %}" class="nav__link account_link_destination">Аккаунт</a>
                             <button class="account_btn_exit btn"><a href="{% url "user:logout" %}">Выйти</a></button>
-                            <div class="link_decor_div"></div>
-                        </details>
-                    </li>
-                {% endif %}
-
+                        {% endif %}
+                        <div class="link_decor_div"></div>
+                    </details>
+                </li>
             </ul>
         </nav>
         <div class="decor_div3"></div>
@@ -120,7 +111,7 @@
                 <div class="contacts_inf">
                     <p class="contact_inf">+7 (343) 255-55-55</p>
                     <p class="contact_inf">prosowtwareshop@gmail.com</p>
-                    <p class="contact_inf">ул. Гагарина, Екатеринбург, Свердловская обл.</p>
+                    <p class="contact_inf">г. Екатеринбург, Серафимы Дерябиной 40А</p>
                 </div>
             </div>
             <div class="helper_container">

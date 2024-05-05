@@ -35,14 +35,27 @@
 }
 
 .btn_send_reginfo {
-    position: absolute;
-    bottom: 30px;
-    padding: 20px 180px;
-    width: 640px;
+    padding: 20px 190px;
     background-color: rgb(21, 106, 199);
     color: white;
     border-radius: 20px;
     font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.form_btn_container {
+    position: absolute;
+    bottom: 30px;
+}
+
+.another_way_submit {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.another_way_submit a{
+    text-decoration: none;
+    color: rgb(0, 130, 240);
 }
 
 .registration_page_img {
@@ -52,10 +65,14 @@
 }
 
 .decor_div1 {
-    height: 13%;
+    height: 150px;
 }
 
 .decor_div2 {
     height: 100%;
     z-index: 0;
+}
+
+main {
+    margin-top: 50px;
 }

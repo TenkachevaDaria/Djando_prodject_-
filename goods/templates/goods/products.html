@@ -201,7 +201,7 @@
                                 {% endif %}
                                 
                                 {% if request.GET.order_by %}
-                                    {% if request.GET.order_by == 'popularity_checkbox' %}
+                                    {% if request.GET.order_by == '-popularity' %}
                                         По популярности
                                     {% elif request.GET.order_by == 'price' %}
                                         Сначала дешёвые
@@ -224,9 +224,9 @@
                             <ul class="summary_filters">
 
                                 <li class="summary_filter">
-                                    <button name='order_by' id="Checkbox1" value="popularity_checkbox" class="filter_btn">
+                                    <button name='order_by' id="Checkbox1" value="-popularity" class="filter_btn">
 
-                                        {% if request.GET.order_by == 'popularity_checkbox' %}
+                                        {% if request.GET.order_by == 'popularity' %}
                                             <input type="checkbox" class="custom_checkbox" checked>
                                         {% else %}
                                             <input type="checkbox" class="custom_checkbox">
@@ -425,7 +425,7 @@
                                     <p class="popular_sale"></p>
                                 {% endif %}
     
-                                <p class="product__name shadow_element">{{ product.name|truncatechars:30 }}</p>
+                                <p class="product__name shadow_element">{{ product.name|truncatechars:24 }}</p>
     
                                 {% if product.discount_percentage %}
                                     <p class="product__price shadow_element">{{ product.discount_price }} ₽</p>

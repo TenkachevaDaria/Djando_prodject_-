@@ -50,6 +50,7 @@ class Product(models.Model):
     delivery_type = models.CharField(max_length=100, null=True, blank=True, verbose_name='Тип поставки')
     purpose = models.CharField(max_length=100, null=True, blank=True, verbose_name='Назначение')
     bitness = models.CharField(max_length=20, null=True, blank=True, verbose_name='Разрядность')
+    popularity = models.IntegerField(default=0, verbose_name='Количество покупок')
 
     class Meta:
         db_table = 'product'
@@ -106,7 +107,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     rating = models.FloatField(default=0.00, verbose_name='Рейтинг')
     comment = models.TextField(verbose_name='Комментарий')
-    date_added = models.DateField(auto_now_add=True, verbose_name='Дата добавления')
+    date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     
     
     class Meta:

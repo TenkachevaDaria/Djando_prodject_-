@@ -23,6 +23,10 @@ header{
     position: relative;
 }
 
+.add_prod_link {
+    color: black;
+}
+
 .nav_helper__link:last-child .nav__link {
     color: blue;
 }

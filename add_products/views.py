@@ -1,12 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from add_products.forms import AddProductForm
-import logging
 from goods.models import Subscriptions
 from goods.views import Categories
 
-
-logger = logging.getLogger(__name__)
 
 # Create your views here.
 @login_required
@@ -26,6 +23,7 @@ def AddProduct(request):
         form = AddProductForm()
 
     context = {
+        'title': 'Добавление нового ПО на ProSoftware - Добавьте новый продукт в наш каталог и расширьте ассортимент',
         'form': form,
         'categories': categories,
         'subscriptions': subscriptions

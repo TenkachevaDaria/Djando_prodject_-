@@ -108,27 +108,42 @@
     {% endif %}
 </div>
 <script>
-    $(document).on("change", 'input[type=radio][name=payment_way]', function() {
-        if (this.checked) {
-            // Отправляем выбранный способ оплаты на сервер
-            var selectedPaymentMethodId = this.value;
-            var csrfToken = '{{ csrf_token }}'; // Получаем CSRF токен из шаблона
-            var url = '/save_payment_method/'; // Путь к представлению Django
-    
-            fetch('{% url "users:save_payment_method_id" %}', { // Используйте шаблонные теги Django для получения правильного URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': csrfToken
-                },
-                body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
-            })
-            .then(response => {
-                // Обработка ответа от сервера, если необходимо
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
+    document.addEventListener("DOMContentLoaded", function() {
+        var paymentWayRadios = document.querySelectorAll('input[type=radio][name=payment_way]');
+        paymentWayRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    var selectedPaymentMethodId = this.value;
+                    var csrfToken = '{{ csrf_token }}';
+                    var url = '/save_payment_method/';
+
+                    fetch('{% url "users:save_payment_method_id" %}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
+                    })
+                }
             });
-        }
+        });
+
+        $(document).on("change", 'input[type=radio][name=payment_way]', function() {
+            if (this.checked) {
+                var selectedPaymentMethodId = this.value;
+                var csrfToken = '{{ csrf_token }}';
+                var url = '/save_payment_method/';
+
+                fetch('{% url "users:save_payment_method_id" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: 'payment_method=' + encodeURIComponent(selectedPaymentMethodId)
+                })
+            }
+        });
     });
 </script>

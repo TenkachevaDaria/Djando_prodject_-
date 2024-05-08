@@ -55,6 +55,7 @@ def catalog(request):
     current_page = paginator.page(page)
 
     context = {
+        'title': 'Каталог ПО на сайте  ProSoftware - Исследуйте наш широкий ассортимент программных продуктов',
         'categories': categories,
         'subscriptions': subscriptions,
         'products': current_page,
@@ -68,7 +69,6 @@ def product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
     reviews = Review.objects.filter(product=product)
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
-    review_ratings = [5 - review.rating for review in reviews]
 
     if request.user.is_authenticated:
         fav_prod = FavoriteProduct.objects.filter(product=product.id, user=request.user).exists()
@@ -88,6 +88,7 @@ def product(request, product_slug):
 
     if request.user.is_authenticated:
         context = {
+            'title': '- Узнайте больше о продукте и его возможностях',
             'product': product,
             'reviews': reviews,
             'fav_prod': fav_prod,
@@ -95,18 +96,17 @@ def product(request, product_slug):
             'average_rating_int': average_rating_int,
             'average_rating_float': average_rating_float,
             'anti_average_rating': anti_average_rating,
-            'review_ratings': review_ratings,
             'total_reviews_count': reviews.count()
         }
     else:
         context = {
+            'title': '- Узнайте больше о продукте и его возможностях',
             'product': product,
             'reviews': reviews,
             'average_rating': average_rating,
             'average_rating_int': average_rating_int,
             'average_rating_float': average_rating_float,
             'anti_average_rating': anti_average_rating,
-            'review_ratings': review_ratings,
             'total_reviews_count': reviews.count()
         }
 

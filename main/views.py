@@ -10,6 +10,7 @@ def index(request):
     products = Product.objects.all()[:3]
 
     context = {
+        'title': 'Интернет-магазин ProSoftware - Добро пожаловать в мир высококачественного программного обеспечения',
         'questions': questions,
         'products': products
     }

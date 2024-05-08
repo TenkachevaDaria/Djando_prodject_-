@@ -22,7 +22,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "in_stock", "category", "subscription", "manufacturer", "price", "discount_percentage", "average_rating"]
+    list_display = ["name", "in_stock", "category", "subscription", "manufacturer", "price", "discount_percentage", "popularity", "average_rating"]
     search_fields = ["name", "manufacturer"]
     prepopulated_fields = {"slug": ("name", "category")}
     list_filter = ["category", "in_stock", "subscription", "manufacturer"]
@@ -34,7 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
         "peculiarities",
         ("category", "subscription", "image"),
         ('media_type', 'delivery_type', 'purpose', 'bitness'),
-        "price",
+        ("price", "popularity"),
     ]
 
 

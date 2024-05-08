@@ -3,15 +3,15 @@ import re
 from django.contrib import auth
 from django.db.models import Avg
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
-from goods.models import FavoriteProduct, Product
+from goods.models import FavoriteProduct, Product, Review
 from orders.models import OrderItem
 from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
-from users.models import PaymentMethod, User
+from users.models import PaymentMethod
 
 # Create your views here.
 def LogIn(request):
@@ -39,6 +39,7 @@ def LogIn(request):
         form = UserLoginForm()
 
     context = {
+        'title': 'Вход в учетную запись - Войдите в свой аккаунт для доступа к эксклюзивным предложениям',
         'form': form,
     }
     return render(request, 'users/log_in.html', context)
@@ -63,6 +64,7 @@ def registration(request):
         form = UserRegistrationForm()
 
     context = {
+        'title': 'Регистрация на сайте ProSoftware - Присоединяйтесь к нашему интернет магазину прямо сейчас!',
         'form': form
     }
     return render(request, 'users/registration.html', context)
@@ -79,11 +81,25 @@ def profile(request):
 
     user = request.user
     products = Product.objects.filter(manufacturer=user.id)
-    buy_history = OrderItem.objects.filter(order__user_id=user.id)
     average_rating = products.aggregate(avg_rating=Avg('review__rating'))['avg_rating']
-    payment_methods = PaymentMethod.objects.filter(user=user)
-
+    buy_history = OrderItem.objects.filter(order__user_id=user.id)
     fav_prod = FavoriteProduct.objects.filter(user=user)
+
+    buy_history_slug = OrderItem.objects.filter(order__user_id=user.id).values_list('product__slug', flat=True)
+    his_prod = Product.objects.filter(slug__in=buy_history_slug)
+    reviews = []
+    anti_reviews = []
+    for product in his_prod:
+        product_review = Review.objects.filter(product=product, user=user).order_by('-date_added').first()
+        if product_review:
+            reviews.append(product_review)
+        else:
+            # Если отзывов нет, добавляем анти-рейтинг равный 5
+            anti_rating_review = Review(product=product, user=user, rating=5.0)
+            anti_reviews.append(anti_rating_review)
+    print('', anti_reviews)
+
+    payment_methods = PaymentMethod.objects.filter(user=user)
 
     products_his = Product.objects.filter(manufacturer=user.id)[:4]
     buy_his = OrderItem.objects.filter(order__user_id=user.id)[:4]
@@ -109,18 +125,21 @@ def profile(request):
         form = ProfileForm(instance=request.user)
 
     context = {
+        'title': 'Личный кабинет на сайте ProSoftware - Управляйте своими заказами и настройками в личном кабинете',
         'form': form,
+        'reviews': reviews,
         'buy_his': buy_his,
         'fav_his': fav_his,
         'products': products,
         'fav_prod': fav_prod,
-        'products_his': products_his,
-        'average_rating': average_rating,
-        'average_rating_int': average_rating_int,
-        'average_rating_float': average_rating_float,
-        'anti_average_rating': anti_average_rating,
-        'payment_methods': payment_methods,
         'buy_history': buy_history,
+        'products_his': products_his,
+        'anti_reviews': anti_reviews,
+        'average_rating': average_rating,
+        'payment_methods': payment_methods,
+        'average_rating_int': average_rating_int,
+        'anti_average_rating': anti_average_rating,
+        'average_rating_float': average_rating_float,
     }
 
     return render(request, 'users/user_page.html', context)

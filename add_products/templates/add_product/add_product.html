@@ -70,15 +70,19 @@
                     </div>
                 </div>
                 <textarea id="id_description" name="description" rows="4" cols="50" required placeholder="Дайте описание вашему продукту." class="add_form__input textarea_input"></textarea><br>
-                {% comment %} <input type="file" id="id_image" name="image" class="add_form_add_img" accept="image/*"><br> {% endcomment %}
-                <label for="product_image" class="custom-file-upload">
+                <label for="id_image" class="custom-file-upload">
                     <span>Добавить фото продукта.</span>
-                    <input type="file" id="product_image" name="product_image" accept="image/*" class="add_form_add_img">
-                </label><br>
-                
+                    <input type="file" id="id_image" name="image" accept="image/*" class="add_form_add_img" onchange="showUploadMessage()">
+                </label>
+                <span id="uploadMessage" style="display: none;">Изображение вашего продукта успешно загружено!</span><br>
                 <input type="submit" value="Добавить" class="add_form__submit btn">
             </form>
         </div>
         <img src="" alt="" class="add_form_img">
     </div>
+    <script>
+        function showUploadMessage() {
+            document.getElementById('uploadMessage').style.display = 'inline';
+        }
+    </script>
 {% endblock %}

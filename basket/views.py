@@ -96,8 +96,9 @@ def basket_remove(request):
 @login_required
 def shopping_basket(request):
     user = request.user
-    payment_methods = PaymentMethod.objects.filter(user_id=user.id)
+    payment_methods = get_user_payment(request)
     context = {
+        'title': 'Мой заказ - Интернет-магазин ПО ProSoftware',
         'payment_methods': payment_methods,
     }
     return render(request, 'basket/shopping_basket_page.html', context)

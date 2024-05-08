@@ -1,8 +1,10 @@
 from xml.dom import ValidationErr
 from django.db import transaction
+from django.db.models import F
 from django.shortcuts import redirect, render
 
 from basket.models import Basket
+from goods.models import Product
 from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
 
@@ -39,7 +41,8 @@ def create_order(request):
                                 price=price,
                                 quantity=quantity,
                             )
-
+                            
+                            Product.objects.filter(id=product.id).update(popularity=F('popularity') + quantity)
                         basket_items.delete()
                         return redirect('users:profile')
 
@@ -48,6 +51,7 @@ def create_order(request):
 
     form = CreateOrderForm()
     context = {
+        'title': 'Оформить заказ - Интернет-магазин ПО ProSoftware',
         'form': form,
     }
 

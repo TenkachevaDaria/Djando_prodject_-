@@ -75,19 +75,7 @@
 }
 
 .nav_helper__link:last-child .nav__link {
-    color: white;
-}
-
-.nav_helper__link:last-child .nav__link:focus {
-    border-bottom: 1px solid white;
-}
-
-.nav_helper__link:last-child .nav__link:hover {
-    border-bottom: 1px solid white;
-}
-
-.nav_helper__link:last-child .nav__link:active {
-    border-bottom: 1px solid white;
+    color: #1C2541;
 }
 
 .custom_checkbox {

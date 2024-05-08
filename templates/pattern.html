@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}{% endblock %}{{ title }}</title>
     <link rel="icon" type="image/png" href="{% static "favicon/favicon.ico" %}">
     <link rel="stylesheet" href="{% static "ccs/same.css" %}">
     <link rel="stylesheet" href="{% static "ccs/header.css" %}">
@@ -39,8 +39,9 @@
                     <form role="search" action="{% url "catalog:search" %}" method="get">
                         <input type="search" name="q" placeholder="Поиск" class="nav_user__input" value>
                         <div class="drop_list_container">
-                            <ul class="products_searchers_list">
+                            <ul class="products_searchers_list">                            
                                 {% tag_products as searches %}
+
                                 {% for product in searches %}
                                     <li class="product_mini_card">
                                         <a href="{% url 'catalog:product' product.slug %}" class="mini_product_link">
@@ -56,16 +57,14 @@
                                         </a>
                                     </li>
                                 {% endfor %}
-
+                                
                             </ul>
                             <button class="drop_list__btn btn">ПОКАЗАТЬ ЕЩЕ</button>
                         </div>
                     </form>
                 </li>
                 <li class="nav_links__link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>
-                <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>
-                    {% comment %} <li class="nav_links__link"><a href="{% url "user:LogIn" %}" class="nav__link">Войти</a></li> {% endcomment %}
-                
+                <li class="nav_links__link"><a href="{% url "basket:shopping_basket" %}" class="nav__link">Корзина</a></li>            
                 <li class="nav_links__link">
                     <details class="account_link">
                         <summary class="nav__link account_link_title">   
@@ -76,7 +75,7 @@
                             <a href="{% url "user:registration" %}" class="nav__link account_link_destination">Создать</a>
                         {% else %}
                             <a href="{% url "user:profile" %}" class="nav__link account_link_destination">Аккаунт</a>
-                            <button class="account_btn_exit btn"><a href="{% url "user:logout" %}">Выйти</a></button>
+                            <a class="account_btn_exit btn" href="{% url "user:logout" %}">Выйти</a>
                         {% endif %}
                         <div class="link_decor_div"></div>
                     </details>

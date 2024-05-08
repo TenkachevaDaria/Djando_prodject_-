@@ -229,3 +229,8 @@
 .payment_way_label:focus {
     outline: 2px solid rgb(25, 158, 243);
 }
+
+.backimg_order {
+    position: absolute;
+    top: 130px;
+}

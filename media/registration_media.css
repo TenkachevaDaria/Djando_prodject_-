@@ -39,4 +39,8 @@
         padding: 9px 0;
         width: calc(100% - 24px);
     }
+
+    .backimg_reg {
+        display: none;
+    }
 }

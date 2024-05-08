@@ -313,4 +313,9 @@
   
   .rate-area>label:active {
     position: relative;
+  } 
+
+  .backimg_product {
+    position: fixed;
+    top: 200px;
   }

@@ -128,4 +128,8 @@
     .total_price_container {
         margin-bottom: 15px;
     }
+
+    .backimg_order {
+        display: none;
+    }
 }

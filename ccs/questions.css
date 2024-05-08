@@ -42,12 +42,24 @@ summary::marker {
 }
 
 .ask_questins {
-    font-size: 20px;
-    margin-top: 90px;
-    padding: 20px;
+    width: 400px;
+    margin: 0 auto;
     background-color: rgba(136, 198, 252, 0.3);
-    border: 1.5px solid rgb(28, 37, 65);
     border-radius: 20px;
+}
+
+.label_question {
+    color: rgb(28, 37, 65);
+    font-size: 20px;
+}
+
+.form_question {
+    padding: 11px 0 17px 0;
+    margin: 0 17px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .summary_marker_stick1 {
@@ -57,4 +69,20 @@ summary::marker {
 .summary_marker_stick2 {
     margin-top: 16px;
     width: 25px;
+}
+
+.form_action_input {
+    width: 335px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    border: 0.5px solid rgb(28, 37, 65);
+}
+
+.form_action_input_btn {
+    background-color: rgb(0, 130, 240);
+    color: white;
+    padding: 10px 0;
+    font-size: 15px;
 }

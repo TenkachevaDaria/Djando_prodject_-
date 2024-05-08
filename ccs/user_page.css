@@ -182,6 +182,7 @@ main {
     overflow-y: auto;   
     display: none;
     box-shadow: 0 0 10px 10px #888;
+    border-radius: 20px;
 }
 
 .popup_title {
@@ -387,4 +388,9 @@ main {
 .mobile_popup_sold,
 .popup_user_add_payment_method_mobile {
     display: none;
+}
+
+.backimg_user_page {
+    position: absolute;
+    top: 137px;
 }

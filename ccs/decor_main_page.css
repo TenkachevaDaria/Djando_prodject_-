@@ -75,19 +75,19 @@
 }
 
 .nav_helper__link:last-child .nav__link {
-    color: white;
+    color: black;
 }
 
 .nav_helper__link:last-child .nav__link:focus {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .nav_helper__link:last-child .nav__link:hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .nav_helper__link:last-child .nav__link:active {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .custom_checkbox {

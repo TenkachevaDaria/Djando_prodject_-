@@ -6,6 +6,7 @@
 }
 
 .add_form {
+    margin: auto;
     padding: 30px;
     background-color: rgb(185, 222, 254);
     min-height: 1250px;
@@ -73,12 +74,6 @@
     font-size: 20px;
 }
 
-.add_form_img {
-    width: 400px;
-    height: 700px;
-    background-color: rgb(217, 217, 217);
-}
-
 .decor_div1 { 
     height: 150px;
 }
@@ -95,4 +90,10 @@
 
 .textarea_input {
     height: fit-content;
+}
+
+.backimg_add_form {
+    position: absolute;
+    top: 177px;
+    width: 100%;
 }

@@ -34,14 +34,15 @@
 }
 
 .user_input_page {
-    background-color: rgb(185, 222, 254);
+    background-color: rgba(185, 222, 254, 0.8);
     padding: 10px 16px;
     align-items: center;
     max-width: 220px;
     margin-bottom: 20px;
     border-radius: 14px;
     outline: none;
-    border: 0.5px solid rgb(28, 37, 65);
+    /* border: 0.5px solid rgb(28, 37, 65); */
+    border: none;
     width: 260px;
 }
 
@@ -234,7 +235,8 @@ main {
 .hide_popup_user_products_liked,
 .hide_popup_user_products_history,
 .hide_popup_user_purchase_history,
-.hide_popup_add_payment_method {
+.hide_popup_add_payment_method,
+.hide_popup_edit_product {
     position: absolute;
     right: 10px;
     top: 5px;
@@ -281,6 +283,7 @@ main {
 
 .active_filters__details {
     width: 280px;
+    background-color: rgba(185, 222, 254, 0.8);
 }
 
 .user_history_bought {
@@ -393,4 +396,118 @@ main {
 .backimg_user_page {
     position: absolute;
     top: 137px;
+}
+
+.popup_editing_product {
+    position: absolute;
+    top: 130px;
+    left: 27%;
+    z-index: 5;
+    background-color: rgb(185, 222, 254);
+    padding: 24px 32px;
+    border-radius: 20px;
+    width: calc(850px - 32px * 2);
+    display: none;
+}
+
+.popup_editing_product__title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.edit_form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.edit_form__input {
+    padding: 22px 25px;
+    width: calc(100% - 25px * 2);
+    border-radius: 20px;
+    border: 1px solid rgb(28, 37, 65);
+    outline: none;
+    background-color: rgb(236, 246, 255);
+    font-size: 20px;
+}
+
+.edit_product_input__title {
+    font-size: 14px;
+}
+
+.check_boxs,
+.check_boxs_subscription_duration,
+.check_boxs_bit_depth {
+    margin-top: 15px;
+    display: flex;
+    gap: 90px;
+    margin-left: 25px;
+}
+
+.check_boxs_subscription_duration {
+    gap: 45px;
+}
+
+.edit_form__submit,
+.edit_form__delete_product {
+    padding: 22px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.edit_form__submit {
+    background-color: rgb(0, 130, 240);
+}
+
+.edit_form__delete_product {
+    background-color: rgb(202, 44, 44);
+}
+
+.price_product_edit {
+    display: flex;
+    gap: 55px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit_form__input_price {
+    padding: 22px 25px;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid rgb(28, 37, 65);
+    background-color: rgb(236, 246, 255);
+    font-size: 20px;
+    width: calc(120px - 50px);
+}
+
+.edit_form__input_price::placeholder {
+    width: fit-content;
+}
+
+.discount_product {
+    margin-top: 13px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.edit_form__input_price_discount {
+    padding: 22px 25px;
+    background-color: rgb(236, 246, 255);
+    border: 1px solid rgb(28, 37, 65);
+    outline: none;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top: 5px;
+    width: calc(320px - 25px * 2);
+}
+
+.product_price_discount__label {
+    font-size: 20px;    
+}
+
+.check_boxs_label,
+.check_boxs {
+    margin-left: 25px;
 }

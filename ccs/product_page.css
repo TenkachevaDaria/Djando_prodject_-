@@ -11,7 +11,7 @@
     width: 620px;
     height: 620px;
     background-color: rgb(217, 217, 217);
-    margin-top: 100px;
+    margin-top: 10px;
 }
 
 .product__name {
@@ -153,7 +153,8 @@
     background-color: rgba(136, 198, 252, 0.5);
    padding-left: 15px;
     outline: none;
-    border: 1.5px solid rgb(28, 37, 65);
+    /* border: 1.5px solid rgb(28, 37, 65); */
+    border: none;
     border-radius: 20px;
 }
 
@@ -195,7 +196,7 @@
     padding-left: 15px;
     padding-top: 15px;
     border-radius: 20px;
-    border: 1.5px solid rgb(28, 37, 65);
+    /* border: 1.5px solid rgb(28, 37, 65); */
 }
 
 .another_user_rating {
@@ -252,7 +253,7 @@
 
 .link_way {
     position: absolute;
-    top: 0;
+    top: -70px;
     left: 0;
     font-size: 20px;
     color: #00000080;
@@ -318,4 +319,8 @@
   .backimg_product {
     position: fixed;
     top: 200px;
+  }
+
+  main {
+    margin-top: 100px;
   }

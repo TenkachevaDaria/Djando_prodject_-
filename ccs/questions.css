@@ -21,7 +21,7 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    border: 1.5px solid rgb(28, 37, 65);
+    /* border: 1.5px solid rgb(28, 37, 65); */
     border-radius: 20px;
 }
 
@@ -33,7 +33,7 @@
     font-size: 20px;
     padding: 25px;
     background-color: rgba(136, 198, 252, 0.1);
-    border: 1.5px solid rgba(28, 37, 65, 0.7);
+    /* border: 1.5px solid rgba(28, 37, 65, 0.7); */
     border-radius: 0 0 20px 20px;
 }
 

@@ -1216,13 +1216,124 @@
                     <input type="text" id="cvv" name="cvv" placeholder="CCV/CVC" pattern="[0-9]{3,4}" required
                         class="code_num_input">
                 </div>
-                <input type="text" id="name_bank" name="cvv" placeholder="Название банка" required
-                    class="bank_input">
+                <input type="text" id="name_bank" name="cvv" placeholder="Название банка" required class="bank_input">
                 <a type="submit" class="add_payment_method_btn btn">Добавить способ оплаты</a>
             </form>
             <p class="popup_payment_security">*Данные карты надежно защищены</p>
             <button class="hide_popup_add_payment_method hide">&#215;</button>
         </div>
+    </div>
+
+    <div class="popup_editing_product">
+        <h2 class="popup_editing_product__title">Редактирование товара</h2>
+        <form action="/submit" method="post" class="edit_form_inputs">
+            <div>
+                <label for="product_name" class="edit_product_input__title">Название товара</label><br>
+                <input type="text" id="product_name" name="product_name" required
+                    placeholder="Напишите название вашего продукта." class="edit_form__input">
+            </div>
+            <div class="price_product_edit">
+                <div>
+                    <label for="product_price" class="edit_product_input__title">Цена товара</label><br>
+                <input type="text" id="product_price" name="product_price" required
+                    placeholder="Цена" class="edit_form__input_price">
+                </div>
+                <div  class="discount_product">
+                    <label for="product_price_discount" class="product_price_discount__label"><b>Хотите добавить скидку?</b></label>
+                <input type="text" id="product_price_discount" name="product_price_discount" required
+                    placeholder="Напишите свою цену" class="edit_form__input_price_discount">
+                </div>
+            </div>
+            <div>
+                <label class="check_boxs_label">Под какую систему предназначен ваш продукт?</label><br>
+                <div class="check_boxs">
+                    <div>
+                        <input type="radio" id="macos" name="system" value="macos"
+                            class="checkbox_input custom_checkbox">
+                        <label for="macos">MacOS</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="linux" name="system" value="linux"
+                            class="checkbox_input custom_checkbox">
+                        <label for="linux">Linux</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="windows" name="system" value="windows"
+                            class="checkbox_input custom_checkbox">
+                        <label for="windows">Windows</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="delivery_type" class="edit_product_input__title">Тип поставки товара</label>
+                <input type="text" id="delivery_type" name="delivery_type" required
+                placeholder="Напишите тип поставки вашего продукта." class="edit_form__input">
+            </div>
+            <div>
+                <label for="media_type" class="edit_product_input__title">Тип носителя товара</label>
+                <input type="text" id="media_type" name="media_type" required
+                placeholder="Напишите тип носителя вашего продукта." class="edit_form__input">
+            </div>
+            <div>
+                <label for="product_mission" class="edit_product_input__title">Предназначение товара</label>
+                <input type="text" id="product_mission" name="product_mission" required
+                placeholder="Напишите для чего предназначен ваш продукт." class="edit_form__input">
+            </div>
+            <div>
+                <label class="check_boxs_label">Какой срок лицензии у вашего продукта?</label><br>
+                <div class="check_boxs_subscription_duration">
+                    <div>
+                        <input type="radio" id="1_month" name="system" value="1_month"
+                            class="checkbox_input custom_checkbox">
+                        <label for="1_month">1 Месяц</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="1_year" name="system" value="1_year"
+                            class="checkbox_input custom_checkbox">
+                        <label for="1_year">1 Год</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="2_years" name="system" value="2_years"
+                            class="checkbox_input custom_checkbox">
+                        <label for="2_years">2 Года</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="3_years" name="system" value="3_years"
+                            class="checkbox_input custom_checkbox">
+                        <label for="3_years">3 Года</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="unlimited" name="system" value="unlimited"
+                            class="checkbox_input custom_checkbox">
+                        <label for="unlimited">Бессрочная</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="check_boxs_label">Какой разрядности ваш продукт?</label><br>
+                <div class="check_boxs_bit_depth">
+                    <div>
+                        <input type="radio" id="x32" name="system" value="x32" class="checkbox_input custom_checkbox">
+                        <label for="x32">x32</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="x64" name="system" value="x64" class="checkbox_input custom_checkbox">
+                        <label for="x64">x64</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="x86" name="system" value="x86" class="checkbox_input custom_checkbox">
+                        <label for="x86">x86</label>
+                    </div>
+                </div>
+            </div>
+            <textarea id="product_description" name="product_description" rows="4" cols="50" required
+                placeholder="Дайте описание вашему продукту:" class="edit_form__input textarea_input"></textarea>
+            <input type="file" id="product_image" name="product_image" accept="image/*" placeholder="Изменить фото продукта"
+                class="edit_form_add_img">
+            <input type="submit" value="Сохранить изменения" class="edit_form__submit btn">
+            <input type="submit" value="Удалить товар" class="edit_form__delete_product btn">
+        </form>
+        <button class="hide_popup_edit_product">&#215;</button>
     </div>
 
     <footer>
@@ -1247,14 +1358,15 @@
                 <h2 class="footer__title">Помощь</h2>
                 <nav class="footer_nav_links">
                     <a href="" class="footer_nav">Часто задаваемые вопросы</a>
-                    <a href="" class="footer_nav">Мои покупки</a>
-                    <a href="" class="footer_nav">Каталог</a>
+                    <p class="footer_nav email_footer">Если возникли какие-либо проблемы,
+                        пишите нам на почту: 
+                        <b>prosowtwareshop@gmail.com</b>
+                        Ответим в течение часа.</p>
                 </nav>
             </div>
             <div class="social_links_container">
                 <a href="" class="icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="footer_social_icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer_social_icon">
                         <path
                             d="M0 23.04C0 12.1788 2.38419e-07 6.74826 3.37413 3.37413C6.74826 0 12.1788 0 23.04 0H24.96C35.8212 0 41.2517 0 44.6259 3.37413C48 6.74826 48 12.1788 48 23.04V24.96C48 35.8212 48 41.2517 44.6259 44.6259C41.2517 48 35.8212 48 24.96 48H23.04C12.1788 48 6.74826 48 3.37413 44.6259C2.38419e-07 41.2517 0 35.8212 0 24.96V23.04Z"
                             fill="#ECF6FF" />
@@ -1264,8 +1376,7 @@
                     </svg>
                 </a>
                 <a href="" class="icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="footer_social_icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer_social_icon">
                         <rect width="48" height="48" rx="10" fill="#ECF6FF" />
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M10.864 23.7469C17.8605 20.6986 22.5259 18.689 24.8603 17.7181C31.5253 14.9459 32.9103 14.4643 33.813 14.4484C34.0115 14.4449 34.4554 14.4941 34.743 14.7274C34.9858 14.9245 35.0526 15.1906 35.0845 15.3774C35.1165 15.5642 35.1563 15.9897 35.1247 16.3222C34.7635 20.1172 33.2007 29.3265 32.4056 33.577C32.0692 35.3755 31.4067 35.9785 30.7654 36.0375C29.3717 36.1658 28.3134 35.1165 26.9635 34.2316C24.8512 32.8469 23.6578 31.985 21.6075 30.6338C19.2379 29.0723 20.774 28.2141 22.1244 26.8115C22.4778 26.4445 28.6186 20.859 28.7374 20.3523C28.7523 20.2889 28.7661 20.0527 28.6258 19.9279C28.4854 19.8032 28.2783 19.8459 28.1289 19.8798C27.917 19.9279 24.5426 22.1583 18.0055 26.5709C17.0477 27.2287 16.1801 27.5491 15.4028 27.5323C14.5459 27.5138 12.8975 27.0478 11.6721 26.6495C10.1691 26.1609 8.97456 25.9026 9.07858 25.0729C9.13276 24.6407 9.72791 24.1987 10.864 23.7469Z"
@@ -1273,60 +1384,62 @@
                     </svg>
                 </a>
                 <a href="" class="icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="footer_social_icon">
-                        <mask id="mask0_596_407" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"
-                            width="48" height="48">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M10.912 0.0235863C9.84156 0.0616379 8.46191 0.145386 7.83484 0.27195C6.87762 0.465252 5.97366 0.758327 5.22191 1.14148C4.33866 1.59161 3.54705 2.16592 2.86351 2.84838C2.17841 3.53217 1.6018 4.32452 1.14986 5.20909C0.767778 5.95681 0.474868 6.85526 0.280746 7.80706C0.151632 8.44046 0.0662416 9.83038 0.0275322 10.9078C0.0118347 11.3481 0.00378054 11.918 0.00378054 12.1808L0 35.8154C0 36.0772 0.007972 36.6472 0.0235873 37.0881C0.0616392 38.1584 0.145386 39.5381 0.272034 40.1652C0.465253 41.1223 0.758409 42.0263 1.14148 42.7781C1.59169 43.6614 2.16592 44.4529 2.84839 45.1365C3.53217 45.8215 4.32461 46.3981 5.20909 46.8501C5.95689 47.2321 6.85535 47.5251 7.80706 47.7193C8.44046 47.8484 9.83047 47.9338 10.9078 47.9724C11.348 47.9882 11.918 47.9962 12.1808 47.9962L35.8154 48C36.0773 48 36.6473 47.9921 37.088 47.9764C38.1584 47.9383 39.5382 47.8546 40.1652 47.728C41.1224 47.5347 42.0264 47.2415 42.7781 46.8585C43.6613 46.4083 44.453 45.834 45.1365 45.1516C45.8215 44.4677 46.3981 43.6755 46.8501 42.7909C47.2321 42.0431 47.5252 41.1447 47.7193 40.1929C47.8484 39.5595 47.9338 38.1695 47.9725 37.0922C47.9882 36.6519 47.9962 36.082 47.9962 35.8192L48.0001 12.1846C48.0001 11.9227 47.9921 11.3527 47.9764 10.9119C47.9383 9.84156 47.8546 8.46191 47.728 7.83483C47.5347 6.87762 47.2416 5.97366 46.8585 5.2219C46.4084 4.33858 45.834 3.54705 45.1517 2.86343C44.4678 2.17849 43.6754 1.6018 42.7909 1.14986C42.0431 0.767776 41.1447 0.474785 40.1929 0.280746C39.5595 0.15163 38.1695 0.0662422 37.0922 0.0276146C36.6519 0.0117531 36.082 0.00378036 35.8192 0.00378036L12.1846 0C11.9227 0 11.3527 0.00788879 10.912 0.0235863Z"
-                                fill="white" />
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer_social_icon">
+                        <mask id="mask0_596_407" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.912 0.0235863C9.84156 0.0616379 8.46191 0.145386 7.83484 0.27195C6.87762 0.465252 5.97366 0.758327 5.22191 1.14148C4.33866 1.59161 3.54705 2.16592 2.86351 2.84838C2.17841 3.53217 1.6018 4.32452 1.14986 5.20909C0.767778 5.95681 0.474868 6.85526 0.280746 7.80706C0.151632 8.44046 0.0662416 9.83038 0.0275322 10.9078C0.0118347 11.3481 0.00378054 11.918 0.00378054 12.1808L0 35.8154C0 36.0772 0.007972 36.6472 0.0235873 37.0881C0.0616392 38.1584 0.145386 39.5381 0.272034 40.1652C0.465253 41.1223 0.758409 42.0263 1.14148 42.7781C1.59169 43.6614 2.16592 44.4529 2.84839 45.1365C3.53217 45.8215 4.32461 46.3981 5.20909 46.8501C5.95689 47.2321 6.85535 47.5251 7.80706 47.7193C8.44046 47.8484 9.83047 47.9338 10.9078 47.9724C11.348 47.9882 11.918 47.9962 12.1808 47.9962L35.8154 48C36.0773 48 36.6473 47.9921 37.088 47.9764C38.1584 47.9383 39.5382 47.8546 40.1652 47.728C41.1224 47.5347 42.0264 47.2415 42.7781 46.8585C43.6613 46.4083 44.453 45.834 45.1365 45.1516C45.8215 44.4677 46.3981 43.6755 46.8501 42.7909C47.2321 42.0431 47.5252 41.1447 47.7193 40.1929C47.8484 39.5595 47.9338 38.1695 47.9725 37.0922C47.9882 36.6519 47.9962 36.082 47.9962 35.8192L48.0001 12.1846C48.0001 11.9227 47.9921 11.3527 47.9764 10.9119C47.9383 9.84156 47.8546 8.46191 47.728 7.83483C47.5347 6.87762 47.2416 5.97366 46.8585 5.2219C46.4084 4.33858 45.834 3.54705 45.1517 2.86343C44.4678 2.17849 43.6754 1.6018 42.7909 1.14986C42.0431 0.767776 41.1447 0.474785 40.1929 0.280746C39.5595 0.15163 38.1695 0.0662422 37.0922 0.0276146C36.6519 0.0117531 36.082 0.00378036 35.8192 0.00378036L12.1846 0C11.9227 0 11.3527 0.00788879 10.912 0.0235863Z" fill="white"/>
                         </mask>
                         <g mask="url(#mask0_596_407)">
-                            <path
-                                d="M10.912 0.0235863C9.84156 0.0616379 8.46191 0.145386 7.83484 0.27195C6.87762 0.465252 5.97366 0.758327 5.22191 1.14148C4.33866 1.59161 3.54705 2.16592 2.86351 2.84838C2.17841 3.53217 1.6018 4.32452 1.14986 5.20909C0.767778 5.95681 0.474868 6.85526 0.280746 7.80706C0.151632 8.44046 0.0662416 9.83038 0.0275322 10.9078C0.0118347 11.3481 0.00378054 11.918 0.00378054 12.1808L0 35.8154C0 36.0772 0.007972 36.6472 0.0235873 37.0881C0.0616392 38.1584 0.145386 39.5381 0.272034 40.1652C0.465253 41.1223 0.758409 42.0263 1.14148 42.7781C1.59169 43.6614 2.16592 44.4529 2.84839 45.1365C3.53217 45.8215 4.32461 46.3981 5.20909 46.8501C5.95689 47.2321 6.85535 47.5251 7.80706 47.7193C8.44046 47.8484 9.83047 47.9338 10.9078 47.9724C11.348 47.9882 11.918 47.9962 12.1808 47.9962L35.8154 48C36.0773 48 36.6473 47.9921 37.088 47.9764C38.1584 47.9383 39.5382 47.8546 40.1652 47.728C41.1224 47.5347 42.0264 47.2415 42.7781 46.8585C43.6613 46.4083 44.453 45.834 45.1365 45.1516C45.8215 44.4677 46.3981 43.6755 46.8501 42.7909C47.2321 42.0431 47.5252 41.1447 47.7193 40.1929C47.8484 39.5595 47.9338 38.1695 47.9725 37.0922C47.9882 36.6519 47.9962 36.082 47.9962 35.8192L48.0001 12.1846C48.0001 11.9227 47.9921 11.3527 47.9764 10.9119C47.9383 9.84156 47.8546 8.46191 47.728 7.83483C47.5347 6.87762 47.2416 5.97366 46.8585 5.2219C46.4084 4.33858 45.834 3.54705 45.1517 2.86343C44.4678 2.17849 43.6754 1.6018 42.7909 1.14986C42.0431 0.767776 41.1447 0.474785 40.1929 0.280746C39.5595 0.15163 38.1695 0.0662422 37.0922 0.0276146C36.6519 0.0117531 36.082 0.00378036 35.8192 0.00378036L12.1846 0C11.9227 0 11.3527 0.00788879 10.912 0.0235863Z"
-                                fill="#ECF6FF" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M32.3189 27.159C31.8913 26.945 29.7894 25.911 29.3975 25.7685C29.0056 25.6259 28.7207 25.5545 28.4357 25.9824C28.1507 26.4102 27.3314 27.3729 27.0819 27.6581C26.8326 27.9433 26.5832 27.9791 26.1557 27.7651C25.7282 27.5512 24.3506 27.0999 22.7177 25.6438C21.4468 24.5106 20.5888 23.1109 20.3393 22.683C20.09 22.2552 20.3128 22.0239 20.5269 21.8108C20.7191 21.6194 20.9543 21.3117 21.1681 21.0621C21.3819 20.8125 21.4531 20.6342 21.5956 20.3491C21.7381 20.0638 21.6669 19.8142 21.56 19.6003C21.4531 19.3863 20.5981 17.2827 20.2419 16.427C19.8949 15.5936 19.5424 15.7064 19.28 15.6933C19.0309 15.6809 18.7456 15.6783 18.4606 15.6783C18.1755 15.6783 17.7124 15.7853 17.3205 16.2131C16.9286 16.6409 15.8242 17.675 15.8242 19.7785C15.8242 21.8821 17.3562 23.9144 17.5699 24.1997C17.7837 24.485 20.5846 28.8018 24.8732 30.6531C25.8932 31.0934 26.6896 31.3563 27.3104 31.5534C28.3346 31.8786 29.2666 31.8328 30.0032 31.7227C30.8246 31.6 32.5326 30.6887 32.8889 29.6904C33.2451 28.6921 33.2451 27.8364 33.1383 27.6581C33.0314 27.4799 32.7464 27.3729 32.3189 27.159ZM24.5184 37.8066H24.5126C21.9607 37.8057 19.4579 37.1204 17.2744 35.8251L16.7551 35.5169L11.3727 36.9284L12.8094 31.6823L12.4712 31.1444C11.0476 28.8809 10.2958 26.2647 10.2969 23.5784C10.3 15.7399 16.6797 9.3627 24.524 9.3627C28.3225 9.36418 31.8931 10.8449 34.5781 13.5321C37.2631 16.2193 38.741 19.7912 38.7395 23.5899C38.7363 31.429 32.3567 37.8066 24.5184 37.8066ZM36.6227 11.4903C33.3923 8.25717 29.0963 6.4758 24.5193 6.47399C15.0885 6.47399 7.4129 14.1466 7.40912 23.5775C7.40789 26.5921 8.19572 29.5349 9.69298 32.1286L7.26562 40.9922L16.336 38.6137C18.8351 39.9764 21.6488 40.6944 24.5124 40.6957H24.5194H24.5195C33.9494 40.6957 41.6256 33.0221 41.6295 23.5911C41.6312 19.0208 39.8532 14.7233 36.6227 11.4903Z"
-                                fill="#1C2541" />
+                        <path d="M10.912 0.0235863C9.84156 0.0616379 8.46191 0.145386 7.83484 0.27195C6.87762 0.465252 5.97366 0.758327 5.22191 1.14148C4.33866 1.59161 3.54705 2.16592 2.86351 2.84838C2.17841 3.53217 1.6018 4.32452 1.14986 5.20909C0.767778 5.95681 0.474868 6.85526 0.280746 7.80706C0.151632 8.44046 0.0662416 9.83038 0.0275322 10.9078C0.0118347 11.3481 0.00378054 11.918 0.00378054 12.1808L0 35.8154C0 36.0772 0.007972 36.6472 0.0235873 37.0881C0.0616392 38.1584 0.145386 39.5381 0.272034 40.1652C0.465253 41.1223 0.758409 42.0263 1.14148 42.7781C1.59169 43.6614 2.16592 44.4529 2.84839 45.1365C3.53217 45.8215 4.32461 46.3981 5.20909 46.8501C5.95689 47.2321 6.85535 47.5251 7.80706 47.7193C8.44046 47.8484 9.83047 47.9338 10.9078 47.9724C11.348 47.9882 11.918 47.9962 12.1808 47.9962L35.8154 48C36.0773 48 36.6473 47.9921 37.088 47.9764C38.1584 47.9383 39.5382 47.8546 40.1652 47.728C41.1224 47.5347 42.0264 47.2415 42.7781 46.8585C43.6613 46.4083 44.453 45.834 45.1365 45.1516C45.8215 44.4677 46.3981 43.6755 46.8501 42.7909C47.2321 42.0431 47.5252 41.1447 47.7193 40.1929C47.8484 39.5595 47.9338 38.1695 47.9725 37.0922C47.9882 36.6519 47.9962 36.082 47.9962 35.8192L48.0001 12.1846C48.0001 11.9227 47.9921 11.3527 47.9764 10.9119C47.9383 9.84156 47.8546 8.46191 47.728 7.83483C47.5347 6.87762 47.2416 5.97366 46.8585 5.2219C46.4084 4.33858 45.834 3.54705 45.1517 2.86343C44.4678 2.17849 43.6754 1.6018 42.7909 1.14986C42.0431 0.767776 41.1447 0.474785 40.1929 0.280746C39.5595 0.15163 38.1695 0.0662422 37.0922 0.0276146C36.6519 0.0117531 36.082 0.00378036 35.8192 0.00378036L12.1846 0C11.9227 0 11.3527 0.00788879 10.912 0.0235863Z" fill="#ECF6FF"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M32.3189 27.159C31.8913 26.945 29.7894 25.911 29.3975 25.7685C29.0056 25.6259 28.7207 25.5545 28.4357 25.9824C28.1507 26.4102 27.3314 27.3729 27.0819 27.6581C26.8326 27.9433 26.5832 27.9791 26.1557 27.7651C25.7282 27.5512 24.3506 27.0999 22.7177 25.6438C21.4468 24.5106 20.5888 23.1109 20.3393 22.683C20.09 22.2552 20.3128 22.0239 20.5269 21.8108C20.7191 21.6194 20.9543 21.3117 21.1681 21.0621C21.3819 20.8125 21.4531 20.6342 21.5956 20.3491C21.7381 20.0638 21.6669 19.8142 21.56 19.6003C21.4531 19.3863 20.5981 17.2827 20.2419 16.427C19.8949 15.5936 19.5424 15.7064 19.28 15.6933C19.0309 15.6809 18.7456 15.6783 18.4606 15.6783C18.1755 15.6783 17.7124 15.7853 17.3205 16.2131C16.9286 16.6409 15.8242 17.675 15.8242 19.7785C15.8242 21.8821 17.3562 23.9144 17.5699 24.1997C17.7837 24.485 20.5846 28.8018 24.8732 30.6531C25.8932 31.0934 26.6896 31.3563 27.3104 31.5534C28.3346 31.8786 29.2666 31.8328 30.0032 31.7227C30.8246 31.6 32.5326 30.6887 32.8889 29.6904C33.2451 28.6921 33.2451 27.8364 33.1383 27.6581C33.0314 27.4799 32.7464 27.3729 32.3189 27.159ZM24.5184 37.8066H24.5126C21.9607 37.8057 19.4579 37.1204 17.2744 35.8251L16.7551 35.5169L11.3727 36.9284L12.8094 31.6823L12.4712 31.1444C11.0476 28.8809 10.2958 26.2647 10.2969 23.5784C10.3 15.7399 16.6797 9.3627 24.524 9.3627C28.3225 9.36418 31.8931 10.8449 34.5781 13.5321C37.2631 16.2193 38.741 19.7912 38.7395 23.5899C38.7363 31.429 32.3567 37.8066 24.5184 37.8066ZM36.6227 11.4903C33.3923 8.25717 29.0963 6.4758 24.5193 6.47399C15.0885 6.47399 7.4129 14.1466 7.40912 23.5775C7.40789 26.5921 8.19572 29.5349 9.69298 32.1286L7.26562 40.9922L16.336 38.6137C18.8351 39.9764 21.6488 40.6944 24.5124 40.6957H24.5194H24.5195C33.9494 40.6957 41.6256 33.0221 41.6295 23.5911C41.6312 19.0208 39.8532 14.7233 36.6227 11.4903Z" fill="#1C2541"/>
                         </g>
-                    </svg>
+                        </svg>
                 </a>
             </div>
         </div>
         <div class="decor_div2"></div>
     </footer>
     <div class="decor_div1"></div>
-    <svg width="1728" height="934" viewBox="0 0 1728 934" fill="none" xmlns="http://www.w3.org/2000/svg" class="backimg_user_page">
+    <svg width="1728" height="934" viewBox="0 0 1728 934" fill="none" xmlns="http://www.w3.org/2000/svg"
+        class="backimg_user_page">
         <g opacity="0.45">
-        <g filter="url(#filter0_f_1062_2569)">
-        <path d="M0 90H107.5C118.546 90 127.5 98.9543 127.5 110V744.5C127.5 755.546 136.454 764.5 147.5 764.5H737.5C748.546 764.5 757.5 773.454 757.5 784.5V903C757.5 914.046 766.454 923 777.5 923H1536C1547.05 923 1556 914.046 1556 903V766.5C1556 755.454 1564.95 746.5 1576 746.5H1731.5" stroke="#0082F0"/>
-        </g>
-        <g filter="url(#filter1_f_1062_2569)">
-        <path d="M1720.5 140.5H1185.5C1174.45 140.5 1165.5 149.454 1165.5 160.5V776C1165.5 787.046 1156.55 796 1145.5 796H605.5H320C308.954 796 300 787.046 300 776V508C300 496.954 291.046 488 280 488H104C92.9543 488 84 496.954 84 508V868.5C84 879.546 75.0457 888.5 64 888.5H-2.5" stroke="#8AC7FE" stroke-width="2"/>
-        </g>
-        <g filter="url(#filter2_f_1062_2569)">
-        <path d="M7 11.5H775.5C786.546 11.5 795.5 20.4543 795.5 31.5V286.5C795.5 297.546 786.546 306.5 775.5 306.5H355C343.954 306.5 335 315.454 335 326.5V594C335 605.046 343.954 614 355 614H1548.5C1559.55 614 1568.5 605.046 1568.5 594V347C1568.5 335.954 1577.45 327 1588.5 327H1729" stroke="#8AC7FE" stroke-width="2"/>
-        </g>
+            <g filter="url(#filter0_f_1062_2569)">
+                <path
+                    d="M0 90H107.5C118.546 90 127.5 98.9543 127.5 110V744.5C127.5 755.546 136.454 764.5 147.5 764.5H737.5C748.546 764.5 757.5 773.454 757.5 784.5V903C757.5 914.046 766.454 923 777.5 923H1536C1547.05 923 1556 914.046 1556 903V766.5C1556 755.454 1564.95 746.5 1576 746.5H1731.5"
+                    stroke="#0082F0" />
+            </g>
+            <g filter="url(#filter1_f_1062_2569)">
+                <path
+                    d="M1720.5 140.5H1185.5C1174.45 140.5 1165.5 149.454 1165.5 160.5V776C1165.5 787.046 1156.55 796 1145.5 796H605.5H320C308.954 796 300 787.046 300 776V508C300 496.954 291.046 488 280 488H104C92.9543 488 84 496.954 84 508V868.5C84 879.546 75.0457 888.5 64 888.5H-2.5"
+                    stroke="#8AC7FE" stroke-width="2" />
+            </g>
+            <g filter="url(#filter2_f_1062_2569)">
+                <path
+                    d="M7 11.5H775.5C786.546 11.5 795.5 20.4543 795.5 31.5V286.5C795.5 297.546 786.546 306.5 775.5 306.5H355C343.954 306.5 335 315.454 335 326.5V594C335 605.046 343.954 614 355 614H1548.5C1559.55 614 1568.5 605.046 1568.5 594V347C1568.5 335.954 1577.45 327 1588.5 327H1729"
+                    stroke="#8AC7FE" stroke-width="2" />
+            </g>
         </g>
         <defs>
-        <filter id="filter0_f_1062_2569" x="-10" y="79.5" width="1751.5" height="854" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569"/>
-        </filter>
-        <filter id="filter1_f_1062_2569" x="-12.5" y="129.5" width="1743" height="770" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569"/>
-        </filter>
-        <filter id="filter2_f_1062_2569" x="-3" y="0.5" width="1742" height="624.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569"/>
-        </filter>
+            <filter id="filter0_f_1062_2569" x="-10" y="79.5" width="1751.5" height="854" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569" />
+            </filter>
+            <filter id="filter1_f_1062_2569" x="-12.5" y="129.5" width="1743" height="770" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569" />
+            </filter>
+            <filter id="filter2_f_1062_2569" x="-3" y="0.5" width="1742" height="624.5" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_2569" />
+            </filter>
         </defs>
-        </svg>
-        
+    </svg>
+
 </body>
 
 </html>

@@ -33,9 +33,10 @@ footer {
     padding: 8px;
     outline: none;
     color: rgb(28, 37, 65);
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 10px;
     border-radius: 20px;
+    border: 0.5px solid rgb(28, 37, 65);
 }
 
 .footer__form__btn {
@@ -55,8 +56,8 @@ footer {
 }
 
 .footer_nav {
-    width: fit-content;
-    border-bottom: 1px solid rgb(28, 37, 65);
+    max-width: 300px;
+    /* border-bottom: 1px solid rgb(28, 37, 65); */
 }
 
 .social_links_container {
@@ -65,4 +66,9 @@ footer {
     flex-direction: column;
     gap: 15px;
     right: 165px;
+}
+
+.email_footer {
+    cursor: auto;
+    text-align: left;
 }

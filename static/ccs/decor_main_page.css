@@ -75,7 +75,19 @@
 }
 
 .nav_helper__link:last-child .nav__link {
-    color: #1C2541;
+    color: black;
+}
+
+.nav_helper__link:last-child .nav__link:focus {
+    border-bottom: 1px solid black;
+}
+
+.nav_helper__link:last-child .nav__link:hover {
+    border-bottom: 1px solid black;
+}
+
+.nav_helper__link:last-child .nav__link:active {
+    border-bottom: 1px solid black;
 }
 
 .custom_checkbox {
@@ -122,6 +134,7 @@
     background-color: #B9DEFED9;
     width: 210px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .active_filter__disabler {
@@ -145,6 +158,7 @@ body:not(details):hover>details:not(:hover) {
 
 .summary_filter {
     position: relative;
+    cursor: pointer;
 }
 
 .active_filters__summary {

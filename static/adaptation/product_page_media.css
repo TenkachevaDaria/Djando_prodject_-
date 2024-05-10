@@ -228,4 +228,8 @@
     main {
         margin-bottom: 30px;
     }
+
+    .backimg_product {
+        display: none;
+      }
 }

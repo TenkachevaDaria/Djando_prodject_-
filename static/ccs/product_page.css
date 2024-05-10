@@ -10,7 +10,7 @@
 .product_page__img {
     width: 620px;
     height: 620px;
-    margin-top: 100px;
+    margin-top: 10px;
 }
 
 .product__name {
@@ -151,9 +151,10 @@
     width: calc(700px - 15px * 2);
     height: 70px;
     background-color: rgba(136, 198, 252, 0.5);
-   padding-left: 15px;
+    padding-left: 15px;
     outline: none;
-    border: 1.5px solid rgb(28, 37, 65);
+    /* border: 1.5px solid rgb(28, 37, 65); */
+    border: none;
     border-radius: 20px;
 }
 
@@ -195,7 +196,7 @@
     padding-left: 15px;
     padding-top: 15px;
     border-radius: 20px;
-    border: 1.5px solid rgb(28, 37, 65);
+    /* border: 1.5px solid rgb(28, 37, 65); */
 }
 
 .another_user_rating {
@@ -252,7 +253,7 @@
 
 .link_way {
     position: absolute;
-    top: 0;
+    top: -70px;
     left: 0;
     font-size: 20px;
     color: #00000080;
@@ -284,13 +285,13 @@
     overflow: hidden;
     width: 220px;
    margin-left: 10px;
-  }
+}
   
-  .rating-area:not(:checked)>input {
+.rating-area:not(:checked)>input {
     display: none;
-  }
+}
   
-  .rating-area:not(:checked)>label {
+.rating-area:not(:checked)>label {
     float: right;
     /* 32 */
     width: 43px;
@@ -300,29 +301,38 @@
     font-size: 50px;
     line-height: 40px;
     color: lightgrey;
-  }
+}
   
-  .rating-area:not(:checked)>label:before {
+.rating-area:not(:checked)>label:before {
     content: '★';
-  }
+}
   
-  .rating-area>input:checked~label {
+.rating-area>input:checked~label {
     color: #FCA95D;
-  }
+}
   
-  .rating-area:not(:checked)>label:hover,
-  .rating-area:not(:checked)>label:hover~label {
+.rating-area:not(:checked)>label:hover,
+.rating-area:not(:checked)>label:hover~label {
     color: #FCA95D;
-  }
+}
   
-  .rating-area>input:checked+label:hover,
-  .rating-area>input:checked+label:hover~label,
-  .rating-area>input:checked~label:hover,
-  .rating-area>input:checked~label:hover~label,
-  .rating-area>label:hover~input:checked~label {
+.rating-area>input:checked+label:hover,
+.rating-area>input:checked+label:hover~label,
+.rating-area>input:checked~label:hover,
+.rating-area>input:checked~label:hover~label,
+.rating-area>label:hover~input:checked~label {
     color: #FCA95D;
-  }
+}
   
-  .rate-area>label:active {
+.rate-area>label:active {
     position: relative;
-  }
+} 
+
+.backimg_product {
+  position: fixed;
+  top: 200px;
+}
+
+main {
+    margin-top: 100px;
+}

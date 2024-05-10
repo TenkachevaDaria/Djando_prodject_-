@@ -150,4 +150,8 @@
     .price_rage__input_label label {
         font-size: 11px;
     }
+    
+    .backimg_products {
+        display: none;
+    }
 }

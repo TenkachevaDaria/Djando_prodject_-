@@ -1,12 +1,12 @@
 from django.core.paginator import Paginator
-from django.db.models import Avg, Max, Min
-from django.shortcuts import get_object_or_404, redirect, render
+from django.db.models import Avg, IntegerField, Max, Min
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from goods.forms import AddReview
 from goods.utils import q_search
 from goods.models import Categories, FavoriteProduct, Product, Subscriptions, Review
-from users.models import User
+from django.db.models.functions import Cast
 
 # Create your views here.
 def catalog(request):
@@ -24,8 +24,8 @@ def catalog(request):
     categories = Categories.objects.all()
     subscriptions = Subscriptions.objects.all()
 
-    max_price = products.aggregate(max_price=Max('price'))['max_price']
-    min_price = products.aggregate(min_price=Min('price'))['min_price']
+    max_price = products.aggregate(max_price=Cast(Max('price'), IntegerField()))['max_price']
+    min_price = products.aggregate(min_price=Cast(Min('price'), IntegerField()))['min_price']
 
     if query:
         products = q_search(query)
@@ -42,13 +42,13 @@ def catalog(request):
     if price_filter_to:
         products = products.filter(price__lte=float(price_filter_to))
 
-    if subscription_filter:
+    if subscription_filter and subscription_filter != "default":
         products = products.filter(subscription=subscription_filter)
 
     if in_stock_filter and in_stock_filter != "default":
         products = products.filter(in_stock=in_stock_filter)
 
-    if category_filter:
+    if category_filter and category_filter != "default":
         products = products.filter(category=category_filter)
 
     paginator = Paginator(products, 24)
@@ -67,7 +67,7 @@ def catalog(request):
 
 def product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
-    reviews = Review.objects.filter(product=product)
+    reviews = Review.objects.filter(product=product).order_by("-date_added")
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
 
     if request.user.is_authenticated:

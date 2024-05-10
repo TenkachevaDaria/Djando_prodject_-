@@ -41,3 +41,8 @@
     background-color: rgb(0, 130, 240);
     font-size: 24px;
 }
+
+.backimg_order {
+    position: absolute;
+    top: 130px;
+}

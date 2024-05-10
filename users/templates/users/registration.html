@@ -23,15 +23,27 @@
                     <p>{{ form.email.errors }}</p>        
                 {% endif %}
 
-                <input type="password" id="id_password1" name="password1" required placeholder="Придумайте пароль" class="reg_input" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}">
-                {% if form.password1.errors %}
-                    <p>{{ form.password1.errors }}</p>
-                {% endif %}
+                <div class="help_container">
+                    <p class="clue">?</p>
+                    <input type="password" id="id_password1" name="password1" required placeholder="Придумайте пароль" 
+                    class="{% if form.password1.value %}reg_input_error{% endif %} reg_input" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}">
+                    <p class="clue_text_password">Минимальная длина пароля: 8 символов. <br>
+                        Пароль должен содержать хотя бы 1 цифру. <br>
+                        Пароль не должен совпадать с логином/почтой.</p>
+                    {% if form.password1.errors %}
+                        <p>{{ form.password1.errors }}</p>
+                    {% endif %}
+                </div>
 
-                <input type="password" id="id_password2" name="password2" required placeholder="Повторите пароль" class="reg_input" value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}">
-                {% if form.password2.errors %}
-                    <p>{{ form.password2.errors }}</p> 
-                {% endif %}
+                <div class="help_container">
+                    <p class="clue2">?</p>
+                    <input type="password" id="id_password2" name="password2" required placeholder="{% if form.password2.value %}Пароль не совпадает{% else %}Повторите пароль{% endif %}"
+                     class="{% if form.password2.value %}reg_input_error{% endif %} reg_input" value="{% if form.password2.value %}{% endif %}">
+                    <p class="clue_text_password__repeat">Пароль должен совпадать</p>
+                    {% if form.password2.errors %}
+                        <p>{{ form.password2.errors }}</p> 
+                    {% endif %}
+                </div>
 
                 <div class="form_btn_container">
                     <input type="submit" value="Зарегистрироваться" class="btn_send_reginfo">
@@ -107,4 +119,66 @@
             <path d="M405.352 258.182H410.928" stroke="#263238" stroke-width="1.1031" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var clue = document.querySelector('.clue');
+            var clueTextPassword = document.querySelector('.clue_text_password');
+        
+            clue.addEventListener('mouseenter', function() {
+                clueTextPassword.classList.add('visible');
+            });
+        
+            clue.addEventListener('mouseleave', function() {
+                clueTextPassword.classList.remove('visible');
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var clue = document.querySelector('.clue2');
+            var clueTextPasswordRepeat = document.querySelector('.clue_text_password__repeat');
+        
+            clue.addEventListener('mouseenter', function() {
+                clueTextPasswordRepeat.classList.add('visible');
+            });
+        
+            clue.addEventListener('mouseleave', function() {
+                clueTextPasswordRepeat.classList.remove('visible');
+            });
+        });
+        
+    </script>
+{% endblock  %}
+
+{% block decorLine %}
+    <svg width="1755" height="934" viewBox="0 0 1755 934" fill="none" xmlns="http://www.w3.org/2000/svg" class="backimg_reg">
+        <g opacity="0.6">
+        <g filter="url(#filter0_f_1062_4522)">
+        <path d="M13 90H120.5C131.546 90 140.5 98.9543 140.5 110V744.5C140.5 755.546 149.454 764.5 160.5 764.5H750.5C761.546 764.5 770.5 773.454 770.5 784.5V903C770.5 914.046 779.454 923 790.5 923H1549C1560.05 923 1569 914.046 1569 903V766.5C1569 755.454 1577.95 746.5 1589 746.5H1744.5" stroke="#0082F0"/>
+        </g>
+        <g filter="url(#filter1_f_1062_4522)">
+        <path d="M1733.5 140.5H1198.5C1187.45 140.5 1178.5 149.454 1178.5 160.5V776C1178.5 787.046 1169.55 796 1158.5 796H618.5H333C321.954 796 313 787.046 313 776V508C313 496.954 304.046 488 293 488H117C105.954 488 97 496.954 97 508V868.5C97 879.546 88.0457 888.5 77 888.5H10.5" stroke="#8AC7FE" stroke-width="2"/>
+        </g>
+        <g filter="url(#filter2_f_1062_4522)">
+        <path d="M20 11.5H788.5C799.546 11.5 808.5 20.4543 808.5 31.5V286.5C808.5 297.546 799.546 306.5 788.5 306.5H368C356.954 306.5 348 315.454 348 326.5V594C348 605.046 356.954 614 368 614H1561.5C1572.55 614 1581.5 605.046 1581.5 594V347C1581.5 335.954 1590.45 327 1601.5 327H1742" stroke="#8AC7FE" stroke-width="2"/>
+        </g>
+        </g>
+        <defs>
+        <filter id="filter0_f_1062_4522" x="3" y="79.5" width="1751.5" height="854" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_4522"/>
+        </filter>
+        <filter id="filter1_f_1062_4522" x="0.5" y="129.5" width="1743" height="770" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_4522"/>
+        </filter>
+        <filter id="filter2_f_1062_4522" x="10" y="0.5" width="1742" height="624.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+        <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur_1062_4522"/>
+        </filter>
+        </defs>
+    </svg>
 {% endblock  %}

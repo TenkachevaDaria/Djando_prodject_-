@@ -32,15 +32,15 @@ header{
 }
 
 .nav_helper__link:last-child .nav__link:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid black;
 }
 
 .nav_helper__link:last-child .nav__link:hover {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid black;
 }
 
 .nav_helper__link:last-child .nav__link:active {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid black;
 }
 
 .nav_user__input {
@@ -59,24 +59,24 @@ header{
 
 .nav__link {
     font-size: 16px;
-    color: white;
+    color: black;
     transition: all 0.3s;
 }
 
 .nav__link:focus {
     opacity: 50%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     outline: none;
 }
 
 .nav__link:hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     opacity: 70%;
 }
 
 .nav__link:active {
     opacity: 50%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .drop_list_container {

@@ -129,4 +129,8 @@
     .total_price_container {
         margin-bottom: 15px;
     }
+
+    .backimg_log_in {
+        display: none;
+    }
 }

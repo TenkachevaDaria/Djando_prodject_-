@@ -1,6 +1,7 @@
 footer {
     min-height: fit-content;
     flex: 3;
+    z-index: 0;
     position: relative;
     padding-bottom: 50px;
 }
@@ -36,6 +37,7 @@ footer {
     font-size: 18px;
     margin-bottom: 10px;
     border-radius: 20px;
+    border: 0.5px solid rgb(28, 37, 65);
 }
 
 .footer__form__btn {
@@ -55,8 +57,8 @@ footer {
 }
 
 .footer_nav {
-    width: fit-content;
-    border-bottom: 1px solid rgb(28, 37, 65);
+    width: 300px;
+    /* border-bottom: 1px solid rgb(28, 37, 65); */
 }
 
 .social_links_container {
@@ -65,4 +67,9 @@ footer {
     flex-direction: column;
     gap: 15px;
     right: 165px;
+}
+
+.email_footer {
+    cursor: auto;
+    text-align: left;
 }

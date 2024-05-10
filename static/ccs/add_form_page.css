@@ -6,6 +6,7 @@
 }
 
 .add_form {
+    margin: auto;
     padding: 30px;
     background-color: rgb(185, 222, 254);
     min-height: 1250px;
@@ -69,9 +70,10 @@
     font-size: 20px;
 }
 
-.add_form_add_img {
-    background: rgb(217, 226, 236);
-    padding: 10px;
+.backimg_add_form {
+    position: absolute;
+    top: 177px;
+    width: 100%;
 }
 
 .add_form__submit {

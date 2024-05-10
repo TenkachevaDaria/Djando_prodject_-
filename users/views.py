@@ -1,16 +1,14 @@
-
-import re
 from django.contrib import auth
 from django.db.models import Avg
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from basket.models import Basket
 from goods.models import FavoriteProduct, Product, Review
 from orders.models import OrderItem
-from users.forms import PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
+from users.forms import ChangeProductForm, PaymentMethodForm, UserLoginForm, UserRegistrationForm, ProfileForm
 from users.models import PaymentMethod
 
 # Create your views here.
@@ -94,10 +92,8 @@ def profile(request):
         if product_review:
             reviews.append(product_review)
         else:
-            # Если отзывов нет, добавляем анти-рейтинг равный 5
             anti_rating_review = Review(product=product, user=user, rating=5.0)
             anti_reviews.append(anti_rating_review)
-    print('', anti_reviews)
 
     payment_methods = PaymentMethod.objects.filter(user=user)
 
@@ -203,3 +199,23 @@ def remove_favorite_product(request):
             favorite_product.delete()
             redirect_url = reverse('catalog:product', kwargs={'product_slug': product_slug})
             return redirect(redirect_url)
+        
+@login_required
+def Change_User_product(request):
+    if request.method == 'POST':
+        if 'delete_product' in request.POST:
+            product_id = request.POST.get('product_id')
+            product = get_object_or_404(Product, pk=product_id)
+            product.delete()
+            return redirect('users:profile')
+        else:
+            product_id = request.POST.get('product_id')
+            product = get_object_or_404(Product, pk=product_id)
+            form = ChangeProductForm(request.POST, files=request.FILES, instance=product)
+            if form.is_valid():
+                product = form.save(commit=False)
+                product.manufacturer = request.user
+                discount_percentage = form.cleaned_data['discount_percentage']
+                product.discount_percentage = discount_percentage
+                product.save()
+                return redirect('users:profile')

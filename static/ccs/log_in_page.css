@@ -35,6 +35,14 @@
     border-radius: 20px;
 }
 
+.log_input_error {
+    border: 2px solid red;
+}
+
+.log_input_error::placeholder {
+    color: red;
+}
+
 .btn_send_database {
     padding: 20px 280px;
     background-color: rgb(21, 106, 199);
@@ -44,6 +52,7 @@
     /* bottom: 35px; */
     border-radius: 20px;
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .form_btn_container {
@@ -60,6 +69,7 @@
     text-decoration: none;
     color: rgb(0, 130, 240);
 }
+
 .log_in_page_img {
     width: 550px;
     height: 660px;
@@ -73,4 +83,9 @@
 .decor_div2 {
     height: 100%;
     z-index: 0;
+}
+
+.backimg_log_in {
+    position: absolute;
+    top: 170px;
 }

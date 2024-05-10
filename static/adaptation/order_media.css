@@ -85,4 +85,8 @@
     .basket__item_list {
         margin-top: 0;
     }
+
+    .backimg_order {
+        display: none;
+    }
 }

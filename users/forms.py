@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from goods.models import FavoriteProduct
+from goods.models import Categories, Product, Subscriptions
 from users.models import PaymentMethod, User
 
 class UserLoginForm(AuthenticationForm):
@@ -61,3 +61,33 @@ class PaymentMethodForm(forms.ModelForm):
     date = forms.CharField()
     CVV = forms.CharField()
     bank = forms.CharField()
+
+
+class ChangeProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = (
+            "name",
+            "price",
+            "category",
+            "delivery_type",
+            "media_type",
+            "purpose",
+            "subscription",
+            "bitness",
+            "description",
+            "image",
+            "discount_percentage",
+        )
+
+    name = forms.CharField()
+    price = forms.DecimalField()
+    discount_percentage = forms.DecimalField(required=False)
+    category = forms.ModelChoiceField(queryset=Categories.objects.all())
+    delivery_type = forms.CharField()
+    media_type = forms.CharField()
+    purpose = forms.CharField()
+    subscription = forms.ModelChoiceField(queryset=Subscriptions.objects.all())
+    bitness = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
+    image = forms.ImageField(required=False)

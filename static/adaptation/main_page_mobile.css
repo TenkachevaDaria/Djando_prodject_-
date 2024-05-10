@@ -4,8 +4,6 @@
         display: none;
     }
 
-
-
     .products_container,
     .questions {
         max-width: 343px;
@@ -33,6 +31,7 @@
     .questions__title {
         padding: 25px 0 15px 0;
         font-size: 14px;
+        margin-top: 20px;
     }
 
     .question__text {
@@ -60,5 +59,57 @@
 
     .ask_questins {
         display: none;
+    }
+
+    .slider_title {
+        font-size: 12px;
+        color: black;
+    }
+
+    .slider,.wrapper {
+        height: 163px;
+        width: 343px;
+    }
+
+    .normal_price {
+        font-size: 14px;
+    }
+
+    .discounted_price {
+        font-size: 24px;
+    }
+
+    .wrapper .controls {
+        margin-left: -30px;
+    }
+
+    .wrapper label {
+        height: 8px;
+        width: 8px;
+        margin: 8px 0 0 8px;
+    }
+
+    .wrapper label:after {
+        width: 8px;
+        height: 8px;
+    }
+
+    .background_main_img {
+        display: none;
+    }
+
+    .backimg_mobile {
+        display: block;
+        top: 130px;
+    }
+
+    .slider_price_container {
+        bottom: 4px;
+        left: 13px;
+    }
+
+    .title_container {
+        left: 13px;
+        top: 7px;
     }
 }

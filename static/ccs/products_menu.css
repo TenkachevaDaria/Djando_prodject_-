@@ -71,9 +71,9 @@
     min-height: 333px;
     position: relative;
     box-shadow: 0 0 12px rgb(27, 157, 243, 0.1),
-    0 0 12px rgb(27, 157, 243, 0.1),
-    0 0 12px rgb(27, 157, 243, 0.1),
-    0 0 12px rgb(27, 157, 243, 0.1);
+        0 0 12px rgb(27, 157, 243, 0.1),
+        0 0 12px rgb(27, 157, 243, 0.1),
+        0 0 12px rgb(27, 157, 243, 0.1);
 }
 
 
@@ -237,4 +237,10 @@
 
 .filter_price {
     border-radius: 20px;
+}
+
+.backimg_products {
+    position: fixed;
+    z-index: 0;
+    top: 100px;
 }

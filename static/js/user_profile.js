@@ -1,28 +1,19 @@
+// открытие попапа с формой добавления способа оплаты
 document.addEventListener("DOMContentLoaded", function() {
-    // Находим кнопку "Добавить способ оплаты"
     var addPaymentMethodBtn = document.querySelector('.save_payment_method_btn');
-
-    // Находим панель с формой добавления способа оплаты
     var addPaymentMethodPopup = document.querySelector('.popup_user_add_payment_method');
-
-    // Находим кнопку для закрытия панели
     var hidePopupBtn = document.querySelector('.hide_popup_add_payment_method');
 
-    // Назначаем обработчик события клика на кнопку "Добавить способ оплаты"
     addPaymentMethodBtn.addEventListener('click', function(event) {
-        // Предотвращаем отправку формы
         event.preventDefault();
-        // Показываем панель с формой добавления способа оплаты
         addPaymentMethodPopup.style.display = 'block';
     });
-
-    // Назначаем обработчик события клика на кнопку для закрытия панели
     hidePopupBtn.addEventListener('click', function() {
-        // Скрываем панель с формой добавления способа оплаты
         addPaymentMethodPopup.style.display = 'none';
     });
 });
 
+// открытие попапап с выставленными пользователем товарами
 document.addEventListener("DOMContentLoaded", function() {
     const userProducts = document.querySelector('.user_products');
     const popupUserProducts = document.querySelector('.popup_user_products_history');
@@ -30,37 +21,71 @@ document.addEventListener("DOMContentLoaded", function() {
     function openPopup() {
         popupUserProducts.style.display = 'block';
     }
-    function closePopup() {
+    function closePopup(event) {
+        event.preventDefault();
         popupUserProducts.style.display = 'none';
     }
     userProducts.addEventListener('click', openPopup);
     hidePopupButton.addEventListener('click', closePopup);
 });
 
+// открытие попапа с избранными товарами
 document.addEventListener("DOMContentLoaded", function() {
-    const userProducts = document.querySelector('.user_products_liked');
-    const popupUserProducts = document.querySelector('.popup_user_products_liked');
-    const hidePopupButton = popupUserProducts.querySelector('.hide_popup_user_products_liked');
+    const userFavProducts = document.querySelector('.user_products_liked');
+    const popupFavUserProducts = document.querySelector('.popup_user_products_liked');
+    const hidePopupButton = popupFavUserProducts.querySelector('.hide_popup_user_products_liked');
     function openPopup() {
-        popupUserProducts.style.display = 'block';
+        popupFavUserProducts.style.display = 'block';
     }
-    function closePopup() {
-        popupUserProducts.style.display = 'none';
+    function closePopup(event) {
+        event.preventDefault();
+        popupFavUserProducts.style.display = 'none';
     }
-    userProducts.addEventListener('click', openPopup);
+    userFavProducts.addEventListener('click', openPopup);
     hidePopupButton.addEventListener('click', closePopup);
 });
 
+// открытие попапа с историей покупок
 document.addEventListener("DOMContentLoaded", function() {
-    const userProducts = document.querySelector('.user_history_bought_box');
-    const popupUserProducts = document.querySelector('.popup_user_purchase_history');
-    const hidePopupButton = popupUserProducts.querySelector('.hide_popup_user_purchase_history');
+    const userBuyProducts = document.querySelector('.user_history_bought_box');
+    const popupUserBuyProducts = document.querySelector('.popup_user_purchase_history');
+    const hidePopupButton = popupUserBuyProducts.querySelector('.hide_popup_user_purchase_history');
     function openPopup() {
-        popupUserProducts.style.display = 'block';
+        popupUserBuyProducts.style.display = 'block';
     }
-    function closePopup() {
-        popupUserProducts.style.display = 'none';
+    function closePopup(event) {
+        event.preventDefault();
+        popupUserBuyProducts.style.display = 'none';
     }
-    userProducts.addEventListener('click', openPopup);
+    userBuyProducts.addEventListener('click', openPopup);
     hidePopupButton.addEventListener('click', closePopup);
+});
+
+// открытие попапа с редактированием выставленного товара пользователем
+document.addEventListener("DOMContentLoaded", function() {
+    const userChangeProducts = document.querySelectorAll('.active_user_product');
+    const popupUserProducts = document.querySelector('.popup_user_products_history');
+    userChangeProducts.forEach(function(product) {
+        const slug = product.getAttribute('data-product-slug');
+        const popupUserChangeProducts = document.getElementById('popup_' + slug);
+        const hidePopupChangeButton = popupUserChangeProducts.querySelector('.hide_popup_edit_product');
+        
+        function openPopup() {
+            popupUserChangeProducts.style.display = 'block';
+            popupUserProducts.style.display = 'none';
+            document.querySelector('header').style.zIndex = '1';
+            document.querySelector('main').style.marginBottom = '200px';
+        }
+        
+        function closePopup(event) {
+            event.preventDefault();
+            popupUserChangeProducts.style.display = 'none';
+            popupUserProducts.style.display = 'block';
+            document.querySelector('header').style.zIndex = '2';
+            document.querySelector('main').style.marginBottom = '100px';
+        }
+        
+        product.addEventListener('click', openPopup);
+        hidePopupChangeButton.addEventListener('click', closePopup);
+    });
 });

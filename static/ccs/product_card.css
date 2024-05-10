@@ -137,3 +137,15 @@
     padding: 0;
     margin: 0;
 }
+
+.background_main_img {
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    height: 744px;
+}
+
+.backimg_mobile {
+    display: none;
+    position: absolute;
+}

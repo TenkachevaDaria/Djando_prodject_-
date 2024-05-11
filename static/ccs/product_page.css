@@ -209,6 +209,7 @@
     max-height: 110px;
     padding: 5px 10px;
     background-color: rgba(136, 198, 252, 0.5);
+    cursor: pointer;
 }
 
 .decor_div1 {

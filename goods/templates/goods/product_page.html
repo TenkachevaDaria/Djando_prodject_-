@@ -348,42 +348,46 @@
             </div>
         </form>
         <div class="sort_items">
-            <p class="text_sort"><b>Сортировать по:</b></p>
-            <form id="order_by">
+            
+            {% if reviews %}
+                <p class="text_sort"><b>Сортировать по:</b></p>
+                <form id="order_by">
 
-                {% if not request.GET.order_by or request.GET.order_by == 'default' %}
-                    <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дата</button>
-                    <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
-                {% else %}
-                    {% if request.GET.order_by %}
+                    {% if not request.GET.order_by or request.GET.order_by == 'default' %}
+                        <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дата</button>
+                        <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                    {% else %}
+                        {% if request.GET.order_by %}
 
-                        {% if request.GET.order_by == '-rating' %}
-                            <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
-                            <button type="submit" id="" name="order_by" value="rating" class="rating">Оценка</button>
-                        {% elif request.GET.order_by == 'rating' %}
-                            <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
-                            <button type="submit" id="" name="order_by" value="default" class="rating">Оценка</button>
+                            {% if request.GET.order_by == '-rating' %}
+                                <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
+                                <button type="submit" id="" name="order_by" value="rating" class="rating">Оценка</button>
+                            {% elif request.GET.order_by == 'rating' %}
+                                <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
+                                <button type="submit" id="" name="order_by" value="default" class="rating">Оценка</button>
 
-                        {% elif request.GET.order_by == '-date_added' %}
-                            <button type="submit" id="" name="order_by" value="default" class="sort_date">Дата</button>
-                            <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
-                        {% elif request.GET.order_by == 'date_added' %}
-                            <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
-                            <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                            {% elif request.GET.order_by == '-date_added' %}
+                                <button type="submit" id="" name="order_by" value="default" class="sort_date">Дата</button>
+                                <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                            {% elif request.GET.order_by == 'date_added' %}
+                                <button type="submit" id="" name="order_by" value="-date_added" class="sort_date">Дата</button>
+                                <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
 
+                            {% endif %}
                         {% endif %}
                     {% endif %}
-                {% endif %}
 
-            </form>
+                </form>
+            {% endif %}
             
         </div>
         <ul class="users_list_reviews">
+
             {% for review in reviews %}
                 <li class="another_user_review">
                     <div class="short_com_info">
                         <p class="another_user_name">{{ review.user.username }}</p>
-                        <p class="data_send">{{ review.date_added }}</p>
+                        <p class="data_send">{{ review.date_added|date:"j F Y" }}</p>
                     </div>
                     <div class="another_user_comment">
                         <p class="user_com">{{ review.comment }}</p>
@@ -420,42 +424,10 @@
     </div>
     <script src="{% static "js/product_page.js" %}" ></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Находим все кнопки сортировки
-            var sortButtons = document.querySelectorAll('#order_by button[type=submit]');
-        
-            // Назначаем обработчик события click на каждую кнопку сортировки
-            sortButtons.forEach(function(button) {
-                button.addEventListener('click', function(event) {
-                    // Предотвращаем стандартное поведение кнопки (отправку формы)
-                    event.preventDefault();
-        
-                    // Получаем значение выбранного метода сортировки
-                    var selectedMethod = button.value;
-        
-                    // Отправляем AJAX-запрос на сервер
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('GET', window.location.href + '?order_by=' + selectedMethod, true);
-                    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            // Обновляем содержимое контейнера без перезагрузки страницы
-                            var container = document.querySelector('.product_page_container');
-                            container.innerHTML = xhr.responseText;
-                        }
-                    };
-                    xhr.send();
-                });
-            });
-        });
-        
-    </script>
-    <script>
         function redirectToBasket() {
             window.location.href = "{% url "basket:shopping_basket" %}";
         }
     </script>
-    
 {% endblock %}
 
 {% block decorLine %}

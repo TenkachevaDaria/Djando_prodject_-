@@ -11,28 +11,33 @@
     </summary>
     <div class="burger_open">
         <nav class="burger_nav">
-            <input type="search" name="q" placeholder="Поиск" class="nav_user__input" value>
-            <div class="drop_list_container">
-                <ul class="products_searchers_list">
-                    {% tag_products as searches %}
-                    {% for product in searches %}
-                        <li class="product_mini_card">
-                            <a href="{% url 'catalog:product' product.slug %}" class="mini_product_link">
-                                {% if product.image %}
-                                    <div class="img_decor_card">
-                                        <img src="{{ product.image.url }}" alt="" class="product_mini_img">
-                                    </div>
-                                {% else %}
-                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_mini_img">
-                                {% endif %}
-                                <p class="product_name">{{ product.name|truncatechars:30 }}</p>
-                                <p class="product_price"><b>{{ product.price }}  ₽</b></p>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <button class="drop_list__btn btn">Показать ещё</button>
-            </div>
+            <form role="search" action="{% url "catalog:search" %}" method="get">
+                <input type="search" name="q_mobile" placeholder="Поиск" class="nav_user__input_mobile" value>
+                <div class="drop_list_container_mobile">
+                    <ul class="products_searchers_list_mobile">
+                        {% tag_products as searches %}
+            
+                        {% for product in searches %}
+                            <li class="product_mini_card_mobile">
+                                <a href="{% url 'catalog:product' product.slug %}" class="mini_product_link_mobile">
+                                    {% if product.image %}
+                                        <div class="img_decor_card_mobile">
+                                            <img src="{{ product.image.url }}" alt="" class="product_mini_img_mobile">
+                                        </div>
+                                    {% else %}
+                                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product_mini_img_mobile">
+                                    {% endif %}
+            
+                                    <p class="product_name_mobile">{{ product.name|truncatechars:30 }}</p>
+                                    <p class="product_price_mobile"><b>{{ product.price }}  ₽</b></p>
+                                </a>
+                            </li>
+                        {% endfor %}
+            
+                    </ul>
+                    <button class="drop_list__btn_mobile btn">Показать ещё</button>
+                </div>
+            </form>
             <ul class="burger_links">
                 <li class="burger_link"><a href="{% url "main:index" %}" class="nav__link">Главная</a></li>
                 <li class="burger_link"><a href="{% url "catalog:index" %}" class="nav__link">Товары</a></li>

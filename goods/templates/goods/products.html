@@ -188,11 +188,11 @@
 
 {% block content %}
     <div class="main__container">
-        <h2 class="products_title">Товары</h2>
-        <div class="active_filters">
-            <ul class="active_filters__list">
-                <li class="active_filters__sub_list">
-                    <form id="order_by" action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" %}{% endif %}" method='get'>
+        <form id="filters" action="{% url "catalog:index" %}" method='get'>
+            <h2 class="products_title">Товары</h2>
+            <div class="active_filters">
+                <ul class="active_filters__list">
+                    <li class="active_filters__sub_list">   
                         <details class="active_filters__details">
                             <summary class="active_filters__summary">
 
@@ -226,9 +226,9 @@
                                 <li class="summary_filter">
 
                                     {% if not request.GET.order_by or request.GET.order_by == 'default' or request.GET.order_by != '-popularity' %}
-                                        <button name='order_by' id="Checkbox1" value="-popularity" class="filter_btn">
+                                        <button name='order_by' id="id_box1" value="-popularity" class="filter_btn">
                                     {% else %}
-                                        <button name='order_by' id="Checkbox1" value="default" class="filter_btn">
+                                        <button name='order_by' id="id_box1" value="default" class="filter_btn">
                                     {% endif %}
 
                                         {% if request.GET.order_by == 'popularity' %}
@@ -237,16 +237,16 @@
                                             <input type="checkbox" class="custom_checkbox">
                                         {% endif %}
 
-                                        <label for="Checkbox1">По популярности</label>
+                                        <label for="id_box1">По популярности</label>
                                     </button>
                                 </li>
                                 
                                 <li class="summary_filter">
 
                                     {% if not request.GET.order_by or request.GET.order_by == 'default' or request.GET.order_by != 'price' %}
-                                        <button name='order_by' id="Checkbox2" value="price" class="filter_btn">
+                                        <button name='order_by' id="id_box2" value="price" class="filter_btn">
                                     {% else %}
-                                        <button name='order_by' id="Checkbox2" value="default" class="filter_btn">
+                                        <button name='order_by' id="id_box2" value="default" class="filter_btn">
                                     {% endif %}
 
                                         {% if request.GET.order_by == 'price' %}
@@ -255,16 +255,16 @@
                                             <input type="checkbox" class="custom_checkbox">
                                         {% endif %}
 
-                                        <label for="Checkbox2">Сначала дешёвые</label>
+                                        <label for="id_box2">Сначала дешёвые</label>
                                     </button>
                                 </li>
 
                                 <li class="summary_filter">
 
                                     {% if not request.GET.order_by or request.GET.order_by == 'default' or request.GET.order_by != '-price' %}
-                                        <button name='order_by' id="Checkbox3" value="-price" class="filter_btn">
+                                        <button name='order_by' id="id_box3" value="-price" class="filter_btn">
                                     {% else %}
-                                        <button name='order_by' id="Checkbox3" value="default" class="filter_btn">
+                                        <button name='order_by' id="id_box3" value="default" class="filter_btn">
                                     {% endif %}
 
                                         {% if request.GET.order_by == '-price' %} 
@@ -273,16 +273,16 @@
                                             <input type="checkbox" class="custom_checkbox">
                                         {% endif %}
 
-                                        <label for="Checkbox3">Сначала дорогие</label>
+                                        <label for="id_box3">Сначала дорогие</label>
                                     </button>
                                 </li>
 
                                 <li class="summary_filter">
 
                                     {% if not request.GET.order_by or request.GET.order_by == 'default' or request.GET.order_by != '-avg_rating' %}
-                                        <button name='order_by' id="Checkbox4" value="-avg_rating" class="filter_btn">
+                                        <button name='order_by' id="id_box4" value="-avg_rating" class="filter_btn">
                                     {% else %}
-                                        <button name='order_by' id="Checkbox4" value="default" class="filter_btn">
+                                        <button name='order_by' id="id_box4" value="default" class="filter_btn">
                                     {% endif %}
 
                                         {% if request.GET.order_by == '-avg_rating' %} 
@@ -291,120 +291,79 @@
                                             <input type="checkbox" class="custom_checkbox">
                                         {% endif %}
 
-                                        <label for="Checkbox4">По рейтингу</label>
+                                        <label for="id_box4">По рейтингу</label>
                                     </button>
                                 </li>
                             </ul>
                         </details>
-                    </form>
-                </li>
-                <li class="active_filter"></li>
+                    </li>
+                    <li class="active_filter"></li>
 
-                {% if request.GET.subscription %}
-                    {% with subscription_id=request.GET.subscription|add:"0" %}
-                        {% for subscription in subscriptions %}
-                            {% if subscription_id == subscription.id %}
-                                <li class="active_filter">{{ subscription.name }}</span></li>
-                            {% endif %}
-                        {% endfor %}
-                    {% endwith %}
-                {% endif %}
-
-                {% if request.GET.in_stock %}
-                    {% if request.GET.in_stock == 'Да' %}
-                        <li class="active_filter">В наличии</span></li>
+                    {% if request.GET.subscription %}
+                        {% with subscription_id=request.GET.subscription|add:"0" %}
+                            {% for subscription in subscriptions %}
+                                {% if subscription_id == subscription.id %}
+                                    <li class="active_filter">{{ subscription.name }}</span></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
                     {% endif %}
-                {% endif %}
-                
-                {% if request.GET.category %}
-                    {% with category_id=request.GET.category|add:"0" %}
-                        {% for category in categories %}
-                            {% if category_id == category.id %}
-                                <li class="active_filter">{{ category.name }}</span></li>
-                            {% endif %}
-                        {% endfor %}
-                    {% endwith %}
-                {% endif %}
-                
-                <form  id="order_by" action=" {% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" %}{% endif %}" method='get'>
-                    <li class="active_filter"><button type="submit" name='order_by' value="default" class="drop_filters">Сбросить все фильтры</button></li>
-                </form>
-                
-            </ul>
-        </div>
-        <div class="filters_producs_container">
-            <div class="filters_box">
-                <h3 class="filters_producs__title">Фильтры</h3>
 
-                <form id="price_form" action="{% url 'catalog:index' %}" method='get'>
+                    {% if request.GET.in_stock %}
+                        {% if request.GET.in_stock == 'Да' %}
+                            <li class="active_filter">В наличии</span></li>
+                        {% endif %}
+                    {% endif %}
+                    
+                    {% if request.GET.category %}
+                        {% with category_id=request.GET.category|add:"0" %}
+                            {% for category in categories %}
+                                {% if category_id == category.id %}
+                                    <li class="active_filter">{{ category.name }}</span></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    {% endif %}
+
+                    <a class="active_filter" href="{% url "catalog:index" %}">Сбросить все фильтры</a>
+                </ul>
+            </div>
+            <div class="filters_producs_container">
+                <div class="filters_box">
+                    <h3 class="filters_producs__title">Фильтры</h3>         
+
                     <div class="price_spread_box">
                         <p class="price_spread_box__name">Цена, &#8381;</p>
                         <div class="price-range">
                             <div class="price_rage__input_label">
-                                <label for="price_from">От</label>
-                                <input type="text" name='sort_price_from' id="price_from" placeholder="{{ min_price }}" class="filter_price" 
-                                    {% if request.GET.sort_price_from %}value="{{ request.GET.sort_price_from }}{% else %}{% endif %}">
+                                <label for="id_price_from">От</label>
+                                <input type="text" name='sort_price_from' id="id_price_from" placeholder="{{ min_price }}" class="filter_price" value="{{ request.GET.sort_price_from }}">
                             </div>
                             <div class="price_rage__input_label">
-                                <label for="price_to">До</label>
-                                <input type="text" name='sort_price_to' id="price_to" placeholder="{{ max_price }}" class="filter_price" 
-                                    {% if request.GET.sort_price_to %}value ="{{request.GET.sort_price_to }}{% else %}{% endif %}">                
+                                <label for="id_price_to">До</label>
+                                <input type="text" name='sort_price_to' id="id_price_to" placeholder="{{ max_price }}" class="filter_price" value ="{{request.GET.sort_price_to }}">
                             </div>
                         </div>
                     </div>
-                </form>
 
-                <form id="subscription_filter" action="{% if request.GET.q %}{% url 'catalog:search' %}{% else %}{% url 'catalog:index' %}{% endif %}" method="get">
                     <div class="validity_box">
                         <h4 class="validity_title">Срок действия</h4>
                         <ul class="validity_list">
-
                             {% for subscription in subscriptions %}
                                 <li class="validity_list__item">
-
-                                    {% if not request.GET.subscription or request.GET.subscription == 'default' or request.GET.subscription|add:"0" != subscription.id %}
-                                        <button id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="filter_btn">
-                                    {% else %}
-                                        <button id="{{ subscription.slug }}" name="subscription" value="default" class="filter_btn">
-                                    {% endif %}
-
-                                            {% if request.GET.subscription == subscription.id|stringformat:"s" %}
-                                                <input type="checkbox" class="custom_checkbox" checked>
-                                            {% else %}
-                                                <input type="checkbox" class="custom_checkbox">
-                                            {% endif %}
-
-                                            <label for="{{ subscription.slug }}" class="filter_label">{{ subscription.name }}</label>
-                                        </button>
-                                    </li>
+                                    <input type="radio" id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="custom_checkbox"
+                                        {% if request.GET.subscription|add:"0" == subscription.id %} checked {% endif %}>
+                                    <label for="{{ subscription.slug }}" class="filter_label">{{ subscription.name }}</label>
+                                </li>
                             {% endfor %}
-
                         </ul>
                     </div>
-                </form>
-
-
-                <form id="in_stock_filter" action="{% url "catalog:index" %}" method='get'>
                     <div class="in_stock_box">
-
-                        {% if not request.GET.in_stock or request.GET.in_stock == 'default'  %}
-                            <button id="id_in_stock" name="in_stock" value="Да" class="filter_btn">
-                        {% else %}
-                            <button id="id_in_stock" name="in_stock" value="default" class="filter_btn">
-                        {% endif %}
-
-                            {% if request.GET.in_stock == "Да" %}
-                                <input type="checkbox" class="custom_checkbox" checked>
-                            {% else %}
-                                <input type="checkbox" class="custom_checkbox">
-                            {% endif %}
-
-                            <label for="stock_checkbox" class="stock_label">В наличии</label>
-                        </button>
+                        <input type="checkbox" id="id_in_stock" name="in_stock" value="Да" class="custom_checkbox"
+                            {% if request.GET.in_stock == "Да" %} checked {% endif %}>
+                        <label for="id_in_stock" class="stock_label">В наличии</label>
                     </div>
-                </form>
 
-                <form id="category_filter" action="{% url "catalog:index" %}" method='get'>
                     <div class="operating_system_box">
                         <h4 class="operating_system_title">Операционная система</h4>
                         <ul class="operating_system_list">
@@ -412,100 +371,98 @@
                             {% for category in categories %}
                                 {% if category.name != 'Все' %}
                                     <li class="operating_system">
-
-                                        {% if not request.GET.category or request.GET.category == 'default' or request.GET.category|add:"0" != category.id %}
-                                            <button id="{{ category.slug }}" name="category" value="{{ category.id }}" class="filter_btn">
-                                        {% else %}
-                                            <button id="{{ category.slug }}" name="category" value="default" class="filter_btn">
-                                        {% endif %}
-
-                                            {% if request.GET.category == category.id|stringformat:"s" %}
-                                                <input type="checkbox" class="custom_checkbox" checked>
-                                            {% else %}
-                                                <input type="checkbox" class="custom_checkbox">
-                                            {% endif %}
-
+                                        <div class="operating_system">
+                                            <input type="radio" id="{{ category.slug }}" name="category" value="{{ category.id }}" class="custom_checkbox"
+                                                {% if request.GET.category == category.id|stringformat:"s" %} checked {% endif %}>
                                             <label for="{{ category.slug }}">{{ category.name }}</label>
-                                        </button>
+                                        </div>
+                                        
                                     </li>
                                 {% endif %}
                             {% endfor %}
 
                         </ul>
                     </div>
-                </form>
+                </div>
+                <div class="product_box">
+                    <ul class="products_list">
+        
+                        {% for product in products %}
+                            <li class="product_card">
+                                <a href="{% url "catalog:product" product.slug %}">
+        
+                                    {% if product.image %}
+                                        <div class="img_decor_card">
+                                            <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
+                                            <div class="decor_mini_card_img"></div>
+                                        </div>
+                                    {% else %}
+                                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product__img shadow_element">
+                                    {% endif %}
+                                
+                                    {% if product.discount_percentage %}
+                                        <p class="popular_sale">ВЫГОДНО</p>
+                                    {% else %}
+                                        <p class="popular_sale"></p>
+                                    {% endif %}
+        
+                                    <p class="product__name shadow_element">{{ product.name|truncatechars:24 }}</p>
+        
+                                    {% if product.discount_percentage %}
+                                        <p class="product__price shadow_element">{{ product.discount_price }} ₽</p>
+                                    {% else %}
+                                        <p class="product__price shadow_element">{{ product.price }} ₽</p>
+                                    {% endif %}
+        
+                                </a>
+                            </li>
+                        {% endfor %}
+        
+                    </ul>
+                    <ul class="page_num_list">
+        
+                        {% if products.paginator.page_range|length > 1 %}
+                            {% for page in products.paginator.page_range %}
+                                {% if page >= products.number|add:-1 and page <= products.number|add:1 %}
+                                    <a href="?{% change_params page=page %}"><li class="page_num">{{ page }}</li></a>
+                                {% endif %}
+                            {% endfor %}    
+                        {% endif %}
 
+                    </ul>
+                </div>
             </div>
-            <div class="product_box">
-                <ul class="products_list">
-    
-                    {% for product in products %}
-                        <li class="product_card">
-                            <a href="{% url "catalog:product" product.slug %}">
-    
-                                {% if product.image %}
-                                    <div class="img_decor_card">
-                                        <img src="{{ product.image.url }}" alt="" class="product__img shadow_element">
-                                        <div class="decor_mini_card_img"></div>
-                                    </div>
-                                {% else %}
-                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product__img shadow_element">
-                                {% endif %}
-                            
-                                {% if product.discount_percentage %}
-                                    <p class="popular_sale">ВЫГОДНО</p>
-                                {% else %}
-                                    <p class="popular_sale"></p>
-                                {% endif %}
-    
-                                <p class="product__name shadow_element">{{ product.name|truncatechars:24 }}</p>
-    
-                                {% if product.discount_percentage %}
-                                    <p class="product__price shadow_element">{{ product.discount_price }} ₽</p>
-                                {% else %}
-                                    <p class="product__price shadow_element">{{ product.price }} ₽</p>
-                                {% endif %}
-    
-                            </a>
-                        </li>
-                    {% endfor %}
-    
-                </ul>
-                <ul class="page_num_list">
-    
-                    {% if products.paginator.page_range|length > 1 %}
-                        {% for page in products.paginator.page_range %}
-                            {% if page >= products.number|add:-1 and page <= products.number|add:1 %}
-                                <a href="?{% change_params page=page %}"><li class="page_num">{{ page }}</li></a>
-                            {% endif %}
-                        {% endfor %}    
-                    {% endif %}
-
-                </ul>
-            </div>
-        </div>
+        </form>
     </div>
-
+    <script src="{% static 'js/jquery/jquery-3.7.0.min.js' %}"></script>
     <script>
-        const priceForm = document.getElementById("price_form");
-        const priceFromInput = document.getElementById("price_from");
-        const priceToInput = document.getElementById("price_to");
-    
-        let typingTimer;
-        const doneTypingInterval = 1200;
-    
-        function submitFormAfterTyping() {
-            clearTimeout(typingTimer);
-    
-            typingTimer = setTimeout(function() {
-                priceForm.submit();
-            }, doneTypingInterval);
-        }
-        priceFromInput.addEventListener("input", submitFormAfterTyping);
-        priceToInput.addEventListener("input", submitFormAfterTyping);
+        $(document).ready(function() {
+            $('input[type="checkbox"]').change(function() {
+                $('#filters').submit();
+            });
+            $('input[type="radio"]').click(function() {
+                $('#filters').submit();
+            });
+
+            const priceForm = document.getElementById("filters");
+            const priceFromInput = document.getElementById("id_price_from");
+            const priceToInput = document.getElementById("id_price_to");
+        
+            let typingTimer;
+            const doneTypingInterval = 1200;
+        
+            function submitFormAfterTyping() {
+                clearTimeout(typingTimer);
+        
+                typingTimer = setTimeout(function() {
+                    priceForm.submit();
+                }, doneTypingInterval);
+            }
+            priceFromInput.addEventListener("input", submitFormAfterTyping);
+            priceToInput.addEventListener("input", submitFormAfterTyping);
+        });
     </script>
 {% endblock  %}
-
 {% block decorLine %}
     <svg width="1846" height="2146" viewBox="0 0 1846 2146" fill="none" xmlns="http://www.w3.org/2000/svg" class="backimg_products">
         <g opacity="0.45">

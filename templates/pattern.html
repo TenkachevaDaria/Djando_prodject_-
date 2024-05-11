@@ -92,7 +92,8 @@
         </header>
         {% include "includes/burger.html" %}
         <main>
-            {% block content %}{% endblock %} 
+            {% block content %}{% endblock %}
+            {% block burger %}{% endblock %}
         </main>
             {% block user_page %}{% endblock  %}
         <footer>
@@ -160,7 +161,7 @@
         </footer>
         <div class="decor_div1"></div>
         {% block decorLine %}{% endblock  %}
-        <script src="{% static "js/jquery/jquery-3.7.0.min.js" %}"></script>
+        <script src="{% static 'js/jquery/jquery-3.7.0.min.js' %}"></script>
         <script src="{% static "js/jquery-ajax.js" %}"></script>
         <script src="{% static "js/search_product.js" %}"></script>
     </body>

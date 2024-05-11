@@ -16,8 +16,8 @@ def catalog(request):
     subscription_filter = request.GET.get('subscription', None)
     in_stock_filter = request.GET.get('in_stock', None)
     category_filter = request.GET.get('category', None)
-    # price_filter_from = request.GET.get('sort_price_from', None)
-    # price_filter_to = request.GET.get('sort_price_to', None)
+    price_filter_from = request.GET.get('sort_price_from', None)
+    price_filter_to = request.GET.get('sort_price_to', None)
     query = request.GET.get('q', None)
     
     products = Product.objects.all()
@@ -37,10 +37,10 @@ def catalog(request):
         products = products.order_by(order_by)
 
 
-    # if price_filter_from:
-    #     products = products.filter(price__gte=float(price_filter_from))
-    # if price_filter_to:
-    #     products = products.filter(price__lte=float(price_filter_to))
+    if price_filter_from:
+        products = products.filter(price__gte=float(price_filter_from))
+    if price_filter_to:
+        products = products.filter(price__lte=float(price_filter_to))
 
     if subscription_filter and subscription_filter != "default":
         products = products.filter(subscription=subscription_filter)

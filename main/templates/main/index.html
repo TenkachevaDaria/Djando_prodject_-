@@ -10,14 +10,14 @@
 
 {% block content %}
     <div class="wrapper">
-        <input type="radio" name="point" id="microsoft-windows-10-professional-1" checked>
-        <input type="radio" name="point" id="microsoft-office-2021-home-and-student-for-windows-esd-1">
-        <input type="radio" name="point" id="microsoft-windows-server-2008-standard-r2-rok-x64-5-cal-1-4-cpu-ru-oem-2">
 
+        {% for product in products %}  
+            <input type="radio" name="point" id="id_slider_{{ forloop.counter }}" {% if forloop.counter == 1 %} checked {% endif %}>
+        {% endfor %}
 
         <div class="slider">
             {% for product in products %}
-                <div class="slides {{ product.slug }}">
+                <div class="slides id_slider_{{ forloop.counter }}">
                     <div class="title_container">
                         <h2 class="slider_title">Успейте приобрести</h2>
                         <h2 class="slider_title slider_popular_product">Хит продаж</h2>
@@ -46,9 +46,11 @@
 
 
         <div class="controls">
-            <label for="microsoft-windows-10-professional-1"></label>
-            <label for="microsoft-office-2021-home-and-student-for-windows-esd-1"></label>
-            <label for="microsoft-windows-server-2008-standard-r2-rok-x64-5-cal-1-4-cpu-ru-oem-2"></label>
+
+            {% for product in products %}
+                <label for="id_slider_{{ forloop.counter }}"></label>
+            {% endfor %}
+            
         </div>
     </div>
     <div id='quest' class="questions">

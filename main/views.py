@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 def index(request):
     questions = Questions.objects.all()
-    products = Product.objects.all()[:3]
+    products = Product.objects.all().order_by("-popularity")[:3]
 
     context = {
         'title': 'Интернет-магазин ProSoftware - Добро пожаловать в мир высококачественного программного обеспечения',

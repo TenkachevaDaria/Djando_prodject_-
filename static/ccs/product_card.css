@@ -64,9 +64,9 @@
 }
 
 .wrapper label:hover, 
-#microsoft-windows-10-professional-1:checked ~ .controls label:nth-of-type(1),
-#microsoft-office-2021-home-and-student-for-windows-esd-1:checked ~ .controls label:nth-of-type(2),
-#microsoft-windows-server-2008-standard-r2-rok-x64-5-cal-1-4-cpu-ru-oem-2:checked ~ .controls label:nth-of-type(3) {
+#id_slider_1:checked ~ .controls label:nth-of-type(1),
+#id_slider_2:checked ~ .controls label:nth-of-type(2),
+#id_slider_3:checked ~ .controls label:nth-of-type(3) {
 	background: rgb(27, 157, 243);
 }
 
@@ -79,9 +79,9 @@
     transition: transform ease-in-out .5s, opacity ease-in-out .5s;
 }
 
-#microsoft-windows-10-professional-1:checked ~ .slider > .microsoft-windows-10-professional-1,
-#microsoft-office-2021-home-and-student-for-windows-esd-1:checked ~ .slider > .microsoft-office-2021-home-and-student-for-windows-esd-1,
-#microsoft-windows-server-2008-standard-r2-rok-x64-5-cal-1-4-cpu-ru-oem-2:checked ~ .slider > .microsoft-windows-server-2008-standard-r2-rok-x64-5-cal-1-4-cpu-ru-oem-2 {
+#id_slider_1:checked ~ .slider > .id_slider_1,
+#id_slider_2:checked ~ .slider > .id_slider_2,
+#id_slider_3:checked ~ .slider > .id_slider_3 {
 	opacity: 1;
 	z-index: 1;
 }

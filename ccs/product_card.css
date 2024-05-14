@@ -90,36 +90,40 @@
     position: absolute;
     left: 0;
     top: 0;
-    max-width: 45%;
+    max-width: 47%;
 }
 
 .slider_img {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 100px;
     width: 50%;
-    height: 100%;
+    height: 90%;
     background-color: inherit;
 }
 
 .slider_price_container {
     position: absolute;
-    left: 0;
+    left: 360px;
     bottom: 0;
+    text-align: right;
 }
 
 .slider_title {
     padding: 0;
     margin: 0;
-    font-size: 50px;
+    font-size: 60px;
     color: rgb(28, 37, 65);
     text-align: left;
     text-transform: uppercase;
 }
 
 .slider_popular_product {
-    font-size: 80px;
-    color: rgb(236, 246, 255);
+    font-size: 70px;
+    color: #1C2541;
+    position: absolute;
+    right: 150px;
+    text-align: center;
 }
 
 .normal_price {

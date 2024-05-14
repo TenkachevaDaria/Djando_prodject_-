@@ -131,6 +131,7 @@ main {
     height: inherit;
     align-items: center;
     /* flex-direction: row-reverse; */
+    /* display: none; */
 }
 
 .user_product {
@@ -407,7 +408,7 @@ main {
     padding: 24px 32px;
     border-radius: 20px;
     width: calc(850px - 32px * 2);
-    display: none;
+    /* display: none; */
 }
 
 .popup_editing_product__title {
@@ -510,4 +511,42 @@ main {
 .check_boxs_label,
 .check_boxs {
     margin-left: 25px;
+}
+
+.empty_user_products,
+.empty_user_history {
+    position: absolute;
+    color: #1C2541;
+    font-size: 13px;
+    display: none;
+}
+
+.clue_container {
+    position: relative;
+}
+
+.clue_cvv {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;    
+    padding: 5px;
+}
+
+.clue_cvv_text {
+    padding: 5px;
+    background-color: #ECF6FF;
+    font-size: 12px;
+    color: #1C2541;
+    border-radius: 20px;
+    position: absolute;
+    border: 0.5px solid #1C2541;
+    right: -140px;
+    top: 40px;
+    display: none;
+}
+
+.changed_input {
+    margin-left: 10px;
+    display: none;
 }

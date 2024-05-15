@@ -408,6 +408,7 @@ main {
     padding: 24px 32px;
     border-radius: 20px;
     width: calc(850px - 32px * 2);
+    border: none;
     /* display: none; */
 }
 
@@ -423,6 +424,7 @@ main {
 }
 
 .edit_form__input {
+    margin-top: 5px;
     padding: 22px 25px;
     width: calc(100% - 25px * 2);
     border-radius: 20px;
@@ -430,6 +432,7 @@ main {
     outline: none;
     background-color: rgb(236, 246, 255);
     font-size: 20px;
+    color: #1C2541;
 }
 
 .edit_product_input__title {
@@ -455,6 +458,7 @@ main {
     font-size: 20px;
     text-transform: uppercase;
     color: white;
+    font-weight: bold;
 }
 
 .edit_form__submit {

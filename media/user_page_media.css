@@ -107,13 +107,25 @@
 
     .custom-input_user .upload-button {
         width: 100px;
-        height: 100px;
+        height: 134px;
     }
 
     .custom-input_user {
         width: 100px;
         height: 100px;
         align-self: center;
+    }
+
+    .label_input_img {
+        display: block;
+        padding: 5px;
+        border: 0.5px solid #1C2541;
+        border-radius: 20px;
+        background-color: #ECF6FF;
+        font-size: 10px;
+        width: fit-content;
+        align-self: center;
+        margin-top: 10px;
     }
 
     .active_filters__summary {
@@ -159,11 +171,15 @@
     }
 
     .custom_checkbox+label::after {
-        top: 4px;
+        top: 3px;
     }
 
-    .active_filters__details {
+    .title_active_filters {
+        font-size: 13px;
+        color: #1C2541;
         margin-top: 16px;
+        margin-bottom: 5px;
+        margin-left: 5px;
     }
 
     .user_rating {

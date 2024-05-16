@@ -409,7 +409,7 @@ main {
     border-radius: 20px;
     width: calc(850px - 32px * 2);
     border: none;
-    /* display: none; */
+    display: none;
 }
 
 .popup_editing_product__title {

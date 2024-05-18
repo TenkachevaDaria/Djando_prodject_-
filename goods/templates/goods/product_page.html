@@ -176,11 +176,12 @@
                 <a href="{% url "basket:basket_add" %}" class="btn btn_add add-to-basket"
                     data-product-id="{{ product.id }}">   
                     {% csrf_token %}
-                    <b>Добавить в корзину</b></a>
+                    Добавить в корзину
+                </a>
                 <a href="{% url "basket:basket_add" %}" class="btn btn_buy_now add-to-basket"
                     data-product-id="{{ product.id }}" onclick="redirectToBasket()">
                     {% csrf_token %}
-                    <b>Купить сейчас</b>
+                    Купить сейчас
                  </a>
             </div>
             <div class="saler_info">
@@ -354,8 +355,8 @@
                 <form id="order_by">
 
                     {% if not request.GET.order_by or request.GET.order_by == 'default' %}
-                        <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дата</button>
-                        <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценка</button>
+                        <button type="submit" id="" name="order_by" value="date_added" class="sort_date">Дате</button>
+                        <button type="submit" id="" name="order_by" value="-rating" class="rating">Оценке</button>
                     {% else %}
                         {% if request.GET.order_by %}
 
@@ -387,7 +388,7 @@
                 <li class="another_user_review">
                     <div class="short_com_info">
                         <p class="another_user_name">{{ review.user.username }}</p>
-                        <p class="data_send">{{ review.date_added|date:"j F Y" }}</p>
+                        <p class="data_send">{{ review.date_added|date:"d.m.Y" }}</p>
                     </div>
                     <div class="another_user_comment">
                         <p class="user_com">{{ review.comment }}</p>

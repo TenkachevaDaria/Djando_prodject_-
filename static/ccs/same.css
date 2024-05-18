@@ -18,6 +18,7 @@ main {
 li,
 ul,
 a,
+b,
 h1,
 p,
 h2,
@@ -26,13 +27,15 @@ h3 {
   padding: 0px;
   margin: 0px;
   list-style-type: none;
+  color: #1C2541;
 }
 
 .btn {
   transition: all 0.3s;
   outline: none;
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .btn-reset {

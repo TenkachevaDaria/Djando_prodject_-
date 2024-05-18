@@ -33,77 +33,58 @@
                 <div class="burger_stick_close3"></div>
                 <div class="burger_stick_close4"></div>
             </div>
-            <h3 class="filters_producs__title">Фильтры</h3>
-            <form id="price_form" action="{% url 'catalog:index' %}" method='get'>
+            <h3 class="filters_producs__title">Фильтры</h3>         
+            <form id="filters" action="{% url "catalog:index" %}" method='get'>
+
                 <div class="price_spread_box">
                     <p class="price_spread_box__name">Цена, &#8381;</p>
                     <div class="price-range">
                         <div class="price_rage__input_label">
-                            <label for="price_from">От</label>
-                            <input type="text" name='sort_price_from' id="price_from" placeholder="{{ min_price }}" class="filter_price">
+                            <label for="id_price_from">От</label>
+                            <input type="text" name='sort_price_from' id="id_price_from" placeholder="{{ min_price }}" class="filter_price" value="{{ request.GET.sort_price_from }}">
                         </div>
                         <div class="price_rage__input_label">
-                            <label for="price_to">До</label>
-                            <input type="text" name='sort_price_to' id="price_to" placeholder="{{ max_price }}" class="filter_price">
+                            <label for="id_price_to">До</label>
+                            <input type="text" name='sort_price_to' id="id_price_to" placeholder="{{ max_price }}" class="filter_price" value ="{{request.GET.sort_price_to }}">
                         </div>
                     </div>
                 </div>
-            </form>
-
-            <form id="subscription_filter" action="{% if request.GET.q %}{% url 'catalog:search' %}{% else %}{% url 'catalog:index' %}{% endif %}" method="get">
+    
                 <div class="validity_box">
                     <h4 class="validity_title">Срок действия</h4>
                     <ul class="validity_list">
-
                         {% for subscription in subscriptions %}
                             <li class="validity_list__item">
-                                <button id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="filter_btn">
-
-                                    {% if request.GET.subscription == subscription.id|stringformat:"s" %}
-                                        <input type="checkbox" class="custom_checkbox" checked>
-                                    {% else %}
-                                        <input type="checkbox" class="custom_checkbox">
-                                    {% endif %}
-
-                                    <label for="{{ subscription.slug }}" class="filter_label">{{ subscription.name }}</label>
-                                </button>
+                                <input type="radio" id="{{ subscription.slug }}" name="subscription" value="{{ subscription.id }}" class="custom_checkbox"
+                                    {% if request.GET.subscription|add:"0" == subscription.id %} checked {% endif %}>
+                                <label for="{{ subscription.slug }}" class="filter_label">{{ subscription.name }}</label>
                             </li>
                         {% endfor %}
-
                     </ul>
                 </div>
-            </form>
-
-
-            <form id="in_stock_filter" action="{% url "catalog:index" %}" method='get'>
                 <div class="in_stock_box">
-                    <input type="submit" id="stock_checkbox" name="in_stock" value="true" class="custom_checkbox">
-                    <label for="stock_checkbox" class="stock_label">В наличии</label>
+                    <input type="checkbox" id="id_in_stock" name="in_stock" value="Да" class="custom_checkbox"
+                        {% if request.GET.in_stock == "Да" %} checked {% endif %}>
+                    <label for="id_in_stock" class="stock_label">В наличии</label>
                 </div>
-            </form>
-
-            <form id="category_filter" action="{% url "catalog:index" %}" method='get'>
+    
                 <div class="operating_system_box">
                     <h4 class="operating_system_title">Операционная система</h4>
                     <ul class="operating_system_list">
-
+    
                         {% for category in categories %}
                             {% if category.name != 'Все' %}
                                 <li class="operating_system">
-                                    <button id="{{ category.slug }}" name="category" value="{{ category.id }}" class="filter_btn">
-
-                                        {% if request.GET.category == category.id|stringformat:"s" %}
-                                            <input type="checkbox" class="custom_checkbox" checked>
-                                        {% else %}
-                                            <input type="checkbox" class="custom_checkbox">
-                                        {% endif %}
-
+                                    <div class="operating_system">
+                                        <input type="radio" id="{{ category.slug }}" name="category" value="{{ category.id }}" class="custom_checkbox"
+                                            {% if request.GET.category == category.id|stringformat:"s" %} checked {% endif %}>
                                         <label for="{{ category.slug }}">{{ category.name }}</label>
-                                    </button>
+                                    </div>
+                                    
                                 </li>
                             {% endif %}
                         {% endfor %}
-
+    
                     </ul>
                 </div>
             </form>
@@ -130,9 +111,9 @@
                 <ul class="summary_filters">
 
                     <li class="summary_filter">
-                        <button name='order_by' id="Checkbox1" value="popularity_checkbox" class="filter_btn">
+                        <button name='order_by' id="Checkbox1" value="-popularity" class="filter_btn">
 
-                            {% if request.GET.order_by == 'popularity_checkbox' %}
+                            {% if request.GET.order_by == '-popularity' %}
                                 <input type="checkbox" class="custom_checkbox" checked>
                             {% else %}
                                 <input type="checkbox" class="custom_checkbox">
@@ -303,7 +284,9 @@
                         {% with subscription_id=request.GET.subscription|add:"0" %}
                             {% for subscription in subscriptions %}
                                 {% if subscription_id == subscription.id %}
-                                    <li class="active_filter">{{ subscription.name }}</span></li>
+                                    <li class="active_filter">
+                                        
+                                        {{ subscription.name }} <span class="active_filter__disabler">×</span></li>
                                 {% endif %}
                             {% endfor %}
                         {% endwith %}
@@ -311,7 +294,8 @@
 
                     {% if request.GET.in_stock %}
                         {% if request.GET.in_stock == 'Да' %}
-                            <li class="active_filter">В наличии</span></li>
+                            <li class="active_filter">
+                                В наличии <span class="active_filter__disabler">×</span></li>
                         {% endif %}
                     {% endif %}
                     
@@ -319,7 +303,7 @@
                         {% with category_id=request.GET.category|add:"0" %}
                             {% for category in categories %}
                                 {% if category_id == category.id %}
-                                    <li class="active_filter">{{ category.name }}</span></li>
+                                    <li class="active_filter">{{ category.name }} <span class="active_filter__disabler">×</span></li>
                                 {% endif %}
                             {% endfor %}
                         {% endwith %}
@@ -400,8 +384,8 @@
                                         <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="product__img shadow_element">
                                     {% endif %}
                                 
-                                    {% if product.discount_percentage %}
-                                        <p class="popular_sale">ВЫГОДНО</p>
+                                    {% if product.popularity > 10 %}
+                                        <p class="popular_sale">ХИТ!</p>
                                     {% else %}
                                         <p class="popular_sale"></p>
                                     {% endif %}
@@ -409,9 +393,9 @@
                                     <p class="product__name shadow_element">{{ product.name|truncatechars:24 }}</p>
         
                                     {% if product.discount_percentage %}
-                                        <p class="product__price shadow_element">{{ product.discount_price }} ₽</p>
+                                        <p class="product__price shadow_element">{{ product.discount_price|floatformat:"0" }} ₽</p>
                                     {% else %}
-                                        <p class="product__price shadow_element">{{ product.price }} ₽</p>
+                                        <p class="product__price shadow_element">{{ product.price|floatformat:"0" }} ₽</p>
                                     {% endif %}
         
                                 </a>

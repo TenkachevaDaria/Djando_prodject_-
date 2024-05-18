@@ -148,6 +148,29 @@
         });
         
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var usernameInput = document.getElementById("id_username");
+            var emailInput = document.getElementById("id_email");
+            var password1Input = document.getElementById("id_password1");
+            var password2Input = document.getElementById("id_password2");
+            var submitButton = document.querySelector(".btn_send_reginfo");
+    
+            function checkInputs() {
+                if (usernameInput.value.trim() !== "" && emailInput.value.trim() !== "" && password1Input.value.trim() !== "" && password2Input.value.trim() !== "") {
+                    submitButton.style.opacity = 1;
+                } else {
+                    submitButton.style.opacity = 0.5;
+                }
+            }
+    
+            usernameInput.addEventListener("input", checkInputs);
+            emailInput.addEventListener("input", checkInputs);
+            password1Input.addEventListener("input", checkInputs);
+            password2Input.addEventListener("input", checkInputs);
+            checkInputs();
+        });
+    </script>
 {% endblock  %}
 
 {% block decorLine %}

@@ -30,7 +30,7 @@
     background-color: white;
     padding: 25px;
     font-size: 20px;
-    border: 1px solid rgb(28, 37, 65);
+    border: none;
     outline: none;
     border-radius: 20px;
 }
@@ -45,13 +45,14 @@
 
 .btn_send_database {
     padding: 20px 280px;
-    background-color: rgb(21, 106, 199);
+    /* background-color: rgb(21, 106, 199); */
+    background-color: #0082F0;
+    opacity: 30%;
     color: white;
     font-size: 20px;
-    /* position: absolute; */
-    /* bottom: 35px; */
     border-radius: 20px;
     margin-bottom: 30px;
+    border:none;
     cursor: pointer;
 }
 

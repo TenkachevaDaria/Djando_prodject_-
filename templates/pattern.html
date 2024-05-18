@@ -10,6 +10,7 @@
         <link rel="icon" type="image/png" href="{% static "favicon/favicon.ico" %}">
         <link rel="stylesheet" href="{% static "ccs/same.css" %}">
         <link rel="stylesheet" href="{% static "ccs/header.css" %}">
+        
         <link rel="stylesheet" href="{% static "ccs/footer.css" %}">
         <link rel="stylesheet" href="{% static "/ccs/decor_main_page.css" %}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -17,6 +18,7 @@
         {% block css %}{% endblock %}
     </head>
     <body>
+        {% block burger %}{% endblock %}
         <header>
             <nav class="nav_helper">
                 <ul class="nav_helper__links">
@@ -32,7 +34,7 @@
 
                 </ul>
             </nav>
-            <h1 class="site_name">ProSoftware</h1>
+            <h1 class="site_name">PROFOSFWARE</h1>
             <nav class="nav_user">
                 <ul class="nav_user__links">
                     <li class="nav_links__link">
@@ -59,7 +61,7 @@
                                     {% endfor %}
                                     
                                 </ul>
-                                <button class="drop_list__btn btn">ПОКАЗАТЬ ЕЩЕ</button>
+                                <button class="drop_list__btn btn">ПОКАЗАТЬ ВСЕ</button>
                             </div>
                         </form>
                     </li>
@@ -93,7 +95,6 @@
         {% include "includes/burger.html" %}
         <main>
             {% block content %}{% endblock %}
-            {% block burger %}{% endblock %}
         </main>
             {% block user_page %}{% endblock  %}
         <footer>

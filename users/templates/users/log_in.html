@@ -45,10 +45,10 @@
             <path d="M464.842 553.381L544.004 576.42" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M531.607 566.376L548.148 579.964" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <g opacity="0.2">
-            <path d="M590.759 485.599L602.375 581.737H405.861L464.845 553.38C464.845 553.38 458.938 545.109 458.347 539.793C457.783 534.716 473.909 505.416 475.364 502.784L476.683 494.035C476.683 494.035 479.494 452.661 477.888 444.629C476.281 436.595 472.266 417.715 480.298 396.426C488.332 375.138 509.219 338.584 509.219 338.584L571.48 320.509C571.48 320.509 599.999 359.873 594.778 401.647C589.553 443.421 590.759 485.599 590.759 485.599Z" fill="#0082F0" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M405.865 581.738L464.849 553.381L513.793 581.738H405.865Z" fill="#1C2541" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M464.842 553.381L544.004 576.42" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M531.607 566.376L548.148 579.964" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M590.759 485.599L602.375 581.737H405.861L464.845 553.38C464.845 553.38 458.938 545.109 458.347 539.793C457.783 534.716 473.909 505.416 475.364 502.784L476.683 494.035C476.683 494.035 479.494 452.661 477.888 444.629C476.281 436.595 472.266 417.715 480.298 396.426C488.332 375.138 509.219 338.584 509.219 338.584L571.48 320.509C571.48 320.509 599.999 359.873 594.778 401.647C589.553 443.421 590.759 485.599 590.759 485.599Z" fill="#0082F0" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M405.865 581.738L464.849 553.381L513.793 581.738H405.865Z" fill="#1C2541" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M464.842 553.381L544.004 576.42" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M531.607 566.376L548.148 579.964" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
             <path d="M464.528 195.992C464.528 195.992 461.002 204.837 459.652 219.111C458.302 233.385 461.126 241.168 457.545 245.578C453.963 249.986 450.45 251.158 452.544 255.786C454.638 260.416 463.443 263.543 463.443 263.543C463.443 263.543 471.861 282.46 476.917 288.398C481.973 294.336 501.137 288.316 501.137 288.316L507.681 308.639L552.293 287.063L546.506 266.259L555.406 239.089C555.406 239.089 535.015 178.607 464.528 195.992Z" fill="white" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M501.136 288.317L510.777 283.143L505.743 299.506L501.136 288.317Z" fill="#1C2541" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -98,14 +98,32 @@
             <path d="M597.665 582H633.868C633.868 582 657.335 488.5 647.88 416.399C646.972 409.48 641.047 404.319 634.068 404.319C626.344 404.319 620.1 410.588 620.147 418.311C620.298 444.006 617.937 503.367 597.665 582Z" fill="#1C2541" stroke="#1C2541" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var usernameInput = document.getElementById("id_username");
+            var passwordInput = document.getElementById("id_password");
+            var submitButton = document.querySelector(".btn_send_database");
+    
+            function checkInputs() {
+                if (usernameInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
+                    submitButton.style.opacity = 1;
+                } else {
+                    submitButton.style.opacity = 0.5;
+                }
+            }
+    
+            usernameInput.addEventListener("input", checkInputs);
+            passwordInput.addEventListener("input", checkInputs);
+            checkInputs();
+        });
+    </script>
 {% endblock %}
-
 {% block decorLine %}
     <svg width="1728" height="934" viewBox="0 0 1728 934" fill="none" xmlns="http://www.w3.org/2000/svg" class="backimg_log_in">
         <g opacity="0.6">
-        <g filter="url(#filter0_f_1062_4224)">
-        <path d="M0 90H107.5C118.546 90 127.5 98.9543 127.5 110V744.5C127.5 755.546 136.454 764.5 147.5 764.5H737.5C748.546 764.5 757.5 773.454 757.5 784.5V903C757.5 914.046 766.454 923 777.5 923H1536C1547.05 923 1556 914.046 1556 903V766.5C1556 755.454 1564.95 746.5 1576 746.5H1731.5" stroke="#0082F0"/>
-        </g>
+            <g filter="url(#filter0_f_1062_4224)">
+                <path d="M0 90H107.5C118.546 90 127.5 98.9543 127.5 110V744.5C127.5 755.546 136.454 764.5 147.5 764.5H737.5C748.546 764.5 757.5 773.454 757.5 784.5V903C757.5 914.046 766.454 923 777.5 923H1536C1547.05 923 1556 914.046 1556 903V766.5C1556 755.454 1564.95 746.5 1576 746.5H1731.5" stroke="#0082F0"/>
+            </g>
         <g filter="url(#filter1_f_1062_4224)">
         <path d="M1720.5 140.5H1185.5C1174.45 140.5 1165.5 149.454 1165.5 160.5V776C1165.5 787.046 1156.55 796 1145.5 796H605.5H320C308.954 796 300 787.046 300 776V508C300 496.954 291.046 488 280 488H104C92.9543 488 84 496.954 84 508V868.5C84 879.546 75.0457 888.5 64 888.5H-2.5" stroke="#8AC7FE" stroke-width="2"/>
         </g>

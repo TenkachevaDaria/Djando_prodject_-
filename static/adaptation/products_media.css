@@ -46,7 +46,6 @@
     .product__price {
         margin-top: 5px;
         font-size: 15px;
-        width: 100%;
     }
 
     .page_num {
@@ -150,7 +149,7 @@
     .price_rage__input_label label {
         font-size: 11px;
     }
-    
+
     .backimg_products {
         display: none;
     }

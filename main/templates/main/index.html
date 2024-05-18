@@ -9,48 +9,51 @@
 
 
 {% block content %}
-    <div class="wrapper">
-
-        {% for product in products %}  
-            <input type="radio" name="point" id="id_slider_{{ forloop.counter }}" {% if forloop.counter == 1 %} checked {% endif %}>
-        {% endfor %}
-
-        <div class="slider">
-            {% for product in products %}
-                <div class="slides id_slider_{{ forloop.counter }}">
-                    <div class="title_container">
-                        <h2 class="slider_title">Успейте приобрести</h2>
+    <div class="products_container">
+        <h2 class="product_title">Популярные товары</h2>
+        <div class="wrapper">
+    
+            {% for product in products %}  
+                <input type="radio" name="point" id="id_slider_{{ forloop.counter }}" {% if forloop.counter == 1 %} checked {% endif %}>
+            {% endfor %}
+    
+            <div class="slider">
+                {% for product in products %}
+                    <div class="slides id_slider_{{ forloop.counter }}">
+                        <div class="title_container">
+                            <h2 class="slider_title">Успейте приобрести</h2>
+                            <h2 class="slider_title">По <b>выгодной</b> цене</h2>
+                        </div>
                         <h2 class="slider_title slider_popular_product">Хит продаж</h2>
-                        <h2 class="slider_title">По <b>выгодной</b> цене</h2>
-                    </div>
-
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="" class="slider_img">
-                    {% else %}
-                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
-                    {% endif %}
-
-                    <div class="slider_price_container">
-
-                        {% if product.discount_percentage %}
-                            <p class="normal_price">{{ product.price }} &#8381;</p>
-                            <p class="discounted_price">{{ product.discount_price }} &#8381;</p>
+    
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="" class="slider_img">
                         {% else %}
-                            <p class="discounted_price">{{ product.price }} &#8381;</p>
+                            <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
                         {% endif %}
-
+    
+                        <div class="slider_price_container">
+    
+                            {% if product.discount_percentage %}
+                                <p class="normal_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                <p class="discounted_price">{{ product.discount_price|floatformat:"0" }} &#8381;</p>
+                            {% else %}
+                                <p class="discounted_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                            {% endif %}
+    
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>	
-
-
-        <div class="controls">
-
-            {% for product in products %}
-                <label for="id_slider_{{ forloop.counter }}"></label>
-            {% endfor %}
-            
+                {% endfor %}
+            </div>	
+    
+    
+            <div class="controls">
+    
+                {% for product in products %}
+                    <label for="id_slider_{{ forloop.counter }}"></label>
+                {% endfor %}
+                
+            </div>
         </div>
     </div>
     <div id='quest' class="questions">

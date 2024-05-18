@@ -159,15 +159,20 @@
     }
 
     .custom_checkbox+label::after {
-        top: 4px;
+        top: 3px;
     }
 
-    .active_filters__details {
+    .title_active_filters {
+        font-size: 13px;
+        color: #1C2541;
         margin-top: 16px;
+        margin-bottom: 5px;
+        margin-left: 5px;
     }
+
 
     .user_rating {
-        bottom: 200px;
+        margin-top: 196px;
     }
 
     .user_rating__title,

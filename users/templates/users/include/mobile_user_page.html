@@ -1,0 +1,208 @@
+{% load static %}
+
+<form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
+    <div class="user_page_container_mobile">
+        <div class="left_inputs">
+            <h2 class="left_inputs__title">Аккаунт</h2>
+            <div class="left_inputs__container">
+                <div>
+                    <label for="first_name">Имя</label><br>
+                    <input type="text" id="id_first_name" name="first_name" class="user_input_page" value="{{ form.first_name.value }}" placeholder="Добавьте имя"><br>
+                    {% if form.first_name.errors %}
+                        <p>{{ form.first_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="last_name">Фамилия</label><br>
+                    <input type="text" id="id_last_name" name="last_name" class="user_input_page" value="{{ form.last_name.value }}" placeholder="Добавьте фамилию"><br>
+                    {% if form.last_name.errors %}
+                        <p>{{ form.last_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="middle_name">Отчество</label><br>
+                    <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество"><br>
+                    {% if form.middle_name.errors %}
+                        <p>{{ form.middle_name.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="e-mail">E-mail</label><br>
+                    <input type="email" id="id_email" name="email" class="user_input_page" value="{{ form.email.value }}" placeholder="Добавьте почту" required><br>
+                    {% if form.email.errors %}
+                        <p>{{ form.email.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="phone_num">Номер телефона</label><br>
+                    <input type="text" id="id_phone" name="phone" class="user_input_page" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона"><br>
+                    {% if form.phone.errors %}
+                        <p>{{ form.phone.errors }}</p> 
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="login">Логин</label><br>
+                    <p class="user_input_page">{{ user.username }}</p><br>
+                </div>
+                <input type="submit" value="Сохранить измененния" class="save_user_data_btn btn">
+                <p class="user_products_title">Размещенные вами товары</p>
+                <div class="user_products">
+                    <div class="imgs_container">
+                        <ul class="user_products__list">
+
+                            {% if not products %}
+                                <p>Вы еще не разместили ни одного товара</p>
+                            {% endif %}
+                            {% for product in products_his %}
+                                {% if product.image %}
+                                    <li class="user_product"><img src="{{ product.image.url }}" alt="" class="user_product__img"></li>
+                                {% else %}
+                                    <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <p class="user_history_bought">Уже покупали</p>
+                <div class="user_history_bought_box">
+                    <div class="imgs_container">
+                        <ul class="user_products__list">
+                            
+                            {% if not buy_history %}
+                                Вы еще не купили ни одного товара
+                            {% endif %}
+                            {% for product_his in buy_his %}
+                                {% if product_his.product.image %}
+                                    <li class="user_product"><img src="{{ product_his.product.image.url }}" alt="" class="user_product__img"></li>
+                                {% else %}
+                                    <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_inputs">
+            <div class="custom-input_user">
+                <img src="{{ user.image.url }}" alt="">
+            </div>
+            <label for="id_image_profile" class="custom-file-upload-photo">
+                <span>Добавить фото профиля.</span>
+                <input type="file" id="id_image_profile" name="image" accept="image/*" class="label_input_img">
+            </label>
+            <h2 class="title_active_filters">Способ оплаты</h2>
+            <form action="">
+                <details class="active_filters__details">
+                    <summary class="active_filters__summary">
+
+                        {% if user.payment_method %}
+                            {{ user.payment_method.bank }} ⋅⋅ {{ user.payment_method.card_num|slice:"-4:" }}
+                        {% else %}
+                            Укажите способ оплаты
+                        {% endif %}
+
+                        <div class="marker_container">
+                            <div class="summary_marker_stick1"></div>
+                            <div class="summary_marker_stick2"></div>
+                        </div>
+                    </summary>
+                    <ul class="summary_filters">
+
+                        <form id="paymentMethodForm" method="post">
+                            {% csrf_token %}
+                            {% for payment_method in payment_methods %}
+                            <li class="summary_filter">
+                                <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_checkbox" value="{{ payment_method.id }}">
+                                <label for="payment_method_{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
+                            </li>
+                            {% endfor %}
+                        </form>
+
+                        <li class="summary_filter">
+                            <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
+                        </li>
+                    </ul>
+                </details>
+            </form>
+            <div class="user_rating">
+                <p class="user_rating__title">Ваш рейтинг продавца</p>
+                <div class="user_rating__box">
+
+                    {% if average_rating %}
+                        <p class="user_rating__num">{{ average_rating|floatformat:1 }}</p>
+                    {% else %}
+                        <p class="user_rating__num">Вас еще никто не оценил</p>
+                    {% endif %}
+                    
+                    <ul class="user_rating__stars">
+                        {% if average_rating_int > 0 %}
+                            {% for _ in "x"|rjust:average_rating_int %}
+                                <li class="another_user_star">
+                                    <svg width="15.000000" height="14.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc>Created with Pixso.</desc>
+                                        <defs />
+                                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
+                                    </svg>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                        {% if average_rating_float > 0 %}
+                            {% if average_rating_float > 0 and average_rating_float < 0.5 %}
+                                <li class="another_user_star">
+                                    {% comment %} 1/4 звезды {% endcomment %}
+                                    <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                        <desc>Created with Pixso.</desc>
+                                        <g class="layer">
+                                            <title>Layer 1</title>
+                                            <path d="m7.36,0l-2.21,6.79l-7.14,0l5.78,4.21l-2.2,6.79l5.78,-4.21l5.78,4.21l-2.2,-6.79l5.78,-4.21l-7.14,0l-2.2,-6.79z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                            <path d="m4.91,6.5c0,0.04 0,8.68 -0.01,8.66c-0.01,-0.02 -2.57,1.88 -2.56,1.84c0.02,-0.04 1.98,-6.93 1.97,-6.95c-0.01,-0.02 -5.61,-4.21 -5.6,-4.14c0.01,0.07 6.2,0.07 6.2,0.07z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
+                                        </g>
+                                    </svg>
+                                </li>
+                            {% endif %}
+                            {% if average_rating_float == 0.5 %}
+                                <li class="another_user_star">
+                                    {% comment %} на половину закрашена {% endcomment %}
+                                    <svg width="15" height="14" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc>Created with Pixso.</desc>
+                                        <defs />
+                                        <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" />
+                                        <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#FCA95D" fill-opacity="1" />
+                                    </svg>                                        
+                                </li>
+                            {% endif %}
+                            {% if average_rating_float > 0.5 and average_rating_float < 1 %}
+                                <li class="another_user_star">
+                                    {% comment %} 3/4 звезды {% endcomment %}
+                                    <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                                        <desc>Created with Pixso.</desc>
+                                        <g class="layer">
+                                            <title>Layer 1</title>
+                                            <path d="m7.19,0l-1.72,5.28l-5.56,0l4.5,3.27l-1.71,5.28l4.5,-3.27l4.5,3.27l-1.71,-5.28l4.5,-3.27l-5.56,0l-1.71,-5.28z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                            <path d="m9.28,11.08c0.02,0.14 -0.01,-7.12 -0.02,-7.13c-0.01,-0.01 -0.39,-0.07 -0.39,-0.08c-0.01,-0.01 -1.64,-4.87 -1.65,-4.88c-0.01,-0.01 -1.76,4.92 -1.76,4.89c-0.01,-0.02 -5.14,0.12 -5.14,0.1c-0.01,-0.02 4.11,3.14 4.11,3.13c-0.01,0 -1.51,4.86 -1.51,4.87c0,0.01 4.16,-2.93 4.17,-2.93c0.01,0 2.71,1.87 2.72,2.05z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
+                                        </g>
+                                    </svg>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                        {% if anti_average_rating > 0 %}
+                            {% for _ in "x"|rjust:anti_average_rating %}
+                                <li class="another_user_star">
+                                    <svg width="15.000000" height="14.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc>Created with Pixso.</desc>
+                                        <defs />
+                                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" fill-rule="evenodd" />
+                                    </svg> 
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

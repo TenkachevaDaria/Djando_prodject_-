@@ -14,12 +14,11 @@
                 <div class="custom-input_user">
 
                     {% if user.image %}
-                        <div class="img_decor_card">
-                            <img src="{{ user.image.url }}" alt="" class="product__img shadow_element">
-                        </div>
+                        <img src="{{ user.image.url }}" alt="" class="user_img">
                     {% else %}
-                        <img src="{% static 'deps/фото пользователя нет.png' %}" alt="" class="product__img shadow_element">
+                        <img src="{% static 'deps/фото пользователя нет.png' %}" alt="" class="user_img">
                     {% endif %}
+                    
                     <label for="photo" class="upload-button"></label>
                     <input type="file" id="id_image" name="image" class="upload-button" accept="image/*">
                     {% if form.image.errors %}
@@ -45,7 +44,7 @@
                 </div>
                 <div>
                     <label for="middle_name">Отчество</label><br>
-                    <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество"><br>
+                    <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{% if form.middle_name.value == None %}{% else %}{{ form.middle_name.value }}{% endif %}" placeholder="Добавьте отчество"><br>
                     {% if form.middle_name.errors %}
                         <p>{{ form.middle_name.errors }}</p> 
                     {% endif %}
@@ -72,13 +71,13 @@
                 </div>
                 {% if products %}
                     <div class="user_rating">
-                        <p class="user_rating__title">Средний рейтинг товаров</p>
+                        <p class="user_rating__title">Ваш рейтинг продавца</p>
                         <div class="user_rating__box">
 
                             {% if average_rating %}
-                                <p class="user_rating__num">{{ average_rating|floatformat:1 }}</p>
+                                <p class="user_rating__num">{{ average_rating|floatformat:2 }}</p>
                             {% else %}
-                                <p class="user_rating__num">Нет оценок</p>
+                                <p class="user_rating__num">Вас еще никтро не оценил</p>
                             {% endif %}
                             
                             <ul class="user_rating__stars">
@@ -154,7 +153,7 @@
                 {% endif %}
         
                 <label for="phone_num">Номер телефона</label><br>
-                <input type="text" id="id_phone" name="phone" class="user_input_page" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона"><br>
+                <input type="text" id="id_phone" name="phone" class="user_input_page" value="{% if form.phone.value == None %}{% else %}{{ form.phone.value }}{% endif %}" placeholder="Добавьте номер телефона"><br>
                 {% if form.phone.errors %}
                     <p>{{ form.phone.errors }}</p> 
                 {% endif %}
@@ -165,7 +164,6 @@
                 <div class="user_history_bought_box">
                     <div class="imgs_container">
                         <ul class="user_products__list">
-
 
                             {% if not buy_history %}
                                 Вы еще не купили ни одного товара
@@ -187,7 +185,7 @@
                 <div class="active_filters__sub_list">
                     <form action="">
                         <details class="active_filters__details">
-                            <summary class="active_filters__summary">
+                            <summary class="active_filters__summary_lk">
 
                                 {% if user.payment_method %}
                                     {{ user.payment_method.bank }} ⋅⋅ {{ user.payment_method.card_num|slice:"-4:" }}
@@ -207,9 +205,9 @@
                                     {% for payment_method in payment_methods %}
                                     <li class="summary_filter">
                                         {% if user.payment_method.id == payment_method.id %}
-                                            <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_radio" value="{{ payment_method.id }}" checked>
+                                            <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_checkbox" value="{{ payment_method.id }}" checked>
                                         {% else %}
-                                            <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_radio" value="{{ payment_method.id }}">
+                                            <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_checkbox" value="{{ payment_method.id }}">
                                         {% endif %}
                                         <label for="payment_method_{{ payment_method.id }}" class="custom_radio">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
                                     </li>
@@ -245,25 +243,54 @@
             </div>
             <div class="popup_user_products_history">
                 <h3 class="popup_title">Мои товары</h3>
-                <ul class="active_user_products">
-
-                    {% for product in products %}
-                        <li class="active_user_product" data-product-slug="{{ product.slug }}">
-                        
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" alt="" class="active_user_product__img shadow_element">
-                            {% else %}
-                                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
-                            {% endif %}
-
-                            <p class="active_user_product__name shadow_element">{{ product.name }}</p>
-                            <p class="active_user_product__price shadow_element">{{ product.price }} ₽</p>
-                            <p class="active_user_product__date shadow_element">{{ product.date_added }}</p>
-                        </li>
+                <div class="scroll-y">
+                    <ul class="active_user_products">
+        
+                        {% for product in products %}
+                            <li class="active_user_product" data-product-slug="{{ product.slug }}">
+                            
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="" class="active_user_product__img shadow_element">
+                                {% else %}
+                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
+                                {% endif %}
+    
+                                <p class="active_user_product__name shadow_element">{{ product.name|truncatechars:22 }}</p>
+                                <p class="active_user_product__price shadow_element">{{ product.price|floatformat:"0" }} ₽</p>
+                                <p id="id_data_{{ product.id }}" class="active_user_product__date shadow_element" data-date="{{ product.date_added|date:"c" }}">Дата размещения: <span class="formatted_date"></span></p>
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="pen_edit">
+                                    <rect opacity="0.5" width="15.4242" height="15" fill="url(#pattern0_1300_592)"/>
+                                    <defs>
+                                    <pattern id="pattern0_1300_592" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_1300_592" transform="matrix(0.0025 0 0 0.00257069 -0.175 -0.0565553)"/>
+                                    </pattern>
+                                    <image id="image0_1300_592" width="512" height="512" xlink:href="data:image/png;base64,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"/>
+                                    </defs>
+                                </svg>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const dateElements = document.querySelectorAll('.active_user_product__date');
+                                
+                                        dateElements.forEach(function(element) {
+                                            const isoDate = element.getAttribute('data-date');
+                                            const date = new Date(isoDate);
+                                
+                                            const day = String(date.getDate()).padStart(2, '0');
+                                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                                            const year = date.getFullYear();
+                                
+                                            const formattedDate = `${day}.${month}.${year}`;
+                                            element.querySelector('.formatted_date').textContent = formattedDate;
+                                        });
+                                    });
+                                </script>
+                                
+                            </li>
                         {% endfor %}
-                        
+                            
                     </ul>
-                    <button class="hide_popup_user_products_history">&#215;</button>
+                </div>
+                <button class="hide_popup_user_products_history">&#215;</button>
             </div>
             {% for product in products %}
                 <div id="popup_{{ product.slug }}" class="popup_editing_product">
@@ -272,301 +299,577 @@
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                         <div>
-                            <label for="id_name" class="edit_product_input__title">Название товара</label><br>
-                            <input type="text" id="id_name" name="name" required
+                            <label for="id_name_{{ product.id }}" class="edit_product_input__title">Название товара</label>
+                            <span id="changed_name_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
+                            <input type="text" id="id_name_{{ product.id }}" name="name" required
                                 placeholder="{{ product.name }}" class="edit_form__input" value="{{ product.name }}">
                         </div>
                         <div class="price_product_edit">
                             <div>
-                                <label for="id_price" class="edit_product_input__title">Цена товара</label><br>
-                            <input type="number" id="id_price" name="price" required
-                                placeholder="{{ product.price|floatformat:"0" }} ₽" class="edit_form__input_price" value="{{ product.price|floatformat:"0"|stringformat:"s" }}">
+                                <label for="id_price_{{ product.id }}" class="edit_product_input__title">Цена товара</label>
+                                <span id="changed_price_{{ product.id }}" class="changed_input">
+                                    <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                            stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                </span><br>
+                                <input type="text" id="id_price_{{ product.id }}" name="price" required
+                                    placeholder="{{ product.price|floatformat:"0" }} ₽" class="edit_form__input_price" value="{{ product.price|floatformat:"0" }}">
                             </div>
                             <div  class="discount_product">
 
-                            {% if not product.discount_percentage %}
-                                <label for="id_discount_percentage" class="product_price_discount__label"><b>Хотите добавить скидку?</b></label>
-                                <input type="number" id="id_discount_percentage" name="discount_percentage"
-                                    placeholder="Напишите свою цену" class="edit_form__input_price_discount" value="0">
-                            {% else %}
-                                <label for="id_discount_percentage" class="product_price_discount__label"><b>Хотите изменить скидку?</b></label>
-                                <input type="number" id="id_discount_percentage" name="discount_percentage"
-                                    placeholder="{{ product.discount_percentage }}" class="edit_form__input_price_discount" value="{{ product.discount_percentage|stringformat:"s" }}">
-                            {% endif %}
+                                {% if not product.discount_percentage %}
+                                    <label for="id_discount_percentage_{{ product.id }}" class="product_price_discount__label"><b>Хотите добавить скидку?</b></label>
+                                    <input type="number" id="id_discount_percentage_{{ product.id }}" name="discount_percentage"
+                                        placeholder="Напишите свою цену" class="edit_form__input_price_discount" value="0">
+                                {% else %}
+                                    <label for="id_discount_percentage_{{ product.id }}" class="product_price_discount__label"><b>Хотите изменить скидку?</b></label>
+                                    <input type="number" id="id_discount_percentage_{{ product.id }}" name="discount_percentage"
+                                        placeholder="{{ product.discount_percentage }}" class="edit_form__input_price_discount" value="{{ product.discount_percentage|stringformat:"s" }}">
+                                {% endif %}
 
                             </div>
                         </div>
                         <div>
-                            <label class="check_boxs_label">Под какую систему предназначен ваш продукт?</label><br>
+                            <label class="check_boxs_label">Под какую систему предназначен ваш продукт?</label>
+                            <span id="changed_category_{{ product.id }}" class="changed_input"><svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
                             <div class="check_boxs">
                                 <div>
 
                                     {% if product.category.id == 2 %}
-                                        <input type="radio" id="id_macos" name="category" value="2"
+                                        <input type="radio" id="id_macos_{{ product.id }}" name="category" value="2"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_macos" name="category" value="2"
+                                        <input type="radio" id="id_macos_{{ product.id }}" name="category" value="2"
                                         class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_macos">MacOS</label>
+                                    <label for="id_macos_{{ product.id }}">MacOS</label>
                                 </div>
                                 <div>
 
                                     {% if product.category.id == 3 %}
-                                        <input type="radio" id="id_linux" name="category" value="3"
+                                        <input type="radio" id="id_linux_{{ product.id }}" name="category" value="3"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_linux" name="category" value="3"
+                                        <input type="radio" id="id_linux_{{ product.id }}" name="category" value="3"
                                         class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_linux">Linux</label>
+                                    <label for="id_linux_{{ product.id }}">Linux</label>
                                 </div>
                                 <div>
                                     
                                     {% if product.category.id == 1 %}
-                                        <input type="radio" id="id_windows" name="category" value="1"
+                                        <input type="radio" id="id_windows_{{ product.id }}" name="category" value="1"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_windows" name="category" value="1"
+                                        <input type="radio" id="id_windows_{{ product.id }}" name="category" value="1"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_windows">Windows</label>
+                                    <label for="id_windows_{{ product.id }}">Windows</label>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label for="id_delivery_type" class="edit_product_input__title">Тип поставки товара</label>
-                            <input type="text" id="id_delivery_type" name="delivery_type" required
+                            <label for="id_delivery_type_{{ product.id }}" class="edit_product_input__title">Тип поставки товара</label>
+                            <span id="changed_delivery_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
+                            <input type="text" id="id_delivery_type_{{ product.id }}" name="delivery_type" required
                                 placeholder="{% if product.delivery_type %}{{ product.delivery_type }}{% else %}Напишите тип поставки вашего продукта.{% endif %}"
                                     value="{% if product.delivery_type %}{{ product.delivery_type }}{% else %}{% endif %}"
                                     class="edit_form__input">
                         </div>
                         <div>
-                            <label for="id_media_type" class="edit_product_input__title">Тип носителя товара</label>
-                            <input type="text" id="id_media_type" name="media_type" required
+                            <label for="id_media_type_{{ product.id }}" class="edit_product_input__title">Тип носителя товара</label>
+                            <span id="changed_media_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
+                            <input type="text" id="id_media_type_{{ product.id }}" name="media_type" required
                                 placeholder="{% if product.media_type %}{{ product.media_type }}{% else %}Напишите тип носителя вашего продукта.{% endif %}"
                                     value="{% if product.media_type %}{{ product.media_type }}{% else %}{% endif %}"
                                     class="edit_form__input">
                         </div>
                         <div>
-                            <label for="id_purpose" class="edit_product_input__title">Предназначение товара</label>
-                            <input type="text" id="id_purpose" name="purpose" required
+                            <label for="id_purpose_{{ product.id }}" class="edit_product_input__title">Предназначение товара</label>
+                            <span id="changed_purpose_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
+                            <input type="text" id="id_purpose_{{ product.id }}" name="purpose" required
                                 placeholder="{% if product.purpose %}{{ product.purpose }}{% else %}Напишите для чего предназначен ваш продукт.{% endif %}"
                                     value="{% if product.purpose %}{{ product.purpose }}{% else %}{% endif %}"
                                     class="edit_form__input">
                         </div>
                         <div>
-                            <label class="check_boxs_label">Какой срок лицензии у вашего продукта?</label><br>
+                            <label class="check_boxs_label">Какой срок лицензии у вашего продукта?</label>
+                            <span id="changed_subscription_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
                             <div class="check_boxs_subscription_duration">
                                 <div>
 
                                     {% if product.subscription.id == 5 %}
-                                        <input type="radio" id="id_1_month" name="subscription" value="5"
+                                        <input type="radio" id="id_1_month_{{ product.id }}" name="subscription" value="5"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_1_month" name="subscription" value="5"
+                                        <input type="radio" id="id_1_month_{{ product.id }}" name="subscription" value="5"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_1_month">1 Месяц</label>
+                                    <label for="id_1_month_{{ product.id }}">1 Месяц</label>
                                 </div>
                                 <div>
 
                                     {% if product.subscription.id == 4 %}
-                                        <input type="radio" id="id_1_year" name="subscription" value="4"
+                                        <input type="radio" id="id_1_year_{{ product.id }}" name="subscription" value="4"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_1_year" name="subscription" value="4"
+                                        <input type="radio" id="id_1_year_{{ product.id }}" name="subscription" value="4"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_1_year">1 Год</label>
+                                    <label for="id_1_year_{{ product.id }}">1 Год</label>
                                 </div>
                                 <div>
 
                                     {% if product.subscription.id == 3 %}
-                                        <input type="radio" id="id_2_years" name="subscription" value="3"
+                                        <input type="radio" id="id_2_years_{{ product.id }}" name="subscription" value="3"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_2_years" name="subscription" value="3"
+                                        <input type="radio" id="id_2_years_{{ product.id }}" name="subscription" value="3"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_2_years">2 Года</label>
+                                    <label for="id_2_years_{{ product.id }}">2 Года</label>
                                 </div>
                                 <div>
 
                                     {% if product.subscription.id == 2 %}
-                                        <input type="radio" id="id_3_years" name="subscription" value="2"
+                                        <input type="radio" id="id_3_years_{{ product.id }}" name="subscription" value="2"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_3_years" name="subscription" value="2"
+                                        <input type="radio" id="id_3_years_{{ product.id }}" name="subscription" value="2"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_3_years">3 Года</label>
+                                    <label for="id_3_years_{{ product.id }}">3 Года</label>
                                 </div>
                                 <div>
 
                                     {% if product.subscription.id == 1 %}
-                                        <input type="radio" id="id_unlimited" name="subscription" value="1"
+                                        <input type="radio" id="id_unlimited_{{ product.id }}" name="subscription" value="1"
                                             class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_unlimited" name="subscription" value="1"
+                                        <input type="radio" id="id_unlimited_{{ product.id }}" name="subscription" value="1"
                                             class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_unlimited">Бессрочная</label>
+                                    <label for="id_unlimited_{{ product.id }}">Бессрочная</label>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label class="check_boxs_label">Какой разрядности ваш продукт?</label><br>
+                            <label class="check_boxs_label">Какой разрядности ваш продукт?</label>
+                            <span id="changed_bitness_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
                             <div class="check_boxs_bit_depth">
                                 <div>
 
                                     {% if product.bitness == "x32" %}
-                                        <input type="radio" id="id_x32" name="bitness" value="x32" class="checkbox_input custom_checkbox" checked>
+                                        <input type="radio" id="id_x32_{{ product.id }}" name="bitness" value="x32" class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_x32" name="bitness" value="x32" class="checkbox_input custom_checkbox">
+                                        <input type="radio" id="id_x32_{{ product.id }}" name="bitness" value="x32" class="checkbox_input custom_checkbox">
                                     {% endif %}
 
-                                    <label for="id_x32">x32</label>
+                                    <label for="id_x32_{{ product.id }}">x32</label>
                                 </div>
                                 <div>
 
                                     {% if product.bitness == 'x64' %}
-                                        <input type="radio" id="id_x64" name="bitness" value="x64" class="checkbox_input custom_checkbox" checked>
+                                        <input type="radio" id="id_x64_{{ product.id }}" name="bitness" value="x64" class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_x64" name="bitness" value="x64" class="checkbox_input custom_checkbox">
+                                        <input type="radio" id="id_x64_{{ product.id }}" name="bitness" value="x64" class="checkbox_input custom_checkbox">
                                     {% endif %}
-                                    <label for="id_x64">x64</label>
+                                    <label for="id_x64_{{ product.id }}">x64</label>
                                 </div>
                                 <div>
 
                                     {% if product.bitness == 'x86' %}
-                                        <input type="radio" id="id_x86" name="bitness" value="x86" class="checkbox_input custom_checkbox" checked>
+                                        <input type="radio" id="id_x86_{{ product.id }}" name="bitness" value="x86" class="checkbox_input custom_checkbox" checked>
                                     {% else %}
-                                        <input type="radio" id="id_x86" name="bitness" value="x86" class="checkbox_input custom_checkbox">
+                                        <input type="radio" id="id_x86_{{ product.id }}" name="bitness" value="x86" class="checkbox_input custom_checkbox">
                                     {% endif %}
-                                    <label for="id_x86">x86</label>
+                                    <label for="id_x86_{{ product.id }}">x86</label>
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <label for="changed_description_{{ product.id }}" class="edit_product_input__title">Описание товара</label>
+                            <span id="changed_description_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span><br>
+                            {% if not product.description %}
+                                <textarea id="id_description_{{ product.id }}" name="description" rows="4" cols="50" required
+                                    placeholder="Дайте описание вашему продукту:" class="edit_form__input textarea_input"></textarea>
+                            {% else %}
+                                <textarea id="id_description_{{ product.id }}" name="description" rows="4" cols="50" required
+                                placeholder="{{ product.description }}" class="edit_form__input textarea_input">{{ product.description }}</textarea>
+                            {% endif %}
+                        </div>
 
-                        {% if not product.description %}
-                            <textarea id="id_description" name="description" rows="4" cols="50" required
-                                placeholder="Дайте описание вашему продукту:" class="edit_form__input textarea_input"></textarea>
-                        {% else %}
-                            <textarea id="id_description" name="description" rows="4" cols="50" required
-                            placeholder="{{ product.description }}" class="edit_form__input textarea_input">{{ product.description }}</textarea>
-                        {% endif %}
+                        <div class="flex">
+                            <label for="id_lablimage_{{ product.id }}" class="custom-file-upload">
+                                <span>Добавить фото продукта.</span>
+                                <input type="file" id="id_lablimage_{{ product.id }}" name="image" accept="image/*" class="edit_form_add_img">
+                                
+                            </label>
 
-                        <label for="id_lablimage" class="custom-file-upload">
-                            <span>Добавить фото продукта.</span>
-                            <input type="file" id="id_lablimage" name="image" accept="image/*" class="edit_form_add_img" onchange="showUploadMessage()">
-                        </label>
+                            <span id="changed_photo_{{ product.id }}" class="changed_input">
+                                <svg width="17" height="11" viewBox="0 0 17 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5.5L5.08891 9.21719C5.87886 9.93533 7.09358 9.90642 7.84847 9.15153L16 1"
+                                        stroke="#26C840" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </div>
                         <input type="submit" value="Сохранить изменения" class="edit_form__submit btn">
                         <input type="submit" name="delete_product" value="Удалить товар" class="edit_form__delete_product btn">
                     </form>
-                    <button class="hide_popup_edit_product">&#215;</button>
+                    <p></p>
+                    <p class="hide_popup_edit_product">&#215;</p>
                 </div>
+
+                {% comment %} Скрипт на галочку если была смена категории товара {% endcomment %}
+                <script>
+                    const changedIndicatorCategory_{{ product.id }} = document.getElementById('changed_category_{{ product.id }}');
+                    const radioButtons_{{ product.id }} = document.querySelectorAll('input[name="category"]');
+                    const initialValueCategory_{{ product.id }} = "{{ product.category.id }}";
+            
+                    function checkInputValueCategory_{{ product.id }}() {
+                        let selectedValue = null;
+            
+                        radioButtons_{{ product.id }}.forEach(radioButton => {
+                            if (radioButton.checked) {
+                                selectedValue = radioButton.value;
+                            }
+                        });
+            
+                        if (selectedValue !== initialValueCategory_{{ product.id }}) {
+                            changedIndicatorCategory_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorCategory_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+            
+                    radioButtons_{{ product.id }}.forEach(radioButton => {
+                        radioButton.addEventListener('change', checkInputValueCategory_{{ product.id }});
+                    });
+                </script>
+
+                {% comment %} скрипт на галочку если была смена срока подписки товара {% endcomment %}
+                <script>
+                    const changedIndicatorSubscription_{{ product.id }} = document.getElementById('changed_subscription_{{ product.id }}');
+                    const radioButtonsSubscription_{{ product.id }} = document.querySelectorAll('input[name="subscription"]');
+                    const initialValueSubscription_{{ product.id }} = "{{ product.subscription.id }}";
+            
+                    function checkInputValueSubscription_{{ product.id }}() {
+                        let selectedValue = null;
+            
+                        radioButtonsSubscription_{{ product.id }}.forEach(radioButton => {
+                            if (radioButton.checked) {
+                                selectedValue = radioButton.value;
+                            }
+                        });
+            
+                        if (selectedValue !== initialValueSubscription_{{ product.id }}) {
+                            changedIndicatorSubscription_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorSubscription_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+            
+                    radioButtonsSubscription_{{ product.id }}.forEach(radioButton => {
+                        radioButton.addEventListener('change', checkInputValueSubscription_{{ product.id }});
+                    });
+                </script>
+
+                {% comment %} скрипт на галочку если была смена битности товара {% endcomment %}
+                <script>
+                    const changedIndicatorBitness_{{ product.id }} = document.getElementById('changed_bitness_{{ product.id }}');
+                    const radioButtonsBitness_{{ product.id }} = document.querySelectorAll('input[name="bitness"]');
+                    const initialValueBitness_{{ product.id }} = "{{ product.bitness }}";
+            
+                    function checkInputValueBitness_{{ product.id }}() {
+                        let selectedValueBitness = null;
+            
+                        radioButtonsBitness_{{ product.id }}.forEach(radioButton => {
+                            if (radioButton.checked) {
+                                selectedValueBitness = radioButton.value;
+                            }
+                        });
+
+                        if (selectedValueBitness !== initialValueBitness_{{ product.id }}) {
+                            changedIndicatorBitness_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorBitness_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+            
+                    radioButtonsBitness_{{ product.id }}.forEach(radioButton => {
+                        radioButton.addEventListener('change', checkInputValueBitness_{{ product.id }});
+                    });
+                </script>
+
+                {% comment %} скрипт на налочку на текстовые поля {% endcomment %}
+                <script>
+                    {% comment %} название товара {% endcomment %}
+                    const inputFieldName_{{ product.id }} = document.getElementById('id_name_{{ product.id }}');
+                    const changedIndicatorName_{{ product.id }} = document.getElementById('changed_name_{{ product.id }}');
+                    const initialValueName_{{ product.id }} = inputFieldName_{{ product.id }}.value;
+
+                    function checkInputValueName_{{ product.id }}() {
+                        if (inputFieldName_{{ product.id }}.value !== initialValueName_{{ product.id }}) {
+                            changedIndicatorName_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorName_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldName_{{ product.id }}.addEventListener('input', checkInputValueName_{{ product.id }});
+
+                    {% comment %} цена товара {% endcomment %}
+                    const inputFieldPrice_{{ product.id }} = document.getElementById('id_price_{{ product.id }}');
+                    const changedIndicatorPrice_{{ product.id }} = document.getElementById('changed_price_{{ product.id }}');
+                    const initialValuePrice_{{ product.id }} = inputFieldPrice_{{ product.id }}.value;
+                    function checkInputValuePrice_{{ product.id }}() {
+                        if (inputFieldPrice_{{ product.id }}.value !== initialValuePrice_{{ product.id }}) {
+                            changedIndicatorPrice_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorPrice_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldPrice_{{ product.id }}.addEventListener('input', checkInputValuePrice_{{ product.id }});
+
+                    {% comment %} тип поставки товара {% endcomment %}
+                    const inputFieldDelivery_{{ product.id }} = document.getElementById('id_delivery_type_{{ product.id }}');
+                    const changedIndicatorDelivery_{{ product.id }} = document.getElementById('changed_delivery_{{ product.id }}');
+                    const initialValueDelivery_{{ product.id }} = inputFieldDelivery_{{ product.id }}.value;
+
+                    function checkInputValueDelivery_{{ product.id }}() {
+                        if (inputFieldDelivery_{{ product.id }}.value !== initialValueDelivery_{{ product.id }}) {
+                            changedIndicatorDelivery_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorDelivery_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldDelivery_{{ product.id }}.addEventListener('input', checkInputValueDelivery_{{ product.id }});
+
+                    {% comment %} тип носителя {% endcomment %}
+                    const inputFieldMedia_{{ product.id }} = document.getElementById('id_media_type_{{ product.id }}');
+                    const changedIndicatorMedia_{{ product.id }} = document.getElementById('changed_media_{{ product.id }}');
+                    const initialValueMedia_{{ product.id }} = inputFieldMedia_{{ product.id }}.value;
+
+                    function checkInputValueMedia_{{ product.id }}() {
+                        if (inputFieldMedia_{{ product.id }}.value !== initialValueMedia_{{ product.id }}) {
+                            changedIndicatorMedia_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorMedia_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldMedia_{{ product.id }}.addEventListener('input', checkInputValueMedia_{{ product.id }});
+
+                    {% comment %} предназначение товара {% endcomment %}
+                    const inputFieldPurpose_{{ product.id }} = document.getElementById('id_purpose_{{ product.id }}');
+                    const changedIndicatorPurpose_{{ product.id }} = document.getElementById('changed_purpose_{{ product.id }}');
+                    const initialValuePurpose_{{ product.id }} = inputFieldPurpose_{{ product.id }}.value;
+
+                    function checkInputValuePurpose_{{ product.id }}() {
+                        if (inputFieldPurpose_{{ product.id }}.value !== initialValuePurpose_{{ product.id }}) {
+                            changedIndicatorPurpose_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorPurpose_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldPurpose_{{ product.id }}.addEventListener('input', checkInputValuePurpose_{{ product.id }});
+
+                    {% comment %} описание товара {% endcomment %}
+                    const inputFieldDescription_{{ product.id }} = document.getElementById('id_description_{{ product.id }}');
+                    const changedIndicatorDescription_{{ product.id }} = document.getElementById('changed_description_{{ product.id }}');
+                    const initialValueDescription_{{ product.id }} = inputFieldDescription_{{ product.id }}.value;
+
+                    function checkInputValueDescription_{{ product.id }}() {
+                        if (inputFieldDescription_{{ product.id }}.value !== initialValueDescription_{{ product.id }}) {
+                            changedIndicatorDescription_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorDescription_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldDescription_{{ product.id }}.addEventListener('input', checkInputValueDescription_{{ product.id }});
+
+                    {% comment %} фото товара {% endcomment %}
+                    const inputFieldImage_{{ product.id }} = document.getElementById('id_lablimage_{{ product.id }}');
+                    const changedIndicatorPhoto_{{ product.id }} = document.getElementById('changed_photo_{{ product.id }}');
+
+                    function checkInputValueImage_{{ product.id }}() {
+                        if (inputFieldImage_{{ product.id }}.files.length > 0) {
+                            changedIndicatorPhoto_{{ product.id }}.style.display = 'inline-block';
+                        } else {
+                            changedIndicatorPhoto_{{ product.id }}.style.display = 'none';
+                        }
+                    }
+                    inputFieldImage_{{ product.id }}.addEventListener('change', checkInputValueImage_{{ product.id }});
+                </script>
+                
             {% endfor %}
             <div class="popup_user_purchase_history">
                 <h3 class="popup_title">Покупки</h3>
-                <ul class="history_user_products">
-
-                    {% for product_his in buy_history %}
-                        <a href="{% url "catalog:product" product_his.product.slug %}">
-                            <li class="active_user_product">
-
-                                {% if product_his.product.image %}
-                                    <img src="{{ product_his.product.image.url }}" alt="" class="active_user_product__img shadow_element">
-                                {% else %}
-                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
-                                {% endif %}
-
-                                <p class="history_user_product__name shadow_element">{{ product_his.name|truncatechars:24 }}</p>
-                                <p class="history_user_product__price shadow_element">{{ product_his.price }} ₽</p>
-                                <p class="history_user_product__price shadow_element">{{ product_his.quantity }} шт.</p>
-                                <p class="history_user_product__date shadow_element">Дата покупки:<br><span class="date_product_bought">{{ product_his.created_timestamp }}</span></p>
-                                <ul class="story_rating_product">
-
-                                    {% if reviews %}
-                                        {% for review in reviews %}
-                                            {% if review.product == product_his.product %}
-                                                {% for _ in 'x'|rjust:review.rating %}
-                                                    <li class="another_user_star">
-                                                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                            <desc>Created with Pixso.</desc>
-                                                            <defs />
-                                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
-                                                        </svg>
-                                                    </li>
-                                                {% endfor %}
-
-                                                {% if review.rating < 5 %}
-                                                    {% for _ in 'x'|rjust:review.star_rating.2 %}
+                <div class="scroll-y">
+                    <ul class="history_user_products">
+    
+                        {% for product_his in buy_history %}
+                            <a href="{% url "catalog:product" product_his.product.slug %}">
+                                <li class="active_user_product">
+    
+                                    {% if product_his.product.image %}
+                                        <img src="{{ product_his.product.image.url }}" alt="" class="active_user_product__img shadow_element">
+                                    {% else %}
+                                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
+                                    {% endif %}
+    
+                                    <p class="history_user_product__price shadow_element">{{ product_his.price|floatformat:"0" }} ₽</p>
+                                    <p class="history_user_product__name shadow_element">{{ product_his.name|truncatechars:24 }}</p>
+                                    <p id="id_data2_{{ product.id }}" class="history_user_product__date shadow_element" data-date-two="{{ product_his.created_timestamp|date:"c" }}">Дата покупки:<span class="formatted_date"></span></p>
+                                    <ul class="story_rating_product">
+    
+                                        {% if reviews %}
+                                            {% for review in reviews %}
+                                                {% if review.product == product_his.product %}
+                                                    {% for _ in 'x'|rjust:review.rating %}
                                                         <li class="another_user_star">
                                                             <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                                 <desc>Created with Pixso.</desc>
                                                                 <defs />
-                                                                <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                                                <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
                                                             </svg>
                                                         </li>
                                                     {% endfor %}
+    
+                                                    {% if review.rating < 5 %}
+                                                        {% for _ in 'x'|rjust:review.star_rating.2 %}
+                                                            <li class="another_user_star">
+                                                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                    <desc>Created with Pixso.</desc>
+                                                                    <defs />
+                                                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                                                </svg>
+                                                            </li>
+                                                        {% endfor %}
+                                                    {% endif %}
                                                 {% endif %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        
+                                        {% if anti_reviews %}
+                                            {% for anti_review in anti_reviews %}
+                                                {% if anti_review.product == product_his.product %}
+                                                    {% for _ in 'x'|rjust:anti_review.rating %}
+                                                    <li class="another_user_star">
+                                                        <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                            <desc>Created with Pixso.</desc>
+                                                            <defs />
+                                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
+                                                        </svg>
+                                                    </li>
+                                                {% endfor %}     
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
                                     
-                                    {% if anti_reviews %}
-                                        {% for anti_review in anti_reviews %}
-                                            {% if anti_review.product == product_his.product %}
-                                                {% for _ in 'x'|rjust:anti_review.rating %}
-                                                <li class="another_user_star">
-                                                    <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                        <desc>Created with Pixso.</desc>
-                                                        <defs />
-                                                        <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#B36F6F" stroke-width="1" fill-rule="evenodd" />
-                                                    </svg>
-                                                </li>
-                                            {% endfor %}     
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                
-                                </ul>
-                            </li>
-                        </a>
-                    {% endfor %}
-
-                </ul>
+                                    </ul>
+                                </li>
+                            </a>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const dateElements = document.querySelectorAll('.history_user_product__date');
+                            
+                                    dateElements.forEach(function(element) {
+                                        const isoDate = element.getAttribute('data-date-two');
+                                        const date = new Date(isoDate);
+                            
+                                        const day = String(date.getDate()).padStart(2, '0');
+                                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                                        const year = date.getFullYear();
+                            
+                                        const formattedDate = `${day}.${month}.${year}`;
+                                        element.querySelector('.formatted_date').textContent = formattedDate;
+                                    });
+                                });
+                            </script>
+                        {% endfor %}
+                            
+                    </ul>
+                </div>
                 <button class="hide_popup_user_purchase_history">&#215;</button>
             </div>
             <div class="popup_user_products_liked">
                 <h3 class="popup_title">Избранные товары</h3>
-                <ul class="active_user_products">
-
-                    {% for fav_product in fav_prod %}
-                        <a href="{% url "catalog:product" fav_product.product.slug %}">
-                            <li class="active_user_product">
-                                {% if fav_product.product.image %}
-                                    <img src="{{ fav_product.product.image.url }}" alt="" class="active_user_product__img shadow_element">
-                                {% else %}
-                                    <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
-                                {% endif %}
-                                <span id="uploadMessage" style="display: none;">Изображение вашего продукта успешно загружено!</span><br>
-                                <p class="active_user_product__name shadow_element">{{ fav_product.product.name }}</p>
-                                <p class="active_user_product__price shadow_element">{{ fav_product.product.price }} ₽</p>
-                            </li>
-                        </a>
-                    {% endfor %}
-
-                </ul>
+                <div class="scroll-y">
+                    <ul class="active_user_products">
+    
+                        {% for fav_product in fav_prod %}
+                            <a href="{% url "catalog:product" fav_product.product.slug %}">
+                                <li class="active_user_product">
+                                    {% if fav_product.product.image %}
+                                        <img src="{{ fav_product.product.image.url }}" alt="" class="active_user_product__img shadow_element">
+                                    {% else %}
+                                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="active_user_product__img shadow_element">
+                                    {% endif %}
+                                    <span id="uploadMessage" style="display: none;">Изображение вашего продукта успешно загружено!</span><br>
+                                    <p class="active_user_product__name shadow_element">{{ fav_product.product.name }}</p>
+                                    <p class="active_user_product__price shadow_element">{{ fav_product.product.price|floatformat:"0" }} ₽</p>
+                                </li>
+                            </a>
+                        {% endfor %}
+    
+                    </ul>
+                </div>
                 <button class="hide_popup_user_products_liked">&#215;</button>
             </div>
         </div>
@@ -580,220 +883,23 @@
                     <div class="date_secret_code_container">
                         <input type="text" id="id_date" name="date" placeholder="ММ/ГГ"
                             pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required class="date_num_input">
-                        <input type="number" inputmode="numeric" id="id_CVV" name="CVV" placeholder="CVV/CVC" pattern="[0-9]{3,4}"
-                            required class="code_num_input">
+                        <div class="clue_container">
+                            <input type="number" id="id_CVV" name="CVV" placeholder="CVV/CVC" pattern="[0-9]{3,4}" required
+                                class="code_num_input">
+                            <p class="clue_cvv">?</p>
+                            <p class="clue_cvv_text">Три цифры на обороте карты</p>
+                        </div>
                     </div>
                     <input type="text" id="id_bank" name="bank" placeholder="Банк" required class="bank_input">
                     <button type="submit" class="add_payment_method_btn btn">Добавить способ оплаты</button>
                 </form>
 
-                <p>*Данные карты надежно защищены</p>
+                <p class="popup_payment_security">*Данные карты надежно защищены</p>
                 <button class="hide_popup_add_payment_method hide">&#215;</button>
             </div>
         </div>
     </form>
-    <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
-        <div class="user_page_container_mobile">
-            <div class="left_inputs">
-                <h2 class="left_inputs__title">Аккаунт</h2>
-                <div class="left_inputs__container">
-                    <div>
-                        <label for="first_name">Имя</label><br>
-                        <input type="text" id="id_first_name" name="first_name" class="user_input_page_label" value="{{ form.first_name.value }}" placeholder="Добавьте имя"><br>
-                        {% if form.first_name.errors %}
-                            <p>{{ form.first_name.errors }}</p> 
-                        {% endif %}
-                    </div>
-                    <div>
-                        <label for="last_name">Фамилия</label><br>
-                        <input type="text" id="id_last_name" name="last_name" class="user_input_page_label" value="{{ form.last_name.value }}" placeholder="Добавьте фамилию"><br>
-                        {% if form.last_name.errors %}
-                            <p>{{ form.last_name.errors }}</p> 
-                        {% endif %}
-                    </div>
-                    <div>
-                        <label for="middle_name">Отчество</label><br>
-                        <input type="text" id="id_middle_name" name="middle_name" class="user_input_page_label" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество"><br>
-                        {% if form.middle_name.errors %}
-                            <p>{{ form.middle_name.errors }}</p> 
-                        {% endif %}
-                    </div>
-                    <div>
-                        <label for="e-mail">E-mail</label><br>
-                        <input type="email" id="id_email" name="email" class="user_input_page_label" value="{{ form.email.value }}" placeholder="Добавьте почту" required><br>
-                        {% if form.email.errors %}
-                            <p>{{ form.email.errors }}</p> 
-                        {% endif %}
-                    </div>
-                    <div>
-                        <label for="phone_num">Номер телефона</label><br>
-                        <input type="text" id="id_phone" name="phone" class="user_input_page_label" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона"><br>
-                        {% if form.phone.errors %}
-                            <p>{{ form.phone.errors }}</p> 
-                        {% endif %}
-                    </div>
-                    <div>
-                        <label for="login">Логин</label><br>
-                        <p class="user_input_page_label">{{ user.username }}</p><br>
-                    </div>
-                    <input type="submit" value="Сохранить измененния" class="save_user_data_btn btn">
-                    <p class="user_products_title">Размещенные вами товары</p>
-                    <div class="user_products">
-                        <div class="imgs_container">
-                            <ul class="user_products__list">
-
-                                {% if not products %}
-                                    <p>Вы еще не разместили ни одного товара</p>
-                                {% endif %}
-                                {% for product in products %}
-                                    {% if product.image %}
-                                        <li class="user_product"><img src="{{ product.image.url }}" alt="" class="user_product__img"></li>
-                                    {% else %}
-                                        <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
-                                    {% endif %}
-                                {% endfor %}
-
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="user_history_bought">Уже покупали</p>
-                    <div class="user_history_bought_box">
-                        <div class="imgs_container">
-                            <ul class="user_products__list">
-                                
-                                {% if not buy_history %}
-                                    Покупок небыло
-                                {% endif %}
-                                {% for product_his in buy_history %}
-                                    {% if product_his.product.image %}
-                                        <li class="user_product"><img src="{{ product_his.product.image.url }}" alt="" class="user_product__img"></li>
-                                    {% else %}
-                                        <li class="user_product"><img src="{% static 'deps/отсутсвует.png' %}" alt="" class="user_product__img"></li>
-                                    {% endif %}
-                                {% endfor %}
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right_inputs">
-                <div class="custom-input_user">
-                    <label for="photo" class="upload-button"></label>
-                    <input type="file" id="photo" name="photo" class="upload-button" accept="image/*">
-                </div>
-                <form action="">
-                    <details class="active_filters__details">
-                        <summary class="active_filters__summary">
-
-                            {% if user.payment_method %}
-                                {{ user.payment_method.bank }} ⋅⋅ {{ user.payment_method.card_num|slice:"-4:" }}
-                            {% else %}
-                                Укажите способ оплаты
-                            {% endif %}
-
-                            <div class="marker_container">
-                                <div class="summary_marker_stick1"></div>
-                                <div class="summary_marker_stick2"></div>
-                            </div>
-                        </summary>
-                        <ul class="summary_filters">
-
-                            <form id="paymentMethodForm" method="post">
-                                {% csrf_token %}
-                                {% for payment_method in payment_methods %}
-                                <li class="summary_filter">
-                                    <input type="radio" id="payment_method_{{ payment_method.id }}" name="payment_method" class="custom_radio" value="{{ payment_method.id }}">
-                                    <label for="payment_method_{{ payment_method.id }}">{{ payment_method.bank }} ⋅⋅ {{ payment_method.card_num|slice:"-4:" }}</label>
-                                </li>
-                                {% endfor %}
-                            </form>
-
-                            <li class="summary_filter">
-                                <button class="save_payment_method_btn btn">Добавить способ оплаты</button>
-                            </li>
-                        </ul>
-                    </details>
-                </form>
-                <div class="user_rating">
-                    <p class="user_rating__title">Средний рейтинг товаров</p>
-                    <div class="user_rating__box">
-
-                        {% if average_rating %}
-                            <p class="user_rating__num">{{ average_rating|floatformat:1 }}</p>
-                        {% else %}
-                            <p class="user_rating__num">Нет оценок</p>
-                        {% endif %}
-                        
-                        <ul class="user_rating__stars">
-                            {% if average_rating_int > 0 %}
-                                {% for _ in "x"|rjust:average_rating_int %}
-                                    <li class="another_user_star">
-                                        <svg width="15.000000" height="14.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <desc>Created with Pixso.</desc>
-                                            <defs />
-                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
-                                        </svg>
-                                    </li>
-                                {% endfor %}
-                            {% endif %}
-                            {% if average_rating_float > 0 %}
-                                {% if average_rating_float > 0 and average_rating_float < 0.5 %}
-                                    <li class="another_user_star">
-                                        {% comment %} 1/4 звезды {% endcomment %}
-                                        <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                                            <desc>Created with Pixso.</desc>
-                                            <g class="layer">
-                                                <title>Layer 1</title>
-                                                <path d="m7.36,0l-2.21,6.79l-7.14,0l5.78,4.21l-2.2,6.79l5.78,-4.21l5.78,4.21l-2.2,-6.79l5.78,-4.21l-7.14,0l-2.2,-6.79z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
-                                                <path d="m4.91,6.5c0,0.04 0,8.68 -0.01,8.66c-0.01,-0.02 -2.57,1.88 -2.56,1.84c0.02,-0.04 1.98,-6.93 1.97,-6.95c-0.01,-0.02 -5.61,-4.21 -5.6,-4.14c0.01,0.07 6.2,0.07 6.2,0.07z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                {% endif %}
-                                {% if average_rating_float == 0.5 %}
-                                    <li class="another_user_star">
-                                        {% comment %} на половину закрашена {% endcomment %}
-                                        <svg width="15" height="14" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <desc>Created with Pixso.</desc>
-                                            <defs />
-                                            <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" />
-                                            <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#FCA95D" fill-opacity="1" />
-                                        </svg>                                        
-                                    </li>
-                                {% endif %}
-                                {% if average_rating_float > 0.5 and average_rating_float < 1 %}
-                                    <li class="another_user_star">
-                                        {% comment %} 3/4 звезды {% endcomment %}
-                                        <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                                            <desc>Created with Pixso.</desc>
-                                            <g class="layer">
-                                                <title>Layer 1</title>
-                                                <path d="m7.19,0l-1.72,5.28l-5.56,0l4.5,3.27l-1.71,5.28l4.5,-3.27l4.5,3.27l-1.71,-5.28l4.5,-3.27l-5.56,0l-1.71,-5.28z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
-                                                <path d="m9.28,11.08c0.02,0.14 -0.01,-7.12 -0.02,-7.13c-0.01,-0.01 -0.39,-0.07 -0.39,-0.08c-0.01,-0.01 -1.64,-4.87 -1.65,-4.88c-0.01,-0.01 -1.76,4.92 -1.76,4.89c-0.01,-0.02 -5.14,0.12 -5.14,0.1c-0.01,-0.02 4.11,3.14 4.11,3.13c-0.01,0 -1.51,4.86 -1.51,4.87c0,0.01 4.16,-2.93 4.17,-2.93c0.01,0 2.71,1.87 2.72,2.05z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                {% endif %}
-                            {% endif %}
-                            {% if anti_average_rating > 0 %}
-                                {% for _ in "x"|rjust:anti_average_rating %}
-                                    <li class="another_user_star">
-                                        <svg width="15.000000" height="14.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <desc>Created with Pixso.</desc>
-                                            <defs />
-                                            <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" fill-rule="evenodd" />
-                                        </svg> 
-                                    </li>
-                                {% endfor %}
-                            {% endif %}
-                        </ul>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    {% include "users/include/mobile_user_page.html" %}
     <script src="{% static "js/user_profile.js" %}" ></script>
     <script>
         document.querySelectorAll('input[type=radio][name=payment_method]').forEach(function(radio) {
@@ -818,6 +924,7 @@
         });
         
     </script>
+    
 {% endblock %}
 
 {% block user_page %}

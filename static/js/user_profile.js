@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popupUserChangeProducts.style.display = 'block';
             popupUserProducts.style.display = 'none';
             document.querySelector('header').style.zIndex = '1';
-            document.querySelector('main').style.marginBottom = '200px';
+            document.querySelector('main').style.marginBottom = '250px';
         }
         
         function closePopup(event) {
@@ -87,5 +87,25 @@ document.addEventListener("DOMContentLoaded", function() {
         
         product.addEventListener('click', openPopup);
         hidePopupChangeButton.addEventListener('click', closePopup);
+    });
+});
+
+const cvvHint = document.querySelector('.clue_cvv');
+const cvvHintText = document.querySelector('.clue_cvv_text');
+cvvHint.addEventListener('mouseover', () => {
+    cvvHintText.style.display = 'block';
+});
+cvvHint.addEventListener('mouseleave', () => {
+    cvvHintText.style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.user_input_page, #id_image');
+    const submitButton = document.querySelector('.save_user_data_btn');
+
+    inputs.forEach(function(input) {
+        input.addEventListener('input', function() {
+            submitButton.style.opacity = '1';
+        });
     });
 });

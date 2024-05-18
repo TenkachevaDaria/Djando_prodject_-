@@ -21,7 +21,6 @@
     .item__name {
         font-size: 11px;
         margin-bottom: 0;
-        color: black;
     }
 
     .item__sort_descr,
@@ -124,13 +123,14 @@
         padding: 9px 145px;
         width: fit-content;
         font-size: 16px;
+        
     }
 
     .total_price_container {
         margin-bottom: 15px;
     }
 
-    .backimg_log_in {
+    .backimg_order {
         display: none;
     }
 }

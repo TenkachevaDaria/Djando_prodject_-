@@ -20,8 +20,8 @@
                     {% endif %}
 
                     <div class="pos_box_price">
-                        <h3 class="item__name">{{ basket_user.product.name|truncatechars:33 }}</h3>
-                        <p class="item__price">{{ basket_user.products_price }}  ₽</p>
+                        <h3 class="item__name">{{ basket_user.product.name|truncatechars:21 }}</h3>
+                        <p class="item__price">{{ basket_user.products_price|floatformat:"0" }}  ₽</p>
                         <p class="item__sort_descr">{{ basket_user.product.description|truncatechars:35 }}</p>
                         <p class="item__platform">{{ basket_user.product.category }}</p>
                         <div class="item__counter_box">
@@ -49,9 +49,9 @@
                             </span>
                         </div>
                         <a href="{% url "basket:basket_remove" %}" class="delete_product_btn remove-from-basket"
-                        data-basket-id="{{ basket_user.id }}">
+                            data-basket-id="{{ basket_user.id }}">
                         {% csrf_token %}
-                            <svg width="19.000000" height="21.000000" viewBox="0 0 19 21" fill="none"
+                            <svg width="19.000000" height="21.000000" viewBox="0 0 19 21" fill="none" opacity="0.6"
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <desc>
@@ -79,7 +79,7 @@
                 {% csrf_token %}
                 <ul class="btn_choose_payment_list">
                     {% for payment_method in payment_methods %}
-                        <li data-payment-id="{{ payment_method.id }}">
+                        <li class="choice_payment_method" data-payment-id="{{ payment_method.id }}">
                             {% csrf_token %}
                             {% if not user.payment_method %}
                                 {% if forloop.first %}
@@ -94,19 +94,48 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <a class="show_more_btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.2857 10.2857V18H7.71429V10.2857H0V7.71429H7.71429V0H10.2857V7.71429H18V10.2857H10.2857Z" fill="#1C2541"/>
+                    </svg>
+                    Показать ещё
+                </a>
             </form>
             <a href="{% url "user:profile" %}"><button id="add_payment_button" class="payment_way payment_way__btn_chose btn ">Добавить способ оплаты</button></a>
         </div>
     </div>
+    
     {% if baskets %}
         <p id="products-in-basket-count" class="products_counter">Товары, {{ baskets.total_quantity }} шт.</p>
         <div class="total_price_container">
             <p class="total_price_name"><b>Итого</b></p>
             <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
         </div>
-        <a href="{% url "orders:create_order" %}"><button class="payment_way__btn btn">Купить</button></a>
+        <a href="{% url "orders:create_order" %}"><button class="payment_way__btn btn">КУПИТЬ</button></a>
     {% endif %}
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttonShowMore = document.querySelector('.show_more_btn');
+        const PaymentList = document.querySelector('.btn_choose_payment_list');
+        const payMethod = Array.from(PaymentList.querySelectorAll('.choice_payment_method'));
+        
+        payMethod.slice(2).forEach(review => {
+            review.style.display = 'none';
+        });
+    
+        if (payMethod.length <= 2) {
+            buttonShowMore.style.display = 'none';
+        }
+    
+        buttonShowMore.addEventListener('click', function() {
+            payMethod.slice(2).forEach(review => {
+                review.style.display = 'block';
+            });
+            buttonShowMore.style.display = 'none';
+        });
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var paymentWayRadios = document.querySelectorAll('input[type=radio][name=payment_way]');

@@ -11,18 +11,29 @@
     display: flex;
     position: relative;
     gap: 40px;
+    height: 40px;
+    align-items: center;
 }
 
 .active_filters {
     margin-left: 300px;
     margin-bottom: 20px;
 }
+.none_checkbox {
+    display: none;
+    appearance: none;
+}
+
+.stock_label_1 {
+    cursor: pointer;
+}
 
 .active_filter {
     font-size: 18px;
     position: relative;
     cursor: pointer;
-    height: 21px;
+    height: 30px;
+    padding-top: 10px;
 }
 
 .active_filter:nth-child(2) {
@@ -113,8 +124,11 @@
     position: absolute;
     right: 25px;
     top: 10px;
+    color: #1C2541;
+    font-size: 13px;
     padding: 0 5px;
-    background-color: rgb(217, 217, 217);
+    background-color: #C1E2FE;
+    border-radius: 7px;
     z-index: 1;
 }
 
@@ -124,6 +138,7 @@
     flex-direction: row;
     bottom: -120px;
     left: 50%;
+    gap: 7px;
     transform: translateX(-50%);
 }
 

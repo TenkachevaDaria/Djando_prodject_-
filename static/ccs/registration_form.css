@@ -29,7 +29,7 @@
     padding: 20px 0 20px 25px;
     background-color: white;
     outline: none;
-    border: 1px solid rgb(28, 37, 65);
+    border: none;
     border-radius: 20px;
     font-size: 20px;
     width: 540px;
@@ -99,11 +99,16 @@
 
 .btn_send_reginfo {
     padding: 20px 190px;
-    background-color: rgb(21, 106, 199);
+    background-color: #0082F0;
     color: white;
     border-radius: 20px;
+    opacity: 30%;
     font-size: 20px;
     margin-bottom: 30px;
+    transition: all 0.3s;
+    outline: none;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
 }
 

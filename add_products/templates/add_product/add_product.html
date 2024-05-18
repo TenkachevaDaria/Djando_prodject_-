@@ -12,8 +12,9 @@
             <h2 class="add_form__title"><b>Добавление нового продукта</b></h2>
             <form action="/add_product/add-product/" method="post" class="add_form_inputs" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="text" placeholder="Напишите название вашего продукта." name="name" required="" id="id_name" class="add_form__input"><br>
-                <input type="number" placeholder="Напишите стоимость вашего продукта." name="price" step="any" required="" id="id_price"  class="add_form__input">
+                <input type="text" placeholder="Напишите название вашего продукта." name="name" required id="id_name" class="add_form__input"><br>
+                <input type="number" placeholder="Напишите стоимость вашего продукта." name="price" required id="id_price"  class="add_form__input">
+                <label class="check_boxs_label">Под какую систему предназначен ваш продукт?</label><br>
                 <div class="check_boxs">
                     <div>
                         <input type="radio" id="id_category_1" name="category" value="2" class="checkbox_input custom_checkbox">
@@ -75,10 +76,56 @@
                     <input type="file" id="id_image" name="image" accept="image/*" class="add_form_add_img" onchange="showUploadMessage()">
                 </label>
                 <span id="uploadMessage" style="display: none;">Изображение вашего продукта успешно загружено!</span><br>
-                <input type="submit" value="Добавить" class="add_form__submit btn">
+                <input type="submit" value="Добавить" class="add_form__submit">
             </form>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var textarea = document.getElementById('id_description');
+            var form = document.getElementById('add_form');
+            var characterLimit = 70; // Лимит символов для увеличения высоты
+            var baseHeight = 30; // Базовая высота в пикселях
+            var lineHeight = 20; // Высота строки в пикселях
+            var maxHeight = 90; // Максимальная высота в пикселях
+            textarea.addEventListener('input', function() {
+                if (this.value.length < characterLimit) {
+                    var newHeight = baseHeight;
+                } else {
+                    var extraLines = Math.ceil((this.value.length - characterLimit) / characterLimit);
+                    var newHeight = baseHeight + extraLines * lineHeight;
+                    if (newHeight > maxHeight) {
+                        newHeight = maxHeight;
+                    }
+                }
+
+                this.style.height = newHeight + 'px';
+                form.style.height = newHeight + 'px';
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function checkForm() {
+                var name = document.getElementById('id_name').value.trim();
+                var price = document.getElementById('id_price').value.trim();
+                var deliveryType = document.getElementById('id_delivery_type').value.trim();
+                var mediaType = document.getElementById('id_media_type').value.trim();
+                var purpose = document.getElementById('id_purpose').value.trim();
+                var description = document.getElementById('id_description').value.trim();
+                var isValid = name !== '' && price !== '' && deliveryType !== '' && mediaType !== '' && purpose !== '' && description !== '';
+                document.querySelector('.add_form__submit').style.opacity = isValid ? 1 : 0.5;
+                return isValid;
+            }
+            var formInputs = document.querySelectorAll('.add_form__input, .textarea_input');
+            formInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    checkForm();
+                });
+            });
+            checkForm();
+        });
+    </script>
     <script>
         function showUploadMessage() {
             document.getElementById('uploadMessage').style.display = 'inline';

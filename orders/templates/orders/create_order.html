@@ -27,8 +27,7 @@
         
                             <div class="pos_box_price">
                                 <h3 class="item__name">{{ basket_user.product.name|truncatechars:33 }}</h3>
-                                <p class="item__price">{{ basket_user.products_price }}  ₽</p>
-                                <p class="item__sort_descr">{{ basket_user.product.description|truncatechars:35 }}</p>
+                                <p class="item__price">{{ basket_user.products_price|floatformat:"0" }}  ₽</p>
                                 <p class="item__platform">{{ basket_user.product.category }}</p>
                                 <div class="item__counter_box">               
                                     <p type="text" class="quantity number_order">{{ basket_user.quantity }} шт.</p>
@@ -66,7 +65,7 @@
                     <p class="total_price_name"><b>Итого</b></p>
                     <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
                 </div>
-                <button class="order_btn btn"><b>Оформить</b></button>
+                <button class="order_btn btn">ОФОРМИТЬ</button>
             </form>
         </div>
     </div>

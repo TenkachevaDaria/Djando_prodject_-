@@ -45,8 +45,10 @@
 }
 
 .item__name {
-    margin-bottom: 10px;
     color: black;
+    font-weight: 500;
+    font-size: 24px;
+    max-width: 300px;
 }
 
 .item__sort_descr {
@@ -54,7 +56,7 @@
 }
 
 .item__platform {
-    margin-bottom: 26px;
+    margin-bottom: 15px;
 }
 
 .counter_btn {
@@ -62,7 +64,10 @@
     width: 20px;
     height: 20px;
     padding: 0;
+    border-radius: 5px;
+    border: 0.5px solid;
     background-color: rgb(236, 246, 255);
+    cursor: pointer;
 }
 
 .number {
@@ -77,6 +82,8 @@
     border: none;
     outline: none;
     width: 60px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .pos_box_price {
@@ -88,11 +95,16 @@
     position: absolute;
     right: 0;   
     top: 0;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.remove-from-basket:hover svg {
+    opacity: 1;
 }
 
 .paymen_method_form {
     margin-top: 89px;
-    width: 500px;
     height: 400px;
     background-color: rgb(185, 222, 254);
     border-radius: 20px;
@@ -113,7 +125,19 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
+    max-height: 228px;
     width: 100%;
+}
+
+.item__counter_box {
+    position: absolute;
+    bottom: 5px;
+    padding-bottom: 10px;
+}
+
+.btn_choose_payment_list::-webkit-scrollbar {
+    width: 0;
 }
 
 .payment_way {
@@ -123,6 +147,8 @@
     justify-content: center;
     background-color: rgb(0, 130, 240);
     color: white;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .payment_way__btn_chose {
@@ -146,6 +172,7 @@
     background-color: rgb(0, 130, 240);
     padding: 20px 210px;
     font-size: 24px;
+    font-weight: 900;
 }
 
 .btn {
@@ -220,9 +247,10 @@
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 20px;
-    width: 100%;
+    width: 99.6%;
     text-align: center;
 }
+
 
 .payment_way_label:hover {
     background-color: rgba(25, 158, 243, 0.8);
@@ -241,4 +269,12 @@
 .backimg_order {
     position: absolute;
     top: 130px;
+}
+
+.show_more_btn {
+    cursor: pointer;
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
 }

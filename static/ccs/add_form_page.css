@@ -1,6 +1,7 @@
 .form_container {
     max-width: 1500px;
     margin: 0 auto;
+    margin-top: 20px;
     display: flex;
     gap: 240px;
 }
@@ -9,7 +10,7 @@
     margin: auto;
     padding: 30px;
     background-color: rgb(185, 222, 254);
-    min-height: 1250px;
+    height: fit-content;
     position: relative;
     width: 850px;
     border-radius: 20px;
@@ -21,17 +22,29 @@
 }
 
 .add_form__input {
-    width: 90%;
     padding: 20px 25px;
+    width: calc(100% - 50px);
     background-color: white;
     margin-bottom: 40px;
-    border: 1px solid rgb(28, 37, 65);
+    border: none;
     font-size: 20px;
     outline: none;
     border-radius: 20px;
 }
 
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .custom-file-upload {
+    
+    margin-left: 30px;
     position: relative;
     display: inline-block;
     background: white;
@@ -77,15 +90,21 @@
 }
 
 .add_form__submit {
-    position: absolute;
-    width: 90%;
+    margin-top: 40px;
+    width: 100%;
     padding: 20px 0px;
     justify-content: center;
     align-items: center;
     bottom: 30px;
-    background-color: rgb(21, 106, 199);
+    background-color: #0082F0;
+    opacity: 30%;
     color: white;
     font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .add_form_img {
@@ -109,5 +128,14 @@
 }
 
 .textarea_input {
+    height: 30px;
+}
+
+.add_form_inputs {
     height: fit-content;
+}
+
+.textarea_input::-webkit-scrollbar {
+    width: 0px; /* Ширина скроллбара */
+    position: relative;
 }

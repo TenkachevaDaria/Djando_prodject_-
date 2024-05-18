@@ -44,6 +44,8 @@ def catalog(request):
 
     if subscription_filter and subscription_filter != "default":
         products = products.filter(subscription=subscription_filter)
+    elif subscription_filter == 'default':
+        products = Product.objects.all()
 
     if in_stock_filter and in_stock_filter != "default":
         products = products.filter(in_stock=in_stock_filter)

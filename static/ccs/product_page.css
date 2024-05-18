@@ -21,7 +21,6 @@
 .product__rating {
     display: flex;
     gap: 10px;
-    margin-bottom: 35px;
 }
 
 .price_share_container{
@@ -33,6 +32,7 @@
 
 .product__price {
     font-size: 48px;
+    font-weight: 700;
 }
 
 .icons_buttons {
@@ -49,6 +49,7 @@
     border: none;
     color: white;
     font-size: 20px;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -61,11 +62,15 @@
     border: 1px solid rgb(28, 37, 65);
     font-size: 20px;
     text-align: center;
+    font-weight: 600;
     color: black;
 }
 
 .saler_name {
     margin-bottom: 20px;
+    font-weight: 700;
+    
+    font-size: 20px;
 }
 
 .descr_from_saler {
@@ -75,6 +80,8 @@
 .product__saler_descr {
     padding-bottom: 10px;
     display: flex;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .summary_marker_stick1 {
@@ -111,6 +118,8 @@
 
 .platform {
     margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 300;
 }
 
 .saler_info {
@@ -145,15 +154,15 @@
 
 .user_rating {
     display: flex;
+    padding-top: 5px;
 }
 
 .send_review_form__placeholder {
     width: calc(700px - 15px * 2);
-    height: 70px;
     background-color: rgba(136, 198, 252, 0.5);
     padding-left: 15px;
     outline: none;
-    /* border: 1.5px solid rgb(28, 37, 65); */
+    padding: 13px 15px;
     border: none;
     border-radius: 20px;
 }
@@ -187,14 +196,17 @@
     align-items: center;
     gap: 30px;
 }
+.users_list_reviews {
+    margin-bottom: 35px;
+}
 
 .user_com {
     width: calc(700px - 15px * 2);
-    min-height: 70px;
-    background-color: rgba(136, 198, 252, 0.5);
-    margin-bottom: 20px;
-    padding-left: 15px;
-    padding-top: 15px;
+    background-color: rgba(136, 198, 252, 0.3);
+    margin-bottom: 15px;
+    padding-left: 20px;
+    padding-top: 13px;
+    padding-bottom: 13px;
     border-radius: 20px;
     /* border: 1.5px solid rgb(28, 37, 65); */
 }
@@ -237,6 +249,7 @@
 .peculiarities_title,
 .technical_skills_title {
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .sort_date,

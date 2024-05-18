@@ -187,6 +187,16 @@ main {
     border-radius: 20px;
 }
 
+.popup_user_products_history {
+    display: block;
+}
+
+.pen_edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .popup_title {
     margin: 15px 0 15px 30px;
     position: relative;

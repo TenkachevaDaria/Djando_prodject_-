@@ -127,7 +127,16 @@
         left: 13px;
     }
 
+    .slider_popular_product {
+        display: none;
+    }
+
     .title_container {
+    display: none;
+    }
+
+    .title_container_mobile {
+        display: block;
         left: 13px;
         top: 7px;
     }

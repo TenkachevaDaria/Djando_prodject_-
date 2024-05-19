@@ -93,6 +93,10 @@
     max-width: 47%;
 }
 
+.title_container_mobile {
+    display: none;
+}
+
 .slider_img {
     position: absolute;
     right: 0;

@@ -51,7 +51,11 @@
                 {% else %}
                     <li class="burger_link">
                         <div class="user_burger_inf">
-                            <a href="{% url "user:profile" %}" class="user_name">{{ user.first_name }} {{ user.last_name }}</a>
+                            {% if user.first_name %}
+                                <a href="{% url "user:profile" %}" class="user_name">{{ user.first_name }} {{ user.last_name }}</a>
+                            {% else %}
+                                <a href="{% url "user:profile" %}" class="user_name">{{ user.username }}</a>
+                            {% endif %}
                             <a href="{% url "user:logout" %}" class="burger_btn">Выйти</a>
                         </div>
                     </li>

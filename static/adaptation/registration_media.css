@@ -1,6 +1,7 @@
 @media (max-width:420px) {
     .registration_form_container {
         max-width: 343px;
+        height: 350px;
     }
 
     .registration_page_img {

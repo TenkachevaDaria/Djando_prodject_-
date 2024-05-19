@@ -87,7 +87,11 @@
         </div>
         <div class="right_inputs">
             <div class="custom-input_user">
-                <img src="{{ user.image.url }}" alt="">
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'deps/фото пользователя нет.png' %}" alt="">
+                {% endif %}
             </div>
             <label for="id_image_profile" class="custom-file-upload-photo">
                 <span>Добавить фото профиля.</span>
@@ -132,7 +136,7 @@
                 <div class="user_rating__box">
 
                     {% if average_rating %}
-                        <p class="user_rating__num">{{ average_rating|floatformat:1 }}</p>
+                        <p class="user_rating__num">{{ average_rating|floatformat:2 }}</p>
                     {% else %}
                         <p class="user_rating__num">Вас еще никто не оценил</p>
                     {% endif %}

@@ -41,32 +41,42 @@
 
     .payment_way__title,
     .email_to_send {
-        margin-top: 26px;   
-        margin-left: 13px;
+        font-size: 15px;
         position: absolute;
-        font-size: 15px;
-    }
-
-    .payment_way__card {
-        width: fit-content;
-        margin-top: 20px;
-        padding: 7px 160px 7px 130px;
-        background-color: rgba(185, 222, 254, 0.5);
-        color: rgb(0, 130, 240);
-        font-size: 15px;
-        margin-bottom: 14px;
+        margin-top: 8px;
+        margin-left: 8px;
     }
 
     .email_to_send {
-        margin-top: 5px;
+        margin-top: 27px;
+    }
+
+    .right_basket_container {
+        width: 343px;
+    }
+
+    .payment_way__card,
+    .order_email {
+        display: grid;
+        width: calc(100% - 130px - 70px);
+        background-color: rgba(185, 222, 254, 0.5);
+        color: rgb(0, 130, 240);
+        border: none;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        margin-top: 20px;
+        text-align: left;
+        height: 32px;
+        place-items: center;
+        padding-left: 125px;
+        padding-right: 70px;
     }
 
     .order_email {
-        padding: 7px 30px 7px 140px;
-        width: fit-content;
         background-color: rgba(185, 222, 254, 0.5);
-        font-size: 15px;
-        margin-bottom: 40px;
+        padding-left: 140px;
+        width: calc(100% - 145px - 70px);
     }
 
     .order_email::placeholder {

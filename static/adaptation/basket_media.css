@@ -34,21 +34,27 @@
     }
 
     .counter_btn {
-        width: 10px;
-        height: 10px;
+        width: 16px;
+        height: 16px;
         font-size: 9px;
         border-radius: 5px;
-        margin-top: 5px;
-        padding: 5px;
     }
 
     .number {
         font-size: 11px;
-        width: 3px;
+        width: 10px;
+        text-align: center;
+    }
+
+    .payment_way_label {
+        width: 67px;
+        padding: 9px 9px;
     }
 
     .item__counter_box {
-        align-items: center;
+        display: flex;
+        padding-bottom: 0;
+        height: 16px;
     }
 
     .delete_product_btn svg {
@@ -62,8 +68,9 @@
     }
 
     .input_group_btn {
-        height: initial;
-        width: initial;
+        display: flex;
+        height: 16px;
+        width: 16px;
     }
 
     .basket__item {
@@ -121,9 +128,8 @@
 
     .payment_way__btn {
         padding: 9px 145px;
-        width: fit-content;
         font-size: 16px;
-        
+        width: 100%;
     }
 
     .total_price_container {
@@ -132,5 +138,26 @@
 
     .backimg_order {
         display: none;
+    }
+
+    .show_more_btn {
+        display: grid;
+        position: absolute;
+        top: 47px;
+        left: 83%;
+        transform: translateX(-50%);
+        border: 1.5px solid #199EF3;
+        border-radius: 20px;
+        width: 107px;
+        height: 40px;
+        align-items: center;
+        justify-items: center;
+        font-size: 13px;
+        padding: 9px 0px;
+    }
+
+    .show_more_btn svg {
+        height: 13px;
+        width: 13px;
     }
 }

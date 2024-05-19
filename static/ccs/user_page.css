@@ -499,12 +499,6 @@ main {
     display: none;
 }
 
-.mobile_popup_bougths,
-.mobile_popup_sold,
-.popup_user_add_payment_method_mobile {
-    display: none;
-}
-
 .backimg_user_page {
     position: absolute;
     top: 137px;

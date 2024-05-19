@@ -109,3 +109,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// моибльный
+// открытие добавления способа оплаты
+document.addEventListener("DOMContentLoaded", function() {
+    var addPaymentMethodBtn_mobile = document.querySelector('.save_payment_method_btn_mobile');
+    var addPaymentMethodPopup_mobile = document.querySelector('.popup_user_add_payment_method_mobile');
+    var hidePopupBtn_mobile = document.querySelector('.hide_popup_add_payment_method_mobile');
+    var menuBurger = document.querySelector('.burger_menu');
+
+    if (addPaymentMethodBtn_mobile && addPaymentMethodPopup_mobile && hidePopupBtn_mobile) {
+        addPaymentMethodBtn_mobile.addEventListener('click', function(event) {
+            event.preventDefault();
+            addPaymentMethodPopup_mobile.style.display = 'block';
+            menuBurger.style.zIndex = '0';
+        });
+
+        hidePopupBtn_mobile.addEventListener('click', function() {
+            addPaymentMethodPopup_mobile.style.display = 'none';
+            menuBurger.style.zIndex = '5';
+        });
+    }
+});
+
+// открытие добавленный товаров
+document.addEventListener("DOMContentLoaded", function() {
+    var userProducts_mobile = document.querySelector('.user_products_mobile');
+    var popupUserProducts_mobile = document.querySelector('.mobile_popup_sold');
+    var hidePopupButton_mobile = document.querySelector('.close_popup_sold');
+    var menuBurger = document.querySelector('.burger_menu');
+
+    if (userProducts_mobile && popupUserProducts_mobile && hidePopupButton_mobile) {
+        userProducts_mobile.addEventListener('click', function(event) {
+            event.preventDefault();
+            popupUserProducts_mobile.style.display = 'block';
+            menuBurger.style.zIndex = '0';
+        });
+
+        hidePopupButton_mobile.addEventListener('click', function() {
+            popupUserProducts_mobile.style.display = 'none';
+            menuBurger.style.zIndex = '5';
+        });
+    }
+});
+
+// история покупок
+document.addEventListener("DOMContentLoaded", function() {
+    const userBuyProducts_mobile = document.querySelector('.user_history_bought_box_mobile');
+    const popupUserBuyProducts_mobile = document.querySelector('.mobile_popup_bougths');
+    const hidePopupButton_mobile = popupUserBuyProducts_mobile.querySelector('.close_popup_boughts');
+    var menuBurger = document.querySelector('.burger_menu');
+
+    function openPopup_mobile() {
+        popupUserBuyProducts_mobile.style.display = 'block';
+        menuBurger.style.zIndex = '0';
+    }
+    function closePopup_mobile(event) {
+        event.preventDefault();
+        popupUserBuyProducts_mobile.style.display = 'none';
+        menuBurger.style.zIndex = '5';
+    }
+    userBuyProducts_mobile.addEventListener('click', openPopup_mobile);
+    hidePopupButton_mobile.addEventListener('click', closePopup_mobile);
+});

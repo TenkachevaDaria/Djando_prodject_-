@@ -1,0 +1,140 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$aOa2UtHOUL8W8In1Xqm8bR$Tzew2LN4D0Jzz7snA4bH92Iao/LYr8d8RAIa1LsgRbI=",
+            "last_login": "2024-05-18T12:43:57.847Z",
+            "is_superuser": true,
+            "username": "root",
+            "first_name": "",
+            "last_name": "",
+            "email": "root@mail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-04-15T11:43:19Z",
+            "middle_name": "",
+            "image": "users_image/5_47w9yEF.png",
+            "phone": "",
+            "rating": "0.00",
+            "payment_method": 5,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$yOkoIYZetgNrhfsRYDqfhT$CJhNIWoX/9l+vWuahJ/Vp2ra0x48wWGQb7Pi7hZGAbY=",
+            "last_login": "2024-05-09T12:23:32.407Z",
+            "is_superuser": false,
+            "username": "kit4",
+            "first_name": "",
+            "last_name": "",
+            "email": "kit4@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-04-15T14:56:48Z",
+            "middle_name": "",
+            "image": "users_image/X74TQ9Y3J9Q_uwrHblH.jpg",
+            "phone": "+79024955710",
+            "rating": "0.00",
+            "payment_method": 4,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$InWfLcEEEzwLF2QVlC1kNI$7O+yBq9kdG2rgq5JmTUtgDyFPtGL/k94NgLFLA1SDg4=",
+            "last_login": "2024-04-18T10:45:52.687Z",
+            "is_superuser": false,
+            "username": "kit2034",
+            "first_name": "",
+            "last_name": "",
+            "email": "kit2034@mail.ru",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-04-18T10:45:52.383Z",
+            "middle_name": null,
+            "image": "",
+            "phone": null,
+            "rating": "0.00",
+            "payment_method": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$A8NuBZF67NtqeIy2cBp0RM$v0IxkVfo8kFzvgQdh3Y6uQPUuMZ54s89iD6D8cHm92M=",
+            "last_login": "2024-04-23T18:38:43.747Z",
+            "is_superuser": false,
+            "username": "",
+            "first_name": "",
+            "last_name": "",
+            "email": "Proverka@yandex.ru",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-04-23T18:38:43.452Z",
+            "middle_name": null,
+            "image": "",
+            "phone": null,
+            "rating": "0.00",
+            "payment_method": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$XGngj9HUiN6c2mJrbqjsOd$RnWvH46JB0I+6+FJu12giTL/7tp18bfoEu3KcMt88Uk=",
+            "last_login": "2024-05-14T16:10:36.199Z",
+            "is_superuser": false,
+            "username": "prov2",
+            "first_name": "",
+            "last_name": "",
+            "email": "prov2@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-05-14T16:10:35.881Z",
+            "middle_name": null,
+            "image": "",
+            "phone": null,
+            "rating": "0.00",
+            "payment_method": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$b0YGISaQtLWEKwtJl5PYDK$kQLDn7Vi8EH5yDAzCEj3xw3JlrMfw6eAFKNgpE0c98w=",
+            "last_login": "2024-05-15T14:59:04.077Z",
+            "is_superuser": false,
+            "username": "prov",
+            "first_name": "",
+            "last_name": "",
+            "email": "prov@mail2.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-05-15T14:59:03.776Z",
+            "middle_name": null,
+            "image": "",
+            "phone": null,
+            "rating": "0.00",
+            "payment_method": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

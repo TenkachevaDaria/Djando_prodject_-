@@ -1,0 +1,79 @@
+[
+    {
+        "model": "users.paymentmethod",
+        "pk": 4,
+        "fields": {
+            "user": 3,
+            "bank": "тинькофф",
+            "card_num": "75487422",
+            "date": "10/12",
+            "CVV": "654"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 5,
+        "fields": {
+            "user": 1,
+            "bank": "синара",
+            "card_num": "88855447744",
+            "date": "10/32",
+            "CVV": "548"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 6,
+        "fields": {
+            "user": 3,
+            "bank": "открытие",
+            "card_num": "6546464",
+            "date": "10/32",
+            "CVV": "852"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 7,
+        "fields": {
+            "user": 1,
+            "bank": "приколов",
+            "card_num": "8885587474",
+            "date": "10/32",
+            "CVV": "548"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 8,
+        "fields": {
+            "user": 3,
+            "bank": "газпром",
+            "card_num": "78444444874",
+            "date": "10/32",
+            "CVV": "645"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 11,
+        "fields": {
+            "user": 1,
+            "bank": "втб",
+            "card_num": "23231312123",
+            "date": "11/22",
+            "CVV": "234"
+        }
+    },
+    {
+        "model": "users.paymentmethod",
+        "pk": 12,
+        "fields": {
+            "user": 1,
+            "bank": "альфа",
+            "card_num": "1354553",
+            "date": "11/54",
+            "CVV": "543"
+        }
+    }
+]

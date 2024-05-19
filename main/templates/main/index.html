@@ -21,10 +21,10 @@
                 {% for product in products %}
                     <div class="slides id_slider_{{ forloop.counter }}">
                         <div class="title_container">
-                            <h2 class="slider_title">Успейте приобрести</h2>
-                            <h2 class="slider_title">По <b>выгодной</b> цене</h2>
+                            <h2 class="slider_title">НЕ УПУСТИТЕ&nbsp;&nbsp;<span class="blue_text">ВОЗМОЖНОСТЬ</span></h2>
+                            <h2 class="slider_title">ПРИОБРЕСТИ ТОВАР</h2>
+                            <h2 class="slider_title">По <span class="blue_text">выгодной</span>&nbsp;&nbsp;цене</h2>
                         </div>
-                        <h2 class="slider_title slider_popular_product">Хит продаж</h2>
     
                         {% if product.image %}
                             <img src="{{ product.image.url }}" alt="" class="slider_img">
@@ -116,7 +116,6 @@
         <path opacity="0.5" d="M-10 20.5H-1.5C9.54569 20.5 18.5 29.4543 18.5 40.5V79C18.5 90.0457 27.4543 99 38.5 99H82.75C92.2769 99 100 106.723 100 116.25V116.25C100 125.777 107.723 133.5 117.25 133.5H197C204.456 133.5 210.5 127.456 210.5 120V120C210.5 112.544 216.544 106.5 224 106.5H254.5H287.5C298.546 106.5 307.5 115.454 307.5 126.5V155.5C307.5 162.127 302.127 167.5 295.5 167.5V167.5" stroke="#1C2541" stroke-width="2"/>
         <path opacity="0.6" d="M-14.5 105H39.0182C46.1878 105 52 110.812 52 117.982V117.982C52 125.151 46.1878 130.964 39.0182 130.964H19.5C12.3203 130.964 6.5 136.784 6.5 143.964V175.473V194C6.5 201.18 0.679702 207 -6.5 207H-21" stroke="#0082F0" stroke-width="2"/>
         <rect opacity="0.6" x="-49.5" y="39.5" width="234" height="162" rx="19.5" stroke="#8AC7FE"/>
-        <rect opacity="0.6" x="25.5" y="34.5" width="342" height="162" rx="19.5" stroke="#8AC7FE"/>
         <rect opacity="0.6" x="243" y="1" width="174" height="161" rx="19" stroke="#8AC7FE" stroke-width="2"/>
     </svg>
 {% endblock  %}

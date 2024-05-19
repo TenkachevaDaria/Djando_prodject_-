@@ -6,7 +6,7 @@
     .add_form {
         padding: 16px 12px;
         width: 100%;
-        min-height: 700px;
+        min-height: 600px;
     }
 
     .add_form__title {
@@ -17,6 +17,7 @@
 
     main {
         margin-top: 50px;
+        margin-bottom: 0;
     }
 
     .add_form__input {
@@ -56,12 +57,20 @@
     }
 
     .add_form__submit {
-        width: calc(100% - 24px);
+        width: 100%;
         padding: 10px 0;
         bottom: 16px;
+        font-size: 13px;
+        font-weight: 800;
     }
 
     .backimg_add_form {
         display: none;
+    }
+
+    .custom-file-upload {
+        font-size: 10px;
+        font-weight: 300;
+        margin-left: 0;
     }
 }

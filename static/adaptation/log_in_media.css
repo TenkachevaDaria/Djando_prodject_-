@@ -4,6 +4,10 @@
         gap: 0;
     }
 
+    svg {
+        display: none;
+    }
+
     .log_in_page_img {
         display: none;
     }
@@ -31,7 +35,7 @@
 
     .btn_send_database {
         min-width: 0;
-        width: calc(100% - 24px);
+        width: 100%;
         font-size: 13px;
         padding: 10px 135px;
         bottom: 15px;
@@ -39,7 +43,7 @@
 
     main {
         margin-top: 40px;
-        margin-bottom: 350px;
+        margin-bottom: 100px;
     }
 
     .backimg_log_in {

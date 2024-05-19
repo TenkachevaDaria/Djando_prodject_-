@@ -94,7 +94,9 @@
         display: block;
     }
 
-    .burger_menu {
+    .burger_menu,
+    .burger_menu_1,
+    .burger_menu_2 {
         display: block;
     }
 
@@ -148,10 +150,11 @@
     .burger_open {
         background-color: rgb(236, 246, 255);
         height: 100%;
-        width: 70%;
+        width: 73%;
         z-index: 3;
         position: absolute;
         right: 0;
+        top: 0;
     }
 
     .burger_menu[open] .burger_icon {
@@ -173,11 +176,6 @@
         gap: 10px;
     }
 
-    .burger_link a {
-        font-size: 15px;
-        color: rgb(28, 37, 65);
-    }
-
     .user_burger_inf {
         display: flex;
         justify-content: space-between;
@@ -193,7 +191,8 @@
     }
 
     .user_name {
-        color: rgb(28, 37, 65, 0.65);
+        color: #1C2541;
+        opacity: 65%;
     }
 
     .product_mini_card_mobile {
@@ -202,11 +201,6 @@
 
     .burger_link:nth-child(3) a {
         color: rgb(25, 158, 243);
-    }
-
-    .burger_link:last-child a {
-        color: #1C2541;
-        font-size: 15px;
     }
 
     .nav_user__input_mobile {

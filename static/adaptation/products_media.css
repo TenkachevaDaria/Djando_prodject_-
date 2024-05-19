@@ -90,11 +90,16 @@
 
     .close_icon {
         position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 6;
+        height: 40px;
+        width: 40px;
     }
 
     .burger_menu[open] .close_icon {
-        top: 30px;
-        right: 30px;
+        top: 10px;
+        right: 10px;
         z-index: 5;
     }
 
@@ -112,6 +117,15 @@
 
     .burger_stick_close4 {
         transform: rotate(45deg);
+    }
+
+    .close_popup_burg_sort,
+    .close_popup_burg_filter {
+        background: none;
+        font-size: 40px;
+        height: 40px;
+        width: 40px;
+        padding: 0;
     }
 
     .burger_menu[open] .burger_stick_close3,

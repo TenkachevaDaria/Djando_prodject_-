@@ -21,6 +21,29 @@
         margin: 0 auto;
     }
 
+    .saler_info {
+        margin-bottom: 0;
+    }
+
+    .rating-area {
+        position: absolute;
+        right: 0;
+        overflow: hidden;
+        width: 100px;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .rating-area:not(:checked)>label {
+        font-size: 20px;
+    }
+
+    .mobile_text {
+        color: #1C2541;
+        font-weight: 300;
+        font-size: 11px;
+    }
+
     .product__name {
         font-size: 20px;
         position: absolute;
@@ -29,11 +52,12 @@
 
     .price_share_container {
         min-width: 343px;
-        margin-bottom: 14px;
+        margin-bottom: 0;
     }
 
     .product__price {
         font-size: 28px;
+        margin-left: 10px;
         color: rgb(0, 130, 240);
     }
 
@@ -47,9 +71,17 @@
     }
 
     .product__rating {
-        margin-bottom: 0;
+        display: none;
+    }
+
+    .product__rating_mobile {
         font-size: 8px;
         color: rgb(28, 37, 65, 0.7);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-left: 10px;
+        margin-bottom: 10px;
     }
 
     .rating_stars svg {
@@ -66,7 +98,7 @@
     .btn_buy_now {
         padding: 7px 9px;
         font-size: 15px;
-        min-width: calc(169px - 14px);
+        min-width: calc(169px - 20px);
         height: fit-content;
     }
 
@@ -162,7 +194,12 @@
     .send_review_form__placeholder {
         height: 26px;
         padding-left: 10px;
+        padding-right: 105px;
         font-size: 11px;
+        border: 0.5px solid #1C2541;
+        border-radius: 11px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .form_star_icon svg{
@@ -204,6 +241,15 @@
         margin-bottom: 10px;
         min-height: fit-content;
         font-size: 7px;
+        border: 0.5px solid #1C2541;
+    }
+
+    main {
+        margin-top: 0;
+    }
+
+    .users_list_reviews {
+        margin-bottom: 0;
     }
 
     .another_user_star svg {

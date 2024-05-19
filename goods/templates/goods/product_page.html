@@ -172,6 +172,81 @@
                     </li>
                 </ul>
             </div>
+            <div class="product__rating_mobile">
+                <p class="rating_num">
+                    {% with product.review_set.all|length as reviews_count %}
+                        {{ reviews_count }} оценок
+                    {% endwith %}
+                </p>
+                <ul class="rating_stars">
+                    {% if average_rating_int > 0 %}
+                        {% for _ in "x"|rjust:average_rating_int %}
+                            <li class="another_user_star">
+                                {% comment %} вся закрашена {% endcomment %}
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="#FCA95D" fill-opacity="1.000000" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if average_rating_float > 0 %}
+                        {% if average_rating_float > 0 and average_rating_float < 0.5 %}
+                            <li class="another_user_star">
+                                {% comment %} 1/4 звезды {% endcomment %}
+                                <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                    <desc>Created with Pixso.</desc>
+                                    <g class="layer">
+                                        <title>Layer 1</title>
+                                        <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                        <path d="m7.45,8.19c0,0.04 0,10.27 -0.01,10.25c-0.01,-0.02 -3.03,2.23 -3.01,2.19c0.02,-0.04 2.32,-7.63 2.31,-7.65c-0.01,-0.02 -6.58,-4.95 -6.56,-4.87c0.02,0.08 7.27,0.08 7.27,0.08z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
+                                    </g>
+                                </svg>
+                                
+                            </li>
+                        {% endif %}
+                        {% if average_rating_float == 0.5 %}
+                            <li class="another_user_star">
+                                {% comment %} на половину закрашена {% endcomment %}
+                                <svg width="22" height="21" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="RightStar" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" />
+                                    <path id="LeftStar" d="M19 0L14.5 13.81L0 13.81L11.73 22.36L7.24 36.18L19 27.64L19 0Z" fill="#FCA95D" fill-opacity="1" />
+                                </svg>
+                            </li>
+                        {% endif %}
+                        {% if average_rating_float > 0.5 and average_rating_float < 1 %}
+                            <li class="another_user_star">
+                                {% comment %} 3/4 звезды {% endcomment %}
+                                <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                    <desc>Created with Pixso.</desc>
+                                    <g class="layer">
+                                        <title>Layer 1</title>
+                                        <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                        <path d="m14.14,18.26c0.02,0.2 -0.02,-10.13 -0.03,-10.15c-0.01,-0.02 -0.58,-0.1 -0.58,-0.12c-0.01,-0.02 -2.47,-7.35 -2.48,-7.37c-0.01,-0.02 -2.65,7.41 -2.66,7.39c-0.01,-0.02 -7.73,0.14 -7.73,0.12c-0.01,-0.02 6.19,4.73 6.17,4.73c-0.02,0 -2.28,7.33 -2.28,7.35c0,0.02 6.28,-4.41 6.3,-4.41c0.02,0 3.26,2.25 3.28,2.46z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
+                                    </g>
+                                </svg>                                
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if anti_average_rating > 0 %}
+                        {% for _ in "x"|rjust:anti_average_rating %}
+                            <li class="another_user_star">
+                                {% comment %} пустая {% endcomment %}
+                                <svg width="22.000000" height="21.000000" viewBox="0 0 39 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <desc>Created with Pixso.</desc>
+                                    <defs />
+                                    <path id="Star_1" d="M19 0L14.5 13.81L-0.03 13.81L11.73 22.36L7.24 36.18L19 27.64L30.75 36.18L26.26 22.36L38.02 13.81L23.49 13.81L19 0Z" fill="none" stroke="#FCA95D" stroke-width="1" fill-rule="evenodd" />
+                                </svg>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
             <div class="btns_container">
                 <a href="{% url "basket:basket_add" %}" class="btn btn_add add-to-basket"
                     data-product-id="{{ product.id }}">   
@@ -185,7 +260,7 @@
                  </a>
             </div>
             <div class="saler_info">
-                <p class="saler_name"><b>Продавец: </b>{{ product.manufacturer.username }}</p>
+                <p class="saler_name"><b>Продавец:</b> <span class="mobile_text">{{ product.manufacturer.username }}</span></p>
 
                 {% if product.description %}
                     <details class="descr_from_saler">
@@ -195,7 +270,7 @@
                                 <div class="summary_marker_stick1"></div>
                                 <div class="summary_marker_stick2"></div>
                             </div></summary>
-                        <p class="short_descr">{{ product.description }}</p>
+                        <p class="mobile_text">{{ product.description }}</p>
                     </details>
                 {% endif %}
 
@@ -208,7 +283,7 @@
                                 <div class="summary_marker_stick2"></div>
                             </div>
                         </summary>
-                        <ul class="list_peculiarities">
+                        <ul class="mobile_text">
                             <li>{{ product.peculiarities }}</li>
                         </ul>
                     </details>
@@ -276,14 +351,15 @@
                     {% if average_rating_float > 0 and average_rating_float < 0.5 %}
                         <li class="another_user_star">
                             {% comment %} 1/4 звезды {% endcomment %}
-                            <svg width="22" height="20.999999999999996" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                            <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
                                 <desc>Created with Pixso.</desc>
                                 <g class="layer">
-                                 <title>Layer 1</title>
-                                 <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
-                                 <path d="m7.45,8.19c0,0.04 0,10.27 -0.01,10.25c-0.01,-0.02 -3.03,2.23 -3.01,2.19c0.02,-0.04 2.32,-7.63 2.31,-7.65c-0.01,-0.02 -6.58,-4.95 -6.56,-4.87c0.02,0.08 7.27,0.08 7.27,0.08z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
+                                    <title>Layer 1</title>
+                                    <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                    <path d="m7.45,8.19c0,0.04 0,10.27 -0.01,10.25c-0.01,-0.02 -3.03,2.23 -3.01,2.19c0.02,-0.04 2.32,-7.63 2.31,-7.65c-0.01,-0.02 -6.58,-4.95 -6.56,-4.87c0.02,0.08 7.27,0.08 7.27,0.08z" fill="#fca95d" id="svg_2" stroke="#fca95d"/>
                                 </g>
                             </svg>
+                            
                         </li>
                     {% endif %}
                     {% if average_rating_float == 0.5 %}
@@ -300,14 +376,14 @@
                     {% if average_rating_float > 0.5 and average_rating_float < 1 %}
                         <li class="another_user_star">
                             {% comment %} 3/4 звезды {% endcomment %}
-                            <svg width="22" height="20.999999999999996" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                            <svg width="22" height="21" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
                                 <desc>Created with Pixso.</desc>
                                 <g class="layer">
-                                 <title>Layer 1</title>
-                                 <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
-                                 <path d="m14.14,18.26c0.02,0.2 -0.02,-10.13 -0.03,-10.15c-0.01,-0.02 -0.58,-0.1 -0.58,-0.12c-0.01,-0.02 -2.47,-7.35 -2.48,-7.37c-0.01,-0.02 -2.65,7.41 -2.66,7.39c-0.01,-0.02 -7.73,0.14 -7.73,0.12c-0.01,-0.02 6.19,4.73 6.17,4.73c-0.02,0 -2.28,7.33 -2.28,7.35c0,0.02 6.28,-4.41 6.3,-4.41c0.02,0 3.26,2.25 3.28,2.46z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
+                                    <title>Layer 1</title>
+                                    <path d="m10.96,0l-2.6,7.98l-8.39,0l6.79,4.94l-2.59,7.98l6.79,-4.93l6.79,4.93l-2.59,-7.98l6.79,-4.94l-8.39,0l-2.59,-7.98z" fill="none" fill-rule="evenodd" id="Star_1" stroke="#FCA95D"/>
+                                    <path d="m14.14,18.26c0.02,0.2 -0.02,-10.13 -0.03,-10.15c-0.01,-0.02 -0.58,-0.1 -0.58,-0.12c-0.01,-0.02 -2.47,-7.35 -2.48,-7.37c-0.01,-0.02 -2.65,7.41 -2.66,7.39c-0.01,-0.02 -7.73,0.14 -7.73,0.12c-0.01,-0.02 6.19,4.73 6.17,4.73c-0.02,0 -2.28,7.33 -2.28,7.35c0,0.02 6.28,-4.41 6.3,-4.41c0.02,0 3.26,2.25 3.28,2.46z" fill="#fca95d" id="svg_9" stroke="#FCA95D"/>
                                 </g>
-                            </svg>                                
+                            </svg>                                  
                         </li>
                     {% endif %}
                 {% endif %}

@@ -27,7 +27,12 @@
     .question__text {
         font-size: 9px;
         padding: 9px 12px;
-        border: 0.7px solid #1C2541;
+        padding-right: 30px;
+        border-radius: 12px;
+    }
+
+    .question__item[open] .question__text {
+        border-radius: 15px 15px 0px 0px;
     }
 
     .summary_marker_stick1,
@@ -46,8 +51,6 @@
     .question__answer {
         padding: 10px 12px;
         font-size: 7px;
-        border: 1px solid #1C2541;
-        border-top: none;
     }
 
     .ask_questins {
@@ -120,11 +123,12 @@
     .backimg_mobile {
         display: block;
         top: 130px;
+        filter: blur(6px);
     }
 
     .slider_price_container {
         bottom: 4px;
-        left: 13px;
+        left: 0px;
     }
 
     .slider_popular_product {

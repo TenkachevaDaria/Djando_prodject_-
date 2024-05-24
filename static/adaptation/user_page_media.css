@@ -203,6 +203,10 @@
         padding-top: 5px;
     }
 
+    .user_rating__none {
+        padding-top: 25px;
+    }
+
     .mobile_popup_bougths,
     .mobile_popup_sold {
         position: absolute;
@@ -219,7 +223,7 @@
         margin-left: 17px;
         gap: 10px;
         overflow-y: auto;
-        height: 100%;
+        height: 80%;
     }
 
     .mobile_popup_bougths__title {

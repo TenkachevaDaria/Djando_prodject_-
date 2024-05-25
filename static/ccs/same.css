@@ -15,6 +15,15 @@ main {
   z-index: 1;
 }
 
+details, summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
 li,
 ul,
 a,
@@ -28,6 +37,12 @@ h3 {
   margin: 0px;
   list-style-type: none;
   color: #1C2541;
+}
+
+.burger_menu,
+.burger_menu_1,
+.burger_menu_2 {
+    display: none;
 }
 
 .btn {

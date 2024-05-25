@@ -12,6 +12,7 @@
 
 .question {
     margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .question__text {

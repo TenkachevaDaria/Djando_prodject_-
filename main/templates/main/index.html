@@ -19,35 +19,37 @@
     
             <div class="slider">
                 {% for product in products %}
-                    <div class="slides id_slider_{{ forloop.counter }}">
-                        <div class="title_container">
-                            <h2 class="slider_title">Успейте приобрести</h2>
-                            <h2 class="slider_title">По <b>выгодной</b> цене</h2>
-                        </div>
-                        <h2 class="slider_title slider_popular_product">Хит продаж</h2>
-                        <div class="title_container_mobile">
-                            <h2 class="slider_title">НЕ УПУСТИТЕ&nbsp;&nbsp;<span class="blue_text">ВОЗМОЖНОСТЬ</span></h2>
-                            <h2 class="slider_title">ПРИОБРЕСТИ ТОВАР</h2>
-                            <h2 class="slider_title">По <span class="blue_text">выгодной</span>&nbsp;&nbsp;цене</h2>
-                        </div>
-    
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="" class="slider_img">
-                        {% else %}
-                            <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
-                        {% endif %}
-    
-                        <div class="slider_price_container">
-    
-                            {% if product.discount_percentage %}
-                                <p class="normal_price">{{ product.price|floatformat:"0" }} &#8381;</p>
-                                <p class="discounted_price">{{ product.discount_price|floatformat:"0" }} &#8381;</p>
+                <div class="slides id_slider_{{ forloop.counter }}">
+                            <a href="{% url "catalog:product" product.slug %}">
+                            <div class="title_container">
+                                <h2 class="slider_title">Успейте приобрести</h2>
+                                <h2 class="slider_title">По <b>выгодной</b> цене</h2>
+                            </div>
+                            <h2 class="slider_title slider_popular_product">Хит продаж</h2>
+                            <div class="title_container_mobile">
+                                <h2 class="slider_title">НЕ УПУСТИТЕ&nbsp;&nbsp;<span class="blue_text">ВОЗМОЖНОСТЬ</span></h2>
+                                <h2 class="slider_title">ПРИОБРЕСТИ ТОВАР</h2>
+                                <h2 class="slider_title">По <span class="blue_text">выгодной</span>&nbsp;&nbsp;цене</h2>
+                            </div>
+        
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="" class="slider_img">
                             {% else %}
-                                <p class="discounted_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
                             {% endif %}
-    
+        
+                            <div class="slider_price_container">
+        
+                                {% if product.discount_percentage %}
+                                    <p class="normal_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                    <p class="discounted_price">{{ product.discount_price|floatformat:"0" }} &#8381;</p>
+                                {% else %}
+                                    <p class="discounted_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                {% endif %}
+        
+                            </div>
+                        </a>
                         </div>
-                    </div>
                 {% endfor %}
             </div>	
     

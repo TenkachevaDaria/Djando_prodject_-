@@ -65,7 +65,6 @@ class Product(models.Model):
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
     def save(self, *args, **kwargs):
-        # Если slug пустой, генерируем его на основе имени товара и имени производителя
         if not self.slug:
             self.slug = slugify(f"{self.name} {self.category.id}")
         super().save(*args, **kwargs)

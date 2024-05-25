@@ -173,6 +173,10 @@
     align-items: center;
 }
 
+.product__rating_mobile {
+    display: none;
+}
+
 .form_user_rating {
     display: flex;
     gap: 5px;

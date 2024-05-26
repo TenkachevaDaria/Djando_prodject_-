@@ -68,7 +68,25 @@ $(document).ready(function () {
                 // Меняем содержимое корзины на ответ от django (новый отрисованный фрагмент разметки корзины)
                 var basketItemsContainer = $("#basket-items-container");
                 basketItemsContainer.html(data.basket_items_html);
-
+                
+                const buttonShowMore = document.querySelector('.show_more_btn');
+                const PaymentList = document.querySelector('.btn_choose_payment_list');
+                const payMethod = Array.from(PaymentList.querySelectorAll('.choice_payment_method'));
+                
+                payMethod.slice(2).forEach(review => {
+                    review.style.display = 'none';
+                });
+            
+                if (payMethod.length <= 2) {
+                    buttonShowMore.style.display = 'none';
+                }
+            
+                buttonShowMore.addEventListener('click', function() {
+                    payMethod.slice(2).forEach(review => {
+                        review.style.display = 'block';
+                    });
+                    buttonShowMore.style.display = 'none';
+                });
             },
         });
     });

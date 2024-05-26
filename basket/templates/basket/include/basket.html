@@ -112,6 +112,8 @@
             <p class="total_price_num"><b>{{ baskets.total_price }} &#8381;</b></p>
         </div>
         <a href="{% url "orders:create_order" %}"><button class="payment_way__btn btn">КУПИТЬ</button></a>
+    {% else %}
+        <button class="payment_way__btn btn">КУПИТЬ</button>
     {% endif %}
 </div>
 <script>

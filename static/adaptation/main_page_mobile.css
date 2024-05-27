@@ -93,12 +93,14 @@
     
     .slider_img {
         top: 0;
+        right: 1px;
         height: 100%;
-        width: 40%;
+        width: 100%;
     }
 
     .discounted_price {
         font-size: 24px;
+        text-align: left;
     }
 
     .wrapper .controls {
@@ -118,6 +120,21 @@
 
     .background_main_img {
         display: none;
+    }
+
+    .slider_info {
+        width: auto;
+        height: 163px;
+    }
+
+    .slider_left {
+        height: 163px;
+        width: 200px;
+    }
+
+    .slider_right {
+        height: 163px;
+        width: 143px;
     }
 
     .backimg_mobile {
@@ -141,7 +158,7 @@
 
     .title_container_mobile {
         display: block;
-        left: 13px;
-        top: 7px;
+        position: absolute;
+        left: 2px;
     }
 }

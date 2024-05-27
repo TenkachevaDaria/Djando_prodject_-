@@ -23,13 +23,19 @@
     .registration_form {
         padding: 16px 12px;
         width: calc(342px - 24px);
-        height: 305px;
+        height: calc(305px - 24px);
     }
 
     .reg_input {
+        background-color: #ECF6FF;
+        border-radius: 13px;
         padding: 9px 12px;
         font-size: 13px;
         width: calc(319px - 24px);
+    }
+
+    .another_way_submit {
+        font-size: 10px;
     }
 
     .clue, .clue2 {
@@ -37,6 +43,7 @@
     }
 
     .form_btn_container {
+        bottom: 12px;
         width: 318px;
     }
 
@@ -50,6 +57,8 @@
         width: 100%;
         font-size: 13px;
         font-weight: 800;
+        margin-bottom: 7px;
+        border-radius: 13px;
     }
 
     .backimg_reg {

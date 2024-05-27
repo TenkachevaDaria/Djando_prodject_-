@@ -13,7 +13,7 @@
     }
 
     .form_inputs {
-        height: 210px;
+        max-height: calc(210px - 32px);
         width: 343px;
         padding: 16px 12px;
     }
@@ -25,8 +25,10 @@
     }
 
     .input_log {
+        background-color: #ECF6FF;
         padding: 10px 15px;
         font-size: 13px;
+        border-radius: 13px;
     }
 
     .form_log_in {
@@ -37,8 +39,19 @@
         min-width: 0;
         width: 100%;
         font-size: 13px;
+        border-radius: 13px;
         padding: 10px 135px;
-        bottom: 15px;
+        margin-bottom: 7px;
+    }
+
+    .form_btn_container {
+        bottom: 10px;
+        width: 319px;
+    }
+
+    .another_way_submit {
+        font-size: 10px;
+        color: #1C2541;
     }
 
     main {

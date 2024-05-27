@@ -448,6 +448,14 @@
         document.addEventListener("DOMContentLoaded", function() {
             const popupicon_burger_filters = document.querySelector('.burger_menu_1');
             const hidePopupButton_mobile = popupicon_burger_filters.querySelector('.close_popup_burg_filter');
+
+            popupicon_burger_filters.addEventListener('toggle', function() {
+                if (popupicon_burger_filters.open) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
     
             function closePopup_mobile(event) {
                 event.preventDefault();
@@ -460,6 +468,14 @@
         document.addEventListener("DOMContentLoaded", function() {
             const popupicon_burger_sort = document.querySelector('.burger_menu_2');
             const hidePopupButton_mobile_sort = popupicon_burger_sort.querySelector('.close_popup_burg_sort');
+
+            popupicon_burger_sort.addEventListener('toggle', function() {
+                if (popupicon_burger_sort.open) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
     
             function closePopup_mobile_sort(event) {
                 event.preventDefault();
@@ -468,6 +484,19 @@
             hidePopupButton_mobile_sort.addEventListener('click', closePopup_mobile_sort);
         });
     </script>
+    {% comment %} <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const detailsElement = document.querySelector('.burger_menu_2');
+
+            detailsElement.addEventListener('toggle', function() {
+                if (detailsElement.open) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script> {% endcomment %}
 {% endblock  %}
 {% block decorLine %}
     <svg width="1846" height="2146" viewBox="0 0 1846 2146" fill="none" xmlns="http://www.w3.org/2000/svg" class="backimg_products">

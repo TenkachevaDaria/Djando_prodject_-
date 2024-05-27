@@ -19,41 +19,129 @@
     
             <div class="slider">
                 {% for product in products %}
-                <div class="slides id_slider_{{ forloop.counter }}">
-                            <a href="{% url "catalog:product" product.slug %}">
-                            <div class="title_container">
-                                <h2 class="slider_title">Успейте приобрести</h2>
-                                <h2 class="slider_title">По <b>выгодной</b> цене</h2>
-                            </div>
-                            <h2 class="slider_title slider_popular_product">Хит продаж</h2>
-                            <div class="title_container_mobile">
-                                <h2 class="slider_title">НЕ УПУСТИТЕ&nbsp;&nbsp;<span class="blue_text">ВОЗМОЖНОСТЬ</span></h2>
-                                <h2 class="slider_title">ПРИОБРЕСТИ ТОВАР</h2>
-                                <h2 class="slider_title">По <span class="blue_text">выгодной</span>&nbsp;&nbsp;цене</h2>
-                            </div>
-        
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" alt="" class="slider_img">
-                            {% else %}
-                                <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
-                            {% endif %}
-        
-                            <div class="slider_price_container">
-        
-                                {% if product.discount_percentage %}
-                                    <p class="normal_price">{{ product.price|floatformat:"0" }} &#8381;</p>
-                                    <p class="discounted_price">{{ product.discount_price|floatformat:"0" }} &#8381;</p>
-                                {% else %}
-                                    <p class="discounted_price">{{ product.price|floatformat:"0" }} &#8381;</p>
-                                {% endif %}
-        
+                    <div class="slides id_slider_{{ forloop.counter }}">
+                        <a href="{% url "catalog:product" product.slug %}">
+                            <div class="slider_info">
+                                <div class="slider_left">
+                                    <div class="title_container">
+                                        <h2 class="slider_title">Успейте приобрести</h2>
+                                        <h2 class="slider_title">По <b>выгодной</b> цене</h2>
+                                    </div>
+                                    <div class="title_container_mobile">
+                                        <h2 class="slider_title">НЕ УПУСТИТЕ&nbsp;&nbsp;<span class="blue_text">ВОЗМОЖНОСТЬ</span></h2>
+                                        <h2 class="slider_title">ПРИОБРЕСТИ ТОВАР</h2>
+                                        <h2 class="slider_title">По <span class="blue_text">выгодной</span>&nbsp;&nbsp;цене</h2>
+                                    </div>
+                                    <div class="slider_price_container">
+                
+                                        {% if product.discount_percentage %}
+                                            <p class="normal_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                            <p class="discounted_price">{{ product.discount_price|floatformat:"0" }} &#8381;</p>
+                                        {% else %}
+                                            <p class="discounted_price">{{ product.price|floatformat:"0" }} &#8381;</p>
+                                        {% endif %}
+                
+                                    </div>
+                                </div>
+                                <div class="slider_right">
+                                    <h2 class="slider_title slider_popular_product">Хит продаж</h2>
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" alt="" class="slider_img">
+                                    {% else %}
+                                        <img src="{% static 'deps/отсутсвует.png' %}" alt="" class="slider_img">
+                                    {% endif %}
+                                </div>
                             </div>
                         </a>
-                        </div>
+                    </div>
                 {% endfor %}
             </div>	
-    
-    
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const sliders = document.querySelectorAll('input[name="point"]');
+                    const slides = document.querySelectorAll('.slides');
+                    const sliderContainer = document.querySelector('.slider');
+                    let currentIndex = 0;
+                    let intervalId;
+                    const totalSlides = sliders.length;
+                    const intervalTime = 4000;
+                
+                    function goToNextSlide(index) {
+                        slides.forEach(slide => slide.classList.remove('active'));
+                        sliders[index].checked = true;
+                
+                        const targetSlide = document.querySelector(`.id_slider_${index + 1}`);
+                        targetSlide.classList.add('active');
+                        targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                
+                        clearInterval(intervalId);
+                        intervalId = setInterval(autoScroll, intervalTime);
+                    }
+                
+                    sliders.forEach((slider, index) => {
+                        slider.addEventListener('change', function() {
+                            goToNextSlide(index);
+                        });
+                    });
+                
+                    function autoScroll() {
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                        goToNextSlide(currentIndex);
+                    }
+                
+                    intervalId = setInterval(autoScroll, intervalTime);
+                
+                    // Функциональность для мобильных устройств
+                    if (window.innerWidth < 420) {
+                        let startX = 0;
+                        let isDragging = false;
+                
+                        sliderContainer.addEventListener('touchstart', (e) => {
+                            startX = e.touches[0].clientX;
+                            isDragging = true;
+                            clearInterval(intervalId);
+                        });
+                
+                        sliderContainer.addEventListener('touchmove', (e) => {
+                            if (!isDragging) return;
+                            const moveX = e.touches[0].clientX - startX;
+                            sliderContainer.scrollLeft -= moveX;
+                            startX = e.touches[0].clientX;
+                        });
+                
+                        sliderContainer.addEventListener('touchend', () => {
+                            isDragging = false;
+                            const scrollPosition = sliderContainer.scrollLeft;
+                            const containerWidth = sliderContainer.scrollWidth / totalSlides;
+                
+                            if (scrollPosition < containerWidth / 2) {
+                                currentIndex = 0;
+                            } else if (scrollPosition < containerWidth * 1.5) {
+                                currentIndex = 1;
+                            } else {
+                                currentIndex = 2;
+                            }
+                            goToNextSlide(currentIndex);
+                        });
+                
+                        // Прослушиваем изменения scrollLeft и переключаем слайды
+                        sliderContainer.addEventListener('scroll', () => {
+                            if (!isDragging) return;
+                            const scrollPosition = sliderContainer.scrollLeft;
+                            const containerWidth = sliderContainer.scrollWidth / totalSlides;
+                
+                            if (scrollPosition < containerWidth / 2) {
+                                currentIndex = 0;
+                            } else if (scrollPosition < containerWidth * 1.5) {
+                                currentIndex = 1;
+                            } else {
+                                currentIndex = 2;
+                            }
+                            goToNextSlide(currentIndex);
+                        });
+                    }
+                });
+            </script>
             <div class="controls">
     
                 {% for product in products %}

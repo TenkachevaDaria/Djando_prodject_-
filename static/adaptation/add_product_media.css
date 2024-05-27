@@ -25,6 +25,8 @@
         padding: 10px;
         margin-bottom: 13px;
         font-size: 13px;
+        border-radius: 13px;
+        background-color: #ECF6FF;
     }
 
     .check_boxs_label {
@@ -72,5 +74,8 @@
         font-size: 10px;
         font-weight: 300;
         margin-left: 0;
+        border-radius: 13px;
+        background-color: #ECF6FF;
+        padding: 7px;
     }
 }

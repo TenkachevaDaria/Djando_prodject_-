@@ -13,7 +13,7 @@
             <form action="{% url "user:registration" %}" method="post" class="reg_form">
                 {% csrf_token %}
                 
-                <input type="text" id="id_username" name="username" required placeholder="Введите имя" class="reg_input" value="{% if form.username.value %}{{ form.username.value }}{% endif %}">
+                <input type="text" id="id_username" name="username" required placeholder="Введите логин" class="reg_input" value="{% if form.username.value %}{{ form.username.value }}{% endif %}">
                 {% if form.username.errors %}
                     <p>{{ form.username.errors }}</p>
                 {% endif %}

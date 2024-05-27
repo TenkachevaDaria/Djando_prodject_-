@@ -173,3 +173,16 @@ document.addEventListener("DOMContentLoaded", function() {
     userBuyProducts_mobile.addEventListener('click', openPopup_mobile);
     hidePopupButton_mobile.addEventListener('click', closePopup_mobile);
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const detailsElement = document.querySelector('.burger_menu_2');
+
+    detailsElement.addEventListener('toggle', function() {
+        if (detailsElement.open) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+});

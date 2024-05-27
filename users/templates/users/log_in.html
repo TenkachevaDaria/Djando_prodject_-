@@ -20,7 +20,7 @@
                 <input type="text" id="id_username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" name="username" required placeholder="Введите логин" class="{% if form.username.value %}log_input_error{% endif %} input_log">
                 <input type="password" id="id_password" name="password" required placeholder="{% if form.username.value %}Неверный пароль{% else %}Введите пароль{% endif %}" class="{% if form.username.value %}log_input_error{% endif %} input_log">
                 <div class="form_btn_container">
-                    <input type="submit" value="Войти" class="btn_send_database">
+                    <input type="submit" value="ВОЙТИ" class="btn_send_database">
                     <p class="another_way_submit">Ещё нет аккаунта?
                         <a href="{% url "user:registration" %}">Зарегистрироваться</a>
                     </p>

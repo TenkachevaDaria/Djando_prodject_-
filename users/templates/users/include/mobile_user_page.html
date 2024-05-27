@@ -321,3 +321,45 @@
         </div>
     </div>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const soldPopup = document.querySelector('.mobile_popup_sold');
+        const bougthsPopup = document.querySelector('.mobile_popup_bougths');
+        const paymentMethodPopup = document.querySelector('.popup_user_add_payment_method_mobile');
+
+        const observer = new MutationObserver(function(mutationsList) {
+            mutationsList.forEach(function(mutation) {
+                if (mutation.attributeName === 'style') {
+                    checkPopups();
+                }
+            });
+        });
+
+        function checkPopups() {
+            const soldDisplay = window.getComputedStyle(soldPopup).display;
+            const bougthsDisplay = window.getComputedStyle(bougthsPopup).display;
+            const paymentMethodDisplay = window.getComputedStyle(paymentMethodPopup).display;
+
+            if (soldDisplay === 'block' || bougthsDisplay === 'block' || paymentMethodDisplay === 'block') {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        observer.observe(soldPopup, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+
+        observer.observe(bougthsPopup, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+
+        observer.observe(paymentMethodPopup, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+    });
+</script>

@@ -6,42 +6,42 @@
             <h2 class="left_inputs__title">Аккаунт</h2>
             <div class="left_inputs__container">
                 <div>
-                    <label for="first_name">Имя</label><br>
+                    <label class='labl_lk' for="first_name">Имя</label><br>
                     <input type="text" id="id_first_name" name="first_name" class="user_input_page" value="{{ form.first_name.value }}" placeholder="Добавьте имя"><br>
                     {% if form.first_name.errors %}
                         <p>{{ form.first_name.errors }}</p> 
                     {% endif %}
                 </div>
                 <div>
-                    <label for="last_name">Фамилия</label><br>
+                    <label class='labl_lk' for="last_name">Фамилия</label><br>
                     <input type="text" id="id_last_name" name="last_name" class="user_input_page" value="{{ form.last_name.value }}" placeholder="Добавьте фамилию"><br>
                     {% if form.last_name.errors %}
                         <p>{{ form.last_name.errors }}</p> 
                     {% endif %}
                 </div>
                 <div>
-                    <label for="middle_name">Отчество</label><br>
+                    <label class='labl_lk' for="middle_name">Отчество</label><br>
                     <input type="text" id="id_middle_name" name="middle_name" class="user_input_page" value="{{ form.middle_name.value }}" placeholder="Добавьте отчество"><br>
                     {% if form.middle_name.errors %}
                         <p>{{ form.middle_name.errors }}</p> 
                     {% endif %}
                 </div>
                 <div>
-                    <label for="e-mail">E-mail</label><br>
+                    <label class='labl_lk' for="e-mail">E-mail</label><br>
                     <input type="email" id="id_email" name="email" class="user_input_page" value="{{ form.email.value }}" placeholder="Добавьте почту" required><br>
                     {% if form.email.errors %}
                         <p>{{ form.email.errors }}</p> 
                     {% endif %}
                 </div>
                 <div>
-                    <label for="phone_num">Номер телефона</label><br>
+                    <label class='labl_lk' for="phone_num">Номер телефона</label><br>
                     <input type="text" id="id_phone" name="phone" class="user_input_page" value="{{ form.phone.value }}" placeholder="Добавьте номер телефона"><br>
                     {% if form.phone.errors %}
                         <p>{{ form.phone.errors }}</p> 
                     {% endif %}
                 </div>
                 <div>
-                    <label for="login">Логин</label><br>
+                    <label class='labl_lk' for="login">Логин</label><br>
                     <p class="user_input_page">{{ user.username }}</p><br>
                 </div>
                 <input type="submit" value="Сохранить измененния" class="save_user_data_btn btn">
@@ -109,8 +109,9 @@
                         {% endif %}
 
                         <div class="marker_container">
-                            <div class="summary_marker_stick1"></div>
-                            <div class="summary_marker_stick2"></div>
+                            <svg class='summary_marker_stick' width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L6 5.94382L1 1" stroke="#1C2541" stroke-width="0.7"/>
+                            </svg>
                         </div>
                     </summary>
                     <ul class="summary_filters">

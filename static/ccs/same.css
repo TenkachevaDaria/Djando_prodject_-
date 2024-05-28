@@ -107,6 +107,10 @@ details[open] .marker_container {
   transform: rotate(90deg);
 }
 
+details[open] .summary_marker_stick {
+  stroke: blue;
+}
+
 details[open] .summary_marker_stick1 {
   border: 1.5px solid blue;
 }

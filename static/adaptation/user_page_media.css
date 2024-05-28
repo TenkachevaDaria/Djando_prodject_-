@@ -32,7 +32,7 @@
     .save_user_data_btn {
         padding: 4px 7px;
         font-size: 10px;
-        width: 125px;
+        width: fit-content;
         border-radius: 7px;
     }
 
@@ -124,8 +124,13 @@
     }
 
     .marker_container {
-        top: 8px;
+        top: 5px;
         right: 9px;
+    }
+
+    .labl_lk {
+        font-size: 13px;
+        color: #1C2541;
     }
 
     .summary_marker_stick1,
@@ -174,8 +179,7 @@
 
     .user_rating {
         position: absolute;
-        bottom: 213px;
-        margin-top: 0;
+        margin-top: 392px;
     }
 
     .user_rating__title,
